@@ -32,6 +32,7 @@ function getCookie(emailPhone, password) {
             }
         });
     }
+    return emailPhoneResult !== null ? emailPhoneResult + " " + emailPasswordResult : null;
 }
 
 /**
