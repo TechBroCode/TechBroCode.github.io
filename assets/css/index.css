@@ -4,6 +4,11 @@
     --red: #ff0f00;
     --blue: #000cff;
     --yellow: #ff9900;
+    --primaryColor: whitesmoke;
+}
+
+.dark-theme {
+    --primaryColor: black;
 }
 
 * {
