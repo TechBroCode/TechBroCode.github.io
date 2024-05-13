@@ -84,14 +84,27 @@
     border-radius: 30px;
     color: white;
 }
-
+.accept, .decline {
+    transition-property: background-color;
+    transition-duration: 0.2s;
+    transition-timing-function: linear;
+    transition-delay: 0.2s;
+}
 .accept {
-    background: var(--blue);
+    background-color: var(--blue);
+}
+.accept:hover {
+    background-color: var(--yellow);
 }
 
 .decline {
     background: red;
 }
+.decline:hover {
+    background-color: black;
+}
+
+
 
 #paypal_logo {
     display: block;
