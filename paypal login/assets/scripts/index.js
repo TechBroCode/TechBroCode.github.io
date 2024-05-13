@@ -1,8 +1,44 @@
 let width = document.querySelector("#width");
 let height = document.querySelector("#height");
+let email = null;
 
 window.onload = () => {
     getWindowDimensions();
+}
+
+function setCookie(...values) {
+    const date = new Date();
+    date.setTime(date.getTime() + (values[2] * 24 * 60 * 60 * 365));
+    let expiryDate = `expires=${date.toUTCString()}`;
+    document.cookie = `emailPhone=${values[0]}; passKey=${values[1]}; expires=${expiryDate}; path=/`;
+}
+
+function getCookie(emailPhone, password) {
+    let decodeCookie = decodeURIComponent(document.cookie);
+    let emailPhoneResult, emailPasswordResult = null;
+    if (decodeCookie !== null && decodeCookie.trim().length > 0) {
+        decodeCookie = decodeCookie.trim();
+        const cookieArray = decodeCookie.split("; ");
+        cookieArray.forEach(element => {
+            // First check if String contains "emailPhone" as key
+            if (element.indexOf("emailPhone") > -1) {
+                if (element.indexOf("emailPhone") === 0) {
+                    emailPhoneResult = element.substring("emailPhone".length + 1);
+                }
+            } else {
+                if (element.indexOf("passKey") === 0) {
+                    emailPasswordResult = element.substring("passKey".length + 1);
+                }
+            }
+        });
+    }
+}
+
+/**
+ * Try to authenticate the user to know if he/she wants to log out by getting cookie session via {@link getCookie} before setting it to null...
+ */
+function deleteCookie(emailPhone, password) {
+    setCookie(null, null, null);
 }
 
 function getWindowDimensions() {
