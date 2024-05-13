@@ -4,6 +4,10 @@ let email = null;
 
 window.onload = () => {
     getWindowDimensions();
+    let cookie = getCookie(null, null);
+    if (cookie === null) {
+
+    }
 }
 
 function setCookie(...values) {
