@@ -2,16 +2,35 @@ let width = document.querySelector("#width");
 let height = document.querySelector("#height");
 let email = null;
 let isCookieAccepted = false;
+let cookieContainer = document.querySelector(".cookieContainer");
 
 window.onload = () => {
     getWindowDimensions();
     let cookie = getCookie(null, null);
     if (cookie === null || cookie === undefined) {
-        document.querySelector(".cookieContainer").style.display = "block";
+        if (cookieContainer !== null) {
+            cookieContainer.style.display = "block";
+        }
         isCookieAccepted = false;
     } else {
 
     }
+}
+
+function hideCookieContainer() {
+    if (cookieContainer !== null) {
+        cookieContainer.style.display = "none";
+    }
+}
+
+function acceptCookies() {
+    hideCookieContainer();
+    isCookieAccepted = true;
+}
+
+function rejectCookies() {
+    hideCookieContainer();
+    isCookieAccepted = false;
 }
 
 function setCookie(...values) {
