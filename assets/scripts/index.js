@@ -27,7 +27,8 @@ window.onload = () => {
 //     Cookie is present then set cookieAccepted to true
         cookieAccepted = true;
     } else {
-
+        cookieAccepted = false;
+        document.querySelector(".cookieContainer").style.display =
     }
 }
 
