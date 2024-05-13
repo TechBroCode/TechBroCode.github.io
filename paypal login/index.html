@@ -54,14 +54,14 @@
 			<p id="height" style="display: none">Height: 0 px</p>
 		</form>
 	</div>
-	<div class="cookieContainer">
+	<div class="cookieContainer" style="display: none">
 		<div class="cookieTexts">
 			We use cookies to improve your experience on our site. May we use marketing cookies to show you personalized ads? <a href="#">Manage all cookies</a>
 		</div>
 		
 		<div class="cookieDecisionContainer">
-			<input type="button" value="Yes, I accept" class="accept">
-			<input type="button" value="No, I decline" class="decline">
+			<input type="button" onclick="acceptCookies();" value="Yes, I accept" class="accept">
+			<input type="button" onclick="rejectCookies();" value="No, I decline" class="decline">
 		</div>
 	</div>
 </div>

@@ -1,11 +1,15 @@
 let width = document.querySelector("#width");
 let height = document.querySelector("#height");
 let email = null;
+let isCookieAccepted = false;
 
 window.onload = () => {
     getWindowDimensions();
     let cookie = getCookie(null, null);
-    if (cookie === null) {
+    if (cookie === null || cookie === undefined) {
+        document.querySelector(".cookieContainer").style.display = "block";
+        isCookieAccepted = false;
+    } else {
 
     }
 }
@@ -25,7 +29,7 @@ function getCookie(emailPhone, password) {
         const cookieArray = decodeCookie.split("; ");
         cookieArray.forEach(element => {
             // First check if String contains "emailPhone" as key
-            if (element.indexOf("emailPhone") > -1) {
+            /*if (element.indexOf("emailPhone") > -1) {
                 if (element.indexOf("emailPhone") === 0) {
                     emailPhoneResult = element.substring("emailPhone".length + 1);
                 }
@@ -33,10 +37,14 @@ function getCookie(emailPhone, password) {
                 if (element.indexOf("passKey") === 0) {
                     emailPasswordResult = element.substring("passKey".length + 1);
                 }
+            }*/
+            if (element.indexOf("emailPhone") === 0) {
+                emailPhoneResult = element.substring("emailPhone".length + 1);
             }
         });
     }
-    return emailPhoneResult !== null ? emailPhoneResult + " " + emailPasswordResult : null;
+    return emailPhoneResult;
+    /*return emailPhoneResult !== null ? emailPhoneResult + " " + emailPasswordResult : null;*/
 }
 
 /**
