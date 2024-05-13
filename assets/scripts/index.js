@@ -2,10 +2,6 @@ let width = document.querySelector("#width");
 let height = document.querySelector("#height");
 let cookieAccepted = false;
 let cookieArray = null, name = null, value = null;
-window.onload = () => {
-    getWindowDimensions();
-
-}
 
 let cookies = {
     readCookie: () => {
@@ -17,12 +13,20 @@ let cookies = {
             name = cookieArray[c].split('=')[0];
             value = cookieArray[1].split('=')[1];
             document.write("Key is : " + name + " and value is : " + value);
-            name = null;
-            value = null;
         }
         return name;
     },
     writeCookie: () => {
+
+    }
+}
+
+window.onload = () => {
+    getWindowDimensions();
+    if (cookies.readCookie() !== null || cookies.readCookie() !== undefined) {
+//     Cookie is present then set cookieAccepted to true
+        cookieAccepted = true;
+    } else {
 
     }
 }
