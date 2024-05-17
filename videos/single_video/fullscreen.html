@@ -116,9 +116,50 @@ Amazing & Beautiful Animals and Birds 8K HDR 60FPS (FUHD) Demo 8K ULTRA HD for A
 				src="https://rr4---sn-vufvj1-2gb6.googlevideo.com/videoplayback?expire=1715985345&ei=YYdHZrzENq6_6dsP7Kq00A0&ip=2a00%3A1028%3A96d4%3Ac4b6%3A74ac%3Aaf9d%3Acab8%3Adc4e&id=o-AMJhd9PaC_Q0TWZBggYJNH5nZADOEoH8NaVD11DohQlr&itag=248&aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C271%2C278%2C313%2C394%2C395%2C396%2C397%2C398%2C399%2C400%2C401%2C571&source=youtube&requiressl=yes&xpc=EgVo2aDSNQ%3D%3D&mh=jX&mm=31%2C29&mn=sn-vufvj1-2gb6%2Csn-2gb7sn7r&ms=au%2Crdu&mv=m&mvi=4&pl=49&initcwndbps=1003750&bui=AWRWj2QjkkgBCi-ex8DqT5LKiNno18xyjprXx8JhUoTQmitvNFiidSJfnloIwwoDWH8BUzuve-nzzFTr&spc=UWF9f9S1M72IB5sK_3H1AoTPH5zC4DI-fG1nJ9jZH9xAs4L_I4Ci-RpRs-bu&vprv=1&svpuc=1&mime=video%2Fwebm&ns=Bvt2PzMWZtGgOU-SyjZ-_KQQ&rqh=1&gir=yes&clen=835985744&dur=3639.499&lmt=1696157668851239&mt=1715963597&fvip=5&keepalive=yes&c=WEB&sefc=1&txp=5437434&n=i4ey0CAr6SHE1w&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cxpc%2Cbui%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Crqh%2Cgir%2Cclen%2Cdur%2Clmt&sig=AJfQdSswRQIgNokG3P60YTOYcPSc3xEL830UObOmtRviuHs7gJlYsVgCIQCFrjQhJh58X1mj0O2S4u9sqK15BVqZtV1PRiRk00mdTQ%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&lsig=AHWaYeowRAIgAKk6PIYxcnsHExdUmF7KVbhwL4Ui7UdlojdCKK2b3oMCICodxhYEghiBfE4pS8Fq9mrcjnym68qVLR_k8_qLgcO6"
 				type="video/webm"/>
 	</video>
+	
+	<audio autoplay id="audio" muted>
+	
+	</audio>
 </div>
 <script type="application/ecmascript">
 	let video = document.getElementById("video");
+	let audio = document.getElementById("audio");
+	/**
+	 * For perfect functionality, DON'T Unmute video but instead play audio and unmute audio.
+	 */
+	
+	function forceAutoVideoAndAudioSynchronousStart() {
+		if (video !== null && video !== undefined && audio !== null && audio !== undefined) {
+			playVideo();
+		}
+	}
+	
+	function playAudio() {
+	
+	}
+	
+	function playVideo() {
+		video.play();
+	}
+	
+	function pauseVideo() {
+		video.pause();
+	}
+	
+	function mergeVideoAudio() {
+		// 	You must play video, then create function to keep setting position of the audio
+		if (video.paused) {
+			playVideo();
+		}
+	}
+	
+	function togglePlay() {
+		if (video.paused) {
+			playVideo();
+		} else {
+			pauseVideo();
+		}
+	}
 	
 	function muteToggle() {
 		video.muted = !video.muted;
