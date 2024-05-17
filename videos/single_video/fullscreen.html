@@ -118,7 +118,16 @@ Amazing & Beautiful Animals and Birds 8K HDR 60FPS (FUHD) Demo 8K ULTRA HD for A
 	</video>
 </div>
 <script type="application/ecmascript">
-
+	let video = document.getElementById("video");
+	
+	function muteToggle() {
+		video.muted = !video.muted;
+		if (video.muted) {
+			video.volume = 1.0;
+		} else {
+			video.volume = 0.0;
+		}
+	}
 </script>
 <style>
 	body {
