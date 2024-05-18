@@ -121,21 +121,24 @@ Amazing & Beautiful Animals and Birds 8K HDR 60FPS (FUHD) Demo 8K ULTRA HD for A
 	<div id="action-controls">
 		<div id="play-pause-holder" onclick="togglePlay();">
 			<img alt="Play" id="play"
+			     onclick="togglePlay();"
 			     src="assets/icons/svgs/ic_baseline_play_arrow_24.svg"
 			     srcset="assets/icons/svgs/ic_baseline_play_arrow_24.svg">
-			<img alt="Pause" id="pause" src="assets/icons/svgs/ic_baseline_pause_24.svg"
+			<img alt="Pause" id="pause" src="assets/icons/svgs/ic_baseline_pause_24.svg" onclick="togglePlay();"
 			     srcset="assets/icons/svgs/ic_baseline_pause_24.svg" style="display: none">
 		</div>
 		<div id="volume-holder" onclick="toggleMuteDisplay();">
 			<img alt="Volume off" id="volume-off"
+			     onclick="toggleMuteDisplay();"
 			     src="assets/icons/svgs/ic_baseline_volume_off_24.svg"
 			     srcset="assets/icons/svgs/ic_baseline_volume_off_24.svg"
 			     style="display: none">
-			<img alt="Volume on" id="volume-on" src="assets/icons/svgs/ic_baseline_volume_up_24.svg"
+			<img alt="Volume on" id="volume-on" src="assets/icons/svgs/ic_baseline_volume_up_24.svg" onclick="toggleMuteDisplay();"
 			     srcset="assets/icons/svgs/ic_baseline_volume_up_24.svg">
 		</div>
 		<div id="seek-holder" onclick="seekVideo();">
 			<img alt="Seek" id="seek"
+			     onclick="seekVideo();"
 			     src="assets/icons/svgs/ic_baseline_fast_forward_24.svg"
 			     srcset="assets/icons/svgs/ic_baseline_fast_forward_24.svg">
 		</div>
