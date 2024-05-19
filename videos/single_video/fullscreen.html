@@ -112,7 +112,7 @@ Amazing & Beautiful Animals and Birds 8K HDR 60FPS (FUHD) Demo 8K ULTRA HD for A
 <body>
 <div id="video_container">
 	<video autofocus autoplay controls id="video" loop
-	       playsinline poster="https://img.youtube.com/vi_webp/5USuekk16e0/maxresdefault.webp">
+	       playsinline poster="https://img.youtube.com/vi_webp/5USuekk16e0/maxresdefault.webp" onclick="playVideo();">
 		<!--720 (HD)-->
 		<source src="https://rr6---sn-xupn5a5u5x-4wgek.googlevideo.com/videoplayback?expire=1716136698&ei=mtZJZvHzI-av6dsPsri4YA&ip=180.94.90.242&id=o-ABcH1EYTHkPRAiYQiN6OdPZGtHyAEDjki-WrKzvX5pnh&itag=22&source=youtube&requiressl=yes&xpc=EgVo2aDSNQ%3D%3D&mh=jX&mm=31%2C29&mn=sn-xupn5a5u5x-4wgek%2Csn-ug5onfvgaq-3ips&ms=au%2Crdu&mv=m&mvi=6&pl=24&initcwndbps=143750&bui=AWRWj2R6i7cPqMOydJNqw-nY0DiOBTU76SFD4FBcpDY4BUrOX66UBROco3ugiD61g6XCYWn5qZgCX4OD&vprv=1&svpuc=1&mime=video%2Fmp4&ns=eaNMah-OlV6HH91-6oNKgoMQ&rqh=1&cnr=14&ratebypass=yes&dur=3639.565&lmt=1696156865298971&mt=1716114777&fvip=1&c=TVHTML5_SIMPLY_EMBEDDED_PLAYER&sefc=1&txp=5432434&n=ex_jZhXnRrpeRQ&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cxpc%2Cbui%2Cvprv%2Csvpuc%2Cmime%2Cns%2Crqh%2Ccnr%2Cratebypass%2Cdur%2Clmt&sig=AJfQdSswRgIhANAI4NtdC2AfJntuTL3HWyKegfYTsmL7tgAqCKg9G8IHAiEAu2OYnTGJUhB-LdBMUZNa6twTfmcMXWa9am5VPiEODkw%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&lsig=AHWaYeowRAIgGPW7ZVxD6e1FGKDPEMyMMLrondIM3SXT4jraMtlNYTYCIBzNdgKPzUkWrG6tpZ8vhg7rZfohiIDpshYt34CRfg1P&title=ANIMAL%20ADVENTURES%3A%20The%20Amazing%20Animal%20Kingdom%208K%20VIDEO%20ULTRA%20HD%20%238K"
 		        type="video/mp4">
@@ -169,6 +169,7 @@ Amazing & Beautiful Animals and Birds 8K HDR 60FPS (FUHD) Demo 8K ULTRA HD for A
 			video.muted === true ? audio.muted = true : audio.muted = false;*/
 			video.click();
 			video.play();
+			console.warn("lol");
 			video.autofocus = true;
 		}
 	}, 1000);
