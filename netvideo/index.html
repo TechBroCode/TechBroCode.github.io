@@ -760,6 +760,18 @@
 		moreVertHolder[c].onmouseout = () => {
 			moreVertHolder[c].style.backgroundColor = "transparent";
 		};
+		
+		moreVertHolder[c].ontouchstart = () => {
+			moreVertHolder[c].style.backgroundColor = "rgb(213, 213, 213)";
+		};
+		
+		moreVertHolder[c].ontouchend = () => {
+			moreVertHolder[c].style.backgroundColor = "transparent";
+		};
+		
+		moreVertHolder[c].ontouchcancel = () => {
+			moreVertHolder[c].style.backgroundColor = "transparent";
+		};
 	}
 	
 </script>
