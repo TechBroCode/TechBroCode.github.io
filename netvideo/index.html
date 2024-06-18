@@ -614,12 +614,12 @@
 	
 	.thumbnailContainer {
 		width: 100%;
-		height: 170px;
+		height: auto;
 	}
 	
 	.videoThumbnail {
 		width: 100%;
-		height: 170px;
+		height: auto;
 		object-fit: fill;
 	}
 	
@@ -703,7 +703,7 @@
 	
 	.more_vert_holder {
 		width: 50px;
-		height: 48px;
+		height: 45px;
 		padding: 0 0 0 0;
 		border: none;
 		border-radius: 50%;
@@ -754,7 +754,7 @@
 			let clearBackground = setInterval(() => {
 				moreVertHolder[c].style.backgroundColor = "transparent";
 				clearInterval(clearBackground);
-			}, 500);
+			}, 300);
 		};
 		
 		moreVertHolder[c].onmousedown = () => {
@@ -765,7 +765,7 @@
 			let clearBackground = setInterval(() => {
 				moreVertHolder[c].style.backgroundColor = "transparent";
 				clearInterval(clearBackground);
-			}, 500);
+			}, 300);
 		};
 		
 		moreVertHolder[c].ontouchstart = () => {
@@ -776,14 +776,14 @@
 			let clearBackground = setInterval(() => {
 				moreVertHolder[c].style.backgroundColor = "transparent";
 				clearInterval(clearBackground);
-			}, 500);
+			}, 300);
 		};
 		
 		moreVertHolder[c].ontouchcancel = () => {
 			let clearBackground = setInterval(() => {
 				moreVertHolder[c].style.backgroundColor = "transparent";
 				clearInterval(clearBackground);
-			}, 500);
+			}, 300);
 		};
 	}
 	
