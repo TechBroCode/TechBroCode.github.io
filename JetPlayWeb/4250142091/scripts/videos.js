@@ -3,7 +3,7 @@ let tabIconPath = document.querySelectorAll(".tab_icon_path");
 let tabButton = document.querySelectorAll(".tab_btn");
 let tabIndicator = document.querySelector(".tab_indicator");
 
-fetch("assets/json/videos.json")
+fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.json")
     .then(response => {
         if (!response.ok) {
             alert(`Http Error ${response.status}`);
@@ -12,7 +12,8 @@ fetch("assets/json/videos.json")
         return response.json();
     })
     .then(data => {
-
+        console.log(`json: ${data}`);
+        alert(`Good`);
     })
     .catch(error => {
 
