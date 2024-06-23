@@ -2,7 +2,9 @@ let tabItem = document.querySelectorAll(".tab-item");
 let tabIconPath = document.querySelectorAll(".tab_icon_path");
 let tabButton = document.querySelectorAll(".tab_btn");
 let tabIndicator = document.querySelector(".tab_indicator");
+let allContent = document.querySelectorAll(".content");
 
+/*
 fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.json")
     .then(response => {
         if (!response.ok) {
@@ -13,16 +15,25 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
     })
     .then(data => {
         console.log(`json: ${data.toString()}`);
-        alert(`Good ${data.fruit}`);
+        alert(`Good ${data.length}`);
+        for (let c = 0; c < data.length; c++) {
+            if (data[c] !== null && data[c] !== undefined) {
+                console.log(`json at array index ${c} : \nid: ${data[c].id}\nbody: ${data[c].body}\nseverity: ${data[c].severity}\nstatus: ${data[c].status}`)
+            }
+        }
+
     })
     .catch(error => {
 
     });
+*/
+loadScript();
 function loadScript() {
     window.onload = function () {
         tabIndicator.style.width = tabItem[0].offsetWidth + "px";
         tabIndicator.style.top = (tabItem[0].offsetHeight - 1) + "px";
         tabIndicator.style.left = tabItem[0].offsetLeft + "px";
+        allContent[0].classList.add("active");
     }
     for (let c = 0; c < tabItem.length; c++) {
         tabItem[c].onmouseup = () => {
@@ -75,6 +86,7 @@ function loadScript() {
             tabIndicator.style.width = tab.offsetWidth + "px";
             tabIndicator.style.top = (tab.offsetHeight - 1) + "px";
             tabIndicator.style.left = tab.offsetLeft + "px";
+            allContent[index].classList.add("active");
         });
     })
 }
