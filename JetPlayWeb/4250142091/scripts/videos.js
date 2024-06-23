@@ -12,8 +12,8 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
         return response.json();
     })
     .then(data => {
-        console.log(`json: ${data}`);
-        alert(`Good`);
+        console.log(`json: ${data.toString()}`);
+        alert(`Good ${data.fruit}`);
     })
     .catch(error => {
 
