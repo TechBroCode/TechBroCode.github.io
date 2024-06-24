@@ -6,7 +6,7 @@ let allContent = document.querySelectorAll(".content");
 let tabBox = document.querySelector(".tabBox");
 
 let vidAdsDetector = true;
-let vidAdsArray = [/*"https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=1&controls=0"*/];
+let vidAdsArray = [/*"https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=1&controls=0"*/"https://techbrocode.github.io/JetPlayWeb/4250142091/ads/directory/youtube_sub_vid.html"];
 let vidArrayPosition = 0;
 
 window.onload = function () {
@@ -45,8 +45,12 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
                     let iFrame = document.createElement("iframe");
                     iFrame.src = vidAdsArray[vidArrayPosition];
                     iFrame.style.width = "100%";
-                    iFrame.style.height = "auto";
                     iFrame.classList.add("adsIframe");
+                    iFrame.addEventListener("load", () => {
+                        alert(`${iFrame.contentWindow.document.body.scrollHeight} px`);
+                        console.log(`iFrame: ${iFrame.contentWindow.document.body.scrollHeight} px`);
+                        iFrame.height = iFrame.contentWindow.document.body.scrollHeight + "px";
+                    });
                     allContent[0].appendChild(iFrame);
                     vidArrayPosition++;
                 }
