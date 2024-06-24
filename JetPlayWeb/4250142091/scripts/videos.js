@@ -4,13 +4,12 @@ let tabButton = document.querySelectorAll(".tab_btn");
 let tabIndicator = document.querySelector(".tab_indicator");
 let allContent = document.querySelectorAll(".content");
 
-/*
 fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.json")
     .then(response => {
         if (!response.ok) {
             alert(`Http Error ${response.status}`);
         }
-        loadScript();
+        /*loadScript();*/
         return response.json();
     })
     .then(data => {
@@ -18,7 +17,103 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
         alert(`Good ${data.length}`);
         for (let c = 0; c < data.length; c++) {
             if (data[c] !== null && data[c] !== undefined) {
-                console.log(`json at array index ${c} : \nid: ${data[c].id}\nbody: ${data[c].body}\nseverity: ${data[c].severity}\nstatus: ${data[c].status}`)
+                let channelAvatar = data[c].channelAvatar;
+                let channelId = data[c].channelId;
+                let channelName = data[c].channelName;
+                let duration = data[c].duration;
+                let videoId = data[c].id;
+                let videoTitle = data[c].name;
+                console.log(`json at array index ${c} : \nid: ${data[c].id}\nbody: ${data[c].body}\nseverity: ${data[c].severity}\nstatus: ${data[c].status}`);
+                // Create the video container...
+                let videoCard = document.createElement("div");
+                videoCard.style.width = "100%";
+                videoCard.style.height = "auto";
+                videoCard.classList.add("videoMainContainer");
+
+                // Create the thumbnail container
+                let videoThumbContainer = document.createElement("div");
+                videoThumbContainer.classList.add("thumbnailContainer");
+
+                // Create the thumbnail image...
+                let videoThumbnail = document.createElement("img");
+                videoThumbnail.src = `https://img.youtube.com/vi_webp/${videoId}/maxresdefault.webp`;
+                videoThumbnail.srcset = `https://img.youtube.com/vi_webp/${videoId}/maxresdefault.webp`;
+                videoThumbnail.alt = "";
+                videoThumbnail.style.width = "100%";
+                videoThumbnail.style.height = "auto";
+                videoThumbnail.loading = "lazy";
+                videoThumbnail.classList.add("videoThumbnail")
+                videoThumbnail.onerror = () => {
+                    videoCard.style.display = "none";
+                }
+
+                // Create the play pause holder
+                let playPauseHolder = document.createElement("div");
+                playPauseHolder.classList.add("play-pause-holder");
+
+                // Create the play button image
+                let play = document.createElement("img");
+                /*play.setAttribute("s", "../assets/svg/ic_baseline_play_arrow_24.svg");*/
+                play.srcset = "https://techbrocode.github.io/JetPlayWeb/4250142091/assets/svg/ic_baseline_play_arrow_24.svg";
+                play.src = "https://techbrocode.github.io/JetPlayWeb/4250142091/assets/svg/ic_baseline_play_arrow_24.svg";
+                play.alt = "";
+                play.style.width = "90%";
+                play.style.height = "auto";
+                play.loading = "lazy";
+                play.classList.add("play");
+
+                // Create the video duration text
+                let videoDuration = document.createElement("p");
+                videoDuration.innerText = duration;
+                videoDuration.classList.add("duration");
+
+                playPauseHolder.appendChild(play);
+                videoThumbContainer.appendChild(videoThumbnail);
+                videoThumbContainer.appendChild(playPauseHolder);
+                videoThumbContainer.appendChild(videoDuration);
+
+                // Create the metadata container
+                let metadataContainer = document.createElement("div");
+                metadataContainer.classList.add("metadataContainer");
+
+                // Create the videoTitle
+                let videoTitleDom = document.createElement("p");
+                videoTitleDom.innerText = videoTitle;
+                videoTitleDom.classList.add("videoTitle");
+
+                // Create bottom metadata container
+                let bottomMetadata = document.createElement("div");
+                bottomMetadata.classList.add("bottomMetadata");
+
+                // Create the channel thumbnail
+                let channelThumbnail = document.createElement("img");
+                channelThumbnail.src = `${channelAvatar}`;
+                channelThumbnail.srcset = `${channelAvatar}`;
+                channelThumbnail.alt = "";
+                channelThumbnail.style.width = "5%";
+                channelThumbnail.style.height = "5%";
+                channelThumbnail.loading = "lazy";
+                channelThumbnail.style.borderRadius = "50%";
+                channelThumbnail.classList.add("channel_thumbnail");
+
+                // Create the channel name
+                let channelNameDom = document.createElement("p");
+                channelNameDom.innerText = channelName;
+                channelNameDom.classList.add("channel_name");
+
+                // Create more vertical icons holder
+                let moreVertHolder = document.createElement("div");
+                moreVertHolder.classList.add("more_vert_holder");
+
+                // Create more vertical icons
+                let moreVert = document.createElement("img");
+
+
+                metadataContainer.appendChild(videoTitleDom);
+
+                videoCard.appendChild(videoThumbContainer);
+                videoCard.appendChild(metadataContainer);
+                allContent[0].appendChild(videoCard);
             }
         }
 
@@ -26,8 +121,8 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
     .catch(error => {
 
     });
-*/
 loadScript();
+
 function loadScript() {
     window.onload = function () {
         tabIndicator.style.width = tabItem[0].offsetWidth + "px";
@@ -86,6 +181,7 @@ function loadScript() {
             tabIndicator.style.width = tab.offsetWidth + "px";
             tabIndicator.style.top = (tab.offsetHeight - 1) + "px";
             tabIndicator.style.left = tab.offsetLeft + "px";
+            allContent.forEach(content => (content.classList.remove("active")))
             allContent[index].classList.add("active");
         });
     })
