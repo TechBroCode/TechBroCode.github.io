@@ -46,12 +46,14 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
                     iFrame.src = vidAdsArray[vidArrayPosition];
                     iFrame.style.width = "100%";
                     iFrame.classList.add("adsIframe");
+                    allContent[0].appendChild(iFrame);
+                    iFrame.style.display = "none";
                     let heightChecker = setInterval(() => {
                         if (iFrame.contentWindow.document.body.scrollHeight > 0) {
                             iFrame.height = iFrame.contentWindow.document.body.scrollHeight + "px";
                             iFrame.style.height = iFrame.contentWindow.document.body.scrollHeight + "px";
                             iFrame.setAttribute("height", iFrame.contentWindow.document.body.scrollHeight + "px");
-                            allContent[0].appendChild(iFrame);
+                            iFrame.style.display = "block";
                             clearInterval(heightChecker);
                         }
                     }, 500);
