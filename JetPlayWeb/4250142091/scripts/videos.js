@@ -44,11 +44,11 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
                     }
                     let iFrame = document.createElement("iframe");
                     iFrame.src = vidAdsArray[vidArrayPosition];
-                    iFrame.style.width = "100%";
                     iFrame.classList.add("adsIframe");
                     allContent[0].appendChild(iFrame);
                     let heightChecker = setInterval(() => {
                         if (iFrame.contentWindow.document.body.scrollHeight > 0) {
+                            iFrame.style.width = "100%";
                             iFrame.height = iFrame.contentWindow.document.body.scrollHeight + "px";
                             iFrame.style.height = iFrame.contentWindow.document.body.scrollHeight + "px";
                             iFrame.setAttribute("height", iFrame.contentWindow.document.body.scrollHeight + "px");
