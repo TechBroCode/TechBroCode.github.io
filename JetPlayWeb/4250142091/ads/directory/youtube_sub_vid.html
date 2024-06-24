@@ -157,12 +157,12 @@
 		.adsSponsor {
 			font-size: 12px;
 			width: 100%;
+			margin-top: 10px;
 		}
 		
 		.adsSponsor, .subscribe-btn {
 			-webkit-line-clamp: 1;
 			line-clamp: 1;
-			margin-top: 5px;
 			font-family: "Nunito Bold", sans-serif;
 		}
 		
@@ -201,7 +201,7 @@
 			height: auto;
 			font-size: 14px;
 			padding-top: 12px;
-			margin: 3px auto auto;
+			margin: 10px auto auto;
 			padding-bottom: 12px;
 			border-radius: 20px;
 			background: #eaeaea;
@@ -269,6 +269,39 @@
 	let videoMainContainer = document.querySelectorAll(".videoMainContainer");
 	let moreVertHolder = document.querySelectorAll(".more_vert_holder");
 	let playHolder = document.querySelectorAll(".play-pause-holder");
+	let subscribeButton = document.querySelector(".subscribe-btn");
+	
+	subscribeButton.addEventListener("mouseup", () => {
+		let clearBackground = setInterval(() => {
+			subscribeButton.style.background = "#eaeaea";
+			clearInterval(clearBackground);
+		}, 150)
+	})
+	subscribeButton.addEventListener("mouseout", () => {
+		let clearBackground = setInterval(() => {
+			subscribeButton.style.background = "#eaeaea";
+			clearInterval(clearBackground);
+		}, 150)
+	})
+	subscribeButton.addEventListener("mousedown", () => {
+		subscribeButton.style.background = "#bcbcbc";
+	})
+	subscribeButton.addEventListener("touchstart", () => {
+		subscribeButton.style.background = "#bcbcbc";
+	})
+	subscribeButton.addEventListener("touchend", () => {
+		let clearBackground = setInterval(() => {
+			subscribeButton.style.background = "#eaeaea";
+			clearInterval(clearBackground);
+		}, 150)
+	})
+	subscribeButton.addEventListener("touchcancel", () => {
+		let clearBackground = setInterval(() => {
+			subscribeButton.style.background = "#eaeaea";
+			clearInterval(clearBackground);
+		}, 150)
+	})
+	
 	
 	for (let c = 0; c < playHolder.length; c++) {
 		playHolder[c].onmouseup = () => {
