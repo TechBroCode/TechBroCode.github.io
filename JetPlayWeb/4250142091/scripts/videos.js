@@ -47,6 +47,8 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
                     iFrame.style.width = "100%";
                     iFrame.classList.add("adsIframe");
                     iFrame.addEventListener("load", () => {
+                        alert(`${iFrame.contentWindow.document.body.scrollHeight} px`);
+                        console.log(`iFrame: ${iFrame.contentWindow.document.body.scrollHeight} px`);
                         iFrame.height = iFrame.contentWindow.document.body.scrollHeight + "px";
                     });
                     allContent[0].appendChild(iFrame);
