@@ -5,8 +5,9 @@ let tabIndicator = document.querySelector(".tab_indicator");
 let allContent = document.querySelectorAll(".content");
 let tabBox = document.querySelector(".tabBox");
 
-let vidAdsDetector = null;
-let vidAdsArray = null;
+let vidAdsDetector = true;
+let vidAdsArray = [/*"https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=1&controls=0"*/];
+let vidArrayPosition = 0;
 
 window.onload = function () {
     tabIndicator.style.width = tabItem[0].offsetWidth + "px";
@@ -31,8 +32,23 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
         /*alert(`Good ${data.length}`);*/
         for (let c = 0; c < data.length; c++) {
             if (data[c] !== null && data[c] !== undefined) {
-                if (c !== 0 && c % 5 === 0) {
-                    alert("Cool");
+                if (c !== 0 && c % 5 === 0
+                    && vidAdsDetector
+                    && vidAdsArray !== null
+                    && vidAdsArray !== undefined
+                    && vidAdsArray instanceof Array
+                    && vidAdsArray.length !== 0) {
+                    //     Create the Iframe to load ads webpage...
+                    if (vidArrayPosition === vidAdsArray.length) {
+                        vidArrayPosition = 0;
+                    }
+                    let iFrame = document.createElement("iframe");
+                    iFrame.src = vidAdsArray[vidArrayPosition];
+                    iFrame.style.width = "100%";
+                    iFrame.style.height = "auto";
+                    iFrame.classList.add("adsIframe");
+                    allContent[0].appendChild(iFrame);
+                    vidArrayPosition++;
                 }
                 let channelAvatar = data[c].channelAvatar;
                 let channelId = data[c].channelId;
@@ -152,9 +168,9 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
         }
 
     })
-    /*.catch(error => {
+/*.catch(error => {
 
-    });*/
+});*/
 loadScript();
 
 function loadScript() {
