@@ -51,6 +51,7 @@ body {
     padding-top: 0;
     padding-bottom: 0;
     overflow-x: auto;
+    background: none;
     border-bottom: 2px solid transparent;
 }
 
@@ -82,7 +83,7 @@ body {
     font-style: normal;
     font-variant: normal;
     font-family: 'Nunito', sans-serif;
-    font-size: 12px;
+    font-size: 16px;
     color: black;
     overflow: hidden;
     text-overflow: ellipsis;
