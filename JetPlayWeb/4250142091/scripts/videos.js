@@ -3,6 +3,16 @@ let tabIconPath = document.querySelectorAll(".tab_icon_path");
 let tabButton = document.querySelectorAll(".tab_btn");
 let tabIndicator = document.querySelector(".tab_indicator");
 let allContent = document.querySelectorAll(".content");
+let tabBox = document.querySelector(".tabBox");
+
+window.onload = function () {
+    tabIndicator.style.width = tabItem[0].offsetWidth + "px";
+    tabIndicator.style.top = (tabItem[0].offsetHeight - 1) + "px";
+    tabIndicator.style.left = tabItem[0].offsetLeft + "px";
+    alert(`${tabBox.offsetHeight}`);
+    allContent[0].style.marginTop = tabBox.clientHeight + "px";
+    allContent[0].classList.add("active");
+}
 
 fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.json")
     .then(response => {
@@ -135,22 +145,16 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
         }
 
     })
-    .catch(error => {
+    /*.catch(error => {
 
-    });
+    });*/
 loadScript();
 
 function loadScript() {
-    window.onload = function () {
-        tabIndicator.style.width = tabItem[0].offsetWidth + "px";
-        tabIndicator.style.top = (tabItem[0].offsetHeight - 1) + "px";
-        tabIndicator.style.left = tabItem[0].offsetLeft + "px";
-        allContent[0].classList.add("active");
-    }
     for (let c = 0; c < tabItem.length; c++) {
         tabItem[c].onmouseup = () => {
             let clearBackground = setInterval(() => {
-                tabItem[c].style.backgroundColor = "rgba(0, 0, 0, 0)";
+                tabItem[c].style.backgroundColor = "rgba(255, 255, 255, 1)";
                 clearInterval(clearBackground);
             }, 150);
         }
@@ -161,7 +165,7 @@ function loadScript() {
 
         tabItem[c].onmouseout = () => {
             let clearBackground = setInterval(() => {
-                tabItem[c].style.backgroundColor = "rgba(0, 0, 0, 0)";
+                tabItem[c].style.backgroundColor = "rgba(255, 255, 255, 1)";
                 clearInterval(clearBackground);
             }, 150);
         };
@@ -172,14 +176,14 @@ function loadScript() {
 
         tabItem[c].ontouchend = () => {
             let clearBackground = setInterval(() => {
-                tabItem[c].style.backgroundColor = "rgba(0, 0, 0, 0)";
+                tabItem[c].style.backgroundColor = "rgba(255, 255, 255, 1)";
                 clearInterval(clearBackground);
             }, 150);
         };
 
         tabItem[c].ontouchcancel = () => {
             let clearBackground = setInterval(() => {
-                tabItem[c].style.backgroundColor = "rgba(0, 0, 0, 0)";
+                tabItem[c].style.backgroundColor = "rgba(255, 255, 255, 1)";
                 clearInterval(clearBackground);
             }, 150);
         };
@@ -198,7 +202,9 @@ function loadScript() {
             tabIndicator.style.width = tab.offsetWidth + "px";
             tabIndicator.style.top = (tab.offsetHeight - 1) + "px";
             tabIndicator.style.left = tab.offsetLeft + "px";
-            allContent.forEach(content => (content.classList.remove("active")))
+            allContent.forEach(content => (content.classList.remove("active")));
+            /*allContent[index].style.marginTop = tabBox.offsetHeight + "px";*/
+            allContent[index].style.marginTop = tabBox.clientHeight + "px";
             allContent[index].classList.add("active");
         });
     })
