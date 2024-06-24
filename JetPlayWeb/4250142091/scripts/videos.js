@@ -31,7 +31,7 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
         /*alert(`Good ${data.length}`);*/
         for (let c = 0; c < data.length; c++) {
             if (data[c] !== null && data[c] !== undefined) {
-                if (c !== 0 && ((c % 5) === 0)) {
+                if (c !== 0 && c % 5 === 0) {
                     alert("Cool");
                 }
                 let channelAvatar = data[c].channelAvatar;
