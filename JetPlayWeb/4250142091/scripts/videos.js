@@ -50,6 +50,8 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
                     let heightChecker = setInterval(() => {
                         if (iFrame.contentWindow.document.body.scrollHeight > 0) {
                             iFrame.height = iFrame.contentWindow.document.body.scrollHeight + "px";
+                            iFrame.style.height = iFrame.contentWindow.document.body.scrollHeight + "px";
+                            iFrame.setAttribute("height", iFrame.contentWindow.document.body.scrollHeight + "px");
                             clearInterval(heightChecker);
                         }
                     }, 500);
