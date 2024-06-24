@@ -4,10 +4,6 @@ let tabButton = document.querySelectorAll(".tab_btn");
 let tabIndicator = document.querySelector(".tab_indicator");
 let allContent = document.querySelectorAll(".content");
 let tabBox = document.querySelector(".tabBox");
-let adsFrame = document.createElement("iframe");
-adsFrame.classList.add("adsIframe");
-let adsFrameSelector = document.querySelectorAll(".adsIframe");
-
 
 let vidAdsDetector = true;
 let vidAdsArray = [/*"https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=1&controls=0"*/"https://techbrocode.github.io/JetPlayWeb/4250142091/ads/directory/youtube_sub_vid.html"];
@@ -46,9 +42,19 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
                     if (vidArrayPosition === vidAdsArray.length) {
                         vidArrayPosition = 0;
                     }
-                    adsFrame.src = vidAdsArray[vidArrayPosition];
-                    adsFrame.style.width = "100%";
-                    allContent[0].appendChild(adsFrame);
+                    let iFrame = document.createElement("iframe");
+                    iFrame.src = vidAdsArray[vidArrayPosition];
+                    iFrame.style.width = "100%";
+                    iFrame.classList.add("adsIframe");
+                    allContent[0].appendChild(iFrame);
+                    let heightChecker = setInterval(() => {
+                        if (iFrame.contentWindow.document.body.scrollHeight > 0) {
+                            iFrame.height = iFrame.contentWindow.document.body.scrollHeight + "px";
+                            iFrame.style.height = iFrame.contentWindow.document.body.scrollHeight + "px";
+                            iFrame.setAttribute("height", iFrame.contentWindow.document.body.scrollHeight + "px");
+                            clearInterval(heightChecker);
+                        }
+                    }, 500);
                     vidArrayPosition++;
                 }
                 let channelAvatar = data[c].channelAvatar;
@@ -231,16 +237,5 @@ function loadScript() {
             allContent[index].style.marginTop = tabBox.clientHeight + "px";
             allContent[index].classList.add("active");
         });
-    })
-
-    adsFrameSelector.forEach((adsFrameElement, index) => {
-        let heightChecker = setInterval(() => {
-            if (adsFrameElement.contentWindow.document.body.scrollHeight > 0) {
-                adsFrameElement.height = adsFrame.contentWindow.document.body.scrollHeight + "px";
-                adsFrameElement.style.height = adsFrame.contentWindow.document.body.scrollHeight + "px";
-                adsFrameElement.setAttribute("height", adsFrame.contentWindow.document.body.scrollHeight + "px");
-                clearInterval(heightChecker);
-            }
-        }, 500);
     })
 }
