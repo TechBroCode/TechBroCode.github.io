@@ -107,12 +107,23 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
 
                 // Create more vertical icons
                 let moreVert = document.createElement("img");
+                moreVert.src = "https://techbrocode.github.io/JetPlayWeb/4250142091/assets/svg/more_vert_24dp_FILL1_wght400_GRAD0_opsz24.svg"
+                moreVert.srcset = "https://techbrocode.github.io/JetPlayWeb/4250142091/assets/svg/more_vert_24dp_FILL1_wght400_GRAD0_opsz24.svg";
+                moreVert.alt = "";
+                moreVert.loading = "eager";
+                moreVert.classList.add("more-vert");
 
+                // Create divider
+                let divider = document.createElement("hr");
+                divider.style.backgroundColor = "rgb(0,0,0)";
+                divider.style.width = "100%";
+                divider.classList.add("divider");
 
                 metadataContainer.appendChild(videoTitleDom);
 
                 videoCard.appendChild(videoThumbContainer);
                 videoCard.appendChild(metadataContainer);
+                videoCard.appendChild(divider);
                 allContent[0].appendChild(videoCard);
             }
         }
