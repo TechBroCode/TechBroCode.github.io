@@ -5,11 +5,14 @@ let tabIndicator = document.querySelector(".tab_indicator");
 let allContent = document.querySelectorAll(".content");
 let tabBox = document.querySelector(".tabBox");
 
+let vidAdsDetector = null;
+let vidAdsArray = null;
+
 window.onload = function () {
     tabIndicator.style.width = tabItem[0].offsetWidth + "px";
     tabIndicator.style.top = (tabItem[0].offsetHeight - 1) + "px";
     tabIndicator.style.left = tabItem[0].offsetLeft + "px";
-    alert(`${tabBox.offsetHeight}`);
+    /*alert(`${tabBox.offsetHeight}`);*/
     allContent[0].style.marginTop = tabBox.clientHeight + "px";
     allContent[0].classList.add("active");
 }
@@ -17,16 +20,20 @@ window.onload = function () {
 fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.json")
     .then(response => {
         if (!response.ok) {
-            alert(`Http Error ${response.status}`);
+            /*alert(`Http Error ${response.status}`);*/
+            console.error(`HTTP Error ${response.status}`);
         }
         /*loadScript();*/
         return response.json();
     })
     .then(data => {
         console.log(`json: ${data.toString()}`);
-        alert(`Good ${data.length}`);
+        /*alert(`Good ${data.length}`);*/
         for (let c = 0; c < data.length; c++) {
             if (data[c] !== null && data[c] !== undefined) {
+                if (c !== 0 && ((c % 5) === 0)) {
+                    alert("Cool");
+                }
                 let channelAvatar = data[c].channelAvatar;
                 let channelId = data[c].channelId;
                 let channelName = data[c].channelName;
