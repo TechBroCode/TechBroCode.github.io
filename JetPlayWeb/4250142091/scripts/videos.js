@@ -113,6 +113,11 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
                 moreVert.loading = "eager";
                 moreVert.classList.add("more-vert");
 
+                moreVertHolder.appendChild(moreVert);
+                bottomMetadata.appendChild(channelThumbnail);
+                bottomMetadata.appendChild(channelNameDom);
+                bottomMetadata.appendChild(moreVertHolder);
+
                 // Create divider
                 let divider = document.createElement("hr");
                 divider.style.backgroundColor = "rgb(0,0,0)";
@@ -120,6 +125,7 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
                 divider.classList.add("divider");
 
                 metadataContainer.appendChild(videoTitleDom);
+                metadataContainer.appendChild(bottomMetadata);
 
                 videoCard.appendChild(videoThumbContainer);
                 videoCard.appendChild(metadataContainer);

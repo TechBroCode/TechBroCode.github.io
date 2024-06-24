@@ -124,9 +124,10 @@ body {
 }
 
 .content.active{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
+    position: absolute;
+    /*align-items: center;
+    justify-content: center;*/
 }
 
 .content_box .content{
