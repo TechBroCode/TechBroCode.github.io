@@ -4,10 +4,12 @@ let tabButton = document.querySelectorAll(".tab_btn");
 let tabIndicator = document.querySelector(".tab_indicator");
 let allContent = document.querySelectorAll(".content");
 let tabBox = document.querySelector(".tabBox");
-
 let vidAdsDetector = true;
-let vidAdsArray = [/*"https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=1&controls=0"*/"https://techbrocode.github.io/JetPlayWeb/4250142091/ads/directory/youtube_sub_vid.html"];
+let vidAdsArray = [/*"https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=1&controls=0"*/"https://techbrocode.github.io/JetPlayWeb/4250142091/ads/directory/videoPlayerAd.html", "https://techbrocode.github.io/JetPlayWeb/4250142091/ads/directory/youtube_sub_vid.html"];
 let vidArrayPosition = 0;
+
+let adsToday = new Date();
+
 
 window.onload = function () {
     tabIndicator.style.width = tabItem[0].offsetWidth + "px";
@@ -32,7 +34,7 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
         /*alert(`Good ${data.length}`);*/
         for (let c = 0; c < data.length; c++) {
             if (data[c] !== null && data[c] !== undefined) {
-                if (c !== 0 && c % 5 === 0
+                if (/*c !== 0 && */c % 5 === 0
                     && vidAdsDetector
                     && vidAdsArray !== null
                     && vidAdsArray !== undefined
