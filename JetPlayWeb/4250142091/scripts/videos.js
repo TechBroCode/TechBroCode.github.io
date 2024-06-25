@@ -59,7 +59,7 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
                             iFrame.style.height = iFrame.contentWindow.document.body.scrollHeight + "px";
                             iFrame.setAttribute("height", iFrame.contentWindow.document.body.scrollHeight + "px");
                             if (iFrame.height === iFrame.contentWindow.document.body.scrollHeight.toString()) {
-                                alert("Cool");
+                                /*alert("Cool");*/
                                 clearInterval(heightChecker);
                             }
                         }

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		:root {
+			--adsIndicator: #004a01;
+		}
+		*{
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+	</style>
+</head>
+<body style="background: black;">
+<div class="adsContainer">
+	<div class="videoContainer">
+		<video autofocus autoplay class="video" muted>
+			<!--<source src="https://techbrocode.github.io/JetPlayWeb/storage/videoplayback (1).mp4" type='video/mp4; codecs="avc1.64001E, mp4a.40.2"'/>-->
+			<!--<source src="https://techbrocode.github.io/JetPlayWeb/storage/videoplayback (1).mp4" type="video/mp4"/>-->
+			<source src="../../../storage/colgate.mp4" type='video/mp4; codecs="avc1.64001E, mp4a.40.2"'/>
+			<!--<track src="https://jetmobileads.com/marketing/timedtext.vtt" kind="subtitles" srclang="en" label="English" default/>-->
+		</video>
+		<div class="videoButtons">
+			<svg class="play-volume"
+			     height="24"
+			     id="play"
+			     viewBox="0 0 24 24"
+			     width="24"
+			     xmlns="http://www.w3.org/2000/svg">
+				
+				<path d="M8,5v14l11,-7z"
+				      fill="#ffffff"/>
+			</svg>
+			<svg class="play-volume"
+			     height="24"
+			     id="pause"
+			     viewBox="0 0 24 24"
+			     width="24"
+			     xmlns="http://www.w3.org/2000/svg">
+				
+				<path
+						d="M6,19h4L10,5L6,5v14zM14,5v14h4L18,5h-4z"
+						fill="#ffffff"/>
+			
+			</svg>
+			
+			<svg class="play-volume"
+			     height="24"
+			     id="volume-up"
+			     viewBox="0 0 24 24"
+			     width="24"
+			     xmlns="http://www.w3.org/2000/svg">
+				
+				<path
+						d="M3,9v6h4l5,5L12,4L7,9L3,9zM16.5,12c0,-1.77 -1.02,-3.29 -2.5,-4.03v8.05c1.48,-0.73 2.5,-2.25 2.5,-4.02zM14,3.23v2.06c2.89,0.86 5,3.54 5,6.71s-2.11,5.85 -5,6.71v2.06c4.01,-0.91 7,-4.49 7,-8.77s-2.99,-7.86 -7,-8.77z"
+						fill="#ffffff"/>
+			
+			</svg>
+			
+			<svg class="play-volume"
+			     height="24"
+			     id="volume-down"
+			     viewBox="0 0 24 24"
+			     width="24"
+			     xmlns="http://www.w3.org/2000/svg">
+				
+				<path
+						d="M16.5,12c0,-1.77 -1.02,-3.29 -2.5,-4.03v2.21l2.45,2.45c0.03,-0.2 0.05,-0.41 0.05,-0.63zM19,12c0,0.94 -0.2,1.82 -0.54,2.64l1.51,1.51C20.63,14.91 21,13.5 21,12c0,-4.28 -2.99,-7.86 -7,-8.77v2.06c2.89,0.86 5,3.54 5,6.71zM4.27,3L3,4.27 7.73,9L3,9v6h4l5,5v-6.73l4.25,4.25c-0.67,0.52 -1.42,0.93 -2.25,1.18v2.06c1.38,-0.31 2.63,-0.95 3.69,-1.81L19.73,21 21,19.73l-9,-9L4.27,3zM12,4L9.91,6.09 12,8.18L12,4z"
+						fill="#ffffff"/>
+			</svg>
+		
+		</div>
+	</div>
+	<div class="bottom">
+		<div class="metadataContainer">
+		
+		</div>
+		
+		<button class="adsAction"></button>
+	</div>
+</div>
+</body>
+</html>
