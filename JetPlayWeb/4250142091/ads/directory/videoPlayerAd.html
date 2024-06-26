@@ -215,7 +215,7 @@
 			color: white;
 			padding: 10px 0;
 			display: block;
-			border-radius: 10px;
+			border-radius: 20px;
 			background: #000cff;
 			border: none;
 			width: 80%;
@@ -327,6 +327,11 @@
 		playVolumeSelector[1].style.display = "none";
 		playVolumeSelector[0].style.display = "inline";
 	}, false);
+	
+	video.addEventListener("error", () => {
+		playVolumeSelector[0].style.display = "inline";
+		playVolumeSelector[1].style.display = "none";
+	}, false)
 	
 	playVolumeSelector.forEach((playVolume, index) => {
 		playVolume.onclick = () => {
