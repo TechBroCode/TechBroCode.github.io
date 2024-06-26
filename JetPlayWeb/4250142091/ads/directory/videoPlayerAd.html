@@ -322,6 +322,7 @@
 <script type="application/ecmascript">
 	let playVolumeSelector = document.querySelectorAll(".play-volume");
 	let video = document.querySelector("video");
+	let adsAction = document.querySelector(".adsAction");
 	
 	video.addEventListener("ended", () => {
 		playVolumeSelector[1].style.display = "none";
@@ -366,6 +367,9 @@
 			}
 		};
 	});
+	adsAction.onclick = () => {
+		alert("Cool");
+	};
 </script>
 </body>
 </html>
