@@ -353,7 +353,8 @@
 		playVolumeSelector[0].style.display = "none";
 	});
 	
-	playVolumeSelector.forEach((playVolume, index) => {
+	playVolumeSelector.forEach((playVolume, index) =>
+	{
 		playVolume.onclick = () => {
 			if (video !== null && video !== undefined) {
 				switch (index) {
@@ -386,9 +387,25 @@
 			}
 		};
 	});
-	adsAction.onclick = () => {
-		alert("Cool");
+	adsAction.onmousedown = () => {
+		adsAction.style.width = "95%";
 	};
+	adsAction.onmouseup = () => {
+		adsAction.style.width = "100%";
+	};
+	adsAction.onmouseout = () => {
+		adsAction.style.width = "100%";
+	};
+	adsAction.ontouchstart = () => {
+		adsAction.style.width = "95%";
+	};
+	adsAction.ontouchend = () => {
+		adsAction.style.width = "100%";
+	};
+	adsAction.onmouseout = () => {
+		adsAction.style.width = "100%";
+	};
+	
 </script>
 </body>
 </html>
