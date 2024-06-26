@@ -13,6 +13,7 @@
 		@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
 		@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 		@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+		
 		:root {
 			--adsIndicator: #004a01;
 		}
@@ -100,24 +101,28 @@
 			margin-left: 7px;
 			margin-right: 7px;
 		}
-		.bottom{
+		
+		.bottom {
 			padding: 10px;
 			width: 100%;
 			height: auto;
 			display: block;
 		}
-		.metadataContainer{
+		
+		.metadataContainer {
 			width: 100%;
 			height: auto;
 			display: block;
 			justify-content: center;
 			align-content: center;
 		}
-		.sponsor-logo{
+		
+		.sponsor-logo {
 			width: 8.5%;
 			height: auto;
 		}
-		.horizontal-metadata{
+		
+		.horizontal-metadata {
 			display: flex;
 			width: 100%;
 			align-content: center;
@@ -127,7 +132,8 @@
 			justify-content: center;
 			align-items: center;
 		}
-		.vertical-metadata{
+		
+		.vertical-metadata {
 			margin-left: 3.5%;
 			margin-right: 3.5%;
 			height: auto;
@@ -137,6 +143,7 @@
 			vertical-align: center;
 			vert-align: middle;
 		}
+		
 		.adsTitle {
 			font-size: 16px;
 			color: black;
@@ -154,6 +161,7 @@
 			vertical-align: center;
 			vert-align: middle;
 		}
+		
 		.sponsor-logo, .vertical-metadata {
 			display: inline-block;
 			*display: inline;
@@ -161,7 +169,8 @@
 			vertical-align: middle;
 			vert-align: middle;
 		}
-		.adsIndicator{
+		
+		.adsIndicator {
 			font-weight: 1000;
 			font-family: "Nunito Sans", sans-serif;
 			border: 2px solid yellow;
@@ -172,6 +181,7 @@
 			margin-right: 10px;
 			border-radius: 12px;
 		}
+		
 		.adSponsored {
 			font-size: 14px;
 			color: black;
@@ -188,7 +198,8 @@
 			vertical-align: center;
 			vert-align: middle;
 		}
-		.adsDesc{
+		
+		.adsDesc {
 			font-size: 14px;
 			color: black;
 			margin-top: 15px;
@@ -247,7 +258,8 @@
 		<video autofocus autoplay class="video" muted>
 			<!--<source src="https://techbrocode.github.io/JetPlayWeb/storage/videoplayback (1).mp4" type='video/mp4; codecs="avc1.64001E, mp4a.40.2"'/>-->
 			<!--<source src="https://techbrocode.github.io/JetPlayWeb/storage/videoplayback (1).mp4" type="video/mp4"/>-->
-			<source src="https://techbrocode.github.io/JetPlayWeb/storage/colgate.mp4" type='video/mp4; codecs="avc1.64001E, mp4a.40.2"'/>
+			<source src="https://techbrocode.github.io/JetPlayWeb/storage/colgate.mp4"
+			        type='video/mp4; codecs="avc1.64001E, mp4a.40.2"'/>
 			<!--<track src="https://jetmobileads.com/marketing/timedtext.vtt" kind="subtitles" srclang="en" label="English" default/>-->
 		</video>
 		<div class="videoButtons">
@@ -265,6 +277,7 @@
 			<svg class="play-volume"
 			     height="24"
 			     id="pause"
+			     style="display: none;"
 			     viewBox="0 0 24 24"
 			     width="24"
 			     xmlns="http://www.w3.org/2000/svg">
@@ -306,7 +319,8 @@
 	<div class="bottom">
 		<div class="metadataContainer">
 			<div class="horizontal-metadata">
-				<img class="sponsor-logo" src="https://techbrocode.github.io/JetPlayWeb/storage/channels4_profile.jpg" alt="">
+				<img alt="" class="sponsor-logo"
+				     src="https://techbrocode.github.io/JetPlayWeb/storage/channels4_profile.jpg">
 				<!--<img class="sponsor-logo" src="../../../storage/channels4_profile.jpg" alt="" srcset="../../../storage/channels4_profile.jpg">
 				-->
 				<div class="vertical-metadata">
@@ -332,7 +346,12 @@
 	video.addEventListener("error", () => {
 		playVolumeSelector[0].style.display = "inline";
 		playVolumeSelector[1].style.display = "none";
-	}, false)
+	}, false);
+	
+	video.addEventListener("loadeddata", () => {
+		playVolumeSelector[1].style.display = "inline";
+		playVolumeSelector[0].style.display = "none";
+	});
 	
 	playVolumeSelector.forEach((playVolume, index) => {
 		playVolume.onclick = () => {
