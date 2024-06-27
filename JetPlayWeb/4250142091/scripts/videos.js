@@ -229,6 +229,7 @@ function loadScript() {
         videoAdsFrame = videoAdsFrameSelector[position].contentDocument || videoAdsFrameSelector[position].contentWindow.document;
         let video = videoAdsFrame.body.querySelector(".video");
         if (video !== null) {
+            alert("cool");
             const observer = new window.IntersectionObserver(([entry]) => {
                 if (entry.isIntersecting) {
                     // Meaning that videoFrame is starting to become visible in viewport...
