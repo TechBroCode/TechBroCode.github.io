@@ -88,6 +88,7 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
                 let videoCard = document.createElement("div");
                 videoCard.style.width = "100%";
                 videoCard.style.height = "auto";
+                videoCard.style.background = "#ffffff";
                 videoCard.classList.add("videoMainContainer");
 
                 // Create the thumbnail container
