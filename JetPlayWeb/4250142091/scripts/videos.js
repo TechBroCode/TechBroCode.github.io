@@ -37,8 +37,8 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
     .then(data => {
         console.log(`json: ${data.toString()}`);
         /*alert(`Good ${data.length}`);*/
-        shuffleJSON(data);
-        /*if (vidAdsDetector && vidAdsArray !== null && vidAdsArray !== undefined && vidAdsArray.length > 0) {
+        /*shuffleJSON(data);
+        if (vidAdsDetector && vidAdsArray !== null && vidAdsArray !== undefined && vidAdsArray.length > 0) {
             shuffleJSON(vidAdsArray);
         }*/
         for (let c = 0; c < data.length; c++) {
