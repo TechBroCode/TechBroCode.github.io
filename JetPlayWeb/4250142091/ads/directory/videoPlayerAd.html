@@ -14,10 +14,6 @@
 		@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 		@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 		
-		:root {
-			--adsIndicator: #004a01;
-		}
-		
 		* {
 			padding: 0;
 			margin: 0;
@@ -51,6 +47,7 @@
 		.adsContainer {
 			width: 100%;
 			height: 100%;
+			background: white;
 			padding: 8px 5px;
 			margin: 0;
 			display: block;
@@ -337,6 +334,11 @@
 	let playVolumeSelector = document.querySelectorAll(".play-volume");
 	let video = document.querySelector("video");
 	let adsAction = document.querySelector(".adsAction");
+	let adsContainer = document.querySelector(".adsContainer");
+	window.onerror = () => {
+		document.querySelector("body").removeChild(adsContainer);
+		window.location.reload();
+	};
 	
 	video.addEventListener("ended", () => {
 		playVolumeSelector[1].style.display = "none";
@@ -353,8 +355,7 @@
 		playVolumeSelector[0].style.display = "none";
 	});
 	
-	playVolumeSelector.forEach((playVolume, index) =>
-	{
+	playVolumeSelector.forEach((playVolume, index) => {
 		playVolume.onclick = () => {
 			if (video !== null && video !== undefined) {
 				switch (index) {
@@ -405,7 +406,7 @@
 	adsAction.onmouseout = () => {
 		adsAction.style.width = "100%";
 	};
-	
+
 </script>
 </body>
 </html>

@@ -19,7 +19,7 @@
 			margin: 0;
 			padding: 0 0 15px;
 			display: block;
-			background: none;
+			background: white;
 			width: 100%;
 			justify-content: center;
 			justify-items: center;
@@ -66,7 +66,7 @@
 			text-align: center;
 		}
 		
-		.duration{
+		.duration {
 			width: auto;
 			height: auto;
 			font-kerning: auto;
@@ -146,6 +146,7 @@
 			margin-right: 10px;
 			padding: 0 0 0 0;
 		}
+		
 		.videoTitle {
 			-webkit-line-clamp: 2;
 			line-clamp: 2;
@@ -166,13 +167,13 @@
 			font-family: "Nunito Bold", sans-serif;
 		}
 		
-		.videoTitle, .adsSponsor{
+		.videoTitle, .adsSponsor {
 			text-align: start;
 			margin-left: 10px;
 			margin-right: 10px;
 		}
 		
-		.sponsor-span{
+		.sponsor-span {
 			font-family: "Oxygen", sans-serif;;
 			opacity: 0.5;
 		}
@@ -192,7 +193,7 @@
 			-webkit-box-orient: vertical;
 		}
 		
-		.subscribe-btn{
+		.subscribe-btn {
 			width: 85%;
 			top: 0;
 			bottom: 0;
@@ -213,7 +214,6 @@
 			vertical-align: center;
 			align-self: center;
 		}
-		
 		
 		
 		.more_vert_holder {
@@ -258,7 +258,8 @@
 			<p class="adsSponsor">Sponsored <span class="sponsor-span">• VEENTAGE BAND </span></p>
 		</div>
 		<div class="more_vert_holder">
-			<img alt="" class="more-vert" src="https://techbrocode.github.io/JetPlayWeb/4250142091/assets/svg/more_vert_24dp_FILL1_wght400_GRAD0_opsz24.svg">
+			<img alt="" class="more-vert"
+			     src="https://techbrocode.github.io/JetPlayWeb/4250142091/assets/svg/more_vert_24dp_FILL1_wght400_GRAD0_opsz24.svg">
 		</div>
 	</div>
 </div>
@@ -269,7 +270,18 @@
 	let videoMainContainer = document.querySelectorAll(".videoMainContainer");
 	let moreVertHolder = document.querySelectorAll(".more_vert_holder");
 	let playHolder = document.querySelectorAll(".play-pause-holder");
+	let thumbnailContainer = document.querySelector(".thumbnailContainer");
+	let metadataContainer = document.querySelector(".metadataContainer");
 	let subscribeButton = document.querySelector(".subscribe-btn");
+	let body = document.querySelector("body");
+	
+	window.onerror = () => {
+		body.style.padding = "0";
+		body.removeChild(thumbnailContainer);
+		body.removeChild(metadataContainer);
+		body.removeChild(subscribeButton);
+		window.location.reload();
+	};
 	
 	subscribeButton.addEventListener("mouseup", () => {
 		let clearBackground = setInterval(() => {
