@@ -11,6 +11,7 @@ let vidAdsArray = [/*"https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=
 let vidArrayPosition = 0;
 
 let adsToday = new Date();
+let selectedContentIndex = 0;
 
 
 window.onload = function () {
@@ -50,6 +51,7 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
                     iFrame.src = vidAdsArray[vidArrayPosition];
                     iFrame.height = "0";
                     iFrame.width = "0";
+                    iFrame.style.display = "none";
                     iFrame.classList.add("adsIframe");
                     allContent[0].appendChild(iFrame);
                     /*iFrame.onload = function () {
@@ -62,6 +64,7 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
                             iFrame.height = iFrame.contentWindow.document.body.scrollHeight + "px";
                             iFrame.style.height = iFrame.contentWindow.document.body.scrollHeight + "px";
                             iFrame.setAttribute("height", iFrame.contentWindow.document.body.scrollHeight + "px");
+                            iFrame.style.display = "block";
                             if (iFrame.height === iFrame.contentWindow.document.body.scrollHeight.toString()) {
                                 /*alert("Cool");*/
                                 clearInterval(heightChecker);
@@ -184,6 +187,9 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
                 videoCard.appendChild(metadataContainer);
                 videoCard.appendChild(divider);
                 allContent[0].appendChild(videoCard);
+                if (c === (data.length - 1)) {
+                    shuffleItems();
+                }
             }
         }
 
@@ -249,6 +255,34 @@ function loadScript() {
             /*allContent[index].style.marginTop = tabBox.offsetHeight + "px";*/
             allContent[index].style.marginTop = tabBox.clientHeight + "px";
             allContent[index].classList.add("active");
+            selectedContentIndex = index;
         });
     })
+}
+
+function shuffleItems() {
+    if (selectedContentIndex !== null && selectedContentIndex !== undefined && selectedContentIndex.toString().trim().length !== 0 && selectedContentIndex !== -1) {
+        if (allContent[selectedContentIndex] !== null) {
+            const elementsArray = Array.prototype.slice.call(allContent[selectedContentIndex].getElementsByClassName("videoMainContainer"));
+            if (elementsArray !== null && elementsArray !== undefined && elementsArray.length !== 0) {
+                elementsArray.forEach(element => {
+                    allContent[selectedContentIndex].removeChild(element);
+                })
+                shuffleArray(elementsArray);
+                elementsArray.forEach(element => {
+                    allContent[selectedContentIndex].appendChild(element);
+                })
+            }
+        }
+    }
+}
+
+function shuffleArray(array) {
+    for (let c = array.length - 1; c >= 0; c--) {
+        let i = Math.floor(Math.random() * (c + 1));
+        let temp = array[c];
+        array[c] = array[i];
+        array[i] = temp;
+    }
+    return array;
 }
