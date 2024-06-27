@@ -18,7 +18,7 @@ let vidAdsArray = [
 
     [
         1720111996338,
-        "https://techbrocode.github.io/JetPlayWeb/4250142091/ads/directory/youtube_sub_vid.html"
+        "https://techbrocode.github.io/JetPlayWeb/4250142091/ads/directory/videoPlayerAd.html"
     ]
 ]
 
@@ -36,7 +36,7 @@ window.onload = function () {
     allContent[0].classList.add("active");
 }
 
-if (vidAdsDetector && vidAdsArray !== null && vidAdsArray.length !== 0) {
+if (vidAdsDetector && vidAdsArray.length !== 0) {
     for (let i = 0; i < vidAdsArray.length; i++) {
         if (Date.now() >= vidAdsArray[i][0]) {
             vidAdsArray.splice(i, 1);
@@ -224,6 +224,26 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
 loadScript();
 
 function loadScript() {
+    let videoAdsFrameSelector = document.querySelectorAll(".adsIframe");
+    videoAdsFrameSelector.forEach((videoAdsFrame, position) => {
+        videoAdsFrame = videoAdsFrameSelector[position].contentDocument || videoAdsFrameSelector[position].contentWindow.document;
+        let video = videoAdsFrame.body.querySelector(".video");
+        if (video !== null) {
+            const observer = new window.IntersectionObserver(([entry]) => {
+                if (entry.isIntersecting) {
+                    // Meaning that videoFrame is starting to become visible in viewport...
+                    video.play();
+                    return;
+                }
+                video.pause();
+                video.currentTime = 0;
+            }, {
+                root: null,
+                threshold: 0.1, // set offset 0.1 means trigger if atleast 10% of element in viewport
+            });
+            observer.observe(video);
+        }
+    });
     for (let c = 0; c < tabItem.length; c++) {
         tabItem[c].onmouseup = () => {
             let clearBackground = setInterval(() => {
@@ -312,17 +332,17 @@ function shuffleArray(array) {
 }
 
 function shuffleJSON(array) {
-    let currentIndex = array.length;
+    let currentLength = array.length;
 
     // While there remain elements to shuffle...
-    while (currentIndex !== 0) {
+    while (currentLength !== 0) {
 
         // Pick a remaining element...
-        let randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
+        let randomIndex = Math.floor(Math.random() * currentLength);
+        currentLength--;
 
         // And swap it with the current element.
-        [array[currentIndex], array[randomIndex]] = [
-            array[randomIndex], array[currentIndex]];
+        [array[currentLength], array[randomIndex]] = [
+            array[randomIndex], array[currentLength]];
     }
 }
