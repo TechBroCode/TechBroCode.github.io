@@ -35,6 +35,7 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
     .then(data => {
         console.log(`json: ${data.toString()}`);
         /*alert(`Good ${data.length}`);*/
+        shuffleJSON(data);
         for (let c = 0; c < data.length; c++) {
             if (data[c] !== null && data[c] !== undefined) {
                 if (/*c !== 0 && */c % 5 === 0
@@ -51,7 +52,6 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
                     iFrame.src = vidAdsArray[vidArrayPosition];
                     iFrame.height = "0";
                     iFrame.width = "0";
-                    iFrame.style.display = "none";
                     iFrame.classList.add("adsIframe");
                     allContent[0].appendChild(iFrame);
                     /*iFrame.onload = function () {
@@ -64,7 +64,6 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
                             iFrame.height = iFrame.contentWindow.document.body.scrollHeight + "px";
                             iFrame.style.height = iFrame.contentWindow.document.body.scrollHeight + "px";
                             iFrame.setAttribute("height", iFrame.contentWindow.document.body.scrollHeight + "px");
-                            iFrame.style.display = "block";
                             if (iFrame.height === iFrame.contentWindow.document.body.scrollHeight.toString()) {
                                 /*alert("Cool");*/
                                 clearInterval(heightChecker);
@@ -187,9 +186,9 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
                 videoCard.appendChild(metadataContainer);
                 videoCard.appendChild(divider);
                 allContent[0].appendChild(videoCard);
-                if (c === (data.length - 1)) {
+                /*if (c === (data.length - 1)) {
                     shuffleItems();
-                }
+                }*/
             }
         }
 
@@ -285,4 +284,20 @@ function shuffleArray(array) {
         array[i] = temp;
     }
     return array;
+}
+
+function shuffleJSON(array) {
+    let currentIndex = array.length;
+
+    // While there remain elements to shuffle...
+    while (currentIndex !== 0) {
+
+        // Pick a remaining element...
+        let randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+    }
 }
