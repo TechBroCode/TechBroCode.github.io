@@ -4,7 +4,7 @@ let tabButton = document.querySelectorAll(".tab_btn");
 let tabIndicator = document.querySelector(".tab_indicator");
 let allContent = document.querySelectorAll(".content");
 let tabBox = document.querySelector(".tabBox");
-let vidAdsDetector = false;
+let vidAdsDetector = true;
 let vidAdsArray = [/*"https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=1&controls=0"*/"https://techbrocode.github.io/JetPlayWeb/4250142091/ads/directory/videoPlayerAd.html", "https://techbrocode.github.io/JetPlayWeb/4250142091/ads/directory/youtube_sub_vid.html"];
 let vidAdsArray = ["https://techbrocode.github.io/JetPlayWeb/4250142091/ads/directory/google-type-ad.html", "https://techbrocode.github.io/JetPlayWeb/4250142091/ads/directory/youtube_sub_vid.html"];
 
@@ -43,7 +43,7 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
         }
         for (let c = 0; c < data.length; c++) {
             if (data[c] !== null && data[c] !== undefined) {
-                if (/*c !== 0 && */c % 5 === 0
+                /*if (/!*c !== 0 && *!/c % 5 === 0
                     && vidAdsDetector
                     && vidAdsArray !== null
                     && vidAdsArray !== undefined
@@ -59,10 +59,10 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
                     iFrame.width = "0";
                     iFrame.classList.add("adsIframe");
                     allContent[0].appendChild(iFrame);
-                    /*iFrame.onload = function () {
+                    /!*iFrame.onload = function () {
                         this.contentWindow.location.reload();
                         this.onload = null;
-                    };*/
+                    };*!/
                     let heightChecker = setInterval(() => {
                         if (iFrame.contentWindow.document.body.scrollHeight > 0) {
                             iFrame.style.width = "100%";
@@ -70,13 +70,13 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
                             iFrame.style.height = iFrame.contentWindow.document.body.scrollHeight + "px";
                             iFrame.setAttribute("height", iFrame.contentWindow.document.body.scrollHeight + "px");
                             if (iFrame.height === iFrame.contentWindow.document.body.scrollHeight.toString()) {
-                                /*alert("Cool");*/
+                                /!*alert("Cool");*!/
                                 clearInterval(heightChecker);
                             }
                         }
                     }, 500);
                     vidArrayPosition++;
-                }
+                }*/
                 let channelAvatar = data[c].channelAvatar;
                 let channelId = data[c].channelId;
                 let channelName = data[c].channelName;
