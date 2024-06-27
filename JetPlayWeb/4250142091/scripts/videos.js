@@ -38,12 +38,12 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
         console.log(`json: ${data.toString()}`);
         /*alert(`Good ${data.length}`);*/
         shuffleJSON(data);
-        if (vidAdsDetector && vidAdsArray !== null && vidAdsArray !== undefined && vidAdsArray.length > 0) {
+        /*if (vidAdsDetector && vidAdsArray !== null && vidAdsArray !== undefined && vidAdsArray.length > 0) {
             shuffleJSON(vidAdsArray);
-        }
+        }*/
         for (let c = 0; c < data.length; c++) {
             if (data[c] !== null && data[c] !== undefined) {
-                /*if (/!*c !== 0 && *!/c % 5 === 0
+                if (/*c !== 0 && */c % 5 === 0
                     && vidAdsDetector
                     && vidAdsArray !== null
                     && vidAdsArray !== undefined
@@ -59,10 +59,10 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
                     iFrame.width = "0";
                     iFrame.classList.add("adsIframe");
                     allContent[0].appendChild(iFrame);
-                    /!*iFrame.onload = function () {
+                    /*iFrame.onload = function () {
                         this.contentWindow.location.reload();
                         this.onload = null;
-                    };*!/
+                    };*/
                     let heightChecker = setInterval(() => {
                         if (iFrame.contentWindow.document.body.scrollHeight > 0) {
                             iFrame.style.width = "100%";
@@ -70,13 +70,13 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
                             iFrame.style.height = iFrame.contentWindow.document.body.scrollHeight + "px";
                             iFrame.setAttribute("height", iFrame.contentWindow.document.body.scrollHeight + "px");
                             if (iFrame.height === iFrame.contentWindow.document.body.scrollHeight.toString()) {
-                                /!*alert("Cool");*!/
+                                /*alert("Cool");*/
                                 clearInterval(heightChecker);
                             }
                         }
                     }, 500);
                     vidArrayPosition++;
-                }*/
+                }
                 let channelAvatar = data[c].channelAvatar;
                 let channelId = data[c].channelId;
                 let channelName = data[c].channelName;
