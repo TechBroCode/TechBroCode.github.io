@@ -6,13 +6,24 @@ let allContent = document.querySelectorAll(".content");
 let tabBox = document.querySelector(".tabBox");
 let vidAdsDetector = true;
 /*let vidAdsArray = [/!*"https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=1&controls=0"*!/"https://techbrocode.github.io/JetPlayWeb/4250142091/ads/directory/videoPlayerAd.html", "https://techbrocode.github.io/JetPlayWeb/4250142091/ads/directory/youtube_sub_vid.html"];*/
-let vidAdsArray = ["https://techbrocode.github.io/JetPlayWeb/4250142091/ads/directory/google-type-ad.html", "https://techbrocode.github.io/JetPlayWeb/4250142091/ads/directory/youtube_sub_vid.html"];
+/*let vidAdsArray = ["https://techbrocode.github.io/JetPlayWeb/4250142091/ads/directory/google-type-ad.html", "https://techbrocode.github.io/JetPlayWeb/4250142091/ads/directory/youtube_sub_vid.html"];*/
 
 /*let vidAdsArray = ["view-source:https://www.youtube.com/watch?v=7Of2rUMjndU"];*/
 
+let vidAdsArray = [
+    [
+        1720111996338,
+        "https://techbrocode.github.io/JetPlayWeb/4250142091/ads/directory/google-type-ad.html"
+    ],
+
+    [
+        1720111996338,
+        "https://techbrocode.github.io/JetPlayWeb/4250142091/ads/directory/youtube_sub_vid.html"
+    ]
+]
+
 let vidArrayPosition = 0;
 
-let adsToday = new Date();
 let selectedContentIndex = 0;
 
 
@@ -23,6 +34,14 @@ window.onload = function () {
     /*alert(`${tabBox.offsetHeight}`);*/
     allContent[0].style.marginTop = tabBox.clientHeight + "px";
     allContent[0].classList.add("active");
+}
+
+if (vidAdsDetector && vidAdsArray !== null && vidAdsArray.length !== 0) {
+    for (let i = 0; i < vidAdsArray.length; i++) {
+        if (Date.now() >= vidAdsArray[i][0]) {
+            vidAdsArray.splice(i, 1);
+        }
+    }
 }
 
 fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.json")
@@ -54,7 +73,7 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
                         vidArrayPosition = 0;
                     }
                     let iFrame = document.createElement("iframe");
-                    iFrame.src = vidAdsArray[vidArrayPosition];
+                    iFrame.src = vidAdsArray[vidArrayPosition][1];
                     iFrame.height = "0";
                     iFrame.width = "0";
                     iFrame.classList.add("adsIframe");
