@@ -226,8 +226,9 @@ loadScript();
 function loadScript() {
     let videoAdsFrameSelector = document.querySelectorAll(".adsIframe");
     videoAdsFrameSelector.forEach((videoAdsFrame, position) => {
-        videoAdsFrame = videoAdsFrameSelector[position].contentDocument || videoAdsFrameSelector[position].contentWindow.document;
-        let video = videoAdsFrame.body.querySelector(".video");
+        /*videoAdsFrame = videoAdsFrameSelector[position].contentDocument || videoAdsFrameSelector[position].contentWindow.document;*/
+        /*let video = videoAdsFrame.body.querySelector(".video");*/
+        let video = videoAdsFrame.contentWindow.document.getElementsByTagName("video")[0];
         if (video !== null) {
             alert("cool");
             const observer = new window.IntersectionObserver(([entry]) => {
