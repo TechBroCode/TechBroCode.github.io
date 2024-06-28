@@ -287,9 +287,9 @@ function loadScript() {
     if (videoAdsFrameSelector[0] !== null) {
         alert("not null")
     }
-    videoAdsFrameSelector.forEach((videoAdsFrame, position) => {
-        /*videoAdsFrame = videoAdsFrameSelector[position].contentDocument || videoAdsFrameSelector[position].contentWindow.document;*/
-        /*let video = videoAdsFrame.body.querySelector(".video");*/
+    /*videoAdsFrameSelector.forEach((videoAdsFrame, position) => {
+        /!*videoAdsFrame = videoAdsFrameSelector[position].contentDocument || videoAdsFrameSelector[position].contentWindow.document;*!/
+        /!*let video = videoAdsFrame.body.querySelector(".video");*!/
         let video = videoAdsFrame.contentWindow.document.getElementsByTagName("video")[0];
         if (video !== null) {
             alert("cool");
@@ -307,7 +307,7 @@ function loadScript() {
             });
             observer.observe(video);
         }
-    });
+    });*/
 }
 
 function shuffleItems() {
