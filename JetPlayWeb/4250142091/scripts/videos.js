@@ -283,11 +283,11 @@ function loadScript() {
         });
     })
 
-    let videoAdsFrameSelector = document.querySelectorAll(".adsIframe");
+    /*let videoAdsFrameSelector = document.querySelectorAll(".adsIframe");
     if (videoAdsFrameSelector[0] !== null) {
         alert("not null")
     }
-    /*videoAdsFrameSelector.forEach((videoAdsFrame, position) => {
+    videoAdsFrameSelector.forEach((videoAdsFrame, position) => {
         /!*videoAdsFrame = videoAdsFrameSelector[position].contentDocument || videoAdsFrameSelector[position].contentWindow.document;*!/
         /!*let video = videoAdsFrame.body.querySelector(".video");*!/
         let video = videoAdsFrame.contentWindow.document.getElementsByTagName("video")[0];
