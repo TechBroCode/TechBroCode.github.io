@@ -224,28 +224,6 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
 loadScript();
 
 function loadScript() {
-    let videoAdsFrameSelector = document.querySelectorAll(".adsIframe");
-    videoAdsFrameSelector.forEach((videoAdsFrame, position) => {
-        /*videoAdsFrame = videoAdsFrameSelector[position].contentDocument || videoAdsFrameSelector[position].contentWindow.document;*/
-        /*let video = videoAdsFrame.body.querySelector(".video");*/
-        let video = videoAdsFrame.contentWindow.document.getElementsByTagName("video")[0];
-        if (video !== null) {
-            alert("cool");
-            const observer = new window.IntersectionObserver(([entry]) => {
-                if (entry.isIntersecting) {
-                    // Meaning that videoFrame is starting to become visible in viewport...
-                    video.play();
-                    return;
-                }
-                video.pause();
-                video.currentTime = 0;
-            }, {
-                root: null,
-                threshold: 0.1, // set offset 0.1 means trigger if atleast 10% of element in viewport
-            });
-            observer.observe(video);
-        }
-    });
     for (let c = 0; c < tabItem.length; c++) {
         tabItem[c].onmouseup = () => {
             let clearBackground = setInterval(() => {
@@ -304,6 +282,29 @@ function loadScript() {
             selectedContentIndex = index;
         });
     })
+
+    let videoAdsFrameSelector = document.querySelectorAll(".adsIframe");
+    videoAdsFrameSelector.forEach((videoAdsFrame, position) => {
+        /*videoAdsFrame = videoAdsFrameSelector[position].contentDocument || videoAdsFrameSelector[position].contentWindow.document;*/
+        /*let video = videoAdsFrame.body.querySelector(".video");*/
+        let video = videoAdsFrame.contentWindow.document.getElementsByTagName("video")[0];
+        if (video !== null) {
+            alert("cool");
+            const observer = new window.IntersectionObserver(([entry]) => {
+                if (entry.isIntersecting) {
+                    // Meaning that videoFrame is starting to become visible in viewport...
+                    video.play();
+                    return;
+                }
+                video.pause();
+                video.currentTime = 0;
+            }, {
+                root: null,
+                threshold: 0.1, // set offset 0.1 means trigger if atleast 10% of element in viewport
+            });
+            observer.observe(video);
+        }
+    });
 }
 
 function shuffleItems() {
