@@ -284,6 +284,9 @@ function loadScript() {
     })
 
     let videoAdsFrameSelector = document.querySelectorAll(".adsIframe");
+    if (videoAdsFrameSelector[0] !== null) {
+        alert("not null")
+    }
     videoAdsFrameSelector.forEach((videoAdsFrame, position) => {
         /*videoAdsFrame = videoAdsFrameSelector[position].contentDocument || videoAdsFrameSelector[position].contentWindow.document;*/
         /*let video = videoAdsFrame.body.querySelector(".video");*/
