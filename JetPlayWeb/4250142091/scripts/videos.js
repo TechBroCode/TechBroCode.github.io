@@ -144,7 +144,7 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
 
                 // Create the video duration text
                 let videoDuration = document.createElement("p");
-                videoDuration.innerText = duration;
+                videoDuration.innerText = getTimeInHhMmSsString(duration);
                 videoDuration.classList.add("duration");
 
                 playPauseHolder.appendChild(play);
@@ -222,6 +222,22 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
 
 });*/
 loadScript();
+
+function getTimeInHhMmSsString(totalSeconds) {
+    let seconds = totalSeconds % 60;
+    let minutes = Math.floor(totalSeconds / 60) % 60;
+    let hours = Math.floor(totalSeconds / 3600);
+    let mFormatter = new Intl.NumberFormat('en-US', {
+        minimumIntegerDigits: 2,
+        useGrouping: false
+    });
+
+    if (hours > 0) {
+        return mFormatter.format(hours) + ":" + mFormatter.format(minutes) + ":" + mFormatter.format(seconds);
+    } else {
+        return mFormatter.format(minutes) + ":" + mFormatter.format(seconds);
+    }
+}
 
 function loadScript() {
     for (let c = 0; c < tabItem.length; c++) {
