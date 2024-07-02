@@ -101,7 +101,7 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
                 let channelName = data[c].channelName;
                 let duration = data[c].duration;
                 let videoId = data[c].id;
-                let videoTitle = data[c].name;
+                let videoTitle = data[c].title;
                 console.log(`json at array index ${c} : \nid: ${data[c].id}\nbody: ${data[c].body}\nseverity: ${data[c].severity}\nstatus: ${data[c].status}`);
                 // Create the video container...
                 let videoCard = document.createElement("div");
