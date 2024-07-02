@@ -4,7 +4,7 @@ let tabButton = document.querySelectorAll(".tab_btn");
 let tabIndicator = document.querySelector(".tab_indicator");
 let allContent = document.querySelectorAll(".content");
 let tabBox = document.querySelector(".tabBox");
-let vidAdsDetector = true;
+let vidAdsDetector = false;
 /*let vidAdsArray = [/!*"https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=1&controls=0"*!/"https://techbrocode.github.io/JetPlayWeb/4250142091/ads/directory/videoPlayerAd.html", "https://techbrocode.github.io/JetPlayWeb/4250142091/ads/directory/youtube_sub_vid.html"];*/
 /*let vidAdsArray = ["https://techbrocode.github.io/JetPlayWeb/4250142091/ads/directory/google-type-ad.html", "https://techbrocode.github.io/JetPlayWeb/4250142091/ads/directory/youtube_sub_vid.html"];*/
 
@@ -110,6 +110,19 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
                 videoCard.style.background = "#ffffff";
                 videoCard.classList.add("videoMainContainer");
 
+                let addButtonHolder = document.createElement("div");
+                addButtonHolder.classList.add("addButtonHolder");
+
+                let addButton = document.createElement("img");
+                addButton.srcset = "https://techbrocode.github.io/JetPlayWeb/4250142091/assets/svg/ic_baseline_add_24.svg";
+                addButton.src = "https://techbrocode.github.io/JetPlayWeb/4250142091/assets/svg/ic_baseline_add_24.svg";
+                addButton.alt = "";
+                addButton.style.width = "90%";
+                addButton.style.height = "auto";
+                addButton.loading = "lazy";
+
+                addButtonHolder.appendChild(addButton);
+
                 // Create the thumbnail container
                 let videoThumbContainer = document.createElement("div");
                 videoThumbContainer.classList.add("thumbnailContainer");
@@ -208,6 +221,7 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/video.jso
                 metadataContainer.appendChild(bottomMetadata);
 
                 videoCard.appendChild(videoThumbContainer);
+                videoCard.appendChild(addButtonHolder);
                 videoCard.appendChild(metadataContainer);
                 videoCard.appendChild(divider);
                 allContent[0].appendChild(videoCard);
