@@ -1,4 +1,4 @@
-let premiumVideoAdsList = [
+let mainPremiumVideoAdsList = [
     [
         "red",
         0,
@@ -17,12 +17,12 @@ let premiumVideoAdsList = [
 validatePremiumVideoAdsList();
 
 function validatePremiumVideoAdsList() {
-    if (premiumVideoAdsList.length !== 0) {
-        for (let i = 0; i < premiumVideoAdsList.length; i++) {
-            if (Date.now() >= premiumVideoAdsList[i][7]) {
-                premiumVideoAdsList.splice(i, 1);
+    if (mainPremiumVideoAdsList.length !== 0) {
+        for (let i = 0; i < mainPremiumVideoAdsList.length; i++) {
+            if (Date.now() >= mainPremiumVideoAdsList[i][7]) {
+                mainPremiumVideoAdsList.splice(i, 1);
             }
         }
-        shuffleJSON();
+        shuffleJSON(mainPremiumVideoAdsList);
     }
 }
