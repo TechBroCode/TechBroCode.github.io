@@ -101,7 +101,8 @@ let premiumVideoAdsList = [
 ];
 
 
-const premiumVideoAdsJsonList = await getPremiumVideoAdsJsonList();
+/*
+let premiumVideoAdsJsonList = await getPremiumVideoAdsJsonList();
 
 async function getPremiumVideoAdsJsonList() {
     let json = null;
@@ -113,6 +114,21 @@ async function getPremiumVideoAdsJsonList() {
         return json;
     }
 }
+*/
+let premiumVideoAdsJsonList = null;
+fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/premium-video-ads-list.json")
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP ERROR ${response.status} detected`);
+        }
+        return response.json();
+    })
+    .then(responseData => {
+        premiumVideoAdsJsonList = responseData;
+    })
+    .catch(error => {
+        premiumVideoAdsJsonList = null;
+    });
 
 if (vidAdsDetector && vidAdsArray.length !== 0) {
     for (let i = 0; i < vidAdsArray.length; i++) {
