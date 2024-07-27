@@ -115,7 +115,7 @@ let premiumVideoAdsJsonList = [
         "mime_type": "video/mp4",
         "pricing": "FREE",
         "rating": "4.0⭐",
-        "url": "https://techbrocode.github.io/JetPlayWeb/storage/colgate.mp4"
+        "video_url": "https://techbrocode.github.io/JetPlayWeb/storage/colgate.mp4"
     }
 ];
 
@@ -125,6 +125,11 @@ if (premiumVideoAdsJsonList.length !== 0) {
             premiumVideoAdsJsonList.splice(i, 1);
         }
     }
+}
+
+function getPremiumVideoAdsJsonList() {
+    shuffleJSON(premiumVideoAdsJsonList);
+    return premiumVideoAdsJsonList;
 }
 
 const youtubeApiKey = "AIzaSyDT9WSwD1QUNzxnI4ycuy_7SB9AG_J-GKc";
