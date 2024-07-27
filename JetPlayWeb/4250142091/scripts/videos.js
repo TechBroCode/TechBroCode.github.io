@@ -128,19 +128,19 @@ if (premiumVideoAdsJsonList.length !== 0) {
 }
 
 function getPremiumVideoAdsJsonList() {
-    shuffleJSON(premiumVideoAdsJsonList);
-    return premiumVideoAdsJsonList;
+    if (vidAdsDetector && vidAdsArray.length !== 0) {
+        for (let i = 0; i < vidAdsArray.length; i++) {
+            if (Date.now() >= vidAdsArray[i][0]) {
+                vidAdsArray.splice(i, 1);
+            }
+        }
+        shuffleJSON(premiumVideoAdsJsonList);
+        return premiumVideoAdsJsonList;
+    }
+    return null;
 }
 
 const youtubeApiKey = "AIzaSyDT9WSwD1QUNzxnI4ycuy_7SB9AG_J-GKc";
-
-if (vidAdsDetector && vidAdsArray.length !== 0) {
-    for (let i = 0; i < vidAdsArray.length; i++) {
-        if (Date.now() >= vidAdsArray[i][0]) {
-            vidAdsArray.splice(i, 1);
-        }
-    }
-}
 
 if (!hasLoadedVideosAtZeroIndex) {
     loadVideoTab();
