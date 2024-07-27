@@ -108,6 +108,7 @@ async function getPremiumVideoAdsJsonList() {
     }
 }
 */
+/*
 let premiumVideoAdsJsonList = null;
 fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/premium-video-ads-list.json")
     .then(response => {
@@ -129,6 +130,7 @@ fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/premium-v
     .catch(error => {
         premiumVideoAdsJsonList = null;
     });
+*/
 
 if (vidAdsDetector && vidAdsArray.length !== 0) {
     for (let i = 0; i < vidAdsArray.length; i++) {
