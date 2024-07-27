@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+	      name="viewport">
+	<meta content="ie=edge" http-equiv="X-UA-Compatible">
+	<link href="https://fonts.googleapis.com" rel="preconnect">
+	<link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+	      rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+	      rel="stylesheet"/>
+	<title></title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
+		
+		body {
+			margin: 0;
+			padding: 0 0 15px;
+			display: block;
+			background: white;
+			width: 100%;
+			justify-content: center;
+			justify-items: center;
+			align-items: center;
+			align-self: center;
+			-webkit-tap-highlight-color: transparent;
+			-ms-scrollbar-highlight-color: transparent;
+			scrollbar-highlight-color: transparent;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+		
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		
+		.dark {
+			background: none;
+			color: white;
+		}
+		
+		::-webkit-scrollbar {
+			width: 0;
+			background: transparent;
+		}
+		
+		::-webkit-scrollbar-thumb {
+			background: #FF0000;
+		}
+		
+		.thumbnailContainer {
+			width: 100%;
+			height: auto;
+			display: flex;
+			position: relative;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+		}
+		
+		.duration {
+			width: auto;
+			height: auto;
+			font-kerning: auto;
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+			border-radius: 3px;
+			font-weight: 1000;
+			font-style: normal;
+			font-family: "Oxygen", sans-serif;
+			/*font-size: 10px;*/
+			font-size: 12px;
+			padding: 5px 8px;
+			background: rgba(0, 0, 0, 0.75);
+			color: white;
+			vertical-align: center;
+			vert-align: middle;
+			text-align: start;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			/*display: -webkit-box;*/
+			-webkit-line-clamp: 1;
+			-webkit-box-orient: vertical;
+		}
+		
+		.videoThumbnail {
+			width: 100%;
+			height: auto;
+			object-fit: fill;
+		}
+		
+		marquee {
+			display: block;
+			width: auto;
+			margin-top: 5px;
+			color: black;
+		}
+		
+		.metadataContainer {
+			width: 100%;
+			height: auto;
+		}
+		
+		.bottomMetadata {
+			width: 100%;
+			height: auto;
+			padding: 10px 5px;
+			overflow: hidden;
+			display: -ms-flexbox;
+			display: -webkit-flex;
+			display: flex;
+			-ms-flex-align: center;
+			-webkit-align-items: center;
+			-webkit-box-align: center;
+			align-items: center;
+		}
+		
+		.channel_thumbnail {
+			padding: 0 0 0 0;
+			vertical-align: center;
+			vert-align: middle;
+		}
+		
+		.adDetails {
+			display: block;
+			width: 85%;
+			height: auto;
+			font-kerning: auto;
+			justify-items: start;
+			text-align: start;
+			font-weight: 1000;
+			font-style: normal;
+			font-family: "Oxygen", sans-serif;
+			font-size: 14px;
+			margin-left: 10px;
+			margin-right: 10px;
+			padding: 0 0 0 0;
+		}
+		
+		.videoTitle {
+			-webkit-line-clamp: 2;
+			line-clamp: 2;
+			font-family: "Oxygen", sans-serif;
+			font-size: 14px;
+			width: 100%;
+		}
+		
+		.adsSponsor {
+			font-size: 12px;
+			width: 100%;
+			margin-top: 10px;
+		}
+		
+		.adsSponsor, .subscribe-btn {
+			-webkit-line-clamp: 1;
+			line-clamp: 1;
+			font-family: "Nunito Bold", sans-serif;
+		}
+		
+		.videoTitle, .adsSponsor {
+			text-align: start;
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+		
+		.sponsor-span {
+			font-family: "Oxygen", sans-serif;;
+			opacity: 0.5;
+		}
+		
+		.videoTitle, .adsSponsor, .subscribe-btn {
+			display: block;
+			height: auto;
+			font-weight: 1000;
+			background: none;
+			font-style: normal;
+			padding: 0 0 0 0;
+			vertical-align: center;
+			vert-align: middle;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+		}
+		
+		.subscribe-btn {
+			width: 85%;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			height: auto;
+			font-size: 14px;
+			padding-top: 12px;
+			margin: 10px auto auto;
+			padding-bottom: 12px;
+			border-radius: 20px;
+			background: #eaeaea;
+			border: none;
+			justify-self: center;
+			justify-content: center;
+			align-content: center;
+			text-align: center;
+			vertical-align: center;
+			align-self: center;
+		}
+		
+		
+		.collections-image-more_vert_holder {
+			width: 50px;
+			height: 45px;
+			padding: 0 0 0 0;
+			border: none;
+			border-radius: 50%;
+			align-self: center;
+			display: inline-flex;
+			justify-content: center;
+			align-items: center;
+			vert-align: middle;
+			vertical-align: center;
+		}
+		
+		.more-vert {
+			width: 50%;
+			height: 50%;
+			margin-top: 5px;
+			margin-bottom: 5px;
+		}
+	
+	</style>
+</head>
+<body>
+<div class="thumbnailContainer" style="margin: auto;">
+	<img alt="" class="videoThumbnail" loading="lazy"
+	     src="https://img.youtube.com/vi_webp/UhrkJTKaiG0/maxresdefault.webp">
+	<p class="duration">07:29</p>
+</div>
+<div class="metadataContainer" style="margin: auto;">
+	<!--<p class="videoTitle">VEENTAGEBAND'S PERFORMANCE AT #OLOROGUNANDOLORI2023</p>-->
+	<div class="bottomMetadata">
+		<img alt=""
+		     class="channel_thumbnail" height="5%"
+		     loading="lazy"
+		     src="https://yt3.googleusercontent.com/Xj-6gqHKmTewewCwB6zMzywmZuQJgn0OMH5FEPt_NVTx-XehTx8l3NOsau5FZ4pO-HhcbdDd=s900-c-k-c0x00ffffff-no-rj"
+		     style="border-radius: 50%;" width="5%">
+		<div class="adDetails">
+			<p class="videoTitle">Veentageband's Performance At Olorogunandolori2023</p>
+			<p class="adsSponsor">Sponsored <span class="sponsor-span">• VEENTAGE BAND </span></p>
+		</div>
+		<div class="more_vert_holder">
+			<img alt="" class="more-vert"
+			     src="https://techbrocode.github.io/JetPlayWeb/4250142091/assets/svg/more_vert_24dp_FILL1_wght400_GRAD0_opsz24.svg">
+		</div>
+	</div>
+</div>
+
+<button class="subscribe-btn">Subscribe</button>
+
+<script type="application/ecmascript">
+	let videoMainContainer = document.querySelectorAll(".videoMainContainer");
+	let moreVertHolders = document.querySelectorAll(".collections-image-more_vert_holder");
+	let playHolder = document.querySelectorAll(".play-pause-holder");
+	let thumbnailContainer = document.querySelector(".thumbnailContainer");
+	let metadataContainer = document.querySelector(".metadataContainer");
+	let subscribeButton = document.querySelector(".subscribe-btn");
+	let documentBody = document.querySelector("documentBody");
+	
+	window.onerror = () => {
+		body.style.padding = "0";
+		body.removeChild(thumbnailContainer);
+		body.removeChild(metadataContainer);
+		body.removeChild(subscribeButton);
+		/*window.location.reload();*/
+	};
+	
+	subscribeButton.addEventListener("mouseup", () => {
+		let clearBackground = setInterval(() => {
+			subscribeButton.style.background = "#eaeaea";
+			clearInterval(clearBackground);
+		}, 150)
+	})
+	subscribeButton.addEventListener("mouseout", () => {
+		let clearBackground = setInterval(() => {
+			subscribeButton.style.background = "#eaeaea";
+			clearInterval(clearBackground);
+		}, 150)
+	})
+	subscribeButton.addEventListener("mousedown", () => {
+		subscribeButton.style.background = "#bcbcbc";
+	})
+	subscribeButton.addEventListener("touchstart", () => {
+		subscribeButton.style.background = "#bcbcbc";
+	})
+	subscribeButton.addEventListener("touchend", () => {
+		let clearBackground = setInterval(() => {
+			subscribeButton.style.background = "#eaeaea";
+			clearInterval(clearBackground);
+		}, 150)
+	})
+	subscribeButton.addEventListener("touchcancel", () => {
+		let clearBackground = setInterval(() => {
+			subscribeButton.style.background = "#eaeaea";
+			clearInterval(clearBackground);
+		}, 150)
+	})
+	
+	
+	for (let c = 0; c < playHolder.length; c++) {
+		playHolder[c].onmouseup = () => {
+			let clearBackground = setInterval(() => {
+				playHolder[c].style.backgroundColor = "rgba(0, 0, 0, 0.75)";
+				clearInterval(clearBackground);
+			}, 150);
+		};
+		
+		playHolder[c].onmousedown = () => {
+			playHolder[c].style.backgroundColor = "rgba(0, 0, 0, 0.50)";
+		};
+		
+		playHolder[c].onmouseout = () => {
+			let clearBackground = setInterval(() => {
+				playHolder[c].style.backgroundColor = "rgba(0, 0, 0, 0.75)";
+				clearInterval(clearBackground);
+			}, 150);
+		};
+		
+		playHolder[c].ontouchstart = () => {
+			let clearBackground = setInterval(() => {
+				playHolder[c].style.backgroundColor = "rgba(0, 0, 0, 0.75)";
+				clearInterval(clearBackground);
+			}, 150);
+		};
+		
+		playHolder[c].ontouchend = () => {
+			playHolder[c].style.backgroundColor = "rgba(0, 0, 0, 0.50)";
+		};
+		
+		playHolder[c].ontouchcancel = () => {
+			let clearBackground = setInterval(() => {
+				playHolder[c].style.backgroundColor = "rgba(0, 0, 0, 0.75)";
+				clearInterval(clearBackground);
+			}, 150);
+		};
+	}
+	
+	for (let c = 0; c < moreVertHolder.length; c++) {
+		moreVertHolder[c].onmouseup = () => {
+			let clearBackground = setInterval(() => {
+				moreVertHolder[c].style.backgroundColor = "transparent";
+				clearInterval(clearBackground);
+			}, 150);
+		};
+		
+		moreVertHolder[c].onmousedown = () => {
+			moreVertHolder[c].style.backgroundColor = "rgb(213, 213, 213)";
+		};
+		
+		moreVertHolder[c].onmouseout = () => {
+			let clearBackground = setInterval(() => {
+				moreVertHolder[c].style.backgroundColor = "transparent";
+				clearInterval(clearBackground);
+			}, 150);
+		};
+		
+		moreVertHolder[c].ontouchstart = () => {
+			moreVertHolder[c].style.backgroundColor = "rgb(213, 213, 213)";
+		};
+		
+		moreVertHolder[c].ontouchend = () => {
+			let clearBackground = setInterval(() => {
+				moreVertHolder[c].style.backgroundColor = "transparent";
+				clearInterval(clearBackground);
+			}, 150);
+		};
+		
+		moreVertHolder[c].ontouchcancel = () => {
+			let clearBackground = setInterval(() => {
+				moreVertHolder[c].style.backgroundColor = "transparent";
+				clearInterval(clearBackground);
+			}, 150);
+		};
+	}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link href="https://fonts.googleapis.com" rel="preconnect">
+	<link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+	      rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+	      rel="stylesheet"/>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+		
+		* {
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+		
+		::-webkit-scrollbar {
+			width: 0;
+			height: 0;
+			background: transparent;
+		}
+		
+		::-webkit-scrollbar-thumb {
+			background: #FF0000;
+		}
+		
+		body {
+			width: 100%;
+			height: auto;
+			-webkit-tap-highlight-color: transparent;
+			-ms-scrollbar-highlight-color: transparent;
+			scrollbar-highlight-color: transparent;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+		
+		.adsContainer {
+			width: 100%;
+			height: 100%;
+			background: white;
+			padding: 8px 5px;
+			margin: 0;
+			display: block;
+			justify-content: center;
+			justify-items: center;
+			align-items: center;
+			align-self: center;
+		}
+		
+		.videoContainer {
+			width: 100%;
+			height: auto;
+			display: block;
+			pointer-events: auto;
+			position: relative;
+			align-items: center;
+			justify-content: center;
+			align-content: center;
+			margin: 0;
+			justify-self: center;
+			vertical-align: center;
+			vert-align: middle;
+		}
+		
+		.video {
+			width: 100%;
+			height: auto;
+			display: block;
+			object-fit: fill;
+			vert-align: middle;
+		}
+		
+		.videoButtons {
+			background: rgba(0, 0, 0, 0.5);
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			display: block;
+			justify-content: space-around;
+			padding: 5px 8px;
+			width: auto;
+			height: auto;
+		}
+		
+		.play-volume {
+			vertical-align: center;
+			vert-align: middle;
+			margin-left: 7px;
+			margin-right: 7px;
+		}
+		
+		.bottom {
+			padding: 10px;
+			width: 100%;
+			height: auto;
+			display: block;
+		}
+		
+		.metadataContainer {
+			width: 100%;
+			height: auto;
+			display: block;
+			justify-content: center;
+			align-content: center;
+		}
+		
+		.sponsor-logo {
+			width: 8.5%;
+			height: auto;
+		}
+		
+		.horizontal-metadata {
+			display: flex;
+			width: 100%;
+			align-content: center;
+			justify-items: center;
+			vertical-align: middle;
+			vert-align: middle;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		.vertical-metadata {
+			margin-left: 3.5%;
+			margin-right: 3.5%;
+			height: auto;
+			text-align: start;
+			width: 91.5%;
+			align-content: center;
+			vertical-align: center;
+			vert-align: middle;
+		}
+		
+		.adsTitle {
+			font-size: 16px;
+			color: black;
+			font-weight: 700;
+			font-kerning: auto;
+			font-style: normal;
+			font-family: "Nunito Sans", sans-serif;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			text-align: start;
+			display: -webkit-box;
+			-webkit-line-clamp: 1;
+			-webkit-box-orient: vertical;
+			padding: 0 0 0 0;
+			vertical-align: center;
+			vert-align: middle;
+		}
+		
+		.sponsor-logo, .vertical-metadata {
+			display: inline-block;
+			*display: inline;
+			zoom: 1;
+			vertical-align: middle;
+			vert-align: middle;
+		}
+		
+		.adSponsored {
+			font-size: 14px;
+			color: black;
+			font-weight: 1000;
+			font-kerning: auto;
+			font-style: normal;
+			font-family: "Oxygen", sans-serif;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 1;
+			-webkit-box-orient: vertical;
+			padding: 15px 0;
+			vertical-align: center;
+			vert-align: middle;
+		}
+		
+		.adsIndicator {
+			font-size: 11px;
+			font-weight: 1000;
+			font-family: "Nunito Sans", sans-serif;
+			border: 2px solid yellow;
+			border-right-color: greenyellow;
+			border-bottom-color: red;
+			border-left-color: orange;
+			padding: 1px 5px;
+			margin-right: 5px;
+			border-radius: 12px;
+		}
+		
+		.adsDesc {
+			font-size: 14px;
+			color: black;
+			margin-top: 15px;
+			font-weight: 300;
+			font-kerning: auto;
+			font-style: normal;
+			font-family: "Poppins", sans-serif;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+			padding: 0 0 0 0;
+			vertical-align: center;
+			vert-align: middle;
+		}
+		
+		.adsAction {
+			font-size: 14px;
+			font-weight: 700;
+			font-kerning: auto;
+			font-style: normal;
+			font-family: "Poppins", sans-serif;
+			color: white;
+			padding: 10px 0;
+			display: block;
+			border-radius: 5px;
+			background: #000cff;
+			border: none;
+			width: 100%;
+			margin: 7px auto auto;
+			height: auto;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			justify-self: center;
+			justify-content: center;
+			align-content: center;
+			text-align: center;
+			vert-align: middle;
+			align-self: center;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 1;
+			-webkit-box-orient: vertical;
+			vertical-align: center;
+		}
+	
+	</style>
+</head>
+<body>
+<div class="adsContainer">
+	<div class="videoContainer">
+		<video class="video" muted>
+			<!--<source src="https://techbrocode.github.io/JetPlayWeb/storage/videoplayback (1).mp4" type='video/mp4; codecs="avc1.64001E, mp4a.40.2"'/>-->
+			<!--<source src="https://techbrocode.github.io/JetPlayWeb/storage/videoplayback (1).mp4" type="video/mp4"/>-->
+			<source src="https://techbrocode.github.io/JetPlayWeb/storage/colgate.mp4"
+			        type='video/mp4; codecs="avc1.64001E, mp4a.40.2"'/>
+			<!--<track src="https://jetmobileads.com/marketing/timedtext.vtt" kind="subtitles" srclang="en" label="English" default/>-->
+		</video>
+		<div class="videoButtons">
+			<svg class="play-volume"
+			     height="24"
+			     id="play"
+			     style="display: none;"
+			     viewBox="0 0 24 24"
+			     width="24"
+			     xmlns="http://www.w3.org/2000/svg">
+				
+				<path d="M8,5v14l11,-7z"
+				      fill="#ffffff"/>
+			</svg>
+			<svg class="play-volume"
+			     height="24"
+			     id="pause"
+			     style="display: none;"
+			     viewBox="0 0 24 24"
+			     width="24"
+			     xmlns="http://www.w3.org/2000/svg">
+				
+				<path
+						d="M6,19h4L10,5L6,5v14zM14,5v14h4L18,5h-4z"
+						fill="#ffffff"/>
+			
+			</svg>
+			
+			<svg class="play-volume"
+			     height="24"
+			     id="volume-up"
+			     style="display: none;"
+			     viewBox="0 0 24 24"
+			     width="24"
+			     xmlns="http://www.w3.org/2000/svg">
+				
+				<path
+						d="M3,9v6h4l5,5L12,4L7,9L3,9zM16.5,12c0,-1.77 -1.02,-3.29 -2.5,-4.03v8.05c1.48,-0.73 2.5,-2.25 2.5,-4.02zM14,3.23v2.06c2.89,0.86 5,3.54 5,6.71s-2.11,5.85 -5,6.71v2.06c4.01,-0.91 7,-4.49 7,-8.77s-2.99,-7.86 -7,-8.77z"
+						fill="#ffffff"/>
+			
+			</svg>
+			
+			<svg class="play-volume"
+			     height="24"
+			     id="volume-down"
+			     viewBox="0 0 24 24"
+			     width="24"
+			     xmlns="http://www.w3.org/2000/svg">
+				
+				<path
+						d="M16.5,12c0,-1.77 -1.02,-3.29 -2.5,-4.03v2.21l2.45,2.45c0.03,-0.2 0.05,-0.41 0.05,-0.63zM19,12c0,0.94 -0.2,1.82 -0.54,2.64l1.51,1.51C20.63,14.91 21,13.5 21,12c0,-4.28 -2.99,-7.86 -7,-8.77v2.06c2.89,0.86 5,3.54 5,6.71zM4.27,3L3,4.27 7.73,9L3,9v6h4l5,5v-6.73l4.25,4.25c-0.67,0.52 -1.42,0.93 -2.25,1.18v2.06c1.38,-0.31 2.63,-0.95 3.69,-1.81L19.73,21 21,19.73l-9,-9L4.27,3zM12,4L9.91,6.09 12,8.18L12,4z"
+						fill="#ffffff"/>
+			</svg>
+		
+		</div>
+	</div>
+	<div class="bottom">
+		<div class="metadataContainer">
+			<div class="horizontal-metadata">
+				<img alt="" class="sponsor-logo"
+				     src="https://techbrocode.github.io/JetPlayWeb/storage/channels4_profile.jpg">
+				<!--<img class="sponsor-logo" src="../../../storage/channels4_profile.jpg" alt="" srcset="../../../storage/channels4_profile.jpg">
+				-->
+				<div class="vertical-metadata">
+					<p class="adsTitle">Bad Boys Ranked</p>
+					<p class="adSponsored"><span class="adsIndicator">Ad</span> youtu.be</p>
+				</div>
+			</div>
+			<p class="adsDesc">Bad Boys Movies Ranked - Will Smith - Martin Lawrence</p>
+		</div>
+	</div>
+	<button class="adsAction">Watch now</button>
+</div>
+<script type="application/ecmascript">
+	let playVolumeSelector = document.querySelectorAll(".play-volume");
+	let video = document.querySelector("video");
+	let adsAction = document.querySelector(".adsAction");
+	let adsContainer = document.querySelector(".adsContainer");
+	window.onerror = () => {
+		document.querySelector("documentBody").removeChild(adsContainer);
+		/*window.location.reload();*/
+	};
+	
+	video.addEventListener("ended", () => {
+		playVolumeSelector[1].style.display = "none";
+		playVolumeSelector[0].style.display = "inline";
+	}, false);
+	
+	video.addEventListener("error", () => {
+		playVolumeSelector[0].style.display = "inline";
+		playVolumeSelector[1].style.display = "none";
+	}, false);
+	
+	video.addEventListener("loadeddata", () => {
+		playVolumeSelector[0].style.display = "inline";
+		playVolumeSelector[1].style.display = "none";
+	});
+	
+	playVolumeSelector.forEach((playVolume, index) => {
+		playVolume.onclick = () => {
+			if (video !== null && video !== undefined) {
+				switch (index) {
+					case 0:
+						if (video.paused) {
+							if (video.ended) video.currentTime = 0;
+							video.play();
+							playVolumeSelector[0].style.display = "none";
+							playVolumeSelector[1].style.display = "inline";
+						}
+						break;
+					case 1:
+						if (!video.paused) {
+							video.pause();
+							playVolumeSelector[1].style.display = "none";
+							playVolumeSelector[0].style.display = "inline";
+						}
+						break;
+					case 2:
+						video.muted = !video.muted;
+						playVolumeSelector[2].style.display = "none";
+						playVolumeSelector[3].style.display = "inline";
+						break;
+					case 3:
+						video.muted = !video.muted;
+						playVolumeSelector[2].style.display = "inline";
+						playVolumeSelector[3].style.display = "none";
+						break;
+				}
+			}
+		};
+	});
+	adsAction.onmousedown = () => {
+		adsAction.style.width = "95%";
+	};
+	adsAction.onmouseup = () => {
+		adsAction.style.width = "100%";
+	};
+	adsAction.onmouseout = () => {
+		adsAction.style.width = "100%";
+	};
+	adsAction.ontouchstart = () => {
+		adsAction.style.width = "95%";
+	};
+	adsAction.ontouchend = () => {
+		adsAction.style.width = "100%";
+	};
+	adsAction.onmouseout = () => {
+		adsAction.style.width = "100%";
+	};
+
+</script>
+</body>
+</html>

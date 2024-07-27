@@ -1,0 +1,1802 @@
+/* Oxygen font*/
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
+
+:root {
+    --colorAccent: red;
+    --handColor: rgb(223, 122, 72);
+    --tShirtColor: rgb(127, 255, 117);
+    --bluePhone: rgb(0, 35, 255);
+    --wifiTint: rgb(255, 0, 221);
+}
+
+*, html, body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+
+body {
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: center;
+    background: #e4e4e4;
+    position: absolute;
+    -webkit-tap-highlight-color: transparent;
+    -ms-scrollbar-highlight-color: transparent;
+    scrollbar-highlight-color: transparent;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+}
+
+::-webkit-scrollbar {
+    height: 0;
+    width: 0; /* Remove scrollbar space */
+    background: transparent; /* Optional: just make scrollbar invisible */
+}
+
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: none;
+}
+
+.tabBox, .tab-item {
+    width: auto;
+    height: auto;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-around;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.tabBox {
+    position: fixed;
+    max-width: 100%;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow-x: auto;
+    overflow-y: auto;
+    background: none;
+    border-bottom: 2px solid transparent;
+}
+
+.tab-item {
+    background: white;
+    padding: 10px;
+}
+
+.tab_icon {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    vert-align: middle;
+}
+
+.tab_btn, .tab_icon {
+    background-color: transparent;
+    opacity: 1.0;
+}
+
+.tab_btn {
+    width: auto;
+    height: auto;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-kerning: auto;
+    -webkit-font-kerning: auto;
+    font-size: 16px;
+    font-weight: 700;
+    font-style: normal;
+    font-variant: normal;
+    font-family: 'Poppins', sans-serif;
+    text-align: start;
+    border-color: transparent;
+    background: none;
+    cursor: pointer;
+}
+
+.tab_indicator {
+    background-color: var(--colorAccent, red);
+    position: absolute;
+    height: 2px;
+    padding: 0;
+    border-radius: 10px;
+    transition: all 1s ease-in-out 400ms;
+}
+
+.tab_icon_path.active, .tab_btn.active {
+    fill: var(--colorAccent, red);
+    color: var(--colorAccent, red);
+}
+
+.content {
+    display: none;
+    animation: moving .5s ease;
+}
+
+@keyframes moving {
+    from {
+        transform: translateX(50%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.content.active {
+    display: block;
+    position: absolute;
+    /*align-items: center;
+    justify-content: center;*/
+}
+
+.content_box .content {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    /*margin-top: 50px;*/
+}
+
+.addButtonHolder {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    margin: 0;
+    top: 0;
+    left: 0;
+    border-bottom-right-radius: 50%;
+    border-top-right-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: red;
+    padding: 10px;
+}
+
+.videoMainContainer {
+    pointer-events: auto;
+    width: 100%;
+    height: auto;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+.thumbnailContainer {
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.play-pause-holder {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 10px;
+}
+
+.play {
+    width: 90%;
+    height: auto;
+    display: block;
+    vertical-align: center;
+    vert-align: middle;
+    align-self: center;
+    justify-content: center;
+}
+
+.duration {
+    width: auto;
+    height: auto;
+    font-kerning: auto;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    border-radius: 3px;
+    font-weight: 1000;
+    font-style: normal;
+    font-family: "Oxygen", sans-serif;
+    /*font-size: 10px;*/
+    font-size: 12px;
+    padding: 5px 8px;
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    vertical-align: center;
+    vert-align: middle;
+    text-align: start;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    /*display: -webkit-box;*/
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.videoThumbnail {
+    width: 100%;
+    height: auto;
+    object-fit: fill;
+}
+
+.metadataContainer {
+    width: 100%;
+    height: auto;
+}
+
+.videoTitle, .video-music-movie-title, .video-music-movie-views-hashtags-published, .video-music-movie-channel-name, .video-music-movie-channel-subscribe-button {
+    font-weight: bold;
+    font-kerning: auto;
+    font-style: normal;
+    font-family: "Nunito Sans", sans-serif;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    /*font-size: 12px;*/
+    font-size: 16px;
+}
+
+.tab_btn, .videoTitle, .video-music-movie-title, .video-music-movie-views-hashtags-published, .video-music-movie-channel-name, .video-music-movie-channel-subscribe-button {
+    color: black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    padding: 0 0 0 0;
+    vertical-align: center;
+    vert-align: middle;
+}
+
+.bottomMetadata {
+    width: 100%;
+    height: auto;
+    padding: 10px 5px;
+    overflow: hidden;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.channel_thumbnail {
+    padding: 0 0 0 0;
+    vertical-align: center;
+    vert-align: middle;
+}
+
+.channel_name {
+    display: inline;
+    width: 85%;
+    max-width: 85%;
+    height: auto;
+    font-kerning: auto;
+    font-weight: 1000;
+    font-style: normal;
+    font-family: "Oxygen", sans-serif;
+    /*font-size: 10px;*/
+    font-size: 14px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 0 0 0 0;
+    vertical-align: center;
+    vert-align: middle;
+    text-align: start;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    /*display: -webkit-box;*/
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.more_vert_holder {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 38px;
+    min-height: 38px;
+    border-radius: 50%;
+    border: none;
+}
+
+.collections-image-more_vert_holder {
+    width: 50px;
+    height: 45px;
+    padding: 0 0 0 0;
+    border: none;
+    border-radius: 50%;
+    align-self: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    vert-align: middle;
+    vertical-align: center;
+}
+
+.more-vert {
+    width: 19px;
+    height: 19px;
+}
+
+.divider {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+.section {
+    padding: 8px;
+    width: 100%;
+    height: auto;
+    background: white;
+    display: block;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
+.section-title {
+    margin-top: 4px;
+    width: auto;
+    height: auto;
+    display: block;
+    font-size: 16px;
+    color: black;
+    font-weight: 800;
+    font-kerning: auto;
+    font-style: normal;
+    font-family: "Poppins", sans-serif;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: start;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    vertical-align: center;
+    vert-align: middle;
+}
+
+.grid-parent {
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 100%;
+    margin: 12px 0 0;
+    gap: 12px;
+}
+
+.grid_child {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border: none;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.thumbnail {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    border: none;
+    border-radius: 10px;
+}
+
+.picture-title {
+    display: block;
+    position: absolute;
+    font-weight: 500;
+    font-kerning: auto;
+    font-style: normal;
+    font-family: "Poppins", sans-serif;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    /*font-size: 12px;*/
+    font-size: 13px;
+    color: white;
+    align-self: center;
+    text-align: start;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    padding: 0 0 0 0;
+    vertical-align: center;
+    vert-align: middle;
+}
+
+.collections_more_vert_holder {
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    border: none;
+    display: flex;
+    border-radius: 50%;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+}
+
+.collections-more-vert-icon {
+    display: block;
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+    vert-align: middle;
+    justify-self: center;
+    justify-content: center;
+    align-self: center;
+    align-content: center;
+}
+
+.show-more {
+    width: 100%;
+    height: auto;
+    margin: 12px auto auto;
+    justify-self: center;
+    vertical-align: middle;
+    vert-align: middle;
+    align-content: center;
+    align-self: center;
+    justify-content: center;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-radius: 20px;
+    background: #eaeaea;
+    border: none;
+    text-align: center;
+    font-weight: 1000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    font-family: "Poppins", sans-serif;
+}
+
+.adsIframe {
+    border: none;
+}
+
+.collections-main-image-viewer {
+    display: block;
+    overflow: auto;
+    justify-self: center;
+    object-fit: cover;
+    min-width: 100%;
+    min-height: 100%;
+    margin: auto;
+    width: 100%;
+    background: black;
+    height: 100%;
+    position: absolute;
+    background-size: cover;
+    scroll-snap-type: y mandatory;
+    -webkit-scroll-snap-type: y mandatory;
+    -ms-scroll-snap-type: mandatory;
+    scroll-padding: 0 0 0 0;
+
+    animation: 1s slide-up;
+}
+
+@keyframes slide-up {
+    from {
+        margin-top: 100%;
+        min-height: 50%;
+        height: 50%;
+    }
+    to {
+        margin-top: 0;
+        min-height: 100%;
+        height: 100%;
+    }
+}
+
+.collections-main-image-viewer.slide-down {
+    animation: 2s slide-down;
+}
+
+@keyframes slide-down {
+    from {
+        margin-top: 0;
+        min-height: 100%;
+        height: 100%;
+    }
+    to {
+        margin-top: 100%;
+        min-height: 0;
+        height: 0;
+    }
+}
+
+.collections-image-container {
+    background: black;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.collections-main-image-viewer, .collections-image-container {
+    margin: 0;
+    padding: 0;
+}
+
+.collection-image-src {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    min-width: 100%;
+    min-height: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    -o-object-fit: fill;
+}
+
+.collections-image-title-cancel-Holder {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    margin-top: 10px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.collections-image-back-button_vert_holder {
+    border: none;
+    display: flex;
+    border-radius: 50%;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    max-height: 40px;
+    max-width: 40px;
+    background: none;
+}
+
+.collections-image-title {
+    width: auto;
+    height: auto;
+    max-width: 85%;
+    display: block;
+    font-size: 16px;
+    color: white;
+    font-weight: 800;
+    font-kerning: auto;
+    font-style: normal;
+    font-family: "Nunito Sans", sans-serif;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: start;
+    display: -webkit-box;
+    justify-content: center;
+    align-self: center;
+    justify-self: center;
+    justify-items: center;
+    align-content: center;
+    align-items: center;
+    margin-left: 10px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    vertical-align: center;
+    vert-align: middle;
+}
+
+.collections-image-more_vert_holder, .download-holder {
+    position: absolute;
+    bottom: 0;
+    border: none;
+    display: flex;
+    border-radius: 50%;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin: 2px;
+    background: none;
+}
+
+.collections-image-more_vert_holder {
+    left: 0;
+}
+
+.download-holder {
+    right: 0;
+}
+
+.more-vert-download-icon {
+    display: block;
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+    vert-align: middle;
+    justify-self: center;
+    justify-content: center;
+    align-self: center;
+    align-content: center;
+}
+
+.bottom-sheet-overlay-container {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: none;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.bottom-sheet-overlay-container.active {
+    z-index: 1000;
+    display: flex;
+}
+
+.bottom-sheet-container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    border: none;
+    border-radius: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    background-color: white;
+    height: auto;
+    transform: translateY(100vh);
+    transition: transform 0.4s ease-in-out;
+}
+
+.bottom-sheet-container.active {
+    transform: translateY(0);
+}
+
+.bottom-sheet-item-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.bottom-sheet-item-icon {
+    margin-left: 25px;
+    margin-right: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottom-sheet-item-icon, .bottom-sheet-item-title {
+    vertical-align: center;
+    vert-align: middle;
+}
+
+.bottom-sheet-item-icon.right-to-left {
+    transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+}
+
+.bottom-sheet-item-title {
+    width: calc(100% - 105px);
+    height: auto;
+    margin-right: 25px;
+    text-align: start;
+    display: block;
+    font-weight: 700;
+    font-kerning: auto;
+    font-style: normal;
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+    color: black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    padding: 0 0 0 0;
+    vertical-align: center;
+    vert-align: middle;
+}
+
+.video-music-movie-bottom-to-top-play-page {
+    display: none;
+    /*width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    -ms-flex-direction: column;
+    align-self: flex-start;
+    -webkit-flex-direction: column;
+    align-items: flex-start;*/
+    background: white;
+    /*transform: translateY(100vh);
+    transition: transform 0.4s ease-in-out;*/
+}
+
+.video-music-movie-bottom-to-top-play-page.active {
+    transform: translateY(0);
+    /*display: flex;*/
+    display: block;
+}
+
+/*TODO: This is styling for premium ads...*/
+
+.full-play-video-ads-page {
+    /*width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;*/
+}
+
+/*.premium-video-ads-container-wrapper, */
+.premium-video-ads-container /*, .video-music-movie-metadata-wrapper-no-sticky*/
+{
+    position: relative;
+    width: 100%;
+    height: auto;
+    /*display: flex;*/
+    /*TODO: We'll be using Google's Media3 ExoPlayer instead...*/
+    display: none;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.premium-video-ads-container-wrapper {
+    width: 100%;
+    height: auto;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    /*display: flex;*/
+    display: none;
+    align-self: center;
+    align-items: flex-start;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+
+/*.video-music-movie-metadata-wrapper-no-sticky {
+    overflow: auto;
+}*/
+
+.premium-video, .premium-video-ads-container-dim-container {
+    width: 100%;
+    height: 100%;
+    pointer-events: auto;
+    object-fit: fill;
+}
+
+.premium-video-ads-container-dim-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.premium-video {
+    opacity: 0;
+}
+
+.premium-video-ads-container-dim-container.active {
+    display: flex;
+}
+
+.top-action-controls {
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.top-action-controls {
+    background: none;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    display: flex;
+    position: absolute;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.top-action-controls.inactive {
+    display: none;
+}
+
+.premium-play-pause-holder {
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.75);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    border: none;
+    border-radius: 50%;
+}
+
+.premium-play-pause-holder.inactive {
+    display: none;
+}
+
+.action-button-icon-holder {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 50%;
+}
+
+.action-button-icon-holder, .action-button-icon, .visit-advertiser {
+    vertical-align: center;
+    vert-align: middle;
+    align-self: center;
+}
+
+.visit-advertiser {
+    width: auto;
+    height: auto;
+    text-align: start;
+    display: inline-block;
+    font-weight: 300;
+    font-kerning: auto;
+    font-style: normal;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    padding: 0 0 0 0;
+    vertical-align: center;
+    vert-align: middle;
+}
+
+.sponsor-count-text {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: auto;
+    height: auto;
+    text-align: start;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    display: inline-flex;
+    font-weight: 500;
+    font-kerning: auto;
+    font-style: normal;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    padding: 0 0 0 0;
+    vertical-align: center;
+    vert-align: middle;
+}
+
+.sponsor-count-text.inactive {
+    display: none;
+}
+
+.sponsor-span-count-duration {
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.fullscreen-button-icon-holder {
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    display: inline-flex;
+    border: none;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.fullscreen-button-icon-holder.inactive {
+    display: none;
+}
+
+
+.skip-container {
+    color: white;
+    position: absolute;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    background: rgba(0, 0, 0, 0.5);
+    bottom: 41px;
+    right: 15px;
+    width: auto;
+    height: auto;
+    border: none;
+    border-radius: 20px;
+    padding: 8px;
+}
+
+.skip-container.inactive {
+    display: none;
+}
+
+.skip {
+    width: auto;
+    height: auto;
+    text-align: center;
+    font-weight: 500;
+    font-kerning: auto;
+    font-style: normal;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    vertical-align: center;
+    vert-align: middle;
+}
+
+.premium-ads-horizontal-progress-container {
+    width: 100%;
+    height: 2px;
+    border: none;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: flex-start;
+    text-align: start;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.premium-ads-horizontal-progress-container.active {
+    display: flex;
+}
+
+.premium-ads-horizontal-progress {
+    background-color: #ffc400;
+    height: 100%;
+}
+
+/*TODO: styling other part of the video metadata wrapper...*/
+
+.video-music-movie-metadata-wrapper {
+    background: white;
+    width: 100%;
+    height: auto;
+    margin: 0 0 0 0;
+    /*display: flex;
+    display: -o-flex;
+    display: -ms-flex;
+    display: -moz-flex;
+    display: -webkit-flex;*/
+    display: none;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    align-items: flex-start;
+    align-self: center;
+    border: none;
+    padding: 0;
+    /*position: absolute;*/
+}
+
+.premium-video-ads-metadata-container {
+    width: 100%;
+    height: auto;
+    display: none;
+    flex-direction: row;
+    background: white;
+    padding: 10px 3px;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.ads-logo {
+    width: 45px;
+    height: auto;
+    align-self: center;
+    background: none;
+    margin-right: 5px;
+    -webkit-align-self: center;
+}
+
+.vertical-metadata {
+    align-self: center;
+    -webkit-align-self: center;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    max-width: calc(100% - (173px));
+    width: auto;
+    height: auto;
+}
+
+.sponsor {
+    width: auto;
+    height: auto;
+    text-align: start;
+    display: inline-block;
+    font-weight: 500;
+    font-kerning: auto;
+    font-style: normal;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    color: black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    padding: 0 0 0 0;
+    vertical-align: center;
+    vert-align: middle;
+}
+
+.sponsor-details {
+    width: auto;
+    height: auto;
+    text-align: start;
+    display: inline-block;
+    font-weight: 700;
+    font-kerning: auto;
+    font-style: normal;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    color: black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    padding: 0 0 0 0;
+    vertical-align: center;
+    vert-align: middle;
+}
+
+.expand-ads-icon-holder {
+    width: 36px;
+    height: 36px;
+    background: #e8e8e8;
+    border: none;
+    border-radius: 50%;
+    display: inline-flex;
+    align-self: center;
+    -webkit-align-self: center;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+}
+
+.ads-action-button {
+    max-width: 72px;
+    width: auto;
+    padding: 10px 15px;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    display: inline-flex;
+    justify-self: center;
+    align-self: center;
+    -webkit-align-self: center;
+    text-align: center;
+    font-weight: 700;
+    font-kerning: auto;
+    font-style: normal;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    vertical-align: center;
+    vert-align: middle;
+}
+
+/*TODO: styling other part of the video metadata container...*/
+
+.video-music-movie-metadata-container {
+    /*position: absolute;*/
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    align-items: flex-start;
+    align-self: center;
+}
+
+.video-music-movie-title-views-hashtags-published-container, .video-music-movie-channel-thumb-name-subscribe-count-subscribe-button-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -o-flex;
+    flex-direction: column;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    align-items: flex-start;
+    align-self: center;
+}
+
+.video-music-movie-title {
+    margin: 10px 8px 0;
+    text-align: start;
+    font-weight: 800;
+    font-size: 19px;
+}
+
+.video-music-movie-views-hashtags-published {
+    color: rgba(0, 0, 0, 0.5);
+    width: auto;
+    height: auto;
+    margin: 10px 8px 0;
+    display: block;
+    -webkit-line-clamp: 1;
+    font-weight: 400;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+}
+
+.video-music-movie-views-published-more-span {
+    margin-left: 8px;
+    font-weight: 800;
+    color: black;
+}
+
+.video-music-movie-channel-thumb-name-subscribe-count-subscribe-button-container {
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    margin: 10px 8px 0 8px;
+}
+
+.video-music-movie-channel-thumbnail {
+    margin-left: 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    align-self: center;
+}
+
+.video-music-movie-channel-name {
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    width: calc(100% - 146px);
+    align-self: center;
+    margin: 0 0 0 8px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: "Poppins", sans-serif;
+    vertical-align: middle;
+    vert-align: middle;
+}
+
+.video-music-movie-channel-subscribe-count {
+    font-size: 14px;
+    margin-left: 8px;
+    font-weight: 400;
+    opacity: 0.5;
+}
+
+.video-music-movie-channel-subscribe-button {
+    -webkit-line-clamp: 1;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    width: 85px;
+    height: auto;
+    font-weight: 400;
+    border-radius: 20px;
+    align-self: center;
+    background: #00000c;
+    padding: 10px 15px;
+    text-align: center;
+    max-width: 85px;
+    border: none;
+    color: rgba(255, 255, 255, 1.0);
+    margin: 0 5px 0 0;
+}
+
+.video-music-movie-tube-like-download-share-thanks-remix-container {
+    width: 100%;
+    height: auto;
+    margin: 20px 0 0;
+    display: flex;
+    flex-direction: row;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    align-items: flex-start;
+    -webkit-align-items: flex-start;
+    justify-content: space-around;
+    overflow: auto;
+}
+
+.video-music-movie-tube-react-download-thanks-share-remix-container {
+    width: auto;
+    height: auto;
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    align-items: flex-start;
+    -webkit-align-items: flex-start;
+    justify-content: space-around;
+    background: #efefef;
+    padding: 8px;
+    margin: 0 0 0 8px;
+    border: none;
+    border-radius: 20px;
+}
+
+#videoMusicMovieTubeLikeContainer,
+#videoMusicMovieTubeDislikeContainer,
+#videoMusicMovieTubeDownloadContainer,
+#videoMusicMovieTubeShareContainer,
+#videoMusicMovieTubeThanksContainer,
+#videoMusicMovieTubeRemixContainer {
+    width: auto;
+    height: auto;
+    display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
+    flex-direction: row;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    align-items: flex-start;
+    -webkit-align-items: flex-start;
+    justify-content: space-around;
+}
+
+#videoMusicMovieTubeDownloadContainer,
+#videoMusicMovieTubeShareContainer,
+#videoMusicMovieTubeThanksContainer,
+#videoMusicMovieTubeRemixContainer {
+    padding-right: 15px;
+}
+
+#videoMusicMovieTubeRemixContainer {
+    margin-right: 8px;
+}
+
+#videoMusicMovieTubeShareIcon {
+    transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+}
+
+.video-music-movie-tube-react-download-thanks-share-remix-text-style {
+    width: auto;
+    height: auto;
+    align-self: center;
+    color: black;
+    display: inline-flex;
+    font-weight: 800;
+    font-kerning: auto;
+    font-style: normal;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    margin-left: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    padding: 0 0 0 0;
+    vertical-align: center;
+    vert-align: middle;
+}
+
+.video-music-movie-tube-like-dislike-vert-separator {
+    width: 1px;
+    height: 18px;
+    display: inline-block;
+    background: black;
+    align-self: center;
+}
+
+.video-music-movie-comments-container {
+    background: #efefef;
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    align-self: center;
+    border: none;
+    border-radius: 20px;
+    width: calc(100% - 20px);
+    height: auto;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    flex-direction: column;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    align-items: flex-start;
+    -webkit-align-items: flex-start;
+    padding: 15px;
+}
+
+.video-music-movie-comments {
+    width: 100%;
+    align-self: center;
+    margin: 0;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: "Poppins", sans-serif;
+    vertical-align: middle;
+    vert-align: middle;
+    color: black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    padding: 0 0 0 0;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    font-kerning: auto;
+    font-style: normal;
+}
+
+.video-music-movie-comments-count {
+    font-size: 13px;
+    opacity: 0.5;
+    margin-left: 8px;
+}
+
+.video-music-movie-last-commented-img-text-container-authenticated, .video-music-movie-last-commented-img-text-container-normal {
+    margin: 10px 10px 5px 10px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    align-self: center;
+    align-items: flex-start;
+    justify-content: space-around;
+    -webkit-align-items: flex-start;
+}
+
+.video-music-movie-last-commented-img-text-container-authenticated {
+    display: none;
+}
+
+.video-music-movie-last-commented-avatar {
+    width: 24px;
+    height: 24px;
+    align-self: center;
+    vertical-align: middle;
+    vert-align: middle;
+}
+
+.video-music-movie-last-commented-text, .video-music-movie-last-commented-text-normal {
+    font-size: 15px;
+    margin-left: 10px;
+    background: #cdcdcd;
+    padding-left: 2px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    align-self: center;
+    width: calc(100% - 28px);
+    color: black;
+    opacity: 0.87;
+    display: inline-block;
+    border: none;
+    border-radius: 25px;
+    text-align: start;
+    font-weight: 400;
+    font-family: "Poppins", sans-serif;
+    vertical-align: middle;
+    vert-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    font-kerning: auto;
+    font-style: normal;
+}
+
+.video-music-movie-last-commented-text-normal {
+    font-size: 13px;
+    opacity: 0.95;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    border-radius: 0;
+    background: none;
+}
+
+/*TODO: ADD SHUFFLED VIDEO/MUSIC/MOVIE DIV STYLE*/
+
+.video-music-movie-shuffled-container-contents {
+    width: 100%;
+    height: auto;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -o-flex;
+    flex-direction: column;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    align-items: flex-start;
+    align-self: center;
+    margin-top: 20px;
+}
+
+/*TODO: Full comment bottom div section*/
+
+.video-music-movie-full-comment-bottom-div-container {
+    /*position: absolute;*/
+    background: white;
+    width: 100%;
+    height: 100%;
+    /*display: flex;
+    display: -o-flex;
+    display: -ms-flex;
+    display: -moz-flex;
+    display: -webkit-flex;*/
+    display: none;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    align-items: flex-start;
+    align-self: center;
+    overflow: auto;
+    border: none;
+
+
+    /*border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    -moz-border-radius-topright: 25px;
+    -moz-border-radius-topleft: 25px;
+    -webkit-border-top-left-radius: 25px;
+    -webkit-border-top-right-radius: 25px;*/
+}
+
+.comments-label-dismiss-container {
+    background: white;
+    width: 100%;
+    display: flex;
+    display: -o-flex;
+    display: -ms-flex;
+    display: -moz-flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    align-self: center;
+    justify-content: space-between;
+    align-content: space-between;
+    align-items: flex-start;
+    padding: 0 0 0 10px;
+    height: auto;
+}
+
+.comment-tag {
+    width: auto;
+    height: auto;
+    font-kerning: auto;
+    font-style: normal;
+    align-self: center;
+    text-align: start;
+    font-family: "Poppins", sans-serif;
+    color: black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    display: inline-block;
+    display: -moz-inline-block;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    padding: 0 0 0 0;
+    vertical-align: center;
+    vert-align: middle;
+    font-weight: 800;
+    font-size: 19px;
+}
+
+.dismiss-button-container {
+    width: 48px;
+    height: 48px;
+    align-self: center;
+    align-items: center;
+    display: inline-flex;
+    display: -webkit-inline-flex;
+}
+
+#dismiss-button-svg {
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    align-self: center;
+}
+
+.all-comments-container, .comments-card, .comment-thread-container, .comment-reply-container {
+    /*position: absolute;*/
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -o-flex;
+    flex-direction: column;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    align-items: flex-start;
+    align-self: center;
+}
+
+/*.all-comments-container {
+    position: absolute;
+    height: 100%;
+}*/
+
+.author-img-name-container {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: calc(100% - 20px);
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -o-flex;
+    flex-direction: row;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    align-items: flex-start;
+    align-self: center;
+    justify-content: center;
+}
+
+.author-img {
+    width: 30px;
+    height: 30px;
+    border: none;
+    display: inline-block;
+    display: -moz-inline-block;
+    border-radius: 50%;
+    align-self: center;
+}
+
+.updated-time {
+    width: 100%;
+    height: auto;
+    align-self: center;
+    margin-left: 10px;
+    font-kerning: auto;
+    font-style: normal;
+    text-align: start;
+    font-family: "Poppins", sans-serif;
+    color: black;
+    opacity: 0.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    display: inline-block;
+    display: -moz-inline-block;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    padding: 0 0 0 0;
+    vertical-align: center;
+    vert-align: middle;
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.text-display-reactions-container {
+    margin-left: 50px;
+    margin-right: 10px;
+    width: calc(100% - 60px);
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -o-flex;
+    display: -ms-flex;
+    flex-direction: column;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    align-items: flex-start;
+    align-self: center;
+    justify-content: center;
+}
+
+.text-display {
+    width: 100%;
+    height: auto;
+    align-self: center;
+    font-kerning: auto;
+    font-style: normal;
+    text-align: start;
+    font-family: "Poppins", sans-serif;
+    color: black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    padding: 0 0 0 0;
+    vertical-align: center;
+    vert-align: middle;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.reactions-container-wrapper {
+    margin-top: 3px;
+    width: auto;
+    align-self: flex-start;
+    height: auto;
+    margin-left: -7px;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -o-flex;
+    display: -ms-flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-direction: row;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+}
+
+.reactions-container {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -o-flex;
+    display: -ms-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+}
+
+.like-count {
+    width: auto;
+    height: auto;
+    align-self: center;
+    font-kerning: auto;
+    font-style: normal;
+    text-align: start;
+    font-family: "Poppins", sans-serif;
+    color: black;
+    margin-left: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    padding: 0 0 0 0;
+    vertical-align: center;
+    vert-align: middle;
+    font-weight: 600;
+    font-size: 13px;
+    display: -webkit-box;
+    display: inline-block;
+    display: -moz-inline-block;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+#commentDisLikeIcon, #commentShareIcon {
+    margin-left: 5px;
+}
+
+#commentShareIcon {
+    transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+}
+
+#authorImgNameContainer {
+    margin-left: 90px;
+}
+
+#textDisplayReplyReactionsContainer {
+    margin-left: 90px;
+    width: calc(100% - 100px);
+}
+

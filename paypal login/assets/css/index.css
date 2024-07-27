@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+
+:root {
+    --red: #ff0f00;
+    --blue: #000cff;
+    --yellow: #ff9900;
+    --primaryColor: whitesmoke;
+}
+
+.dark-theme {
+    --primaryColor: black;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow-style: auto;
+    overflow-y: auto;
+}
+
+.main-container {
+    width: 100vw;
+    height: 100vh;
+    background: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.main-login-container {
+    margin-top: 40px;
+    width: auto;
+    height: auto;
+    /*background: var(--red);*/
+    background: white;
+    display: flex;
+
+    padding: 10px 50px;
+    justify-content: center;
+    border: rgba(0, 0, 0, 0.25) solid 1px;
+    border-radius: 10px;
+}
+
+@keyframes smooth-appear {
+    to {
+        bottom: 20px;
+        opacity: 1;
+    }
+}
+
+.cookieContainer {
+    background: white;
+    width: auto;
+    min-width: 78%;
+    display: block;
+    color: black;
+    padding: 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    bottom: -100%;
+    opacity: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+    animation: smooth-appear 1s ease forwards;
+}
+
+.cookieContainer > .cookieTexts {
+    font-weight: normal;
+    font-family: "outfit", sans-serif;
+    font-size: 17px;
+    text-align: start;
+}
+
+.cookieContainer > .cookieDecisionContainer {
+    display: grid;
+    margin-top: 25px;
+    width: 100%;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    grid-column-gap: 20px;
+}
+
+.cookieContainer > .cookieDecisionContainer > input {
+    border: none;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-family: "outfit", sans-serif;
+    font-weight: bold;
+    border-radius: 30px;
+    color: white;
+}
+.accept, .decline {
+    transition-property: background-color;
+    transition-duration: 0.2s;
+    transition-timing-function: linear;
+    transition-delay: 0.2s;
+}
+.accept {
+    background-color: var(--blue);
+}
+.accept:hover {
+    background-color: var(--yellow);
+}
+
+.decline {
+    background: red;
+}
+.decline:hover {
+    background-color: black;
+}
+
+
+
+#paypal_logo {
+    display: block;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin: 15px auto auto;
+}
+
+#email[type="text"] {
+    margin: 40px auto auto;
+    display: block;
+    outline: none;
+    border-radius: 2px;
+    border: 1px solid black;
+    width: 300px;
+    color: black;
+    padding: 15px 10px 15px 10px;
+    font-size: 13px;
+    background: transparent;
+}
+
+#email[type="text"]:focus {
+    border-radius: 2px;
+    border: 1px solid var(--blue);
+}
+
+#forgot_email {
+    display: inline-flex;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: bold;
+    font-family: "outfit", sans-serif;
+    font-size: 15px;
+    margin: 17px auto auto;
+    color: var(--blue);
+}
+
+#next {
+    display: block;
+    margin: 30px auto auto;
+    width: 300px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    /*border: 1px solid lawngreen;
+      border-right-color: #000cff;
+      border-bottom-color: #FF0F00;
+      border-left-color: yellow;*/
+    border: var(--blue) solid 1px;
+    font-weight: bold;
+    font-family: "outfit", sans-serif;
+    border-radius: 5px;
+    background: none;
+    color: black;
+    text-align: center;
+    font-size: 15px;
+    transition-property: border-top-color, border-left-color, border-right-color,
+    border-bottom-color, background-color;
+    transition-duration: 0.2s;
+    transition-timing-function: linear;
+    transition-delay: 0.2s;
+    /*transition: border-top-color 0.5s;*/
+}
+
+#next:hover {
+    border-top-color: #ff9900;
+    border-right-color: #ff9900;
+    border-bottom-color: #ff9900;
+    border-left-color: #ff9900;
+    background-color: #f4f4f4;
+}
+
+#sign_up {
+    display: block;
+    margin: 30px auto auto;
+    width: 300px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: none;
+    border-radius: 30px;
+    background: var(--blue);
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+    transition-delay: 0.5s;
+    /*transition: border-top-color 0.5s;*/
+}
+
+#sign_up:hover {
+    background-color: black;
+}
+
+.separator {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+}
+
+.separator::before, .separator::after {
+    content: ' ';
+    flex: 1;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.separator:not(:empty)::before {
+    margin-right: .25em;
+}
+
+.separator:not(:empty)::after {
+    margin-left: .25em;
+}
+
+@media (min-width: 0px) and (max-width: 635px) {
+
+    #email[type="text"],
+    #forgot_email,
+    #next,
+    #sign_up {
+        width: 200px;
+        font-size: 10px;
+    }
+
+    .separator {
+        font-size: 13px;
+    }
+
+    #email[type="text"] {
+        padding: 10px 5px 10px 5px;
+    }
+
+    #next,
+    #signup, .accept, .decline {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .cookieContainer > .cookieTexts {
+        font-weight: normal;
+        font-family: "outfit", sans-serif;
+        font-size: 15px;
+    }
+    .accept, .decline {
+        font-size: 10px;
+    }
+}

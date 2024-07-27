@@ -1,0 +1,9 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=WebStorm
+
+### GET list of comment Threads(NOT REPLIED COMMENTS) of a particular video
+GET https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&moderationStatus=published&
+    order=time&textFormat=html&videoId=-8Hckoq_cu4&prettyPrint=true&alt=json&key=AIzaSyDT9WSwD1QUNzxnI4ycuy_7SB9AG_J-GKc
+
+Accept: application/json

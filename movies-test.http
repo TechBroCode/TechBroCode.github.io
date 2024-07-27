@@ -1,0 +1,11 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=WebStorm
+
+### GET movies details
+GET https://api.themoviedb.org/3/movie/343611?api_key=1a86a1a7d0305a56be8c985ee3093b59&append_to_response=videos
+
+### GET avatar movies details
+GET https://api.themoviedb.org/3/movie/299536?api_key=1a86a1a7d0305a56be8c985ee3093b59&append_to_response=videos
+
+
