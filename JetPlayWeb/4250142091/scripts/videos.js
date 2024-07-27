@@ -101,43 +101,26 @@ let premiumVideoAdsList = [
 ];
 
 
-let premiumVideoAdsJsonList = [
-    {
-        "action_button_background": "red",
-        "action_button_type": 0, /*TODO: ActionButtonType can be OpenChromeCustomTab => 0, OpenInApp => 1*/
-        "action_button_text": "Open",
-        "action_image_url": "https://yt3.googleusercontent.com/Xj-6gqHKmTewewCwB6zMzywmZuQJgn0OMH5FEPt_NVTx-XehTx8l3NOsau5FZ4pO-HhcbdDd=s900-c-k-c0x00ffffff-no-rj",
-        "ad_title": "Colgate",
-        "caption_url": null,
-        "codecs": "video/mp4; codecs=\"avc1.64001E, mp4a.40.2\"",
-        "expiry_date": 1722732266045,
-        "iframe_url": null,
-        "mime_type": "video/mp4",
-        "pricing": "FREE",
-        "rating": "4.0⭐",
-        "video_url": "https://techbrocode.github.io/JetPlayWeb/storage/colgate.mp4"
-    }
-];
+const premiumVideoAdsJsonList = await getPremiumVideoAdsJsonList();
 
-if (premiumVideoAdsJsonList.length !== 0) {
-    for (let i = 0; i < premiumVideoAdsJsonList.length; i++) {
-        if (Date.now() >= premiumVideoAdsJsonList.expiry_date) {
-            premiumVideoAdsJsonList.splice(i, 1);
-        }
+async function getPremiumVideoAdsJsonList() {
+    let json = null;
+    try {
+        const response = await fetch("https://techbrocode.github.io/JetPlayWeb/4250142091/assets/json/premium-video-ads-list.json");
+        json = await response.json();
+        return json;
+    } catch (error) {
+        return json;
     }
 }
 
-function getPremiumVideoAdsJsonList() {
-    if (vidAdsDetector && vidAdsArray.length !== 0) {
-        for (let i = 0; i < vidAdsArray.length; i++) {
-            if (Date.now() >= vidAdsArray[i][0]) {
-                vidAdsArray.splice(i, 1);
-            }
+if (vidAdsDetector && vidAdsArray.length !== 0) {
+    for (let i = 0; i < vidAdsArray.length; i++) {
+        if (Date.now() >= vidAdsArray[i][0]) {
+            vidAdsArray.splice(i, 1);
         }
-        shuffleJSON(premiumVideoAdsJsonList);
-        return premiumVideoAdsJsonList;
     }
-    return null;
+    shuffleJSON(vidAdsArray);
 }
 
 const youtubeApiKey = "AIzaSyDT9WSwD1QUNzxnI4ycuy_7SB9AG_J-GKc";
