@@ -2,7 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,viewport-fit=cover"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+          rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+          rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+          rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone"
+          rel="stylesheet" type="text/css"/>
+
+    <link href="../css/index.css" hreflang="en-US" rel="stylesheet" type="text/css">
+
+    <script src="https://cdn.jsdelivr.net/npm/socket.io-client@latest/dist/socket.io.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script crossorigin="anonymous" defer src="../js/index.js" type="application/ecmascript"></script>
+    <title>Welcome Page</title>
+    <style>
+        input::placeholder {
+            width: auto;
+            height: auto;
+            align-self: center;
+            align-items: center;
+            font-kerning: auto;
+            font-style: normal;
+            text-align: start;
+            font-family: "Poppins", sans-serif;
+            color: var(--textColor);
+            margin: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: flex;
+            padding: 0 0 0 0;
+            vertical-align: center;
+            vert-align: middle;
+            font-weight: 400;
+            opacity: 0.5;
+            font-size: 16px;
+        }
+
+        .rotate-dropdown-video-selector {
+            transform: rotate(180deg);
+        }
+    </style>
+
 </head>
 <body>
 
