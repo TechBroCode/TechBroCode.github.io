@@ -7,6 +7,7 @@ let materialIcons = document.querySelectorAll(".material-icons");
 let searchBarContainer = document.querySelector("#search-bar-container");
 let searchBarIconHolders = document.querySelectorAll(".search-bar-icon-holders");
 let selectedBottomNavIndex = 0;
+let ffmpeg;
 
 socket.on('connect', () => {
     console.log('Connected to server');
@@ -111,32 +112,35 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
             <div id="home-fragment-item-holder" style="position: absolute; display: none;">
                 <div class="home-fragment-item"
-                     style="width: 100%; height: auto; flex-direction: row; padding-top: 20px; padding-left: 10px; padding-right: 10px; align-self: center;">
-                    <svg height="30px" id="Layer_1"
-                         style="vertical-align: middle; align-self: flex-start; justify-content: center; align-items: center; display: inline-flex; width: 30px; height: 30px;"
-                         viewBox="0 0 461.001 461.001"
-                         width="30px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
-                        <g>
-                            <path d="M365.257,67.393H95.744C42.866,67.393,0,110.259,0,163.137v134.728
-                                c0,52.878,42.866,95.744,95.744,95.744h269.513c52.878,0,95.744-42.866,95.744-95.744V163.137
-                                C461.001,110.259,418.135,67.393,365.257,67.393z M300.506,237.056l-126.06,60.123c-3.359,1.602-7.239-0.847-7.239-4.568V168.607
-                                c0-3.774,3.982-6.22,7.348-4.514l126.06,63.881C304.363,229.873,304.298,235.248,300.506,237.056z"
-                                  style="fill:#F61C0D;"/>
-                        </g>
-                    </svg>
-                    <div class="main-container"
-                         style="width: calc(100% - 40px); margin-left: 10px; height: auto; display: flex; align-self: center; flex-direction: column; justify-content: center;">
-                        <p class="normal-poppins-style"
-                           style="font-size: 15px; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center; font-family: 'Nunito Sans', sans-serif">
-                            YOUTUBE</p>
-                        <p class="normal-poppins-style"
-                           style="font-weight: 400; margin-top: 8px; line-clamp: 3; -webkit-line-clamp: 3; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center;">
-                            Download & stream YouTube related videos, music, movies, thumbnails & subtitles in different
-                            resolutions.
-                        </p>
+                     style="height: auto; flex-direction: column; margin-top: 5px;">
+                     <div class="main-container"
+                         style="width: 100%; height: auto; flex-direction: row; padding-top: 20px; padding-left: 10px; padding-right: 10px; align-self: flex-start;">
+                        <svg height="30px" id="Layer_1"
+                             style="vertical-align: middle; align-self: flex-start; justify-content: center; align-items: center; display: inline-flex; width: 30px; height: 30px;"
+                             viewBox="0 0 461.001 461.001"
+                             width="30px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                            <g>
+                                <path d="M365.257,67.393H95.744C42.866,67.393,0,110.259,0,163.137v134.728
+                                    c0,52.878,42.866,95.744,95.744,95.744h269.513c52.878,0,95.744-42.866,95.744-95.744V163.137
+                                    C461.001,110.259,418.135,67.393,365.257,67.393z M300.506,237.056l-126.06,60.123c-3.359,1.602-7.239-0.847-7.239-4.568V168.607
+                                    c0-3.774,3.982-6.22,7.348-4.514l126.06,63.881C304.363,229.873,304.298,235.248,300.506,237.056z"
+                                      style="fill:#F61C0D;"/>
+                            </g>
+                        </svg>
+                        <div class="main-container"
+                             style="width: calc(100% - 40px); margin-left: 10px; height: auto; display: flex; align-self: center; flex-direction: column; justify-content: center;">
+                            <p class="normal-poppins-style"
+                               style="font-size: 15px; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center; font-family: 'Nunito Sans', sans-serif">
+                                YOUTUBE</p>
+                            <p class="normal-poppins-style"
+                               style="font-weight: 400; margin-top: 8px; line-clamp: 3; -webkit-line-clamp: 3; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center;">
+                                Download & stream YouTube related videos, music, movies, thumbnails & subtitles in different
+                                resolutions.
+                            </p>
+                        </div>
                     </div>
+                     <hr style="width: 100%; height: 1px; background: var(--textColor); display: flex; align-self: center; justify-content: center; flex-shrink: 0; opacity: 0.5; margin-top: 10px;">
                 </div>
-                <hr style="width: 100%; height: 1px; color: var(--textColor); display: flex; align-self: center; justify-content: center; flex-shrink: 0; opacity: 0.5; margin-top: 10px;">
                 <div class="home-fragment-item" style="height: auto; flex-direction: column;">
                     <div class="main-container"
                          style="width: 100%; height: auto; flex-direction: row; padding-top: 20px; padding-left: 10px; padding-right: 10px; align-self: flex-start;">
@@ -276,6 +280,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const homeFragItemContainer = document.querySelector("#home-fragment-item-holder");
         const homeFragItems = document.querySelectorAll(".home-fragment-item");
         homeFragItems.forEach((homeFragItem, homeFragItemIndex) => {
+            homeFragItem.onclick = (e) => {
+                preventDefaultStopPropagation(e);
+                window.location.href = "../html/video-test.html";
+            };
             homeFragItem.ontouchstart = (e) => {
                 onTouchAction(e, homeFragItem);
             };
