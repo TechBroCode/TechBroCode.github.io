@@ -111,3 +111,163 @@ body {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
 }
+
+.main-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: flex-start;
+    flex-shrink: 0;
+    position: relative;
+}
+
+#main-content {
+    width: 100vw;
+    position: fixed;
+    height: 100vh;
+    overflow-y: scroll;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    background: var(--windowBackground);
+    flex-shrink: 0;
+    flex-direction: column;
+    align-self: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+#bottom-container {
+    width: 100vw;
+    height: auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    background: var(--windowBackground);
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: row;
+    justify-content: space-around;
+    align-self: center;
+    align-items: flex-start;
+}
+
+.bottom-container-item {
+    display: inline-flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    align-self: center;
+    text-align: center;
+    justify-content: flex-start;
+    align-items: center;
+    width: auto;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.normal-poppins-style {
+    width: auto;
+    height: auto;
+    align-self: center;
+    font-kerning: auto;
+    font-style: normal;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    color: var(--textColor);
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    padding: 0 0 0 0;
+    vertical-align: center;
+    vert-align: middle;
+    font-weight: 600;
+    font-size: 13px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.material-icons {
+    font-family: 'Material Icons Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    --selected-color: var(--textColor);
+}
+
+.active-material-icon {
+    font-family: "Material Icons";
+    --selected-color: var(--colorPrimaryDark);
+}
+
+.selected-item {
+    color: var(--colorPrimaryDark);
+}
+
+/*TODO: Home Navigation styling*/
+
+#search-bar-container {
+    width: calc(100vw - 20px);
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    align-items: flex-start;
+    align-self: center;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background: var(--card-background-color);
+}
+
+.home-fragment-item, .home-fragment-item-holder {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-shrink: 0;
+    align-items: flex-start;
+    align-self: center;
+    flex-direction: column;
+}
+
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    font-variation-settings: 'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+
+

@@ -1,5 +1,12 @@
 let hasInternetConnection = null;
 const socket = io("http://localhost:3000");
+const bottomContainer = document.querySelector("#bottom-container");
+const bottomContainerItems = document.querySelectorAll(".bottom-container-item");
+const mainContent = document.querySelector("#main-content");
+let materialIcons = document.querySelectorAll(".material-icons");
+let searchBarContainer = document.querySelector("#search-bar-container");
+let searchBarIconHolders = document.querySelectorAll(".search-bar-icon-holders");
+let selectedBottomNavIndex = 0;
 
 socket.on('connect', () => {
     console.log('Connected to server');
@@ -43,3 +50,327 @@ if (socket.listeners("android-toast").length === 0) {
         AndroidInterface.showToastMessage(data.message, data.duration);
     });
 }
+
+function clearHoverBackground(e, element, background) {
+    const clearBackground = setInterval(() => {
+        preventDefaultStopPropagation(e);
+        element.style.background = background;
+        clearInterval(clearBackground);
+    }, 50);
+}
+
+function preventDefaultStopPropagation(e) {
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+    /*e.preventDefault();*/
+}
+
+function onTouchAction(e, elementValue) {
+    preventDefaultStopPropagation(e);
+    elementValue.style.background = "var(--hover-background-color)";
+}
+
+
+// Example usage
+document.addEventListener("DOMContentLoaded", () => {
+    if (selectedBottomNavIndex === 0) {
+        showHomeNavigation();
+    }
+    // Change MainContent height
+    const btmNavHeight = bottomContainer.getBoundingClientRect().height;
+    mainContent.style.height = `calc(100vh - ${btmNavHeight}px)`;
+    mainContent.style.bottom = `${btmNavHeight}px`;
+
+    function loadMaterialIcons() {
+        materialIcons = document.querySelectorAll(".material-icons");
+        if (materialIcons.length > 0) {
+            materialIcons.forEach((materialIcon, index) => {
+                // Check if the Material Icons font is applied
+                const matIconDataSet = materialIcon.dataset;
+                const interval = setInterval(() => {
+                    if (materialIcon.style.color === "transparent" && materialIcon.getBoundingClientRect().width.toString() === matIconDataSet.size) {
+                        clearInterval(interval);
+                        materialIcon.style.color = matIconDataSet.color;
+                        console.log("Home => size: ", materialIcons[0].getBoundingClientRect().width.toString() + "px");
+                    }
+                }, 100);
+            });
+        }
+    }
+
+    function showHomeNavigation() {
+        mainContent.insertAdjacentHTML("beforeend", `
+            <div id="search-bar-container">
+                <input class="normal-poppins-style" style="width: calc(100% - 69px); display: inline-flex; height: auto; text-align: start; align-self: center; font-weight: 400; color: var(--textColor); background: none; outline: none; border: none;"  value="" placeholder="Search or paste url">
+                <div class="search-bar-icon-holders" style="display: inline-flex; background: none; justify-content: center; align-self: center; align-items: center; border-radius: 50%; padding: 8px;">
+                    <span class="material-icons" data-color="var(--textColor)" data-size="24" style="font-size: 24px; font-weight: 100; color: transparent;">search</span>
+                </div>
+                <div class="search-bar-icon-holders" style="display: inline-flex; background: none; justify-content: center; align-self: center; align-items: center; border-radius: 50%; padding: 8px; margin-left: 5px;">
+                    <span class="material-icons" data-color="var(--textColor)" data-size="24" style="font-size: 24px; font-weight: 100; color: transparent; opacity: 0.5;">public</span>
+                </div>
+            </div>
+            <div class="home-fragment-item-holder" style="position: absolute; display: none;">
+                <div class="home-fragment-item"
+                     style="width: 100%; height: auto; flex-direction: row; padding-top: 20px; padding-left: 10px; padding-right: 10px; align-self: center;">
+                    <svg height="30px" id="Layer_1"
+                         style="vertical-align: middle; align-self: flex-start; justify-content: center; align-items: center; display: inline-flex; width: 30px; height: 30px;"
+                         viewBox="0 0 461.001 461.001"
+                         width="30px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <path d="M365.257,67.393H95.744C42.866,67.393,0,110.259,0,163.137v134.728
+                                c0,52.878,42.866,95.744,95.744,95.744h269.513c52.878,0,95.744-42.866,95.744-95.744V163.137
+                                C461.001,110.259,418.135,67.393,365.257,67.393z M300.506,237.056l-126.06,60.123c-3.359,1.602-7.239-0.847-7.239-4.568V168.607
+                                c0-3.774,3.982-6.22,7.348-4.514l126.06,63.881C304.363,229.873,304.298,235.248,300.506,237.056z"
+                                  style="fill:#F61C0D;"/>
+                        </g>
+                    </svg>
+                    <div class="main-container"
+                         style="width: calc(100% - 40px); margin-left: 10px; height: auto; display: flex; align-self: center; flex-direction: column; justify-content: center;">
+                        <p class="normal-poppins-style"
+                           style="font-size: 15px; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center; font-family: 'Nunito Sans', sans-serif">
+                            YOUTUBE</p>
+                        <p class="normal-poppins-style"
+                           style="font-weight: 400; margin-top: 8px; line-clamp: 3; -webkit-line-clamp: 3; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center;">
+                            Download & stream YouTube related videos, music, movies, thumbnails & subtitles in different
+                            resolutions.
+                        </p>
+                    </div>
+                </div>
+                <hr style="width: 100%; height: 1px; color: var(--textColor); display: flex; align-self: center; justify-content: center; flex-shrink: 0; opacity: 0.5; margin-top: 10px;">
+                <div class="home-fragment-item" style="height: auto; flex-direction: column;">
+                    <div class="main-container"
+                         style="width: 100%; height: auto; flex-direction: row; padding-top: 20px; padding-left: 10px; padding-right: 10px; align-self: flex-start;">
+                        <svg height="30px" id="instagram"
+                             style="vertical-align: middle; align-self: flex-start; justify-content: center; align-items: center; display: inline-flex; width: 30px; height: 30px;"
+                             viewBox="0 0 102 102" width="30px"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <radialGradient cx="6.601" cy="99.766" gradientUnits="userSpaceOnUse" id="a" r="129.502">
+                                    <stop offset=".09" stop-color="#fa8f21"></stop>
+                                    <stop offset=".78" stop-color="#d82d7e"></stop>
+                                </radialGradient>
+                                <radialGradient cx="70.652" cy="96.49" gradientUnits="userSpaceOnUse" id="b" r="113.963">
+                                    <stop offset=".64" stop-color="#8c3aaa" stop-opacity="0"></stop>
+                                    <stop offset="1" stop-color="#8c3aaa"></stop>
+                                </radialGradient>
+                            </defs>
+                            <path d="M25.865,101.639A34.341,34.341,0,0,1,14.312,99.5a19.329,19.329,0,0,1-7.154-4.653A19.181,19.181,0,0,1,2.5,87.694,34.341,34.341,0,0,1,.364,76.142C.061,69.584,0,67.617,0,51s.067-18.577.361-25.14A34.534,34.534,0,0,1,2.5,14.312,19.4,19.4,0,0,1,7.154,7.154,19.206,19.206,0,0,1,14.309,2.5,34.341,34.341,0,0,1,25.862.361C32.422.061,34.392,0,51,0s18.577.067,25.14.361A34.534,34.534,0,0,1,87.691,2.5a19.254,19.254,0,0,1,7.154,4.653A19.267,19.267,0,0,1,99.5,14.309a34.341,34.341,0,0,1,2.14,11.553c.3,6.563.361,8.528.361,25.14s-.061,18.577-.361,25.14A34.5,34.5,0,0,1,99.5,87.694,20.6,20.6,0,0,1,87.691,99.5a34.342,34.342,0,0,1-11.553,2.14c-6.557.3-8.528.361-25.14.361s-18.577-.058-25.134-.361"
+                                  fill="url(#a)"></path>
+                            <path d="M25.865,101.639A34.341,34.341,0,0,1,14.312,99.5a19.329,19.329,0,0,1-7.154-4.653A19.181,19.181,0,0,1,2.5,87.694,34.341,34.341,0,0,1,.364,76.142C.061,69.584,0,67.617,0,51s.067-18.577.361-25.14A34.534,34.534,0,0,1,2.5,14.312,19.4,19.4,0,0,1,7.154,7.154,19.206,19.206,0,0,1,14.309,2.5,34.341,34.341,0,0,1,25.862.361C32.422.061,34.392,0,51,0s18.577.067,25.14.361A34.534,34.534,0,0,1,87.691,2.5a19.254,19.254,0,0,1,7.154,4.653A19.267,19.267,0,0,1,99.5,14.309a34.341,34.341,0,0,1,2.14,11.553c.3,6.563.361,8.528.361,25.14s-.061,18.577-.361,25.14A34.5,34.5,0,0,1,99.5,87.694,20.6,20.6,0,0,1,87.691,99.5a34.342,34.342,0,0,1-11.553,2.14c-6.557.3-8.528.361-25.14.361s-18.577-.058-25.134-.361"
+                                  fill="url(#b)"></path>
+                            <path d="M461.114,477.413a12.631,12.631,0,1,1,12.629,12.632,12.631,12.631,0,0,1-12.629-12.632m-6.829,0a19.458,19.458,0,1,0,19.458-19.458,19.457,19.457,0,0,0-19.458,19.458m35.139-20.229a4.547,4.547,0,1,0,4.549-4.545h0a4.549,4.549,0,0,0-4.547,4.545m-30.99,51.074a20.943,20.943,0,0,1-7.037-1.3,12.547,12.547,0,0,1-7.193-7.19,20.923,20.923,0,0,1-1.3-7.037c-.184-3.994-.22-5.194-.22-15.313s.04-11.316.22-15.314a21.082,21.082,0,0,1,1.3-7.037,12.54,12.54,0,0,1,7.193-7.193,20.924,20.924,0,0,1,7.037-1.3c3.994-.184,5.194-.22,15.309-.22s11.316.039,15.314.221a21.082,21.082,0,0,1,7.037,1.3,12.541,12.541,0,0,1,7.193,7.193,20.926,20.926,0,0,1,1.3,7.037c.184,4,.22,5.194.22,15.314s-.037,11.316-.22,15.314a21.023,21.023,0,0,1-1.3,7.037,12.547,12.547,0,0,1-7.193,7.19,20.925,20.925,0,0,1-7.037,1.3c-3.994.184-5.194.22-15.314.22s-11.316-.037-15.309-.22m-.314-68.509a27.786,27.786,0,0,0-9.2,1.76,19.373,19.373,0,0,0-11.083,11.083,27.794,27.794,0,0,0-1.76,9.2c-.187,4.04-.229,5.332-.229,15.623s.043,11.582.229,15.623a27.793,27.793,0,0,0,1.76,9.2,19.374,19.374,0,0,0,11.083,11.083,27.813,27.813,0,0,0,9.2,1.76c4.042.184,5.332.229,15.623.229s11.582-.043,15.623-.229a27.8,27.8,0,0,0,9.2-1.76,19.374,19.374,0,0,0,11.083-11.083,27.716,27.716,0,0,0,1.76-9.2c.184-4.043.226-5.332.226-15.623s-.043-11.582-.226-15.623a27.786,27.786,0,0,0-1.76-9.2,19.379,19.379,0,0,0-11.08-11.083,27.748,27.748,0,0,0-9.2-1.76c-4.041-.185-5.332-.229-15.621-.229s-11.583.043-15.626.229"
+                                  fill="#fff"
+                                  transform="translate(-422.637 -426.196)"></path>
+                        </svg>
+                        <div class="main-container"
+                             style="width: calc(100% - 40px); margin-left: 10px; height: auto; display: flex; align-self: center; flex-direction: column; justify-content: center;">
+                            <p class="normal-poppins-style"
+                               style="font-size: 15px; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center; font-family: 'Nunito Sans', sans-serif">
+                                INSTAGRAM</p>
+                            <p class="normal-poppins-style"
+                               style="font-weight: 400; margin-top: 8px; line-clamp: 3; -webkit-line-clamp: 3; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center;">
+                                You can download & stream Instagram related videos, music, thumbnails & reels into your mobile
+                                device.
+                            </p>
+                        </div>
+                    </div>
+                    <hr style="width: 100%; height: 1px; background: var(--textColor); display: flex; align-self: center; justify-content: center; flex-shrink: 0; opacity: 0.5; margin-top: 10px;">
+                </div>
+                <div class="home-fragment-item" style="height: auto; flex-direction: column;">
+                    <div class="main-container"
+                         style="width: 100%; height: auto; flex-direction: row; padding-top: 20px; padding-left: 10px; padding-right: 10px; align-self: flex-start;">
+                        <svg clip-rule="evenodd" height="30px"
+                             style="vertical-align: middle; align-self: flex-start; justify-content: center; align-items: center; display: inline-flex; width: 30px; height: 30px;"
+                             viewBox="0 0 48 48"
+                             width="30px"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd"
+                                  d="M10.904,6h26.191C39.804,6,42,8.196,42,10.904v26.191 C42,39.804,39.804,42,37.096,42H10.904C8.196,42,6,39.804,6,37.096V10.904C6,8.196,8.196,6,10.904,6z"
+                                  fill="#212121"
+                                  fill-rule="evenodd"/>
+                            <path clip-rule="evenodd"
+                                  d="M29.208,20.607c1.576,1.126,3.507,1.788,5.592,1.788v-4.011 c-0.395,0-0.788-0.041-1.174-0.123v3.157c-2.085,0-4.015-0.663-5.592-1.788v8.184c0,4.094-3.321,7.413-7.417,7.413 c-1.528,0-2.949-0.462-4.129-1.254c1.347,1.376,3.225,2.23,5.303,2.23c4.096,0,7.417-3.319,7.417-7.413L29.208,20.607L29.208,20.607 z M30.657,16.561c-0.805-0.879-1.334-2.016-1.449-3.273v-0.516h-1.113C28.375,14.369,29.331,15.734,30.657,16.561L30.657,16.561z M19.079,30.832c-0.45-0.59-0.693-1.311-0.692-2.053c0-1.873,1.519-3.391,3.393-3.391c0.349,0,0.696,0.053,1.029,0.159v-4.1 c-0.389-0.053-0.781-0.076-1.174-0.068v3.191c-0.333-0.106-0.68-0.159-1.03-0.159c-1.874,0-3.393,1.518-3.393,3.391 C17.213,29.127,17.972,30.274,19.079,30.832z"
+                                  fill="#ec407a"
+                                  fill-rule="evenodd"/>
+                            <path clip-rule="evenodd"
+                                  d="M28.034,19.63c1.576,1.126,3.507,1.788,5.592,1.788v-3.157 c-1.164-0.248-2.194-0.856-2.969-1.701c-1.326-0.827-2.281-2.191-2.561-3.788h-2.923v16.018c-0.007,1.867-1.523,3.379-3.393,3.379 c-1.102,0-2.081-0.525-2.701-1.338c-1.107-0.558-1.866-1.705-1.866-3.029c0-1.873,1.519-3.391,3.393-3.391 c0.359,0,0.705,0.056,1.03,0.159V21.38c-4.024,0.083-7.26,3.369-7.26,7.411c0,2.018,0.806,3.847,2.114,5.183 c1.18,0.792,2.601,1.254,4.129,1.254c4.096,0,7.417-3.319,7.417-7.413L28.034,19.63L28.034,19.63z"
+                                  fill="#fff"
+                                  fill-rule="evenodd"/>
+                            <path clip-rule="evenodd"
+                                  d="M33.626,18.262v-0.854c-1.05,0.002-2.078-0.292-2.969-0.848 C31.445,17.423,32.483,18.018,33.626,18.262z M28.095,12.772c-0.027-0.153-0.047-0.306-0.061-0.461v-0.516h-4.036v16.019 c-0.006,1.867-1.523,3.379-3.393,3.379c-0.549,0-1.067-0.13-1.526-0.362c0.62,0.813,1.599,1.338,2.701,1.338 c1.87,0,3.386-1.512,3.393-3.379V12.772H28.095z M21.635,21.38v-0.909c-0.337-0.046-0.677-0.069-1.018-0.069 c-4.097,0-7.417,3.319-7.417,7.413c0,2.567,1.305,4.829,3.288,6.159c-1.308-1.336-2.114-3.165-2.114-5.183 C14.374,24.749,17.611,21.463,21.635,21.38z"
+                                  fill="#81d4fa"
+                                  fill-rule="evenodd"/>
+                        </svg>
+                        <div class="main-container"
+                             style="width: calc(100% - 40px); margin-left: 10px; height: auto; display: flex; align-self: center; flex-direction: column; justify-content: center;">
+                            <p class="normal-poppins-style"
+                               style="font-size: 15px; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center; font-family: 'Nunito Sans', sans-serif">
+                                TIKTOK</p>
+                            <p class="normal-poppins-style"
+                               style="font-weight: 400; margin-top: 8px; line-clamp: 3; -webkit-line-clamp: 3; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center;">
+                                Download, stream & convert TikTok videos into music, thumbnails & subtitles into your mobile device.
+                            </p>
+                        </div>
+                    </div>
+                    <hr style="width: 100%; height: 1px; background: var(--textColor); display: flex; align-self: center; justify-content: center; flex-shrink: 0; opacity: 0.5; margin-top: 10px;">
+                </div>
+                <div class="home-fragment-item" style="height: auto; flex-direction: column;">
+                    <div class="main-container"
+                         style="width: 100%; height: auto; flex-direction: row; padding-top: 20px; padding-left: 10px; padding-right: 10px; align-self: flex-start;">
+                        <svg height="30px" viewBox="0 0 48 48" width="30px" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 5A19 19 0 1 0 24 43A19 19 0 1 0 24 5Z" fill="#039be5"/>
+                            <path d="M26.572,29.036h4.917l0.772-4.995h-5.69v-2.73c0-2.075,0.678-3.915,2.619-3.915h3.119v-4.359c-0.548-0.074-1.707-0.236-3.897-0.236c-4.573,0-7.254,2.415-7.254,7.917v3.323h-4.701v4.995h4.701v13.729C22.089,42.905,23.032,43,24,43c0.875,0,1.729-0.08,2.572-0.194V29.036z"
+                                  fill="#fff"/>
+                        </svg>
+                        <div class="main-container"
+                             style="width: calc(100% - 40px); margin-left: 10px; height: auto; display: flex; align-self: center; flex-direction: column; justify-content: center;">
+                            <p class="normal-poppins-style"
+                               style="font-size: 15px; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center; font-family: 'Nunito Sans', sans-serif">
+                                FACEBOOK</p>
+                            <p class="normal-poppins-style"
+                               style="font-weight: 400; margin-top: 8px; line-clamp: 3; -webkit-line-clamp: 3; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center;">
+                                Download & stream Facebook related videos, music, movies, thumbnails & shorts here.
+                            </p>
+                        </div>
+                    </div>
+                    <hr style="width: 100%; height: 1px; background: var(--textColor); display: flex; align-self: center; justify-content: center; flex-shrink: 0; opacity: 0.5; margin-top: 10px;">
+                </div>
+                <div class="home-fragment-item" style="height: auto; flex-direction: column; padding-bottom: 10px;">
+                    <div class="main-container"
+                         style="width: 100%; height: auto; flex-direction: row; padding-top: 20px; padding-left: 10px; padding-right: 10px; align-self: flex-start;">
+                        <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+                        <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                        <svg height="30px" viewBox="0 -4 48 48" width="30px" xmlns="http://www.w3.org/2000/svg">
+            
+                            <title>Twitter-color</title>
+                            <desc>Created with Sketch.</desc>
+                            <defs>
+            
+                            </defs>
+                            <g fill="none" fill-rule="evenodd" id="Icons" stroke="none" stroke-width="1">
+                                <g fill="#00AAEC" id="Color-" transform="translate(-300.000000, -164.000000)">
+                                    <path d="M348,168.735283 C346.236309,169.538462 344.337383,170.081618 342.345483,170.324305 C344.379644,169.076201 345.940482,167.097147 346.675823,164.739617 C344.771263,165.895269 342.666667,166.736006 340.418384,167.18671 C338.626519,165.224991 336.065504,164 333.231203,164 C327.796443,164 323.387216,168.521488 323.387216,174.097508 C323.387216,174.88913 323.471738,175.657638 323.640782,176.397255 C315.456242,175.975442 308.201444,171.959552 303.341433,165.843265 C302.493397,167.339834 302.008804,169.076201 302.008804,170.925244 C302.008804,174.426869 303.747139,177.518238 306.389857,179.329722 C304.778306,179.280607 303.256911,178.821235 301.9271,178.070061 L301.9271,178.194294 C301.9271,183.08848 305.322064,187.17082 309.8299,188.095341 C309.004402,188.33225 308.133826,188.450704 307.235077,188.450704 C306.601162,188.450704 305.981335,188.390033 305.381229,188.271578 C306.634971,192.28169 310.269414,195.2026 314.580032,195.280607 C311.210424,197.99061 306.961789,199.605634 302.349709,199.605634 C301.555203,199.605634 300.769149,199.559408 300,199.466956 C304.358514,202.327194 309.53689,204 315.095615,204 C333.211481,204 343.114633,188.615385 343.114633,175.270495 C343.114633,174.831347 343.106181,174.392199 343.089276,173.961719 C345.013559,172.537378 346.684275,170.760563 348,168.735283"
+                                          id="Twitter">
+            
+                                    </path>
+                                </g>
+                            </g>
+                        </svg>
+                        <div class="main-container"
+                             style="width: calc(100% - 40px); margin-left: 10px; height: auto; display: flex; align-self: center; flex-direction: column; justify-content: center;">
+                            <p class="normal-poppins-style"
+                               style="font-size: 15px; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center; font-family: 'Nunito Sans', sans-serif">
+                                TWITTER</p>
+                            <p class="normal-poppins-style"
+                               style="font-weight: 400; margin-top: 8px; line-clamp: 3; -webkit-line-clamp: 3; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center;">
+                                Download & stream X ~ related videos, music & pictures from Twitter links and urls.
+                            </p>
+                        </div>
+                    </div>
+                    <!--<hr style="width: 100%; height: 1px; background: var(&#45;&#45;textColor); display: flex; align-self: center; justify-content: center; flex-shrink: 0; opacity: 0.5; margin-top: 10px;">-->
+                </div>
+            </div>
+        `);
+        // Add top margins to searchBar container...
+        loadMaterialIcons();
+        searchBarContainer = document.querySelector("#search-bar-container");
+        const interval = setInterval(() => {
+            if (Number(statusBarHeight) > 0) {
+                clearInterval(interval);
+                searchBarContainer.style.top = `${statusBarHeight}px`;
+                searchBarContainer.style.display = "flex";
+                const homeFragItemContainer = document.querySelector(".home-fragment-item-holder");
+                homeFragItemContainer.style.top = searchBarContainer.getBoundingClientRect().height + searchBarContainer.getBoundingClientRect().top + "px";
+                homeFragItemContainer.style.display = "flex";
+                // Style homeFragmentItem...
+                searchBarIconHolders = document.querySelectorAll(".search-bar-icon-holders");
+                searchBarIconHolders.forEach((searchBarIconHolder, searchBarIconHolderIndex) => {
+                    // For desktops or laptops
+                    searchBarIconHolder.onmousedown = (e) => {
+                        onTouchAction(e, searchBarIconHolder);
+                    };
+                    searchBarIconHolder.onmouseup = (e) => {
+                        clearHoverBackground(e, searchBarIconHolder, "none");
+                    };
+                    searchBarIconHolder.onmouseout = (e) => {
+                        clearHoverBackground(e, searchBarIconHolder, "none");
+                    };
+
+                    // For mobile devices
+                    searchBarIconHolder.ontouchstart = (e) => {
+                        onTouchAction(e, searchBarIconHolder);
+                    };
+                    searchBarIconHolder.ontouchend = (e) => {
+                        clearHoverBackground(e, searchBarIconHolder, "none");
+                    }
+                    searchBarIconHolder.ontouchmove = (e) => {
+                        clearHoverBackground(e, searchBarIconHolder, "none");
+                    };
+                    searchBarIconHolder.ontouchcancel = (e) => {
+                        clearHoverBackground(e, searchBarIconHolder, "none");
+                    };
+                });
+            }
+        }, 100);
+    }
+
+    document.fonts.ready.then(() => {
+        loadMaterialIcons();
+    });
+
+    bottomContainerItems.forEach((bottomContainerItem, bottomContainerItemIndex) => {
+        bottomContainerItem.onclick = (e) => {
+            preventDefaultStopPropagation(e);
+            if (selectedBottomNavIndex === bottomContainerItemIndex) {
+                return;
+            }
+            // First deactivate the click action of bottom navigator
+            bottomContainer.style.pointerEvents = "none";
+            // Let's remove all mainContent item and set it according to click...
+            mainContent.replaceChildren();
+            switch (bottomContainerItemIndex) {
+                case 0: {
+                    showHomeNavigation();
+                    break;
+                }
+
+            }
+            selectedBottomNavIndex = bottomContainerItemIndex;
+            /*AndroidInterface.showToastMessage("clicked " + selectedBottomNavIndex, 1);*/
+            // Get all the spanned icon tags
+            const spannedIconTags = document.querySelectorAll(".bottom-container-item > span");
+            spannedIconTags.forEach((spannedIconTag, spannedIconTagIndex) => {
+                // Remove the active class
+                spannedIconTag.classList.remove("active-material-icon");
+            });
+            // Get all the paragraph tags
+            const btmContainerItemLabels = document.querySelectorAll(".bottom-container-item > p");
+            btmContainerItemLabels.forEach((btmContainerItemLabel, btmContainerItemLabelIndex) => {
+                // Remove the active class
+                btmContainerItemLabel.classList.remove("selected-item");
+            });
+            // Set the selected icon
+            if (!spannedIconTags[bottomContainerItemIndex].classList.contains("active-material-icon")) {
+                spannedIconTags[bottomContainerItemIndex].classList.add("active-material-icon");
+            }
+            // Set the selected label
+            if (!btmContainerItemLabels[bottomContainerItemIndex].classList.contains("selected-item")) {
+                btmContainerItemLabels[bottomContainerItemIndex].classList.add("selected-item");
+            }
+            // Re-activate the click action of bottom navigator
+            bottomContainer.style.pointerEvents = "all";
+        };
+        bottomContainerItem.ontouchstart = (e) => {
+            onTouchAction(e, bottomContainerItem);
+        };
+        bottomContainerItem.ontouchend = (e) => {
+            clearHoverBackground(e, bottomContainerItem, "none");
+        }
+        bottomContainerItem.ontouchmove = (e) => {
+            clearHoverBackground(e, bottomContainerItem, "none");
+        };
+        bottomContainerItem.ontouchcancel = (e) => {
+            clearHoverBackground(e, bottomContainerItem, "none");
+        };
+    });
+});

@@ -25,11 +25,11 @@
 
     <link href="../css/index.css" hreflang="en-US" rel="stylesheet" type="text/css">
 
-    <script src="https://cdn.jsdelivr.net/npm/socket.io-client@latest/dist/socket.io.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@latest/+esm"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mux.js@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/socket.io-client@latest/dist/socket.io.min.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@latest/+esm" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mux.js@latest" type="module"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js" type="module"></script>
     <script crossorigin="anonymous" defer src="../js/index.js" type="module"></script>
     <title>Welcome Page</title>
     <style>
@@ -62,6 +62,37 @@
 
 </head>
 <body class="dark-theme">
+<div class="main-container">
+    <!--TODO: Add main contents-->
+    <div id="main-content">
+    </div>
+    <!--TODO: Bottom navigation layout...-->
+    <div id="bottom-container">
+        <div class="bottom-container-item">
+            <span class="material-icons active-material-icon"
+                  data-color="var(--selected-color)"
+                  data-size="24" style="font-size: 24px; font-weight: 100; color: transparent; display: inline-flex;">home</span>
+            <p class="normal-poppins-style selected-item" style="margin-top: 5px;">Home</p>
+        </div>
+        <div class="bottom-container-item">
+            <span class="material-icons"
+                  data-color="var(--selected-color)"
+                  data-size="24" style="font-size: 24px; font-weight: 100; color: transparent; display: inline-flex;">download</span>
+            <p class="normal-poppins-style" style="margin-top: 5px;">Downloads</p>
 
+        </div>
+        <div class="bottom-container-item">
+            <span class="material-icons"
+                  data-color="var(--selected-color)"
+                  data-size="24" style="font-size: 24px; font-weight: 100; color: transparent; display: inline-flex;">settings</span>
+            <p class="normal-poppins-style" style="margin-top: 5px;">Settings</p>
+
+        </div>
+    </div>
+</div>
+<script type="application/ecmascript">
+    let jetPlaySecretKey = "";
+    let statusBarHeight = "1";
+</script>
 </body>
 </html>
