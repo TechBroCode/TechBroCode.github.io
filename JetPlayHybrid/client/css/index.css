@@ -239,7 +239,7 @@ body {
     background: var(--card-background-color);
 }
 
-.home-fragment-item, .home-fragment-item-holder {
+.home-fragment-item, #home-fragment-item-holder {
     width: 100vw;
     height: auto;
     display: flex;

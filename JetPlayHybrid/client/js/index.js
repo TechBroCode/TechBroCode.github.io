@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <span class="material-icons" data-color="var(--textColor)" data-size="24" style="font-size: 24px; font-weight: 100; color: transparent; opacity: 0.5;">public</span>
                 </div>
             </div>
-            <div class="home-fragment-item-holder" style="position: absolute; display: none;">
+            <div id="home-fragment-item-holder" style="position: absolute; display: none;">
                 <div class="home-fragment-item"
                      style="width: 100%; height: auto; flex-direction: row; padding-top: 20px; padding-left: 10px; padding-right: 10px; align-self: center;">
                     <svg height="30px" id="Layer_1"
@@ -273,13 +273,26 @@ document.addEventListener("DOMContentLoaded", () => {
         `);
         // Add top margins to searchBar container...
         loadMaterialIcons();
+        const homeFragItemContainer = document.querySelector("#home-fragment-item-holder");
+        const homeFragItems = document.querySelectorAll(".home-fragment-item");
+        homeFragItemContainer.ontouchstart = (e) => {
+            onTouchAction(e, homeFragItemContainer);
+        };
+        homeFragItemContainer.ontouchend = (e) => {
+            clearHoverBackground(e, homeFragItemContainer, "none");
+        }
+        homeFragItemContainer.ontouchmove = (e) => {
+            clearHoverBackground(e, homeFragItemContainer, "none");
+        };
+        homeFragItemContainer.ontouchcancel = (e) => {
+            clearHoverBackground(e, homeFragItemContainer, "none");
+        };
         searchBarContainer = document.querySelector("#search-bar-container");
         const interval = setInterval(() => {
             if (Number(statusBarHeight) > 0) {
                 clearInterval(interval);
                 searchBarContainer.style.top = `${statusBarHeight}px`;
                 searchBarContainer.style.display = "flex";
-                const homeFragItemContainer = document.querySelector(".home-fragment-item-holder");
                 homeFragItemContainer.style.top = searchBarContainer.getBoundingClientRect().height + searchBarContainer.getBoundingClientRect().top + "px";
                 homeFragItemContainer.style.display = "flex";
                 // Style homeFragmentItem...
