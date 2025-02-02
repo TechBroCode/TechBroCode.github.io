@@ -4,7 +4,7 @@
   "description": "JetPlay (World's most popular media streaming platforms)",
   "repository": {
     "type": "git",
-    "url": "TechBroCode.github.io"
+    "url": "https://techBroCode.github.io"
   },
   "license": "ISC",
   "author": "Jetelex",
@@ -15,6 +15,13 @@
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
+  "keywords": [
+    "JetPlay",
+    "Jetelex",
+    "Player",
+    "Downloader",
+    "Stream"
+  ],
   "dependencies": {
     "axios": "^1.7.9",
     "btch-downloader": "^2.8.4",

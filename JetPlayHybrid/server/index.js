@@ -23,6 +23,7 @@ const io = new Server(server, {
 });
 
 app.set("trust-proxy", true);
+app.use(express.static(path.join(__dirname, "../client")));
 app.use(cors({
     allowedOrigins: ["https://techbrocode.github.io"],
     credentials: true,
@@ -32,7 +33,6 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
-
 
 function checkNetworkRecursively() {
     mainNetworkCheckerInterval = setInterval(async () => {
@@ -110,6 +110,21 @@ io.on("connect", async socket => {
             mainNetworkCheckerInterval = null;
         }
     });
+});
+
+app.all("*", async (req, res) => {
+    try {
+        res.set("Cache-Control", "no-cache, no-store, must-revalidate");
+        res.set("Pragma", "no-cache");
+        res.set("Expires", "0");
+        res.status(201).sendFile(path.join(__dirname, "../client", "html", "index.html"));
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            status: 500,
+            message: "Internal server error!"
+        });
+    }
 });
 
 
