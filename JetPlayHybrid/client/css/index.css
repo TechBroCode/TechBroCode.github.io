@@ -8,6 +8,29 @@
     --hover-background-color: #dcdcdc;
 }
 
+@media (prefers-color-scheme: dark) {
+    --colorPrimary: black;
+    --colorPrimaryDark: #CC0000;
+    --colorAccent: #FF8400;
+    --windowBackground: black;
+    --textColor: white;
+    --card-background-color: #424242;
+    --blue-to-white: white;
+    --selected-color: var(--textColor);
+}
+
+@media (prefers-color-scheme: light) {
+    --colorPrimary: white;
+    --colorPrimaryDark: #CC0000;
+    --colorAccent: #FF5900;
+    --windowBackground: white;
+    --textColor: black;
+    --card-background-color: #f5f5f5;
+    --blue-to-white: #0017B5;
+    --selected-color: var(--textColor);
+}
+
+
 .light-theme {
     --colorPrimary: white;
     --colorPrimaryDark: #CC0000;
