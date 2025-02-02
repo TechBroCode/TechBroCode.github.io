@@ -275,18 +275,20 @@ document.addEventListener("DOMContentLoaded", () => {
         loadMaterialIcons();
         const homeFragItemContainer = document.querySelector("#home-fragment-item-holder");
         const homeFragItems = document.querySelectorAll(".home-fragment-item");
-        homeFragItemContainer.ontouchstart = (e) => {
-            onTouchAction(e, homeFragItemContainer);
-        };
-        homeFragItemContainer.ontouchend = (e) => {
-            clearHoverBackground(e, homeFragItemContainer, "none");
-        }
-        homeFragItemContainer.ontouchmove = (e) => {
-            clearHoverBackground(e, homeFragItemContainer, "none");
-        };
-        homeFragItemContainer.ontouchcancel = (e) => {
-            clearHoverBackground(e, homeFragItemContainer, "none");
-        };
+        homeFragItems.forEach((homeFragItem, homeFragItemIndex) => {
+            homeFragItem.ontouchstart = (e) => {
+                onTouchAction(e, homeFragItem);
+            };
+            homeFragItem.ontouchend = (e) => {
+                clearHoverBackground(e, homeFragItem, "none");
+            }
+            homeFragItem.ontouchmove = (e) => {
+                clearHoverBackground(e, homeFragItem, "none");
+            };
+            homeFragItem.ontouchcancel = (e) => {
+                clearHoverBackground(e, homeFragItem, "none");
+            };
+        });
         searchBarContainer = document.querySelector("#search-bar-container");
         const interval = setInterval(() => {
             if (Number(statusBarHeight) > 0) {

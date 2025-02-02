@@ -11,5 +11,7 @@
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="socket.io-client" level="application" />
     <orderEntry type="library" name="mux.js" level="application" />
+    <orderEntry type="library" name="@ffmpeg/ffmpeg" level="application" />
+    <orderEntry type="library" name="@ffmpeg" level="application" />
   </component>
 </module>
