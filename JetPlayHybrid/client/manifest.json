@@ -1,0 +1,61 @@
+{
+  "id": "/html/index.html",
+  "name": "JetPlay",
+  "short_name": "JetPlay",
+  "start_url": "/html/index.html",
+  "display": "standalone",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "fullscreen"
+  ],
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/img/icons/ic_app_launcher_1_48x48.webp",
+      "type": "image/webp",
+      "sizes": "48x48"
+    },
+    {
+      "src": "/img/icons/ic_app_launcher_72x72.webp",
+      "type": "image/webp",
+      "sizes": "72x72"
+    },
+    {
+      "src": "/img/icons/ic_app_launcher_96x96.webp",
+      "type": "image/webp",
+      "sizes": "96x96"
+    },
+    {
+      "src": "/img/icons/ic_app_launcher_144x144.webp",
+      "type": "image/webp",
+      "sizes": "144x144"
+    },
+    {
+      "src": "/img/icons/ic_app_launcher_192x192.webp",
+      "type": "image/webp",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/img/icons/ic_app_launcher-playstore.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/img/icons/ic_app_launcher-playstore.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/img/icons/ic_app_launcher-playstore.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ]
+}

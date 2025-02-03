@@ -77,6 +77,7 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    align-content: center;
 }
 
 ::-webkit-scrollbar {
@@ -112,126 +113,68 @@ body {
     -ms-flex-direction: column;
 }
 
-.main-container {
+.jet-player-frame {
     width: 100vw;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    align-items: flex-start;
-    flex-shrink: 0;
     position: relative;
+    background: black;
+    display: flex;
+    flex-shrink: 0;
+
 }
 
-#main-content {
-    width: 100vw;
-    position: fixed;
-    height: 100vh;
-    overflow-y: scroll;
+.jet-video-player {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    min-height: 200px;
+    max-height: 250px;
+    top: 50%;
+    left: 50%;
+    right: 0;
     bottom: 0;
+    transform: translate(-50%, -50%);
+    object-fit: fill;
+}
+
+.jet-player-controls {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    background: rgba(0, 0, 0, 0.85);
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    display: flex;
-    background: var(--windowBackground);
-    flex-shrink: 0;
-    flex-direction: column;
-    align-self: center;
-    align-items: flex-start;
-    justify-content: flex-start;
-}
-
-#bottom-container {
-    width: 100vw;
-    height: auto;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-    background: var(--windowBackground);
-    position: fixed;
     bottom: 0;
-    display: flex;
-    flex-shrink: 0;
-    flex-direction: row;
-    justify-content: space-around;
-    align-self: center;
-    align-items: flex-start;
+
+    .top, .center, .bottom {
+        width: 100%;
+        height: auto;
+        display: flex;
+        background: none;
+        flex-shrink: 0;
+        flex-direction: row;
+        position: absolute;
+    }
+
+    .top {
+        top: 0;
+    }
+
+    .center {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .bottom {
+        bottom: 0;
+    }
 }
 
-.bottom-container-item {
-    display: inline-flex;
-    flex-direction: column;
-    flex-shrink: 0;
-    align-self: center;
-    text-align: center;
-    justify-content: flex-start;
-    align-items: center;
-    width: auto;
-    padding: 10px;
-    border-radius: 10px;
-}
-
-.normal-poppins-style {
-    width: auto;
-    height: auto;
-    align-self: center;
-    font-kerning: auto;
-    font-style: normal;
-    text-align: center;
-    font-family: "Poppins", sans-serif;
-    color: var(--textColor);
-    margin: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: flex;
-    padding: 0 0 0 0;
-    vertical-align: center;
-    vert-align: middle;
-    font-weight: 600;
-    font-size: 13px;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-}
-
-.active-material-icon {
-    --selected-color: var(--colorPrimaryDark);
-}
-
-.selected-item {
-    color: var(--colorPrimaryDark);
-}
-
-/*TODO: Home Navigation styling*/
-
-#search-bar-container {
-    width: calc(100vw - 20px);
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    position: fixed;
-    top: 0;
-    z-index: 1;
-    align-items: flex-start;
-    align-self: center;
-    padding-left: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-radius: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-    background: var(--card-background-color);
-}
-
-.home-fragment-item, #home-fragment-item-holder {
-    width: 100vw;
-    height: auto;
-    display: flex;
-    flex-shrink: 0;
-    align-items: flex-start;
-    align-self: center;
-    flex-direction: column;
-}
-
-.material-symbols {
+.material-symbols-outlined {
     font-family: 'Material Symbols Outlined';
     font-weight: normal;
     font-style: normal;
@@ -248,10 +191,20 @@ body {
     color: var(--textColor);
 }
 
-.material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 100, 'opsz' 24;
-}
-
-.material-symbols-filled {
-    font-variation-settings: 'FILL' 1, 'wght' 200, 'GRAD' 100, 'opsz' 24;
+.icon-holder {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    vertical-align: middle;
+    vert-align: middle;
+    horiz-align: center;
+    flex-shrink: 0;
+    background: red;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    align-self: center;
 }

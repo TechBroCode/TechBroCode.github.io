@@ -9,26 +9,22 @@
     <!--<meta content="no-cache, no-store, must-revalidate" http-equiv="content-type">-->
     <!--<meta content="no-cache" http-equiv="refresh">-->
     <!--<meta content="0" http-equiv="refresh">-->
-    <link href="https://fonts.googleapis.com" rel="preconnect">
-    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet" type="text/css"/>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
-          rel="stylesheet" type="text/css"/>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
-          rel="stylesheet" type="text/css"/>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
-          rel="stylesheet" type="text/css"/>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone"
-          rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+          rel="stylesheet"/>
 
     <link href="../css/index.css" hreflang="en-US" rel="stylesheet" type="text/css">
 
     <script src="https://cdn.jsdelivr.net/npm/socket.io-client@latest/dist/socket.io.min.js" type="module"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js" type="module"></script>
-    <script crossorigin="anonymous" defer src="../js/index.js" type="module"></script>
+    <script defer src="../js/app.js" type="module"></script>
+    <script defer src="../js/index.js" type="module"></script>
+    <link href="../manifest.json" rel="manifest">
+    <!--TODO: IOS support-->
+    <link href="../img/icons/ic_app_launcher-playstore.png" rel="apple-touch-icon">
+    <meta content="#ff0f00" name="apple-mobile-web-app-status-bar">
+    <meta content="#FFFFFF" name="theme-color">
     <title>Welcome Page</title>
     <style>
         input::placeholder {
@@ -67,20 +63,20 @@
     <!--TODO: Bottom navigation layout...-->
     <div id="bottom-container">
         <div class="bottom-container-item">
-            <span class="material-icons active-material-icon"
+            <span class="material-symbols material-symbols-filled active-material-icon"
                   data-color="var(--selected-color)"
                   data-size="24" style="font-size: 24px; font-weight: 100; color: transparent; display: inline-flex;">home</span>
             <p class="normal-poppins-style selected-item" style="margin-top: 5px;">Home</p>
         </div>
         <div class="bottom-container-item">
-            <span class="material-icons"
+            <span class="material-symbols material-symbols-outlined"
                   data-color="var(--selected-color)"
                   data-size="24" style="font-size: 24px; font-weight: 100; color: transparent; display: inline-flex;">download</span>
             <p class="normal-poppins-style" style="margin-top: 5px;">Downloads</p>
 
         </div>
         <div class="bottom-container-item">
-            <span class="material-icons"
+            <span class="material-symbols material-symbols-outlined"
                   data-color="var(--selected-color)"
                   data-size="24" style="font-size: 24px; font-weight: 100; color: transparent; display: inline-flex;">settings</span>
             <p class="normal-poppins-style" style="margin-top: 5px;">Settings</p>

@@ -3,7 +3,7 @@ const socket = io("http://localhost:3000");
 const bottomContainer = document.querySelector("#bottom-container");
 const bottomContainerItems = document.querySelectorAll(".bottom-container-item");
 const mainContent = document.querySelector("#main-content");
-let materialIcons = document.querySelectorAll(".material-icons");
+let materialIcons = document.querySelectorAll(".material-symbols");
 let searchBarContainer = document.querySelector("#search-bar-container");
 let searchBarIconHolders = document.querySelectorAll(".search-bar-icon-holders");
 let selectedBottomNavIndex = 0;
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     mainContent.style.bottom = `${btmNavHeight}px`;
 
     function loadMaterialIcons() {
-        materialIcons = document.querySelectorAll(".material-icons");
+        materialIcons = document.querySelectorAll(".material-symbols");
         if (materialIcons.length > 0) {
             materialIcons.forEach((materialIcon, index) => {
                 // Check if the Material Icons font is applied
@@ -104,10 +104,10 @@ document.addEventListener("DOMContentLoaded", () => {
             <div id="search-bar-container">
                 <input class="normal-poppins-style" style="width: calc(100% - 69px); display: inline-flex; height: auto; text-align: start; align-self: center; font-weight: 400; color: var(--textColor); background: none; outline: none; border: none;"  value="" placeholder="Search or paste url">
                 <div class="search-bar-icon-holders" style="display: inline-flex; background: none; justify-content: center; align-self: center; align-items: center; border-radius: 50%; padding: 8px;">
-                    <span class="material-icons" data-color="var(--textColor)" data-size="24" style="font-size: 24px; font-weight: 100; color: transparent;">search</span>
+                    <span class="material-symbols material-symbols-outlined" data-color="var(--textColor)" data-size="24" style="font-size: 24px; font-weight: 100; color: transparent;">search</span>
                 </div>
                 <div class="search-bar-icon-holders" style="display: inline-flex; background: none; justify-content: center; align-self: center; align-items: center; border-radius: 50%; padding: 8px; margin-left: 5px;">
-                    <span class="material-icons" data-color="var(--textColor)" data-size="24" style="font-size: 24px; font-weight: 100; color: transparent; opacity: 0.5;">public</span>
+                    <span class="material-symbols material-symbols-outlined" data-color="var(--textColor)" data-size="24" style="font-size: 24px; font-weight: 100; color: transparent; opacity: 0.5;">public</span>
                 </div>
             </div>
             <div id="home-fragment-item-holder" style="position: absolute; display: none;">
@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div class="main-container"
                              style="width: calc(100% - 40px); margin-left: 10px; height: auto; display: flex; align-self: center; flex-direction: column; justify-content: center;">
                             <p class="normal-poppins-style"
-                               style="font-size: 15px; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center; font-family: 'Nunito Sans', sans-serif">
+                               style="font-size: 15px; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center; ">
                                 YOUTUBE</p>
                             <p class="normal-poppins-style"
                                style="font-weight: 400; margin-top: 8px; line-clamp: 3; -webkit-line-clamp: 3; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center;">
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div class="main-container"
                              style="width: calc(100% - 40px); margin-left: 10px; height: auto; display: flex; align-self: center; flex-direction: column; justify-content: center;">
                             <p class="normal-poppins-style"
-                               style="font-size: 15px; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center; font-family: 'Nunito Sans', sans-serif">
+                               style="font-size: 15px; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center; ">
                                 INSTAGRAM</p>
                             <p class="normal-poppins-style"
                                style="font-weight: 400; margin-top: 8px; line-clamp: 3; -webkit-line-clamp: 3; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center;">
@@ -208,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div class="main-container"
                              style="width: calc(100% - 40px); margin-left: 10px; height: auto; display: flex; align-self: center; flex-direction: column; justify-content: center;">
                             <p class="normal-poppins-style"
-                               style="font-size: 15px; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center; font-family: 'Nunito Sans', sans-serif">
+                               style="font-size: 15px; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center; ">
                                 TIKTOK</p>
                             <p class="normal-poppins-style"
                                style="font-weight: 400; margin-top: 8px; line-clamp: 3; -webkit-line-clamp: 3; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center;">
@@ -229,11 +229,69 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div class="main-container"
                              style="width: calc(100% - 40px); margin-left: 10px; height: auto; display: flex; align-self: center; flex-direction: column; justify-content: center;">
                             <p class="normal-poppins-style"
-                               style="font-size: 15px; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center; font-family: 'Nunito Sans', sans-serif">
+                               style="font-size: 15px; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center; ">
                                 FACEBOOK</p>
                             <p class="normal-poppins-style"
                                style="font-weight: 400; margin-top: 8px; line-clamp: 3; -webkit-line-clamp: 3; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center;">
                                 Download & stream Facebook related videos, music, movies, thumbnails & shorts here.
+                            </p>
+                        </div>
+                    </div>
+                    <hr style="width: 100%; height: 1px; background: var(--textColor); display: flex; align-self: center; justify-content: center; flex-shrink: 0; opacity: 0.5; margin-top: 10px;">
+                </div>
+                <div class="home-fragment-item" style="height: auto; flex-direction: column;">
+                    <div class="main-container"
+                         style="width: 100%; height: auto; flex-direction: row; padding-top: 20px; padding-left: 10px; padding-right: 10px; align-self: flex-start;">
+                        <svg xmlns="http://www.w3.org/2000/svg"  version="1.1" width="30px" height="30px" viewBox="0 0 256 256" xml:space="preserve" >
+                            <defs>
+                            </defs>
+                            <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)" >
+                                <path d="M 45 0 C 20.147 0 0 20.147 0 45 c 0 24.853 20.147 45 45 45 s 45 -20.147 45 -45 C 90 20.147 69.853 0 45 0 z M 45.454 68.712 c -4.304 0 -8.347 -1.1 -11.865 -3.031 L 20 70 l 4.431 -13.068 c -2.235 -3.67 -3.522 -7.974 -3.522 -12.576 C 20.908 30.904 31.898 20 45.454 20 C 59.013 20 70 30.904 70 44.356 S 59.012 68.712 45.454 68.712 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,255,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                <path d="M 45.454 23.879 c -11.38 0 -20.637 9.186 -20.637 20.477 c 0 4.481 1.461 8.63 3.931 12.006 l -2.578 7.605 l 7.931 -2.521 c 3.258 2.139 7.162 3.387 11.354 3.387 c 11.378 0 20.637 -9.185 20.637 -20.476 C 66.092 33.066 56.834 23.879 45.454 23.879 z M 57.499 52.805 c -0.503 1.393 -2.96 2.738 -4.062 2.837 c -1.103 0.1 -1.103 0.897 -7.221 -1.492 c -6.117 -2.391 -9.977 -8.615 -10.278 -9.013 c -0.302 -0.398 -2.457 -3.236 -2.457 -6.174 c 0 -2.937 1.554 -4.382 2.105 -4.979 c 0.552 -0.597 1.204 -0.747 1.605 -0.747 s 0.803 0.05 1.153 0.05 c 0.352 0 0.852 -0.199 1.353 0.996 c 0.501 1.196 1.706 4.133 1.856 4.432 c 0.151 0.299 0.252 0.648 0.05 1.046 c -0.199 0.399 -0.299 0.647 -0.601 0.996 c -0.301 0.348 -0.632 0.778 -0.903 1.046 c -0.301 0.297 -0.614 0.62 -0.264 1.217 c 0.351 0.598 1.559 2.552 3.347 4.134 c 2.298 2.033 4.237 2.664 4.838 2.963 c 0.602 0.299 0.953 0.249 1.304 -0.151 c 0.352 -0.398 1.505 -1.742 1.906 -2.34 c 0.401 -0.597 0.803 -0.497 1.354 -0.298 c 0.55 0.198 3.509 1.643 4.111 1.942 c 0.601 0.298 1.002 0.448 1.153 0.697 C 57.999 50.214 57.999 51.409 57.499 52.805 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,255,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                            </g>
+                        </svg>
+                        <div class="main-container"
+                             style="width: calc(100% - 40px); margin-left: 10px; height: auto; display: flex; align-self: center; flex-direction: column; justify-content: center;">
+                            <p class="normal-poppins-style"
+                               style="font-size: 15px; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center; ">
+                                WHATSAPP</p>
+                            <p class="normal-poppins-style"
+                               style="font-weight: 400; margin-top: 8px; line-clamp: 3; -webkit-line-clamp: 3; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center;">
+                                Download, stream & check Whatsapp profile pictures, statuses like videos, images & audios.
+                            </p>
+                        </div>
+                    </div>
+                    <hr style="width: 100%; height: 1px; background: var(--textColor); display: flex; align-self: center; justify-content: center; flex-shrink: 0; opacity: 0.5; margin-top: 10px;">
+                </div>
+                <div class="home-fragment-item" style="height: auto; flex-direction: column;">
+                    <div class="main-container"
+                         style="width: 100%; height: auto; flex-direction: row; padding-top: 20px; padding-left: 10px; padding-right: 10px; align-self: flex-start;">
+                        <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+                        <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                        <svg width="30px" height="30px" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg"  preserveAspectRatio="xMidYMid">
+                            <g>
+                                <path d="M128,0 C57.307,0 0,57.307 0,128 L0,128 C0,198.693 57.307,256 128,256 L128,256 C198.693,256 256,198.693 256,128 L256,128 C256,57.307 198.693,0 128,0 L128,0 Z" fill="#40B3E0">
+                                
+                                </path>
+                                <path d="M190.2826,73.6308 L167.4206,188.8978 C167.4206,188.8978 164.2236,196.8918 155.4306,193.0548 L102.6726,152.6068 L83.4886,143.3348 L51.1946,132.4628 C51.1946,132.4628 46.2386,130.7048 45.7586,126.8678 C45.2796,123.0308 51.3546,120.9528 51.3546,120.9528 L179.7306,70.5928 C179.7306,70.5928 190.2826,65.9568 190.2826,73.6308" fill="#FFFFFF">
+                                
+                                </path>
+                                <path d="M98.6178,187.6035 C98.6178,187.6035 97.0778,187.4595 95.1588,181.3835 C93.2408,175.3085 83.4888,143.3345 83.4888,143.3345 L161.0258,94.0945 C161.0258,94.0945 165.5028,91.3765 165.3428,94.0945 C165.3428,94.0945 166.1418,94.5735 163.7438,96.8115 C161.3458,99.0505 102.8328,151.6475 102.8328,151.6475" fill="#D2E5F1">
+                                
+                                </path>
+                                <path d="M122.9015,168.1154 L102.0335,187.1414 C102.0335,187.1414 100.4025,188.3794 98.6175,187.6034 L102.6135,152.2624" fill="#B5CFE4">
+                                
+                                </path>
+                            </g>
+                        </svg>
+                        <div class="main-container"
+                             style="width: calc(100% - 40px); margin-left: 10px; height: auto; display: flex; align-self: center; flex-direction: column; justify-content: center;">
+                            <p class="normal-poppins-style"
+                               style="font-size: 15px; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center; ">
+                                TELEGRAM</p>
+                            <p class="normal-poppins-style"
+                               style="font-weight: 400; margin-top: 8px; line-clamp: 3; -webkit-line-clamp: 3; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center;">
+                                Download, stream & check Telegram profile pictures, statuses like videos, images & audios.
                             </p>
                         </div>
                     </div>
@@ -244,26 +302,13 @@ document.addEventListener("DOMContentLoaded", () => {
                          style="width: 100%; height: auto; flex-direction: row; padding-top: 20px; padding-left: 10px; padding-right: 10px; align-self: flex-start;">
                         <?xml version="1.0" encoding="UTF-8" standalone="no"?>
                         <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-                        <svg height="30px" viewBox="0 -4 48 48" width="30px" xmlns="http://www.w3.org/2000/svg">
-            
-                            <title>Twitter-color</title>
-                            <desc>Created with Sketch.</desc>
-                            <defs>
-            
-                            </defs>
-                            <g fill="none" fill-rule="evenodd" id="Icons" stroke="none" stroke-width="1">
-                                <g fill="#00AAEC" id="Color-" transform="translate(-300.000000, -164.000000)">
-                                    <path d="M348,168.735283 C346.236309,169.538462 344.337383,170.081618 342.345483,170.324305 C344.379644,169.076201 345.940482,167.097147 346.675823,164.739617 C344.771263,165.895269 342.666667,166.736006 340.418384,167.18671 C338.626519,165.224991 336.065504,164 333.231203,164 C327.796443,164 323.387216,168.521488 323.387216,174.097508 C323.387216,174.88913 323.471738,175.657638 323.640782,176.397255 C315.456242,175.975442 308.201444,171.959552 303.341433,165.843265 C302.493397,167.339834 302.008804,169.076201 302.008804,170.925244 C302.008804,174.426869 303.747139,177.518238 306.389857,179.329722 C304.778306,179.280607 303.256911,178.821235 301.9271,178.070061 L301.9271,178.194294 C301.9271,183.08848 305.322064,187.17082 309.8299,188.095341 C309.004402,188.33225 308.133826,188.450704 307.235077,188.450704 C306.601162,188.450704 305.981335,188.390033 305.381229,188.271578 C306.634971,192.28169 310.269414,195.2026 314.580032,195.280607 C311.210424,197.99061 306.961789,199.605634 302.349709,199.605634 C301.555203,199.605634 300.769149,199.559408 300,199.466956 C304.358514,202.327194 309.53689,204 315.095615,204 C333.211481,204 343.114633,188.615385 343.114633,175.270495 C343.114633,174.831347 343.106181,174.392199 343.089276,173.961719 C345.013559,172.537378 346.684275,170.760563 348,168.735283"
-                                          id="Twitter">
-            
-                                    </path>
-                                </g>
-                            </g>
+                        <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="30px" height="30px">
+                            <path d="M 11 4 C 7.134 4 4 7.134 4 11 L 4 39 C 4 42.866 7.134 46 11 46 L 39 46 C 42.866 46 46 42.866 46 39 L 46 11 C 46 7.134 42.866 4 39 4 L 11 4 z M 13.085938 13 L 21.023438 13 L 26.660156 21.009766 L 33.5 13 L 36 13 L 27.789062 22.613281 L 37.914062 37 L 29.978516 37 L 23.4375 27.707031 L 15.5 37 L 13 37 L 22.308594 26.103516 L 13.085938 13 z M 16.914062 15 L 31.021484 35 L 34.085938 35 L 19.978516 15 L 16.914062 15 z"/>
                         </svg>
                         <div class="main-container"
                              style="width: calc(100% - 40px); margin-left: 10px; height: auto; display: flex; align-self: center; flex-direction: column; justify-content: center;">
                             <p class="normal-poppins-style"
-                               style="font-size: 15px; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center; font-family: 'Nunito Sans', sans-serif">
+                               style="font-size: 15px; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center; ">
                                 TWITTER</p>
                             <p class="normal-poppins-style"
                                style="font-weight: 400; margin-top: 8px; line-clamp: 3; -webkit-line-clamp: 3; width: 100%; height: auto; text-align: start; justify-content: center; align-self: center;">
@@ -282,7 +327,11 @@ document.addEventListener("DOMContentLoaded", () => {
         homeFragItems.forEach((homeFragItem, homeFragItemIndex) => {
             homeFragItem.onclick = (e) => {
                 preventDefaultStopPropagation(e);
-                window.location.href = "../html/video-test.html";
+                switch (homeFragItemIndex) {
+                    case 0 : {
+                        window.location.href = "../html/video-test.html";
+                    }
+                }
             };
             homeFragItem.ontouchstart = (e) => {
                 onTouchAction(e, homeFragItem);
@@ -371,10 +420,17 @@ document.addEventListener("DOMContentLoaded", () => {
             btmContainerItemLabels.forEach((btmContainerItemLabel, btmContainerItemLabelIndex) => {
                 // Remove the active class
                 btmContainerItemLabel.classList.remove("selected-item");
+                // Change the material icon style
+                if (spannedIconTags[btmContainerItemLabelIndex].classList.contains("material-symbols-filled")) {
+                    spannedIconTags[btmContainerItemLabelIndex].classList.replace("material-symbols-filled", "material-symbols-outlined");
+                }
             });
             // Set the selected icon
             if (!spannedIconTags[bottomContainerItemIndex].classList.contains("active-material-icon")) {
                 spannedIconTags[bottomContainerItemIndex].classList.add("active-material-icon");
+            }
+            if (spannedIconTags[bottomContainerItemIndex].classList.contains("material-symbols-outlined")) {
+                spannedIconTags[bottomContainerItemIndex].classList.replace("material-symbols-outlined", "material-symbols-filled");
             }
             // Set the selected label
             if (!btmContainerItemLabels[bottomContainerItemIndex].classList.contains("selected-item")) {

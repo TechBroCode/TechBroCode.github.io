@@ -117,6 +117,7 @@ app.all("*", async (req, res) => {
         res.set("Cache-Control", "no-cache, no-store, must-revalidate");
         res.set("Pragma", "no-cache");
         res.set("Expires", "0");
+        /*res.status(201).sendFile(path.join(__dirname, "../client", "html", "video-test.html"));*/
         res.status(201).sendFile(path.join(__dirname, "../client", "html", "index.html"));
     } catch (error) {
         console.error(error);
