@@ -54,8 +54,17 @@
         }
     </style>
 
+    <script type="application/ecmascript">
+        // Apply the correct theme immediately page loads
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+            document.documentElement.setAttribute("data-theme", "light");
+        }
+    </script>
+
 </head>
-<body class="light-theme">
+<body>
 <div class="main-container">
     <!--TODO: Add main contents-->
     <div id="main-content">
@@ -80,13 +89,13 @@
                   data-color="var(--selected-color)"
                   data-size="24" style="font-size: 24px; font-weight: 100; color: transparent; display: inline-flex;">settings</span>
             <p class="normal-poppins-style" style="margin-top: 5px;">Settings</p>
-
         </div>
     </div>
 </div>
 <script type="application/ecmascript">
     let jetPlaySecretKey = "";
-    let statusBarHeight = "1";
+    let statusBarHeight = "0";
+    AndroidInterface.setGoogleAdsEnable(true);
 </script>
 </body>
 </html>

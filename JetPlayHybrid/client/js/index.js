@@ -71,6 +71,19 @@ function onTouchAction(e, elementValue) {
     elementValue.style.background = "var(--hover-background-color)";
 }
 
+function adjustMarginsForAds() {
+    // We'll adjust either the top or bottom margins after showing ads
+    if (selectedBottomNavIndex === 0) {
+        searchBarContainer = document.querySelector("#search-bar-container");
+        searchBarContainer.style.top = `${statusBarHeight}px`;
+        searchBarContainer.style.display = "flex";
+        const homeFragItemContainer = document.querySelector("#home-fragment-item-holder");
+        homeFragItemContainer.style.top = searchBarContainer.getBoundingClientRect().height + searchBarContainer.getBoundingClientRect().top + "px";
+        homeFragItemContainer.style.display = "flex";
+        console.log("Margins Adjusted");
+    }
+}
+
 
 // Example usage
 document.addEventListener("DOMContentLoaded", () => {

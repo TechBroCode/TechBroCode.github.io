@@ -2,7 +2,31 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
-:root {
+:root[data-theme="light"] {
+    --colorPrimary: white;
+    --colorPrimaryDark: #CC0000;
+    --colorAccent: #FF5900;
+    --windowBackground: white;
+    --textColor: black;
+    --card-background-color: #f5f5f5;
+    --blue-to-white: #0017B5;
+    --selected-color: var(--textColor);
+
+    --dark-linear-gradient-background: linear-gradient(45deg, rgba(0, 0, 0, 1.00), rgba(0, 0, 0, 0.50));
+    --translucent-div-background: rgba(0, 0, 0, 0.25);
+    --hover-background-color: #dcdcdc;
+}
+
+:root[data-theme="dark"] {
+    --colorPrimary: black;
+    --colorPrimaryDark: #CC0000;
+    --colorAccent: #FF8400;
+    --windowBackground: black;
+    --textColor: white;
+    --card-background-color: #424242;
+    --blue-to-white: white;
+    --selected-color: var(--textColor);
+
     --dark-linear-gradient-background: linear-gradient(45deg, rgba(0, 0, 0, 1.00), rgba(0, 0, 0, 0.50));
     --translucent-div-background: rgba(0, 0, 0, 0.25);
     --hover-background-color: #dcdcdc;
@@ -17,6 +41,10 @@
     --card-background-color: #424242;
     --blue-to-white: white;
     --selected-color: var(--textColor);
+
+    --dark-linear-gradient-background: linear-gradient(45deg, rgba(0, 0, 0, 1.00), rgba(0, 0, 0, 0.50));
+    --translucent-div-background: rgba(0, 0, 0, 0.25);
+    --hover-background-color: #dcdcdc;
 }
 
 @media (prefers-color-scheme: light) {
@@ -28,6 +56,10 @@
     --card-background-color: #f5f5f5;
     --blue-to-white: #0017B5;
     --selected-color: var(--textColor);
+
+    --dark-linear-gradient-background: linear-gradient(45deg, rgba(0, 0, 0, 1.00), rgba(0, 0, 0, 0.50));
+    --translucent-div-background: rgba(0, 0, 0, 0.25);
+    --hover-background-color: #dcdcdc;
 }
 
 
@@ -40,6 +72,10 @@
     --card-background-color: #f5f5f5;
     --blue-to-white: #0017B5;
     --selected-color: var(--textColor);
+
+    --dark-linear-gradient-background: linear-gradient(45deg, rgba(0, 0, 0, 1.00), rgba(0, 0, 0, 0.50));
+    --translucent-div-background: rgba(0, 0, 0, 0.25);
+    --hover-background-color: #dcdcdc;
 }
 
 .dark-theme {
@@ -51,6 +87,10 @@
     --card-background-color: #424242;
     --blue-to-white: white;
     --selected-color: var(--textColor);
+
+    --dark-linear-gradient-background: linear-gradient(45deg, rgba(0, 0, 0, 1.00), rgba(0, 0, 0, 0.50));
+    --translucent-div-background: rgba(0, 0, 0, 0.25);
+    --hover-background-color: #dcdcdc;
 }
 
 * {
@@ -235,6 +275,7 @@ body {
     font-family: 'Material Symbols Outlined';
     font-weight: normal;
     font-style: normal;
+    text-rendering: optimizeLegibility;
     font-size: 24px;
     line-height: 1;
     letter-spacing: normal;
@@ -249,9 +290,9 @@ body {
 }
 
 .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 100, 'opsz' 24;
+    font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 100, 'opsz' 24 !important;
 }
 
 .material-symbols-filled {
-    font-variation-settings: 'FILL' 1, 'wght' 200, 'GRAD' 100, 'opsz' 24;
+    font-variation-settings: 'FILL' 1, 'wght' 200, 'GRAD' 100, 'opsz' 24 !important;
 }
