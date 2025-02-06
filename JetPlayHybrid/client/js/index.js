@@ -60,6 +60,16 @@ function clearHoverBackground(e, element, background) {
     }, 50);
 }
 
+window.onBackPressed = () => {
+    AndroidInterface.showToastMessage("On back pressed clicked", 1);
+    const canNavigateBack = AndroidInterface.canWebNavigateBack();
+    if (canNavigateBack === true) {
+        // Load ads from Android app and go back
+    } else {
+        AndroidInterface.goBack();
+    }
+}
+
 function preventDefaultStopPropagation(e) {
     e.stopPropagation();
     e.stopImmediatePropagation();
@@ -73,17 +83,30 @@ function onTouchAction(e, elementValue) {
 
 function adjustMarginsForAds() {
     // We'll adjust either the top or bottom margins after showing ads
-    if (selectedBottomNavIndex === 0) {
-        searchBarContainer = document.querySelector("#search-bar-container");
-        searchBarContainer.style.top = `${statusBarHeight}px`;
-        searchBarContainer.style.display = "flex";
-        const homeFragItemContainer = document.querySelector("#home-fragment-item-holder");
-        homeFragItemContainer.style.top = searchBarContainer.getBoundingClientRect().height + searchBarContainer.getBoundingClientRect().top + "px";
-        homeFragItemContainer.style.display = "flex";
-        console.log("Margins Adjusted");
+}
+
+
+function clearHoverEffect(e, elementValue) {
+    if (e === undefined) return;
+    if (e === null) return;
+    if (elementValue === undefined) return;
+    if (elementValue === null) return;
+    preventDefaultStopPropagation(e);
+    if (elementValue.classList.contains("hover")) {
+        elementValue.classList.remove("hover");
     }
 }
 
+function addHoverEffect(e, elementValue) {
+    if (e === undefined) return;
+    if (e === null) return;
+    if (elementValue === undefined) return;
+    if (elementValue === null) return;
+    preventDefaultStopPropagation(e);
+    if (!elementValue.classList.contains("hover")) {
+        elementValue.classList.add("hover");
+    }
+}
 
 // Example usage
 document.addEventListener("DOMContentLoaded", () => {
@@ -347,23 +370,27 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             };
             homeFragItem.ontouchstart = (e) => {
-                onTouchAction(e, homeFragItem);
+                //onTouchAction(e, homeFragItem);
+                addHoverEffect(e, homeFragItem);
             };
             homeFragItem.ontouchend = (e) => {
-                clearHoverBackground(e, homeFragItem, "none");
+                //clearHoverBackground(e, homeFragItem, "none");
+                clearHoverEffect(e, homeFragItem);
             }
             homeFragItem.ontouchmove = (e) => {
-                clearHoverBackground(e, homeFragItem, "none");
+                //clearHoverBackground(e, homeFragItem, "none");
+                clearHoverEffect(e, homeFragItem);
             };
             homeFragItem.ontouchcancel = (e) => {
-                clearHoverBackground(e, homeFragItem, "none");
+                //clearHoverBackground(e, homeFragItem, "none");
+                clearHoverEffect(e, homeFragItem);
             };
         });
         searchBarContainer = document.querySelector("#search-bar-container");
         const interval = setInterval(() => {
-            if (Number(statusBarHeight) > 0) {
+            if (Number(statusBarHeight) >= 0) {
                 clearInterval(interval);
-                searchBarContainer.style.top = `${statusBarHeight}px`;
+                //searchBarContainer.style.top = `${statusBarHeight}px`;
                 searchBarContainer.style.display = "flex";
                 homeFragItemContainer.style.top = searchBarContainer.getBoundingClientRect().height + searchBarContainer.getBoundingClientRect().top + "px";
                 homeFragItemContainer.style.display = "flex";
@@ -372,27 +399,34 @@ document.addEventListener("DOMContentLoaded", () => {
                 searchBarIconHolders.forEach((searchBarIconHolder, searchBarIconHolderIndex) => {
                     // For desktops or laptops
                     searchBarIconHolder.onmousedown = (e) => {
-                        onTouchAction(e, searchBarIconHolder);
+                        //onTouchAction(e, searchBarIconHolder);
+                        addHoverEffect(e, searchBarIconHolder);
                     };
                     searchBarIconHolder.onmouseup = (e) => {
-                        clearHoverBackground(e, searchBarIconHolder, "none");
+                        //clearHoverBackground(e, searchBarIconHolder, "none");
+                        clearHoverEffect(e, searchBarIconHolder);
                     };
                     searchBarIconHolder.onmouseout = (e) => {
-                        clearHoverBackground(e, searchBarIconHolder, "none");
+                        //clearHoverBackground(e, searchBarIconHolder, "none");
+                        clearHoverEffect(e, searchBarIconHolder);
                     };
 
                     // For mobile devices
                     searchBarIconHolder.ontouchstart = (e) => {
-                        onTouchAction(e, searchBarIconHolder);
+                        //onTouchAction(e, searchBarIconHolder);
+                        addHoverEffect(e, searchBarIconHolder);
                     };
                     searchBarIconHolder.ontouchend = (e) => {
-                        clearHoverBackground(e, searchBarIconHolder, "none");
+                        //clearHoverBackground(e, searchBarIconHolder, "none");
+                        clearHoverEffect(e, searchBarIconHolder);
                     }
                     searchBarIconHolder.ontouchmove = (e) => {
-                        clearHoverBackground(e, searchBarIconHolder, "none");
+                        //clearHoverBackground(e, searchBarIconHolder, "none");
+                        clearHoverEffect(e, searchBarIconHolder);
                     };
                     searchBarIconHolder.ontouchcancel = (e) => {
-                        clearHoverBackground(e, searchBarIconHolder, "none");
+                        //clearHoverBackground(e, searchBarIconHolder, "none");
+                        clearHoverEffect(e, searchBarIconHolder);
                     };
                 });
             }
@@ -452,17 +486,22 @@ document.addEventListener("DOMContentLoaded", () => {
             // Re-activate the click action of bottom navigator
             bottomContainer.style.pointerEvents = "all";
         };
+
         bottomContainerItem.ontouchstart = (e) => {
-            onTouchAction(e, bottomContainerItem);
+            // onTouchAction(e, bottomContainerItem);
+            addHoverEffect(e, bottomContainerItem);
         };
         bottomContainerItem.ontouchend = (e) => {
-            clearHoverBackground(e, bottomContainerItem, "none");
+            //clearHoverBackground(e, bottomContainerItem, "none");
+            clearHoverEffect(e, bottomContainerItem);
         }
         bottomContainerItem.ontouchmove = (e) => {
-            clearHoverBackground(e, bottomContainerItem, "none");
+            //clearHoverBackground(e, bottomContainerItem, "none");
+            clearHoverEffect(e, bottomContainerItem);
         };
         bottomContainerItem.ontouchcancel = (e) => {
-            clearHoverBackground(e, bottomContainerItem, "none");
+            //clearHoverBackground(e, bottomContainerItem, "none");
+            clearHoverEffect(e, bottomContainerItem);
         };
     });
 });

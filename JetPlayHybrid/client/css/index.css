@@ -296,3 +296,7 @@ body {
 .material-symbols-filled {
     font-variation-settings: 'FILL' 1, 'wght' 200, 'GRAD' 100, 'opsz' 24 !important;
 }
+
+.hover {
+    background: var(--hover-background-color);
+}
