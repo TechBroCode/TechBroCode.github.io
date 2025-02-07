@@ -43,4 +43,4 @@ self.addEventListener("fetch", (evt) => {
             // That's if there's a matching cache then return it back to the browser, but we'll not return empty cache instead return the original cache request
             return cacheResponse !== undefined && cacheResponse !== null ? cacheResponse : fetch(evt.request);
         }).catch((err) => console.error("Error occurred while fetching", err)))
-})
+});
