@@ -104,10 +104,34 @@ function addHoverEffect(e, elementValue) {
     if (elementValue === null) return;
     preventDefaultStopPropagation(e);
     if (!elementValue.classList.contains("hover")) {
+        console.log("e", e);
+        console.log("elValue", elementValue);
         elementValue.classList.add("hover");
     }
 }
 
+window.onPostResume = () => {
+
+}
+
+window.onPause = () => {
+}
+
+window.onResume = () => {
+
+}
+
+window.onStop = () => {
+
+}
+
+window.onStart = () => {
+
+}
+
+window.onWindowFocusChanged = () => {
+
+}
 // Example usage
 document.addEventListener("DOMContentLoaded", () => {
     if (selectedBottomNavIndex === 0) {
@@ -139,10 +163,10 @@ document.addEventListener("DOMContentLoaded", () => {
         mainContent.insertAdjacentHTML("beforeend", `
             <div id="search-bar-container">
                 <input class="normal-poppins-style" style="width: calc(100% - 69px); display: inline-flex; height: auto; text-align: start; align-self: center; font-weight: 400; color: var(--textColor); background: none; outline: none; border: none;"  value="" placeholder="Search or paste url">
-                <div class="search-bar-icon-holders" style="display: inline-flex; background: none; justify-content: center; align-self: center; align-items: center; border-radius: 50%; padding: 8px;">
+                <div class="search-bar-icon-holders" style="display: inline-flex; justify-content: center; align-self: center; align-items: center; border-radius: 50%; padding: 8px;">
                     <span class="material-symbols material-symbols-outlined" data-color="var(--textColor)" data-size="24" style="font-size: 24px; font-weight: 100; color: transparent;">search</span>
                 </div>
-                <div class="search-bar-icon-holders" style="display: inline-flex; background: none; justify-content: center; align-self: center; align-items: center; border-radius: 50%; padding: 8px; margin-left: 5px;">
+                <div class="search-bar-icon-holders" style="display: inline-flex; justify-content: center; align-self: center; align-items: center; border-radius: 50%; padding: 8px; margin-left: 5px;">
                     <span class="material-symbols material-symbols-outlined" data-color="var(--textColor)" data-size="24" style="font-size: 24px; font-weight: 100; color: transparent; opacity: 0.5;">public</span>
                 </div>
             </div>
@@ -400,6 +424,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     // For desktops or laptops
                     searchBarIconHolder.onmousedown = (e) => {
                         //onTouchAction(e, searchBarIconHolder);
+                        //searchBarIconHolder.style.background = "var(--hover-background-color)";
                         addHoverEffect(e, searchBarIconHolder);
                     };
                     searchBarIconHolder.onmouseup = (e) => {
