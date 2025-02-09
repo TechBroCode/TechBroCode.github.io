@@ -16,10 +16,11 @@ const PORT = process !== undefined ? process.env !== undefined ? process.env.POR
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        allowedOrigins: ["https://techbrocode.github.io"],
+        allowedOrigins: ["https://techbrocode.github.io"
+        ],
         credentials: true,
         methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"]
-    }, connectionStateRecovery: {}
+    }, transports: ["websocket", "polling"] // Ensure WebSocket transport is enabled
 });
 
 app.set("trust-proxy", true);
@@ -63,8 +64,7 @@ function checkNetworkRecursively() {
                     console.log("Network: ", response.status);
                     if (mainSocket !== null && mainSocket !== undefined) {
                         mainSocket.emit("networkResponse", {
-                            status: response.status,
-                            value: hasInternetConnection
+                            status: response.status, value: hasInternetConnection
                         });
                     }
                 } catch (e) {
@@ -72,8 +72,7 @@ function checkNetworkRecursively() {
                     console.error("Internet Error: ", e);
                     if (mainSocket !== null && mainSocket !== undefined) {
                         mainSocket.emit("networkResponse", {
-                            status: 500,
-                            value: hasInternetConnection
+                            status: 500, value: hasInternetConnection
                         });
                     }
                 } finally {
@@ -89,8 +88,7 @@ io.on("connect", async socket => {
     hasInternetConnection = false;
     console.log(`User with id ${socket.id} connected...`);
     socket.emit("networkResponse", {
-        status: undefined,
-        value: false
+        status: undefined, value: false
     });
 
     if (mainNetworkCheckerInterval === undefined || mainNetworkCheckerInterval === null) {
@@ -102,8 +100,7 @@ io.on("connect", async socket => {
         hasInternetConnection = false;
         console.log(`User disconnected with id ${socket.id}...`);
         socket.emit("networkResponse", {
-            status: undefined,
-            value: false
+            status: undefined, value: false
         });
         if (mainNetworkCheckerInterval !== undefined && mainNetworkCheckerInterval !== null) {
             clearInterval(mainNetworkCheckerInterval);
@@ -122,12 +119,10 @@ app.all("*", async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({
-            status: 500,
-            message: "Internal server error!"
+            status: 500, message: "Internal server error!"
         });
     }
 });
-
 
 server.listen(PORT, () => {
     console.log(`Server is listening on PORT ${PORT}`);

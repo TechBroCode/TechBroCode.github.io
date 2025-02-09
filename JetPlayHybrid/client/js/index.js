@@ -1,5 +1,5 @@
 let hasInternetConnection = null;
-const socket = io("http://localhost:3000");
+const socket = io();
 const bottomContainer = document.querySelector("#bottom-container");
 const bottomContainerItems = document.querySelectorAll(".bottom-container-item");
 const mainContent = document.querySelector("#main-content");
@@ -7,7 +7,7 @@ let materialIcons = document.querySelectorAll(".material-symbols");
 let searchBarContainer = document.querySelector("#search-bar-container");
 let searchBarIconHolders = document.querySelectorAll(".search-bar-icon-holders");
 let selectedBottomNavIndex = 0;
-let ffmpeg;
+let messagePort;
 
 socket.on('connect', () => {
     console.log('Connected to server');
@@ -110,6 +110,13 @@ function addHoverEffect(e, elementValue) {
     }
 }
 
+window.onHostNetChange = (isOnline) => {
+    console.log(isOnline);
+    hasInternetConnection = isOnline !== undefined && isOnline !== null && isOnline === true;
+    AndroidInterface.showToastMessage("isOnline => " + isOnline, 1);
+}
+
+
 window.onPostResume = () => {
 
 }
@@ -132,6 +139,30 @@ window.onStart = () => {
 window.onWindowFocusChanged = () => {
 
 }
+
+window.addEventListener("message", (event) => {
+    if (event.data === "Connect" && event.ports.length > 0) {
+        messagePort = event.ports[0];
+
+        // Listen for function calls from Android
+        messagePort.onmessage = function (msgEvent) {
+            try {
+                let data = JSON.parse(msgEvent.data);
+                let functionName = data.function;
+                let params = data.params;
+
+                console.log(`Executing: ${functionName} with params:`, params);
+                // Call the JavaScript function dynamically with arguments
+                if (typeof window[functionName] === "function") {
+                    window[functionName](...params);
+                }
+            } catch (error) {
+                console.error("Error parsing message:", error);
+            }
+        }
+    }
+});
+
 // Example usage
 document.addEventListener("DOMContentLoaded", () => {
     if (selectedBottomNavIndex === 0) {
@@ -389,7 +420,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 preventDefaultStopPropagation(e);
                 switch (homeFragItemIndex) {
                     case 0 : {
-                        window.location.href = "../html/video-test.html";
+                        AndroidInterface.openPage("http://192.168.43.180:3000/html/ytdl.html", 0);
+                        //window.open("../html/ytdl.html", "_blank");
                     }
                 }
             };
