@@ -112,8 +112,12 @@ function addHoverEffect(e, elementValue) {
 
 window.onHostNetChange = (isOnline) => {
     console.log(isOnline);
-    hasInternetConnection = isOnline !== undefined && isOnline !== null && isOnline === true;
-    AndroidInterface.showToastMessage("isOnline => " + isOnline, 1);
+    hasInternetConnection = isOnline !== undefined && isOnline !== null && isOnline.toString().trim().toLowerCase() === "true";
+    if (hasInternetConnection) {
+        AndroidInterface.showToastMessage("Internet connection available", 1);
+    } else {
+        AndroidInterface.showToastMessage("No internet connection", 1);
+    }
 }
 
 
@@ -147,6 +151,33 @@ window.addEventListener("message", (event) => {
         // Listen for function calls from Android
         messagePort.onmessage = function (msgEvent) {
             try {
+                let data = msgEvent.data.split(":");
+                let functionName = data[0];
+                let params = data.slice(1); // Get parameters
+
+                console.log(`Executing: ${functionName} with params:`, params);
+
+                // Call the JavaScript function dynamically with arguments
+                if (typeof window[functionName] === "function") {
+                    window[functionName](...params);
+                }
+            } catch (error) {
+                console.error("Error processing message:", error);
+            }
+        };
+
+        // ✅ Notify Android that WebMessagePort is ready
+        messagePort.postMessage("Ready");
+    }
+});
+
+/*window.addEventListener("message", (event) => {
+    if (event.data === "Connect" && event.ports.length > 0) {
+        messagePort = event.ports[0];
+
+        // Listen for function calls from Android
+        messagePort.onmessage = function (msgEvent) {
+            try {
                 let data = JSON.parse(msgEvent.data);
                 let functionName = data.function;
                 let params = data.params;
@@ -161,7 +192,7 @@ window.addEventListener("message", (event) => {
             }
         }
     }
-});
+});*/
 
 // Example usage
 document.addEventListener("DOMContentLoaded", () => {
@@ -415,14 +446,89 @@ document.addEventListener("DOMContentLoaded", () => {
         loadMaterialIcons();
         const homeFragItemContainer = document.querySelector("#home-fragment-item-holder");
         const homeFragItems = document.querySelectorAll(".home-fragment-item");
+
+        function checkAppAvailabilityAccessibility(packageName, index) {
+            if (packageName === null) return;
+            if (packageName === undefined) return;
+            if (packageName.toString().trim().length === 0) return;
+            packageName = packageName.toString().trim();
+            const isAppInstalled = AndroidInterface.isAppInstalledEnabled(packageName);
+            if (isAppInstalled !== null && isAppInstalled !== undefined) {
+                const appInstalledValue = isAppInstalled.toString().trim().toLowerCase();
+                if (appInstalledValue.includes("Application is installed".toLowerCase())) {
+                    // App is installed, let's check if it's enabled
+                    if (isAppInstalled.includes("enabled")) {
+                        // App is installed and enabled
+                        //AndroidInterface.openPage("http://192.168.43.180:3000/html/social-media.html", 1);
+                        AndroidInterface.showToastMessage("Application is installed and enabled", 1);
+                        switch (index) {
+                            case 4 : {
+                                // Clear local storage
+                                window.localStorage.removeItem("selectedPlatform");
+                                const selectedPlatform = {
+                                    appId: "com.whatsapp",
+                                    appName: "Whatsapp chat"
+                                };
+                                window.localStorage.setItem("selectedPlatform", JSON.stringify(selectedPlatform));
+                                // We clicked on Whatsapp...
+                                AndroidInterface.openPage("http://192.168.43.180:3000/html/social-media.html", 1);
+                                break;
+                            }
+                        }
+                    } else {
+                        // App is disabled. Let's redirect the user to enable it.
+                        AndroidInterface.loadAds(null, 1);
+                        AndroidInterface.showToastMessage("Application is installed but disabled", 1);
+                        AndroidInterface.enableInstalledApplication(packageName);
+                    }
+                } else {
+                    // App isn't installed...
+                    AndroidInterface.showToastMessage("Application isn't installed on this device", 1);
+                    // Let's show ads
+                    AndroidInterface.loadAds(null, 1);
+                }
+            }
+        }
+
         homeFragItems.forEach((homeFragItem, homeFragItemIndex) => {
             homeFragItem.onclick = (e) => {
                 preventDefaultStopPropagation(e);
                 switch (homeFragItemIndex) {
                     case 0 : {
-                        AndroidInterface.openPage("http://192.168.43.180:3000/html/ytdl.html", 0);
+                        /*const isInstalled = AndroidInterface.isAppInstalledEnabled("com.jetelex.play");
+                        AndroidInterface.showToastMessage(isInstalled, 1);
+                        console.log(isInstalled);
+                        AndroidInterface.openPage("http://192.168.43.180:3000/html/ytdl.html", 1);*/
+                        AndroidInterface.showToastMessage("This feature is still in development mode", 1);
                         //window.open("../html/ytdl.html", "_blank");
+                        break;
                     }
+                    case 1 : {
+                        checkAppAvailabilityAccessibility("com.instagram.android", 1);
+                        break;
+                    }
+                    case 2 : {
+                        checkAppAvailabilityAccessibility("com.zhiliaoapp.musically", 2);
+                        break;
+                    }
+                    case 3 : {
+                        checkAppAvailabilityAccessibility("com.facebook.katana", 3);
+                        break;
+                    }
+                    case 4 : {
+                        // Lets checked if Whatsapp is installed on the device
+                        checkAppAvailabilityAccessibility("com.whatsapp", 4);
+                        break;
+                    }
+                    case 5 : {
+                        checkAppAvailabilityAccessibility("org.telegram.messenger", 5);
+                        break;
+                    }
+                    case 6 : {
+                        checkAppAvailabilityAccessibility("com.twitter.android", 6);
+                        break;
+                    }
+
                 }
             };
             homeFragItem.ontouchstart = (e) => {

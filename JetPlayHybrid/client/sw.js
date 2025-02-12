@@ -1,5 +1,5 @@
 // Declare cache name
-const staticCacheName = "site-static-v1";
+const staticCacheName = "site-static";
 // Select the items to be cached and add it to the array
 const assets = [
     "/html/index.html",

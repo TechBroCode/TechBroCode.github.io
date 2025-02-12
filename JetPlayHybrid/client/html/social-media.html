@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,viewport-fit=cover"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+          rel="stylesheet"/>
+
+    <link href="../css/social-media.css" hreflang="en-US" rel="stylesheet" type="text/css">
+
+    <script src="../js/offline-socket.js" type="module"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js" type="module"></script>
+    <script defer src="../js/app.js" type="module"></script>
+    <script defer src="../js/social-media.js" type="module"></script>
+    <link href="../manifest.json" rel="manifest">
+    <!--TODO: IOS support-->
+    <link href="../img/icons/ic_app_launcher-playstore.png" rel="apple-touch-icon">
+    <meta content="#ff0f00" name="apple-mobile-web-app-status-bar">
+    <meta content="#FFFFFF" name="theme-color">
+    <title>Social media</title>
+    <script type="application/ecmascript">
+        // Apply the correct theme immediately page loads
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+            document.documentElement.setAttribute("data-theme", "light");
+        }
+    </script>
+</head>
+<body>
+<script type="application/ecmascript">
+    let jetPlaySecretKey = "";
+    let statusBarHeight = "0";
+    AndroidInterface.setGoogleAdsEnable(true);
+</script>
+</body>
+</html>

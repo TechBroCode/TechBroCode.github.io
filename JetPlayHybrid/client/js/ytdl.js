@@ -63,8 +63,12 @@ window.onBackPressed = () => {
 
 window.onHostNetChange = (isOnline) => {
     console.log(isOnline);
-    hasInternetConnection = isOnline !== undefined && isOnline !== null && isOnline === true;
-    AndroidInterface.showToastMessage("isOnline => " + isOnline, 1);
+    hasInternetConnection = isOnline !== undefined && isOnline !== null && isOnline.toString().trim().toLowerCase() === "true";
+    if (hasInternetConnection) {
+        AndroidInterface.showToastMessage("Internet connection available", 1);
+    } else {
+        AndroidInterface.showToastMessage("No internet connection", 1);
+    }
 }
 
 window.onPostResume = () => {
@@ -112,6 +116,34 @@ window.addEventListener("message", (event) => {
         // Listen for function calls from Android
         messagePort.onmessage = function (msgEvent) {
             try {
+                let data = msgEvent.data.split(":");
+                let functionName = data[0];
+                let params = data.slice(1); // Get parameters
+
+                console.log(`Executing: ${functionName} with params:`, params);
+
+                // Call the JavaScript function dynamically with arguments
+                if (typeof window[functionName] === "function") {
+                    window[functionName](...params);
+                }
+            } catch (error) {
+                console.error("Error processing message:", error);
+            }
+        };
+
+        // ✅ Notify Android that WebMessagePort is ready
+        messagePort.postMessage("Ready");
+    }
+});
+
+
+/*window.addEventListener("message", (event) => {
+    if (event.data === "Connect" && event.ports.length > 0) {
+        messagePort = event.ports[0];
+
+        // Listen for function calls from Android
+        messagePort.onmessage = function (msgEvent) {
+            try {
                 let data = JSON.parse(msgEvent.data);
                 let functionName = data.function;
                 let params = data.params;
@@ -124,9 +156,12 @@ window.addEventListener("message", (event) => {
             } catch (error) {
                 console.error("Error parsing message:", error);
             }
-        }
+        };
+
+        // ✅ Notify Android that WebMessagePort is ready
+        messagePort.postMessage("Ready");
     }
-});
+});*/
 
 document.addEventListener("DOMContentLoaded", () => {
     function createBottomNavigation() {
