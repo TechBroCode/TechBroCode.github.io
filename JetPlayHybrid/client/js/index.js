@@ -151,7 +151,7 @@ window.addEventListener("message", (event) => {
         // Listen for function calls from Android
         messagePort.onmessage = function (msgEvent) {
             try {
-                let data = msgEvent.data.split(":");
+                let data = msgEvent.data.split("|");
                 let functionName = data[0];
                 let params = data.slice(1); // Get parameters
 

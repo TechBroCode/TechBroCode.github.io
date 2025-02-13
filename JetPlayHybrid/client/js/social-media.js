@@ -103,8 +103,8 @@ window.onPostResume = () => {
 window.onPause = () => {
 }
 
-window.onResume = async () => {
-    console.log("Text => ", await getClipboardText());
+window.onResume = () => {
+    console.log("Text => ", AndroidInterface.getClipboardText());
 }
 
 async function getClipboardText() {
@@ -130,8 +130,71 @@ window.onWindowFocusChanged = () => {
 
 }
 
+window.addEventListener("message", (event) => {
+    if (event.data === "Connect" && event.ports.length > 0) {
+        messagePort = event.ports[0];
+
+        // Listen for function calls from Android
+        messagePort.onmessage = function (msgEvent) {
+            try {
+                let data = msgEvent.data.split("|");
+                let functionName = data[0];
+                let params = data.slice(1); // Get parameters
+
+                console.log(`Executing: ${functionName} with params:`, params);
+
+                // Call the JavaScript function dynamically with arguments
+                if (typeof window[functionName] === "function") {
+                    window[functionName](...params);
+                }
+            } catch (error) {
+                console.error("Error processing message:", error);
+            }
+        };
+
+        // ✅ Notify Android that WebMessagePort is ready
+        messagePort.postMessage("Ready");
+    }
+});
+
+
+// Super Fast Hex to String Decoder (Using slice instead of substr)
+/*function hexToString(hex) {
+    let str = "";
+    for (let i = 0; i < hex.length; i += 2) {
+        str += String.fromCharCode(parseInt(hex.slice(i, i + 2), 16));
+    }
+    return str;
+}
+
+window.addEventListener("message", (event) => {
+    if (event.data === "Connect" && event.ports.length > 0) {
+        messagePort = event.ports[0];
+
+        messagePort.onmessage = function (msgEvent) {
+            try {
+                let [hexFunction, hexParams] = msgEvent.data.split("|");
+
+                let functionName = hexToString(hexFunction);
+                let params = hexParams === "00" ? [] : hexToString(hexParams).split(";;");
+
+                console.log(`Executing: ${functionName} with params:`, params);
+
+                if (typeof window[functionName] === "function") {
+                    window[functionName](...params);
+                }
+            } catch (error) {
+                console.error("Error processing message:", error);
+            }
+        };
+
+        messagePort.postMessage("Ready");
+    }
+});*/
+
 window.changeSocialMediaUri = (socialMediaUri) => {
     // Change the value of the Uri
+    console.log("Reached changeSocialMediaUri");
     if (socialMediaUri !== null && socialMediaUri !== undefined && socialMediaUri.toString().trim().length > 0) {
         window.localStorage.setItem("social-media-uri", socialMediaUri.toString().trim());
     }
@@ -141,7 +204,7 @@ window.reloadWebPage = () => {
     window.location.replace(window.location.href);
 }
 
-window.addEventListener("message", (event) => {
+/*window.addEventListener("message", (event) => {
     if (event.data === "Connect" && event.ports.length > 0) {
         messagePort = event.ports[0];
 
@@ -166,7 +229,7 @@ window.addEventListener("message", (event) => {
         // ✅ Notify Android that WebMessagePort is ready
         messagePort.postMessage("Ready");
     }
-});
+});*/
 // Example usage
 document.addEventListener("DOMContentLoaded", () => {
     // Now, let's check the platform

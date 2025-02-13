@@ -109,6 +109,41 @@ function removeTranslucentBackgroundNoAnimation(rootParentElement) {
     translucentBackgroundNoAnimation.replaceChildren();
 }
 
+// Super Fast Hex to String Decoder (Using slice instead of substr)
+/*function hexToString(hex) {
+    let str = "";
+    for (let i = 0; i < hex.length; i += 2) {
+        str += String.fromCharCode(parseInt(hex.slice(i, i + 2), 16));
+    }
+    return str;
+}
+
+window.addEventListener("message", (event) => {
+    if (event.data === "Connect" && event.ports.length > 0) {
+        messagePort = event.ports[0];
+
+        messagePort.onmessage = function (msgEvent) {
+            try {
+                let [hexFunction, hexParams] = msgEvent.data.split("|");
+
+                let functionName = hexToString(hexFunction);
+                let params = hexParams === "00" ? [] : hexToString(hexParams).split(";;");
+
+                console.log(`Executing: ${functionName} with params:`, params);
+
+                if (typeof window[functionName] === "function") {
+                    window[functionName](...params);
+                }
+            } catch (error) {
+                console.error("Error processing message:", error);
+            }
+        };
+
+        messagePort.postMessage("Ready");
+    }
+});*/
+
+
 window.addEventListener("message", (event) => {
     if (event.data === "Connect" && event.ports.length > 0) {
         messagePort = event.ports[0];
@@ -116,7 +151,7 @@ window.addEventListener("message", (event) => {
         // Listen for function calls from Android
         messagePort.onmessage = function (msgEvent) {
             try {
-                let data = msgEvent.data.split(":");
+                let data = msgEvent.data.split("|");
                 let functionName = data[0];
                 let params = data.slice(1); // Get parameters
 
