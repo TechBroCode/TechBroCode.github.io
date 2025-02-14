@@ -204,6 +204,11 @@ window.reloadWebPage = () => {
     window.location.replace(window.location.href);
 }
 
+window.receivedFiles = (path, jsonFileString) => {
+    console.log("Look up");
+    console.log("WebJSON", jsonFileString);
+}
+
 /*window.addEventListener("message", (event) => {
     if (event.data === "Connect" && event.ports.length > 0) {
         messagePort = event.ports[0];
@@ -241,7 +246,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Let's call the Android Interface for social media. Passing Whatsapp Application id as a param.
                 // We'll also check if tree uri for Whatsapp is saved
                 const socialMediaTreeUri = window.localStorage.getItem("social-media-uri");
-                AndroidInterface.receiveSocialPlatformPath("content://com.android.externalstorage.documents/tree/primary:", "Android/media/com.whatsapp/WhatsApp/Media/.Statuses", "WhatsApp/Media/.Statuses", socialMediaTreeUri);
+                AndroidInterface.receiveSocialPlatformPath(null, "/storage/emulated/0/Android/media/com.whatsapp/WhatsApp/Media/.Statuses", socialMediaTreeUri);
+                //AndroidInterface.receiveSocialPlatformPath("content://com.android.externalstorage.documents/tree/primary:", "Android/media/com.whatsapp/WhatsApp/Media/.Statuses", socialMediaTreeUri);
                 break;
             }
         }
