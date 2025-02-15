@@ -159,6 +159,7 @@ body {
     flex-direction: column;
     align-self: center;
     align-items: flex-start;
+    justify-content: center;
     flex-shrink: 0;
     position: relative;
 }

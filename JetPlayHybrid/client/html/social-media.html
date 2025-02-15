@@ -34,8 +34,20 @@
             document.documentElement.setAttribute("data-theme", "light");
         }
     </script>
+
+    <style>
+        @keyframes circle-loader {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
 </head>
 <body>
+<div class="main-container">
+    <div id="progress-waiter"
+         style="animation: circle-loader 1s linear infinite; width: 50px; height: 50px; background: none; border: 2px solid var(--blue-to-white); align-self: center; justify-content: center; display: flex; vertical-align: middle; vert-align: middle; border-radius: 50%; border-top-color: transparent;"></div>
+</div>
 <script type="application/ecmascript">
     let jetPlaySecretKey = "";
     let statusBarHeight = "0";

@@ -90,9 +90,9 @@ window.onHostNetChange = (isOnline) => {
     console.log(isOnline);
     hasInternetConnection = isOnline !== undefined && isOnline !== null && isOnline.toString().trim().toLowerCase() === "true";
     if (hasInternetConnection) {
-        AndroidInterface.showToastMessage("Internet connection available", 1);
+        //AndroidInterface.showToastMessage("Internet connection available", 1);
     } else {
-        AndroidInterface.showToastMessage("No internet connection", 1);
+        //AndroidInterface.showToastMessage("No internet connection", 1);
     }
 }
 
@@ -204,9 +204,36 @@ window.reloadWebPage = () => {
     window.location.replace(window.location.href);
 }
 
-window.receivedFiles = (path, jsonFileString) => {
-    console.log("Look up");
-    console.log("WebJSON", jsonFileString);
+window.receivedFiles = (jsonFileString) => {
+
+    try {
+        // Parse JSON string into an array of objects
+        const jsonArray = JSON.parse(jsonFileString);
+
+        //console.log("Parsed JSON:", jsonArray);
+
+        // ✅ Log the entire JSON in a properly formatted way
+        console.log("Parsed JSON:\n", JSON.stringify(jsonArray, null, 4));
+
+        // Iterate over each JSON object in the array
+        /*jsonArray.forEach((obj, index) => {
+            console.log("Object: ", obj.toString(), " at index: ", index);
+            console.log(`Object ${index + 1}:`);
+            //AndroidInterface.showToastMessage("JSON Parsed completely", 1);
+
+            Object.entries(obj).forEach(([key, value]) => {
+                console.log(`key   ${key}: ${value}`);
+                //AndroidInterface.showToastMessage("" + key + " => " + value, 1);
+            });
+        });*/
+
+        // Now, let's add all the files to the DOM
+
+
+    } catch (error) {
+        console.error("Error parsing JSON:", error);
+        AndroidInterface.showToastMessage("Error parsing JSON:" + error, 1);
+    }
 }
 
 /*window.addEventListener("message", (event) => {
