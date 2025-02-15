@@ -1,6 +1,9 @@
 let hasInternetConnection = null;
 const socket = io();
 let messagePort;
+const mainContainer = document.querySelector(".main-container");
+const gridContainer = document.querySelector("#grid-parent");
+const progressWaiter = document.querySelector("#progress-waiter")
 
 socket.on("connect", () => {
     console.log("Connected to server");
@@ -228,7 +231,10 @@ window.receivedFiles = (jsonFileString) => {
         });*/
 
         // Now, let's add all the files to the DOM
-
+        // Let's check if we have grid parent already
+        if (mainContainer?.contains(gridContainer)) {
+            // Just add them to the grid container else,
+        }
 
     } catch (error) {
         console.error("Error parsing JSON:", error);
