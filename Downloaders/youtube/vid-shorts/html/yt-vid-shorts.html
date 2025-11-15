@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,viewport-fit=cover"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <!--TODO: SCRIPT TO PERFORM NO CORS IMPL-->
+    <script>
+        //(function () {
+        // Generate a unique callback name each time
+        function makeCallbackName() {
+            return '__native_cb_' + Math.random().toString(36).slice(2);
+        }
+
+        window.nativeFetch = function (input, init = {}) {
+            const {
+                method = 'GET',
+                headers = {},
+                body = null,
+                responseType = 'text'  // 'text'|'json'|'image'|'video'
+            } = init;
+
+            return new Promise((resolve, reject) => {
+                const cbName = makeCallbackName();
+                // Define the callback that the Java side will call:
+                window[cbName] = function (payload) {
+                    delete window[cbName];
+                    if (payload.success) {
+                        if (responseType === 'json') {
+                            try {
+                                payload.parsedBody = JSON.parse(payload.body);
+                            } catch (e) {
+                                return reject(
+                                    new TypeError('Failed to parse JSON: ' + e.message)
+                                );
+                            }
+                        }
+                        resolve(payload);
+                    } else {
+                        const err = new Error(payload.statusText || 'Network Error');
+                        err.payload = payload;
+                        reject(err);
+                    }
+                };
+
+                // Kick off the native call:
+                JetPlay.executeApiRequest(
+                    input,
+                    method,
+                    body != null ? JSON.stringify(body) : null,
+                    Object.keys(headers).length ? JSON.stringify(headers) : null,
+                    responseType,
+                    cbName
+                );
+            });
+        };
+        //})();
+
+
+        /*TODO: ===============            USAGE                  ====================*/
+        // TEXT
+
+        /*(async () => {
+            const res = await nativeFetch('https://example.com/readme.txt');
+            console.log(res.body);          // raw text
+        })();*/
+
+        // JSON
+
+        /*(async () => {
+            const res = await nativeFetch('https://api.example.com/data', {
+                responseType: 'json'
+            });
+            console.log(res.parsedBody);    // parsed JS object
+        })();*/
+
+        // IMAGE
+
+        /*(async () => {
+            const res = await nativeFetch('https://example.com/avatar.png', {
+                responseType: 'image'
+            });
+            const img = new Image();
+            img.src = res.body;             // data:image/png;base64,...
+            document.body.appendChild(img);
+        })();*/
+
+        // VIDEO
+        /*(async () => {
+            const res = await nativeFetch('https://example.com/clip.mp4', {
+                responseType: 'video'
+            });
+            const video = document.createElement('video');
+            video.src = res.body;           // data:video/mp4;base64,...
+            video.controls = true;
+            document.body.appendChild(video);
+        })();*/
+
+        /*TODO             =================================                 USAGES SAMPLE                                       =========================*/
+
+        // Simple GET (no-body, no headers)
+        /*(async () => {
+            try {
+                const res = await nativeFetch('https://api.example.com/status');
+                console.log('Status:', res.status);      // e.g. 200
+                console.log('Body:', res.body);          // raw text
+            } catch (e) {
+                console.error('Fetch failed:', e);
+            }
+        })();
+        */
+
+        // GET with custom headers (no body)
+        /*(async () => {
+            try {
+                const res = await nativeFetch('https://api.example.com/user/profile', {
+                    headers: {
+                        'Authorization': 'Bearer abc123',
+                        'Accept':        'application/json'
+                    },
+                    responseType: 'json'
+                });
+                console.log('User object:', res.parsedBody);
+            } catch (e) {
+                console.error('Fetch failed:', e);
+            }
+        })();*/
+
+        // POST with JSON object body (with headers)
+        /*(async () => {
+            const payload = {
+                name:  'Alice',
+                email: 'alice@example.com',
+            };
+            try {
+                const res = await nativeFetch('https://api.example.com/users', {
+                    method:  'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body:    payload,
+                    responseType: 'json'
+                });
+                console.log('Created user:', res.parsedBody);
+            } catch (e) {
+                console.error('Create failed:', e);
+            }
+        })();*/
+
+        // POST with a JSON array as body
+        /*(async () => {
+            const items = [
+                {id: 1, qty: 2},
+                {id: 2, qty: 5},
+                {id: 3, qty: 1}
+            ];
+            try {
+                const res = await nativeFetch('https://api.example.com/cart/bulk-add', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer xyz789'
+                    },
+                    body: items,
+                    responseType: 'json'
+                });
+                console.log('Bulk add response:', res.parsedBody);
+            } catch (e) {
+                console.error('Bulk add failed:', e);
+            }
+        })();*/
+
+        // 5. PUT without headers but with a nested JSON body
+        /*(async () => {
+            const update = {
+                settings: {
+                    notifications: {
+                        email: true,
+                        sms:   false
+                    },
+                    theme: 'dark'
+                }
+            };
+            try {
+                const res = await nativeFetch('https://api.example.com/user/settings', {
+                    method: 'PUT',
+                    body: update,
+                    responseType: 'json'
+                });
+                console.log('Updated settings:', res.parsedBody);
+            } catch (e) {
+                console.error('Update failed:', e);
+            }
+        })();*/
+
+    </script>
+    <script>
+        // stub out all console methods
+        window.console = new Proxy({}, {
+            get: () => () => {
+            }
+        });
+    </script>
+    <script src="../../../../base.js" type="module"></script>
+    <script src="../../keys.js" type="module"></script>
+    <link href="../../../css/def-style.css" hreflang="en-US" rel="stylesheet" type="text/css">
+
+    <link href="../css/yt-vid-shorts.css" hreflang="en-US" rel="stylesheet" type="text/css">
+
+    <!--<script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.slim.min.js" type="module"></script>-->
+    <script defer src="../js/yt-vid-shorts.js" type="module"></script>
+    <!--TODO: IOS support-->
+    <link href="../../../../JetPlayBrowser/img/icons/JetPlay.png" rel="apple-touch-icon">
+    <meta content="#ff0f00" name="apple-mobile-web-app-status-bar">
+    <meta content="#FFFFFF" name="theme-color">
+    <title>YouTube Downloader Page</title>
+    <style>
+        input::placeholder {
+            width: auto;
+            height: auto;
+            align-self: center;
+            align-items: center;
+            font-kerning: auto;
+            font-style: normal;
+            text-align: start;
+            font-family: "Poppins", sans-serif;
+            color: var(--textColor);
+            margin: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: flex;
+            padding: 0 0 0 0;
+            vertical-align: center;
+            vert-align: middle;
+            font-weight: 400;
+            opacity: 0.5;
+            font-size: 16px;
+        }
+
+        .rotate-dropdown-video-selector {
+            transform: rotate(180deg);
+        }
+
+        img {
+            image-rendering: high-quality;
+        }
+    </style>
+
+    <script type="application/ecmascript">
+        // Apply the correct theme immediately page loads
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+            document.documentElement.setAttribute("data-theme", "light");
+        }
+    </script>
+</head>
+<body>
+<div class="translucent-background-escape-no-animation" id="body-level-overlay-div"></div>
+<div id="all-content"
+     style="width: 100vw; height: 100vh; display: flex; align-self: center; flex-direction: column; flex-shrink: 0; align-items: center; background: var(--windowBackground);">
+    <!--TODO: Let's place white container here-->
+    <div id="top-blue-bg"
+         style="width: 100vw; height: 20px; background: #000cff; display: flex; align-self: center; align-items: center;"></div>
+    <div id="contents"
+         style="overflow-y: auto; flex: 1; width: inherit; height: auto; display: flex; flex-direction: column; align-self: center; align-items: center; justify-content: flex-start; flex-shrink: inherit; background: var(--windowBackground); padding: 12px;">
+        <div id="thumb-title-path-container"
+             style="display: flex; width: 100%; height: auto; flex-direction: column; align-self: center; justify-content: flex-start; flex-shrink: 0; align-items: center;">
+            <div id="thumb-title-container"
+                 style="display: inherit; width: inherit; height: inherit; flex-direction: row; align-self: inherit; justify-content: flex-start; align-items: center;">
+                <div id="thumbnail-container"
+                     style="width: 35%; height: 80px; justify-content: center; position: relative; display: flex; flex-shrink: 0; align-items: center; align-self: center;">
+                    <img alt="" id="thumbnail"
+                         loading="lazy"
+                         style="image-rendering: high-quality; width: 100%; height: 100%; position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-self: center; object-fit: contain;">
+                </div>
+                <div id="title-rename-redDiv-container"
+                     style="width: 65%; height: 100%; display: flex; margin-left: 10px; align-self: center; flex-direction: column; flex-shrink: inherit; justify-content: flex-start; align-items: center;">
+                    <textarea enterkeyhint="done" id="title"
+                              placeholder="Video title"
+                              style="width: 100%; height: auto; display: flex; align-self: flex-start; text-align: start; font-weight: 400; color: black; background: none; outline: none; border: none; caret-color: var(--textColor) !important;  font-size: 14px;  word-break: break-all; overflow-wrap: break-word; font-family: 'Poppins', sans-serif; letter-spacing: -0.25px;">
+
+                    </textarea>
+                    <p id="rename"
+                       style=" margin-top: 3px; margin-bottom: 3px; width: 100%; height: auto; letter-spacing: -0.25px; text-align: center; justify-content: flex-end; color: #00A3FF; font-size: 12px; align-self: center; align-items: center; display: flex; font-family: 'Poppins', sans-serif;">
+                        RENAME</p>
+                    <div id="redDiv"
+                         style="width: 100%; height: 1px; display: flex; align-self: center; background: var(--colorPrimaryDark); align-items: center;"></div>
+                </div>
+            </div>
+            <!--TODO: Path, space rem & hr-->
+            <div id="path-space-rem-container"
+                 style="width: 100%; height: auto; margin-top: 10px; display: flex; align-self: center; align-items: center; flex-direction: column; justify-content: flex-start;">
+                <p id="path"
+                   style="align-items: center; display: flex; align-self: center; text-align: center; width: 100%; height: auto; color: var(--textColor); font-weight: 400; font-family: 'Poppins', sans-serif; letter-spacing: -0.25px; font-size: 12px;"></p>
+                <p id="space"
+                   style="margin-top: 3px; align-items: center; display: flex; align-self: center; text-align: center; width: 100%; height: auto; color: var(--textColor); font-weight: 400; font-family: 'Poppins', sans-serif; letter-spacing: -0.25px; font-size: 12px; opacity: 0.5;"></p>
+                <div id="hrDiv"
+                     style="margin-top: 8px; width: 100%; height: 0.5px; display: flex; align-self: center; background: var(--textColor); align-items: center; opacity: 0.3;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--TODO: Here, we'll attach the main script-->
+<script type="application/ecmascript">
+    AndroidInterface.setGoogleAdsEnable(true);
+    // 1. Instantiate once the DOM is loaded for adsvertise (or at the bottom like this)
+    /*try {
+        const PUBLISHER_ID = 1265897; // ← swap in your own
+        const targetUrl = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
+        const client = new LinkvertiseClient();
+        const monetizedUrl = client.linkvertise(PUBLISHER_ID, targetUrl);
+        window.prompt("Monetized link", monetizedUrl);
+    } catch (e) {
+        window.alert("Error: " + e);
+    }*/
+</script>
+</body>
+</html>
