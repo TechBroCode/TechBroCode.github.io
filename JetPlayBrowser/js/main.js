@@ -914,8 +914,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     mainFragmentItemHolder.classList.add("disabled");
                 }
                 preventDefaultStopPropagation(e);
-                const mainHomeFragmentItem = e.target.closest(".main-home-fragment-item");
-                const mainHomeFragmentItems = document.querySelectorAll(".main-home-fragment-item");
+                const mainHomeFragmentItem = e.target.closest(".main-hot-fragment-item");
+                const mainHomeFragmentItems = document.querySelectorAll(".main-hot-fragment-item");
                 const clickedIndex = [...mainHomeFragmentItems].indexOf(mainHomeFragmentItem);
                 if (clickedIndex === -1) {
                     mainFragmentItemHolder.classList.remove("disabled");
@@ -984,7 +984,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             mainFragmentItemHolder.ontouchstart = (e) => {
                 preventDefaultStopPropagation(e);
-                const mainHomeFragmentItem = e.target.closest(".main-home-fragment-item");
+                const mainHomeFragmentItem = e.target.closest(".main-hot-fragment-item");
                 if (mainHomeFragmentItem) {
                     if (!mainHomeFragmentItem.classList.contains("hover")) {
                         mainHomeFragmentItem.classList.add("hover");
@@ -993,7 +993,7 @@ document.addEventListener("DOMContentLoaded", () => {
             };
             mainFragmentItemHolder.ontouchend = (e) => {
                 preventDefaultStopPropagation(e);
-                const mainHomeFragmentItem = e.target.closest(".main-home-fragment-item");
+                const mainHomeFragmentItem = e.target.closest(".main-hot-fragment-item");
                 if (mainHomeFragmentItem) {
                     if (mainHomeFragmentItem.classList.contains("hover")) {
                         mainHomeFragmentItem.classList.remove("hover");
@@ -1002,7 +1002,7 @@ document.addEventListener("DOMContentLoaded", () => {
             };
             mainFragmentItemHolder.ontouchcancel = (e) => {
                 preventDefaultStopPropagation(e);
-                const mainHomeFragmentItem = e.target.closest(".main-home-fragment-item");
+                const mainHomeFragmentItem = e.target.closest(".main-hot-fragment-item");
                 if (mainHomeFragmentItem) {
                     if (mainHomeFragmentItem.classList.contains("hover")) {
                         mainHomeFragmentItem.classList.remove("hover");
