@@ -1,0 +1,150 @@
+<!--TODO: AVOID USING CONSOLE.LOG TO PREVENT ANY WEB TRACKING...-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,viewport-fit=cover"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <script>
+        // stub out all console methods
+        window.console = new Proxy({}, {
+            get: () => () => {
+            }
+        });
+    </script>
+    <link href="../../def-style.css" hreflang="en-US" rel="stylesheet" type="text/css">
+    <script src="../../base.js" type="module"></script>
+    <script defer src="../js/hot.js" type="module"></script>
+    <!--TODO: IOS support-->
+    <link href="../../../../JetPlayBrowser/img/icons/JetPlay.png" rel="apple-touch-icon">
+    <meta content="#ff0f00" name="apple-mobile-web-app-status-bar">
+    <meta content="#FFFFFF" name="theme-color">
+    <title>Welcome Page</title>
+    <style>
+        input::placeholder {
+            width: auto;
+            height: auto;
+            align-self: center;
+            align-items: center;
+            font-kerning: auto;
+            font-style: normal;
+            text-align: start;
+            font-family: "Poppins", sans-serif;
+            color: var(--textColor);
+            margin: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: flex;
+            padding: 0 0 0 0;
+            vertical-align: center;
+            vert-align: middle;
+            font-weight: 400;
+            opacity: 0.5;
+            font-size: 16px;
+        }
+
+        .rotate-dropdown-video-selector {
+            transform: rotate(180deg);
+        }
+
+        img {
+            image-rendering: high-quality;
+        }
+    </style>
+
+    <script type="application/ecmascript">
+        // Apply the correct theme immediately page loads
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+            document.documentElement.setAttribute("data-theme", "light");
+        }
+
+        /*TODO: FOR LINK ADVERTISE...*/
+        /**
+         * A tiny Linkvertise client in plain JS.
+         */
+        class LinkvertiseClient {
+            /**
+             * @param {Object} [opts]
+             * @param {string} [opts.baseUrl] — Override the default short-link domain.
+             */
+            constructor({baseUrl} = {}) {
+                this.linkvertiseUrl = baseUrl || 'https://link-to.net';
+            }
+
+            /**
+             * Base64-encodes an ASCII string.
+             * @param {string} str
+             * @returns {string}
+             */
+            _btoa(str) {
+                // Since URLs are ASCII, window.btoa is safe here.
+                return window.btoa(str);
+            }
+
+            /**
+             * Produces a Linkvertise-style short link.
+             *
+             * @param {number|string} userId — your Linkvertise publisher ID
+             * @param {string} targetUrl — the URL to monetize
+             * @returns {string} — the monetized short URL
+             */
+            linkvertise(userId, targetUrl) {
+                // 1) URI-encode the target (preserving Linkvertise’s “safe” set):
+                const safeEncoded = encodeURIComponent(targetUrl)
+                    // encodeURIComponent encodes ! ' ( ) *, but linkvertise.py’s safe includes: ~@#$&()*!+=:;,.?/'
+                    .replace(/[!'()*]/g, c => '%' + c.charCodeAt(0).toString(16))
+                    // now re-insert any truly safe chars per the Python wrapper:
+                    .replace(/%7E/g, '~')
+                    .replace(/%40/g, '@')
+                    .replace(/%23/g, '#')
+                    .replace(/%24/g, '$')
+                    .replace(/%26/g, '&')
+                    .replace(/%2A/g, '*')
+                    .replace(/%21/g, '!')
+                    .replace(/%2B/g, '+')
+                    .replace(/%3D/g, '=')
+                    .replace(/%3A/g, ':')
+                    .replace(/%3B/g, ';')
+                    .replace(/%2C/g, ',')
+                    .replace(/%2E/g, '.')
+                    .replace(/%2F/g, '/')
+                    .replace(/%3F/g, '?')
+                    .replace(/%27/g, "'");
+
+                // 2) Base-64 encode:
+                const b64 = this._btoa(safeEncoded);
+
+                // 3) Build the URL:
+                const randPart = (Math.random() * 1000).toString();
+                const base = `${this.linkvertiseUrl}/${userId}/${randPart}/dynamic`;
+
+                return `${base}?r=${b64}`;
+            }
+        }
+
+        // Expose globally (optional, since classes declared in head are global by default)
+        window.LinkvertiseClient = LinkvertiseClient;
+    </script>
+</head>
+<body>
+<div style="width: 100vw; height: 100vh; background: var(--colorPrimaryDark); display: flex;">
+    <div class="translucent-background-escape-no-animation" id="body-level-overlay-div">
+    </div>
+</div>
+<script type="application/ecmascript">
+    // 1. Instantiate once the DOM is loaded for adsvertise (or at the bottom like this)
+    /*try {
+        const PUBLISHER_ID = 1265897; // ← swap in your own
+        const targetUrl = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
+        const client = new LinkvertiseClient();
+        const monetizedUrl = client.linkvertise(PUBLISHER_ID, targetUrl);
+        window.prompt("Monetized link", monetizedUrl);
+    } catch (e) {
+        window.alert("Error: " + e);
+    }*/
+</script>
+</body>
+</html>
