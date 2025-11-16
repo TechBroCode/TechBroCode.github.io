@@ -6,5 +6,6 @@ window.isNullUndefinedOrEmpty = (value) => {
 }
 
 window.__onWebTagReceived = (webTag) => {
+    alert("webTag => " + webTag);
     WEB_TAG = webTag;
 }
