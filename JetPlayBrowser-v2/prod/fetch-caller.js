@@ -148,7 +148,8 @@ window.nativeFetch = function (options) {
         // call the native bridge: jetelex42501QbSdkDroid.fetchRequest(requestId, url, method, body, headersJson, returnType)
         try {
             const headersJson = JSON.stringify(headers); // stringify headers
-            if (window.jetelex42501QbSdkDroid){// && typeof window.jetelex42501QbSdkDroid.fetchRequest === 'function') {
+            if (window.jetelex42501QbSdkDroid){
+                // && typeof window.jetelex42501QbSdkDroid.fetchRequest === 'function') {
                 // call the native interface provided by WebView.addJavascriptInterface
                 window.jetelex42501QbSdkDroid.fetchRequest(String(requestId), String(WEB_TAG), String(url), String(method), String(body), String(headersJson), String(returnType));
             } else {
@@ -157,6 +158,7 @@ window.nativeFetch = function (options) {
                 reject({requestId: requestId, error: "native bridge not available"});
             }
         } catch (err) {
+            alert("nativeFetch: " + err);
             // on error calling native, cleanup and reject
             delete window.__fetchNativeCallbacks[requestId];
             reject({requestId: requestId, error: String(err)});
