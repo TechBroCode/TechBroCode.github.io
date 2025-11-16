@@ -2,14 +2,14 @@ const body = document.querySelector("body");
 const generalContent = document.getElementById("general-content");
 //const out = document.getElementById("out");
 
-document.addEventListener("DOMContentLoaded",  () => {
+document.addEventListener("DOMContentLoaded",  async () => {
     try {
         if (isNullUndefinedOrEmpty(body.style.display) || body?.style?.display === "none") {
             body.style.display = "flex";
         }
         let webTagChecker = setInterval(async () => {
+            alert("WEB_TAG => " + WEB_TAG);
             if (WEB_TAG !== undefined && WEB_TAG !== null && WEB_TAG.trim().length > 0) {
-                alert("WEB_TAG => " + WEB_TAG);
                 clearInterval(webTagChecker);
                 const resp = await nativeFetch({
                     url: "https://raw.githubusercontent.com/jetelex/storage/refs/heads/master/JetPlay/all-tabs/home/v1/home.json",
