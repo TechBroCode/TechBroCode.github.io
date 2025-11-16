@@ -129,12 +129,13 @@ window.nativeFetch = function (options) {
     return new Promise(function (resolve, reject) {
         // sanitize input object
         options = options || {};
-        const requestId = options.requestId || makeUUID(); // generate id if not provided
-        const url = options.url; // request URL
-        const method = (options.method || "GET").toUpperCase(); // HTTP method (uppercased)
-        const body = options.body === undefined ? "" : options.body; // request body or empty string
-        const headers = options.headers || {}; // headers object
-        const returnType = options.returnType || "text"; // optional returnType
+        const requestId = options?.requestId || makeUUID(); // generate id if not provided
+        const url = options?.url; // request URL
+        const method = (options?.method || "GET").toUpperCase(); // HTTP method (uppercased)
+        const body = options?.body === undefined ? "" : options?.body; // request body or empty string
+        const headers = options?.headers || {}; // headers object
+        const returnType = options?.returnType || "text"; // optional returnType
+        alert("details: " + JSON.stringify(options));
 
         // small validation
         if (!url) {

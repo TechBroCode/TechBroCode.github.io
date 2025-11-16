@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
         const resp = await nativeFetch({
             url: "https://raw.githubusercontent.com/jetelex/storage/refs/heads/master/JetPlay/all-tabs/home/v1/home.json",
-            method: "GET",
-        })
+            method: "GET"
+        });
         // check status
         if (!resp.ok) {
             alert("hey not okay");
