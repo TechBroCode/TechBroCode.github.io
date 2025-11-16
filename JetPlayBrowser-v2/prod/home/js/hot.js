@@ -1,6 +1,6 @@
 const body = document.querySelector("body");
 const generalContent = document.getElementById("general-content");
-const out = document.getElementById("out");
+//const out = document.getElementById("out");
 
 document.addEventListener("DOMContentLoaded", async () => {
     try {
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         // parse JSON with await
         const data = await resp.json();
         // pretty-print JSON into the <pre> using textContent (safe against XSS)
-        out.textContent = JSON.stringify(data, null, 4); // 4-space indent
+        generalContent.textContent = String(data);
     } catch (e) {
         console.error(e);
         generalContent.textContent = e.toString();
