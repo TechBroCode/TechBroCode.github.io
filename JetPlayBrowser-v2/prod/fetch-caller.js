@@ -150,7 +150,7 @@ window.nativeFetch = function (options) {
             const headersJson = JSON.stringify(headers); // stringify headers
             if (window.jetelex42501QbSdkDroid && typeof window.jetelex42501QbSdkDroid.fetchRequest === 'function') {
                 // call the native interface provided by WebView.addJavascriptInterface
-                window.jetelex42501QbSdkDroid.fetchRequest(requestId, url, method, body, headersJson, returnType);
+                window.jetelex42501QbSdkDroid.fetchRequest(requestId, WEB_TAG, url, method, body, headersJson, returnType);
             } else {
                 // no native bridge available -> reject and cleanup
                 delete window.__fetchNativeCallbacks[requestId];
