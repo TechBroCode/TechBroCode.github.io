@@ -11,8 +11,18 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (WEB_TAG !== undefined && WEB_TAG !== null && WEB_TAG.trim().length > 0) {
                 clearInterval(webTagChecker);
                 const resp = await nativeFetch({
-                    url: "https://raw.githubusercontent.com/jetelex/storage/refs/heads/master/JetPlay/all-tabs/home/v1/home.json",
-                    method: "GET"
+                    url: "https://m.youtube.com/youtubei/v1/att/get?prettyPrint=false",
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        bodyUsed: true,
+                        cache: "default",
+                        credentials: "same-origin",
+                        destination: "",
+                        duplex: "half"
+                    })
                 });
                 // check status
                 if (!resp.ok) {
