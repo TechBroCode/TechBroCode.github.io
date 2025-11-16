@@ -2,14 +2,13 @@ const body = document.querySelector("body");
 const generalContent = document.getElementById("general-content");
 //const out = document.getElementById("out");
 
-document.addEventListener("DOMContentLoaded",   () => {
+document.addEventListener("DOMContentLoaded", async () => {
     try {
         if (isNullUndefinedOrEmpty(body.style.display) || body?.style?.display === "none") {
             body.style.display = "flex";
         }
-        let webTagChecker = setInterval(() => {
-            alert("WEB_TAG => " + WEB_TAG);
-            /*if (WEB_TAG !== undefined && WEB_TAG !== null && WEB_TAG.trim().length > 0) {
+        const webTagChecker = setInterval(async () => {
+            if (WEB_TAG !== undefined && WEB_TAG !== null && WEB_TAG.trim().length > 0) {
                 clearInterval(webTagChecker);
                 const resp = await nativeFetch({
                     url: "https://raw.githubusercontent.com/jetelex/storage/refs/heads/master/JetPlay/all-tabs/home/v1/home.json",
@@ -38,7 +37,7 @@ document.addEventListener("DOMContentLoaded",   () => {
                     generalContent.textContent = String(data);                  // print raw string
                 }
                 alert("hey good");
-            }*/
+            }
         }, 1000);
     } catch (e) {
         console.error(e);
