@@ -13,16 +13,30 @@ document.addEventListener("DOMContentLoaded", async () => {
         })
         // check status
         if (!resp.ok) {
+            alert("not okay");
             console.error('Bad status', resp.status, resp.statusText);
             return;
         }
 
-        // parse JSON with await
-        const data = await resp.json();
-        // pretty-print JSON into the <pre> using textContent (safe against XSS)
-        generalContent.textContent = data.toString();
+        // try to parse JSON safely. If JSON.parse fails, fallback to text()
+        let data;
+        try {
+            data = await resp.json();         // if body is JSON this yields an object/array
+        } catch (e) {
+            // body isn't JSON — get as text
+            data = await resp.text();        // data will be a string
+        }
+
+        // If data is an object/array, stringify it nicely. If it's a string, print as-is.
+        if (data !== null && typeof data === 'object') {
+            generalContent.textContent = JSON.stringify(data, null, 2); // pretty print object/array
+        } else {
+            generalContent.textContent = String(data);                  // print raw string
+        }
+        alert("good");
     } catch (e) {
         console.error(e);
+        alert("error");
         generalContent.textContent = e.toString();
     }
 })
