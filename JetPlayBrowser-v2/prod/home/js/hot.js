@@ -18,8 +18,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // parse JSON with await
         const data = await resp.json();
-        console.log('repo data', data);
-        generalContent.textContent = data;
+        // pretty-print JSON into the <pre> using textContent (safe against XSS)
+        generalContent.textContent = JSON.stringify(data, null, 4); // 4-space indent
     } catch (e) {
         console.error(e);
         generalContent.textContent = e.toString();
