@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded",   () => {
             body.style.display = "flex";
         }
         let webTagChecker = setInterval(() => {
-            alert("WEB_TAG => " + WEB_TAG);
+            alert("WEB_TAG => ");
             /*if (WEB_TAG !== undefined && WEB_TAG !== null && WEB_TAG.trim().length > 0) {
                 clearInterval(webTagChecker);
                 const resp = await nativeFetch({
