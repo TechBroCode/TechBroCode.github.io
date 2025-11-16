@@ -135,7 +135,7 @@ window.nativeFetch = function (options) {
         const body = options?.body === undefined ? "" : options?.body; // request body or empty string
         const headers = options?.headers || {}; // headers object
         const returnType = options?.returnType || "text"; // optional returnType
-        alert("details: " + JSON.stringify(options));
+        alert("details: " + options);
 
         // small validation
         if (!url) {
