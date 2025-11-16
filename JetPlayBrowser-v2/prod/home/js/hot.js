@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         })
         // check status
         if (!resp.ok) {
-            alert("not okay");
+            alert("hey not okay");
             console.error('Bad status', resp.status, resp.statusText);
             return;
         }
@@ -33,10 +33,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         } else {
             generalContent.textContent = String(data);                  // print raw string
         }
-        alert("good");
+        alert("hey good");
     } catch (e) {
         console.error(e);
-        alert("error");
+        alert("hey error");
         generalContent.textContent = e.toString();
     }
 })

@@ -1,4 +1,4 @@
-var WEB_TAG = null;
+var WEB_TAG = "";
 window.isNullUndefinedOrEmpty = (value) => {
     if (value === undefined || value === null) return true;
     if (!(typeof value === "string")) value = String(value ?? "").trim();
