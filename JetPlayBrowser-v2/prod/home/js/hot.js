@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         // parse JSON with await
         const data = await resp.json();
         // pretty-print JSON into the <pre> using textContent (safe against XSS)
-        generalContent.textContent = String(data);
+        generalContent.textContent = data.toString();
     } catch (e) {
         console.error(e);
         generalContent.textContent = e.toString();
