@@ -10,50 +10,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         const webTagChecker = setInterval(async () => {
             if (WEB_TAG !== undefined && WEB_TAG !== null && WEB_TAG.trim().length > 0) {
                 clearInterval(webTagChecker);
-                /*const resp = await nativeFetch({
-                    url: "https://m.youtube.com/youtubei/v1/att/get?prettyPrint=false",
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        bodyUsed: true,
-                        cache: "default",
-                        credentials: "same-origin",
-                        destination: "",
-                        duplex: "half"
-                    })
-                });
-                // check status
-                if (!resp.ok) {
-                    alert("hey not okay");
-                    console.error('Bad status', resp.status, resp.statusText);
-                    return;
-                }
-
-                // try to parse JSON safely. If JSON.parse fails, fallback to text()
-                let data;
-                try {
-                    data = await resp.json();         // if body is JSON this yields an object/array
-                } catch (e) {
-                    // body isn't JSON — get as text
-                    data = await resp.text();        // data will be a string
-                }
-
-                // If data is an object/array, stringify it nicely. If it's a string, print as-is.
-                if (data !== null && typeof data === 'object') {
-                    generalContent.textContent = JSON.stringify(data, null, 2); // pretty print object/array
-                } else {
-                    generalContent.textContent = String(data);                  // print raw string
-                }
-                alert("hey good");*/
-
-
                 // 1) Build requestId (or provide your own)
                 const requestId = 'yt-' + (Math.random().toString(16).slice(2) + Date.now().toString(16));
 
                 // 2) URL (from your .http)
-                const url = 'https://m.youtube.com/youtubei/v1/player?key=AIzaSyDyT5W0Jh49F30Pqqtyfdf7pDLFKLJoAnw';
+                const url = 'https://m.youtube.com/youtubei/v1/browse?key=AIzaSyDyT5W0Jh49F30Pqqtyfdf7pDLFKLJoAnw';
 
                 // 3) Headers object (keys quoted because they contain dashes)
                 const headers = {
@@ -67,13 +28,13 @@ document.addEventListener("DOMContentLoaded", async () => {
                     "Sec-CH-UA": "Chromium;v=142, Google Chrome;v=142, Not_A Brand;v=99",
                     "Sec-CH-UA-Arch": "",
                     "Sec-CH-UA-Bitness": "64",
-                    "Sec-CH-UA-Form-Factors": "Desktop",
+                    "Sec-CH-UA-Form-Factors": "Mobile",
                     "Sec-CH-UA-Full-Version": "142.0.7444.163",
                     "Sec-CH-UA-Full-Version-List": "Chromium;v=142.0.7444.163, Google Chrome;v=142.0.7444.163, Not_A Brand;v=99.0.0.0",
                     "Sec-CH-UA-Mobile": "?1",
-                    "Sec-CH-UA-Model": "Nexus 5",
+                    "Sec-CH-UA-Model": "SamSung S24",
                     "Sec-CH-UA-Platform": "Android",
-                    "Sec-CH-UA-Platform-Version": "6.0",
+                    "Sec-CH-UA-Platform-Version": "15.0",
                     "Sec-CH-UA-WOW64": "?0",
                     "Sec-Fetch-Dest": "empty",
                     "Sec-Fetch-Mode": "same-origin",
@@ -97,165 +58,131 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 // 4) Body as a string (paste the JSON payload here exactly)
                 // Use a template string so we don't have to escape quotes
-                const body = `{
-  "context": {
-    "client": {
-      "hl": "en",
-      "gl": "NG",
-      "remoteHost": "102.90.96.70",
-      "deviceMake": "Google",
-      "deviceModel": "Nexus 5",
-      "visitorData": "CgtJdktpTElkczFsRSjq1ejIBjIKCgJORxIEGgAgUw%3D%3D",
-      "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36,gzip(gfe)",
-      "clientName": "MWEB",
-      "clientVersion": "2.20251114.01.00",
-      "osName": "Android",
-      "osVersion": "6.0",
-      "originalUrl": "https://m.youtube.com/watch?v=h09uMeEVTKY&pp=YAHIAQHwAQG6AwIYAroFBBICZW7oBQGiBhUBZwzyaL9231hqfJ_jYi6lPRIiUo6QBwI%3D",
-      "playerType": "UNIPLAYER",
-      "screenPixelDensity": 2,
-      "platform": "MOBILE",
-      "clientFormFactor": "SMALL_FORM_FACTOR",
-      "configInfo": {
-        "appInstallData": "COrV6MgGEJT-sAUQp6XQHBDe6c8cEIfUrwUQsqLQHBD8ss4cEOWygBMQuOTOHBCc188cEL2ZsAUQrqLQHBCJsM4cEPOQ0BwQt-r-EhDhjNAcEOK4zxwQzOvPHBCDntAcEPCr0BwQ2vfOHBDyndAcENiW0BwQvbauBRC72c4cEMzfrgUQ-__PHBC0kdAcEJX3zxwQ3rzOHBCttYATEL6KsAUQi_fPHBDzs4ATEKL7zxwQgpDQHBCu1s8cENPhrwUQ5uDPHBD2q7AFENHgzxwQrKbQHBC52c4cEJbbzxwQ2YXQHBCTg9AcELyU0BwQwY_QHBD1l9AcEIHNzhwQiYPQHBDJ968FEIeszhwQndCwBRDkpNAcEIKPzxwQyIfQHBCNzLAFEJmNsQUQrKexBRCIh7AFEKer0BwQyPfPHBCClNAcEJTyzxwQjOnPHBCgp9AcEKim0BwQv5nQHBChjNAcELOq0BwQ3rqAExCWj9AcEOyM0BwqVENBTVNPaFV4LVpxLURNZVVFdWdCczlydUM0R3RDb2RNTXFDc0JBUEx2Z1g2T2FHQUJxSXVtaUdDT1BjT3hBX2tnd2IyRDRBVjV5S1ZpT3NlSFFjPTAA",
-        "coldConfigData": "COrV6MgGEPG6rQUQvbauBRCmla8FEL6KsAUQndCwBRDP0rAFEOP4sAUQgo7OHBD8ss4cEP_7zhwQnqvPHBDiuM8cEPjGzxwQ29PPHBCc188cEM_gzxwQ5efPHBDn588cELCC0BwQk4PQHBCahdAcEMiH0BwQuInQHBDMi9AcEKGM0BwQ7IzQHBCWj9AcEIKQ0BwQ85DQHBDYltAcEI-a0BwQqpzQHBCnpdAcEKim0BwQrKbQHBCgp9AcELOq0BwQp6vQHBDwq9AcEKet0BwaMkFPakZveDBoOWlJOW5Sd2pXMlRDdjNOSEZFTDRGNjR6UXFDb3pubGEwZTYxNmxPa2ZRIjJBT2pGb3gxUHMwVVlYZ200d3FQVFNnRXRaM1VNaWZ6Rzh0NElkYi1LLXdaRFdVTDI0ZyqAAUNBTVNXdzBqdU4yM0FxUVpseC1mVDVtU21oRFZDcTREalRiLUk2Y05fQlZxTk0wVDJBUEJBYWdDRlRTWnNiY2ZoYVFGa1p3RjRkc0J6OElBb0h6bklfM1VCakxQZ0FYWnBBWURvcklGajc0R3hnbnpBOGJqQnJjOW0wUExTZ1E9",
-        "coldHashData": "COrV6MgGEhIzMjMzNDA1OTAzMDkxNTEzNjIY6tXoyAYyMkFPakZveDBoOWlJOW5Sd2pXMlRDdjNOSEZFTDRGNjR6UXFDb3pubGEwZTYxNmxPa2ZROjJBT2pGb3gxUHMwVVlYZ200d3FQVFNnRXRaM1VNaWZ6Rzh0NElkYi1LLXdaRFdVTDI0Z0KAAUNBTVNXdzBqdU4yM0FxUVpseC1mVDVtU21oRFZDcTREalRiLUk2Y05fQlZxTk0wVDJBUEJBYWdDRlRTWnNiY2ZoYVFGa1p3RjRkc0J6OElBb0h6bklfM1VCakxQZ0FYWnBBWURvcklGajc0R3hnbnpBOGJqQnJjOW0wUExTZ1E9",
-        "hotHashData": "COrV6MgGEhQxODMwMDM5MjI5OTA3NDYwOTEyNxjq1ejIBiiU5PwSKKXQ_RIonpH-EijIyv4SKLfq_hIo95CAEyjLkYATKOGlgBMo8qaAEyjYsIATKOWygBMovbSAEyiut4ATKNq3gBMoybmAEyi9uoATKN66gBMyMkFPakZveDBoOWlJOW5Sd2pXMlRDdjNOSEZFTDRGNjR6UXFDb3pubGEwZTYxNmxPa2ZROjJBT2pGb3gxUHMwVVlYZ200d3FQVFNnRXRaM1VNaWZ6Rzh0NElkYi1LLXdaRFdVTDI0Z0I0Q0FNU0lnMEtvdGY2RmE3QkJwTk5zeGJNUnhVVzNjX0NETlBvRC11MzVndll6UW56a0FRPQ%3D%3D"
-      },
-      "screenDensityFloat": 2.0000000596046448,
-      "userInterfaceTheme": "USER_INTERFACE_THEME_DARK",
-      "timeZone": "Africa/Lagos",
-      "browserName": "Chrome Mobile",
-      "browserVersion": "142.0.0.0",
-      "acceptHeader": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-      "deviceExperimentId": "ChxOelUzTXpReE1qa3dPREk1TXpNNE9EVXlOZz09EOrV6MgGGOrV6MgG",
-      "rolloutToken": "CNq5uPPZ2tGvShD-_tTf556QAxj75_WCsPeQAw%3D%3D",
-      "screenWidthPoints": 321,
-      "screenHeightPoints": 464,
-      "utcOffsetMinutes": 60,
-      "memoryTotalKbytes": "8000000",
-      "clientScreen": "WATCH",
-      "mainAppWebInfo": {
-        "graftUrl": "https://m.youtube.com/watch?v=h09uMeEVTKY&pp=YAHIAQHwAQG6AwIYAroFBBICZW7oBQGiBhUBZwzyaL9231hqfJ_jYi6lPRIiUo6QBwI%3D",
-        "webDisplayMode": "WEB_DISPLAY_MODE_BROWSER",
-        "isWebNativeShareAvailable": true
-      }
-    },
-    "user": {
-      "lockedSafetyMode": false
-    },
-    "request": {
-      "useSsl": true,
-      "internalExperimentFlags": [],
-      "consistencyTokenJars": []
-    },
-    "clickTracking": {
-      "clickTrackingParams": "CKwBEIf2BBgBIhMI2YnUyrj3kAMVQegCBx0xehWpMgZnLWhpZ2haD0ZFd2hhdF90b193YXRjaJoBBQgkEI4eygEEdACpXQ=="
-    },
-    "adSignalsInfo": {
-      "params": [
-        {
-          "key": "dt",
-          "value": "1763322599265"
-        },
-        {
-          "key": "flash",
-          "value": "0"
-        },
-        {
-          "key": "frm",
-          "value": "0"
-        },
-        {
-          "key": "u_tz",
-          "value": "60"
-        },
-        {
-          "key": "u_his",
-          "value": "1"
-        },
-        {
-          "key": "u_h",
-          "value": "464"
-        },
-        {
-          "key": "u_w",
-          "value": "321"
-        },
-        {
-          "key": "u_ah",
-          "value": "464"
-        },
-        {
-          "key": "u_aw",
-          "value": "321"
-        },
-        {
-          "key": "u_cd",
-          "value": "24"
-        },
-        {
-          "key": "bc",
-          "value": "31"
-        },
-        {
-          "key": "bih",
-          "value": "464"
-        },
-        {
-          "key": "biw",
-          "value": "321"
-        },
-        {
-          "key": "brdim",
-          "value": "0,0,0,0,321,0,321,464,321,464"
-        },
-        {
-          "key": "vis",
-          "value": "1"
-        },
-        {
-          "key": "wgl",
-          "value": "true"
-        },
-        {
-          "key": "ca_type",
-          "value": "image"
-        }
-      ]
-    }
-  },
-  "videoId": "h09uMeEVTKY",
-  "params": "YAHIAQHwAQG6AwIYAroFBBICZW7oBQGiBhUBZwzyaL9231hqfJ_jYi6lPRIiUo6QBwI%3D",
-  "playbackContext": {
-    "contentPlaybackContext": {
-      "currentUrl": "https://m.youtube.com/watch?v=h09uMeEVTKY&pp=YAHIAQHwAQG6AwIYAroFBBICZW7oBQGiBhUBZwzyaL9231hqfJ_jYi6lPRIiUo6QBwI%3D",
-      "vis": 5,
-      "splay": false,
-      "autoCaptionsDefaultOn": false,
-      "autonavState": "STATE_OFF",
-      "html5Preference": "HTML5_PREF_WANTS",
-      "signatureTimestamp": 20403,
-      "autoplay": true,
-      "autonav": true,
-      "referer": "https://m.youtube.com/",
-      "lactMilliseconds": "-1",
-      "watchAmbientModeContext": {
-        "hasShownAmbientMode": true,
-        "watchAmbientModeEnabled": true
-      }
-    },
-    "devicePlaybackCapabilities": {
-      "supportsVp9Encoding": true,
-      "supportXhr": true
-    }
-  },
-  "racyCheckOk": false,
-  "contentCheckOk": false,
-  "serviceIntegrityDimensions": {
-    "poToken": "MlWi8ZKJGkshNKLP1aKV5XMYW1DmQOsoFRrK42eL6YPLuH5ExdoNdnYm_jNOdYN5XIMZwAMJOfOaNdGN4u8UxOi1-PRaLn5yw270QeGzkdb52cYKR9jY"
-  }
-}`;
+                const body = {
+                    "context": {
+                        "client": {
+                            "hl": "en",
+                            "gl": "NG",
+                            "remoteHost": "102.90.96.70",
+                            "deviceMake": "SamSung",
+                            "deviceModel": "Samsung S24",
+                            "visitorData": "CgtJdktpTElkczFsRSjq1ejIBjIKCgJORxIEGgAgUw%3D%3D",
+                            "userAgent": "Mozilla/5.0 (Linux; Android 15.0; SamSung S24 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36,gzip(gfe)",
+                            "clientName": "MWEB",
+                            "clientVersion": "2.20251114.01.00",
+                            "osName": "Android",
+                            "osVersion": "15.0",
+                            "playerType": "UNIPLAYER",
+                            "screenPixelDensity": 2,
+                            "platform": "MOBILE",
+                            "clientFormFactor": "SMALL_FORM_FACTOR",
+                            "configInfo": {
+                                "appInstallData": "COrV6MgGEJT-sAUQp6XQHBDe6c8cEIfUrwUQsqLQHBD8ss4cEOWygBMQuOTOHBCc188cEL2ZsAUQrqLQHBCJsM4cEPOQ0BwQt-r-EhDhjNAcEOK4zxwQzOvPHBCDntAcEPCr0BwQ2vfOHBDyndAcENiW0BwQvbauBRC72c4cEMzfrgUQ-__PHBC0kdAcEJX3zxwQ3rzOHBCttYATEL6KsAUQi_fPHBDzs4ATEKL7zxwQgpDQHBCu1s8cENPhrwUQ5uDPHBD2q7AFENHgzxwQrKbQHBC52c4cEJbbzxwQ2YXQHBCTg9AcELyU0BwQwY_QHBD1l9AcEIHNzhwQiYPQHBDJ968FEIeszhwQndCwBRDkpNAcEIKPzxwQyIfQHBCNzLAFEJmNsQUQrKexBRCIh7AFEKer0BwQyPfPHBCClNAcEJTyzxwQjOnPHBCgp9AcEKim0BwQv5nQHBChjNAcELOq0BwQ3rqAExCWj9AcEOyM0BwqVENBTVNPaFV4LVpxLURNZVVFdWdCczlydUM0R3RDb2RNTXFDc0JBUEx2Z1g2T2FHQUJxSXVtaUdDT1BjT3hBX2tnd2IyRDRBVjV5S1ZpT3NlSFFjPTAA",
+                                "coldConfigData": "COrV6MgGEPG6rQUQvbauBRCmla8FEL6KsAUQndCwBRDP0rAFEOP4sAUQgo7OHBD8ss4cEP_7zhwQnqvPHBDiuM8cEPjGzxwQ29PPHBCc188cEM_gzxwQ5efPHBDn588cELCC0BwQk4PQHBCahdAcEMiH0BwQuInQHBDMi9AcEKGM0BwQ7IzQHBCWj9AcEIKQ0BwQ85DQHBDYltAcEI-a0BwQqpzQHBCnpdAcEKim0BwQrKbQHBCgp9AcELOq0BwQp6vQHBDwq9AcEKet0BwaMkFPakZveDBoOWlJOW5Sd2pXMlRDdjNOSEZFTDRGNjR6UXFDb3pubGEwZTYxNmxPa2ZRIjJBT2pGb3gxUHMwVVlYZ200d3FQVFNnRXRaM1VNaWZ6Rzh0NElkYi1LLXdaRFdVTDI0ZyqAAUNBTVNXdzBqdU4yM0FxUVpseC1mVDVtU21oRFZDcTREalRiLUk2Y05fQlZxTk0wVDJBUEJBYWdDRlRTWnNiY2ZoYVFGa1p3RjRkc0J6OElBb0h6bklfM1VCakxQZ0FYWnBBWURvcklGajc0R3hnbnpBOGJqQnJjOW0wUExTZ1E9",
+                                "coldHashData": "COrV6MgGEhIzMjMzNDA1OTAzMDkxNTEzNjIY6tXoyAYyMkFPakZveDBoOWlJOW5Sd2pXMlRDdjNOSEZFTDRGNjR6UXFDb3pubGEwZTYxNmxPa2ZROjJBT2pGb3gxUHMwVVlYZ200d3FQVFNnRXRaM1VNaWZ6Rzh0NElkYi1LLXdaRFdVTDI0Z0KAAUNBTVNXdzBqdU4yM0FxUVpseC1mVDVtU21oRFZDcTREalRiLUk2Y05fQlZxTk0wVDJBUEJBYWdDRlRTWnNiY2ZoYVFGa1p3RjRkc0J6OElBb0h6bklfM1VCakxQZ0FYWnBBWURvcklGajc0R3hnbnpBOGJqQnJjOW0wUExTZ1E9",
+                                "hotHashData": "COrV6MgGEhQxODMwMDM5MjI5OTA3NDYwOTEyNxjq1ejIBiiU5PwSKKXQ_RIonpH-EijIyv4SKLfq_hIo95CAEyjLkYATKOGlgBMo8qaAEyjYsIATKOWygBMovbSAEyiut4ATKNq3gBMoybmAEyi9uoATKN66gBMyMkFPakZveDBoOWlJOW5Sd2pXMlRDdjNOSEZFTDRGNjR6UXFDb3pubGEwZTYxNmxPa2ZROjJBT2pGb3gxUHMwVVlYZ200d3FQVFNnRXRaM1VNaWZ6Rzh0NElkYi1LLXdaRFdVTDI0Z0I0Q0FNU0lnMEtvdGY2RmE3QkJwTk5zeGJNUnhVVzNjX0NETlBvRC11MzVndll6UW56a0FRPQ%3D%3D"
+                            },
+                            "screenDensityFloat": 2.0000000596046448,
+                            "userInterfaceTheme": "USER_INTERFACE_THEME_DARK",
+                            "timeZone": "Africa/Lagos",
+                            "browserName": "Chrome Mobile",
+                            "browserVersion": "142.0.0.0",
+                            "acceptHeader": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+                            "deviceExperimentId": "ChxOelUzTXpReE1qa3dPREk1TXpNNE9EVXlOZz09EOrV6MgGGOrV6MgG",
+                            "rolloutToken": "CNq5uPPZ2tGvShD-_tTf556QAxj75_WCsPeQAw%3D%3D"
+                        },
+                        "user": {
+                            "lockedSafetyMode": false
+                        },
+                        "request": {
+                            "useSsl": true,
+                            "internalExperimentFlags": [],
+                            "consistencyTokenJars": []
+                        },
+                        "clickTracking": {
+                            "clickTrackingParams": "CKwBEIf2BBgBIhMI2YnUyrj3kAMVQegCBx0xehWpMgZnLWhpZ2haD0ZFd2hhdF90b193YXRjaJoBBQgkEI4eygEEdACpXQ=="
+                        },
+                        "adSignalsInfo": {
+                            "params": [
+                                {
+                                    "key": "dt",
+                                    "value": "1763322599265"
+                                },
+                                {
+                                    "key": "flash",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "frm",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "u_tz",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "u_his",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "u_h",
+                                    "value": "464"
+                                },
+                                {
+                                    "key": "u_w",
+                                    "value": "321"
+                                },
+                                {
+                                    "key": "u_ah",
+                                    "value": "464"
+                                },
+                                {
+                                    "key": "u_aw",
+                                    "value": "321"
+                                },
+                                {
+                                    "key": "u_cd",
+                                    "value": "24"
+                                },
+                                {
+                                    "key": "bc",
+                                    "value": "31"
+                                },
+                                {
+                                    "key": "bih",
+                                    "value": "464"
+                                },
+                                {
+                                    "key": "biw",
+                                    "value": "321"
+                                },
+                                {
+                                    "key": "brdim",
+                                    "value": "0,0,0,0,321,0,321,464,321,464"
+                                },
+                                {
+                                    "key": "vis",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "wgl",
+                                    "value": "true"
+                                },
+                                {
+                                    "key": "ca_type",
+                                    "value": "image"
+                                }
+                            ]
+                        }
+                    },
+                    "browseId": "FEwhat_to_watch",
+                    "params": "YAHIAQHwAQG6AwIYAroFBBICZW7oBQGiBhUBZwzyaL9231hqfJ_jYi6lPRIiUo6QBwI%3D",
+                    "racyCheckOk": false,
+                    "contentCheckOk": false,
+                    "serviceIntegrityDimensions": {
+                        "poToken": "MlWi8ZKJGkshNKLP1aKV5XMYW1DmQOsoFRrK42eL6YPLuH5ExdoNdnYm_jNOdYN5XIMZwAMJOfOaNdGN4u8UxOi1-PRaLn5yw270QeGzkdb52cYKR9jY"
+                    }
+                };
 
                 // 5) Make the native fetch using the nativeFetch bridge
                 try {
@@ -265,7 +192,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                         url: url,
                         method: 'POST',
                         headers: headers,
-                        body: body,
+                        body: JSON.stringify(body),
                         returnType: 'text' // use 'text' because bridge returns base64 decoded text; you'll parse JSON below
                     });
 

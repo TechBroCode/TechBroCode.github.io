@@ -1,8 +1,0 @@
-{
-  "app-name": "JetPlay",
-  "version-code": 2,
-  "version-name": "0.0",
-  "app-in-google-review": true,
-  "test-url": "https://techbrocode.github.io/JetPlayBrowser-v2/test/home/html/index.html",
-  "prod-url": "https://techbrocode.github.io/JetPlayBrowser-v2/prod/home/html/index.html"
-}
