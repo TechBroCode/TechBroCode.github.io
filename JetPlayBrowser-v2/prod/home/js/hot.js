@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const webTagChecker = setInterval(async () => {
             if (WEB_TAG !== undefined && WEB_TAG !== null && WEB_TAG.trim().length > 0) {
                 clearInterval(webTagChecker);
+                alert("cool 1");
                 const ytPageFeed = await browseYTPageFeed({
                     hl: "en",
                     gl: "NG"
