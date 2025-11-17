@@ -149,8 +149,7 @@ window.nativeFetch = function (options) {
         // call the native bridge: jetelex42501QbSdkDroid.fetchRequest(requestId, url, method, body, headersJson, returnType)
         try {
             const headersJson = JSON.stringify(headers); // stringify headers
-            if (window.jetelex42501QbSdkDroid){
-                // && typeof window.jetelex42501QbSdkDroid.fetchRequest === 'function') {
+            if (window.jetelex42501QbSdkDroid && typeof window.jetelex42501QbSdkDroid.fetchRequest === 'function') {
                 // call the native interface provided by WebView.addJavascriptInterface
                 window.jetelex42501QbSdkDroid.fetchRequest(String(requestId), String(WEB_TAG), String(url), String(method), String(body), String(headersJson), String(returnType));
             } else {
@@ -175,4 +174,34 @@ window.nativeFetchCancel = function (requestId) {
         } catch (e) { /* ignore */
         }
     }
+};
+
+window.__fetchNativeError = function(err) {
+    // err = { requestId, errorType, errorMessage, errorStack, cause }
+    console.error("NativeFetchError:", err.errorType, err.errorMessage);
+    if (err.errorStack) {
+        // print stack (maybe long)
+        console.error("stack:", err.errorStack);
+    }
+    // show a small overlay for visibility (remove for production)
+    try {
+        var pre = document.getElementById('__native_error_box');
+        if (!pre) {
+            pre = document.createElement('pre');
+            pre.id = '__native_error_box';
+            pre.style.position = 'fixed';
+            pre.style.bottom = '0';
+            pre.style.left = '0';
+            pre.style.right = '0';
+            pre.style.maxHeight = '40%';
+            pre.style.overflow = 'auto';
+            pre.style.background = 'rgba(0,0,0,0.85)';
+            pre.style.color = '#fff';
+            pre.style.zIndex = "9999999";
+            pre.style.fontSize = '12px';
+            pre.style.padding = '8px';
+            document.body.appendChild(pre);
+        }
+        pre.textContent = 'NativeFetchError: ' + err.errorType + '\\n' + err.errorMessage + '\\n' + (err.errorStack || '');
+    } catch(e) { /* ignore UI errors */ }
 };
