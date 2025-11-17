@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     hl: "en",
                     gl: "NG"
                 });
+                alert("code: " + ytPageFeed.code);
                 if (ytPageFeed.code >= 200
                     && ytPageFeed.code <= 399
                     && ytPageFeed.type === "json") {
