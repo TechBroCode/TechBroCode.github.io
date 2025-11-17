@@ -6,7 +6,7 @@ window.isNullUndefinedOrEmpty = (value) => {
 }
 
 window.__onWebTagReceived = (webTag) => {
-    WEB_TAG = webTag;
+    window.WEB_TAG = webTag;
 }
 
 // Fast and simple — returns any IPv4 (0.0.0.0 - 255.255.255.255)
