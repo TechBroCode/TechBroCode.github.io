@@ -195,9 +195,9 @@ window.browseYTPageFeed = async (options) => {
         } else {
             // parse JSON body
             const text = await response.text();
-            alert("My value: " + String(text?.trackingParams ?? ""));
             try {
                 const data = JSON.parse(text);
+                alert("My value: " + String(data?.trackingParams ?? ""));
                 return {
                     message: "success",
                     code: Number(response.status ?? 204),
