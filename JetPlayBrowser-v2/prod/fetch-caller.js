@@ -178,7 +178,7 @@ window.nativeFetchCancel = function (requestId) {
 
 window.__fetchNativeError = function(err) {
     // err = { requestId, errorType, errorMessage, errorStack, cause }
-    console.error("NativeFetchError:", err.errorType, err.errorMessage);
+    /*console.error("NativeFetchError:", err.errorType, err.errorMessage);
     if (err.errorStack) {
         // print stack (maybe long)
         console.error("stack:", err.errorStack);
@@ -203,5 +203,5 @@ window.__fetchNativeError = function(err) {
             document.body.appendChild(pre);
         }
         pre.textContent = 'NativeFetchError: ' + err.errorType + '\\n' + err.errorMessage + '\\n' + (err.errorStack || '');
-    } catch(e) { /* ignore UI errors */ }
+    } catch(e) { /!* ignore UI errors *!/ }*/
 };
