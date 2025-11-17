@@ -283,9 +283,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                             const data = JSON.parse(text);
                             console.log('Success response JSON:', data);
                             alert("JSON Parsed");
+                            generalContent.textContent = JSON.stringify(data, null, 4);
                         } catch (e) {
                             console.log('Response is not valid JSON, raw text:', text);
                             alert("Text Parsed");
+                            generalContent.textContent = text;
                         }
                     }
                 } catch (err) {
