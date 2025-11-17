@@ -135,7 +135,6 @@ window.nativeFetch = function (options) {
         const body = options?.body === undefined ? "" : options?.body; // request body or empty string
         const headers = options?.headers || {}; // headers object
         const returnType = options?.returnType || "text"; // optional returnType
-        alert("details: " + options);
 
         // small validation
         if (!url) {
@@ -176,7 +175,7 @@ window.nativeFetchCancel = function (requestId) {
     }
 };
 
-window.__fetchNativeError = function(err) {
+window.__fetchNativeError = function (err) {
     // err = { requestId, errorType, errorMessage, errorStack, cause }
     /*console.error("NativeFetchError:", err.errorType, err.errorMessage);
     if (err.errorStack) {
