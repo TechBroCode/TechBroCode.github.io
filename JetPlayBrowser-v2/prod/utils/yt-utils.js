@@ -6,7 +6,6 @@ const PO_TOKEN = "MlWi8ZKJGkshNKLP1aKV5XMYW1DmQOsoFRrK42eL6YPLuH5ExdoNdnYm_jNOdY
 // TODO: TO BROWSE NORMAL YOUTUBE PAGE...
 window.browseYTPageFeed = async (options) => {
     try {
-        alert("ok");
         const requestId = String(options.reqId ?? 'yt-' + (Math.random().toString(16).slice(2) + Date.now().toString(16)));
         const apiUrl = `${PAGE_URL}/youtubei/v1/browse?key=${INNERTUBE_API_KEY}`;
         const headers = {
@@ -179,8 +178,8 @@ window.browseYTPageFeed = async (options) => {
             requestId: requestId,
             url: apiUrl,
             method: 'POST',
-            headers: JSON.stringify(headers),
-            body: JSON.stringify(body),
+            headers,
+            body,
             returnType: 'text' // use 'text' because bridge returns base64 decoded text; you'll parse JSON below
         });
         // Handle Response...
@@ -196,7 +195,7 @@ window.browseYTPageFeed = async (options) => {
         } else {
             // parse JSON body
             const text = await response.text();
-            alert("Value: " + String(text?.trackingParams ?? ""));
+            alert("My value: " + String(text?.trackingParams ?? ""));
             try {
                 const data = JSON.parse(text);
                 return {
