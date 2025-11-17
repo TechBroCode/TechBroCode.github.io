@@ -5,7 +5,7 @@ const PAGE_URL = "https://m.youtube.com";
 const PO_TOKEN = "MlWi8ZKJGkshNKLP1aKV5XMYW1DmQOsoFRrK42eL6YPLuH5ExdoNdnYm_jNOdYN5XIMZwAMJOfOaNdGN4u8UxOi1-PRaLn5yw270QeGzkdb52cYKR9jY";
 // TODO: TO BROWSE NORMAL YOUTUBE PAGE...
 window.browseYTPageFeed = async (options) => {
-    alert("cool 2");
+    alert("alert 2");
     try {
         const requestId = String(options.reqId ?? 'yt-' + (Math.random().toString(16).slice(2) + Date.now().toString(16)));
         const apiUrl = `${PAGE_URL}/youtubei/v1/browse?key=${INNERTUBE_API_KEY}`;
