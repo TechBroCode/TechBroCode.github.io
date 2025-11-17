@@ -157,7 +157,6 @@ window.nativeFetch = function (options) {
                 reject({requestId: requestId, error: "native bridge not available"});
             }
         } catch (err) {
-            alert("nativeFetch: " + err);
             // on error calling native, cleanup and reject
             delete window.__fetchNativeCallbacks[requestId];
             reject({requestId: requestId, error: String(err)});
