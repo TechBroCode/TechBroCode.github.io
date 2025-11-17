@@ -291,7 +291,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 } catch (err) {
                     // network/native error or cancellation
                     console.error('nativeFetch threw:', err);
-                    alert("Native Fetch Error");
+                    alert("Native Fetch Error: " + err);
                 }
 
                 // Optional: how to cancel the in-flight request (call from some event)
