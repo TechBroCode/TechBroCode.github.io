@@ -178,8 +178,8 @@ window.browseYTPageFeed = async (options) => {
             requestId: requestId,
             url: apiUrl,
             method: 'POST',
-            headers: JSON.stringify(headers),
-            body: JSON.stringify(body),
+            headers,
+            body,
             returnType: 'text' // use 'text' because bridge returns base64 decoded text; you'll parse JSON below
         });
         // Handle Response...
