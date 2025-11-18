@@ -213,7 +213,6 @@ window.browseYTPageFeed = async (options) => {
                 const littleArr = [];
                 let ytTabs = data?.contents?.singleColumnBrowseResultsRenderer?.tabs;
                 if (ytTabs && Array.isArray(ytTabs)) {
-                    ytTabs = [ytTabs];
                     alert("here 0");
                     for (const ytTab of ytTabs) {
                         if (ytTab?.tabRenderer?.title === "Home") {
@@ -221,7 +220,6 @@ window.browseYTPageFeed = async (options) => {
                             let contents = ytTab?.tabRenderer?.content?.richGridRenderer?.contents;
                             if (contents && Array.isArray(contents)) {
                                 continuation = "";
-                                contents = [contents];
                                 for (let c = 0, size = contents.length; c < size; c++) {
                                     const content = contents[c];
                                     alert("here 2");
