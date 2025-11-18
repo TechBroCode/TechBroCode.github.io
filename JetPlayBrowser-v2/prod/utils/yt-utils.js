@@ -63,6 +63,7 @@ window.browseYTPageFeed = async (options) => {
             "Referer": `${PAGE_URL}/`
         };
         const body = {
+            continuation,
             "context": {
                 "client": {
                     "hl": String(options.hl ?? "en"),
@@ -213,13 +214,15 @@ window.browseYTPageFeed = async (options) => {
                 const littleArr = [];
                 let ytTabs = data?.contents?.singleColumnBrowseResultsRenderer?.tabs;
                 if (ytTabs && Array.isArray(ytTabs)) {
+                    ytTabs = [ytTabs];
                     alert("here 0");
                     for (const ytTab of ytTabs) {
                         if (ytTab?.tabRenderer?.title === "Home") {
                             alert("here 1");
                             let contents = ytTab?.tabRenderer?.content?.richGridRenderer?.contents;
                             if (contents && Array.isArray(contents)) {
-                                continuation = null;
+                                continuation = "";
+                                contents = [contents];
                                 for (let c = 0, size = contents.length; c < size; c++) {
                                     const content = contents[c];
                                     alert("here 2");
