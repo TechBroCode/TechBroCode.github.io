@@ -211,8 +211,7 @@ window.browseYTPageFeed = async (options) => {
             try {
                 const data = JSON.parse(text);
                 const littleArr = [];
-                const jsonVal = JSON.stringify(data, null, 4);
-                let ytTabs = jsonVal?.contents?.singleColumnBrowseResultsRenderer?.tabs;
+                let ytTabs = data?.contents?.singleColumnBrowseResultsRenderer?.tabs;
                 if (ytTabs && Array.isArray(ytTabs)) {
                     alert("here 0");
                     for (const ytTab of ytTabs) {
@@ -227,13 +226,17 @@ window.browseYTPageFeed = async (options) => {
                                     alert("here 2");
                                     if (!content) continue;
                                     alert("here 3");
+                                    if (content.richItemRenderer) {
+                                        alert("Rich item renderer");
+                                        extractRichItemRenderer(content?.richItemRenderer, littleArr);
+                                        continue;
+                                    }
                                     if (content.richSectionRenderer) {
                                         alert("Rich section renderer");
                                         extractRichSectionRenderer(content?.richSectionRenderer, littleArr);
-                                    } else if (content.richItemRenderer) {
-                                        alert("Rich item renderer");
-                                        extractRichItemRenderer(content?.continuationItemRenderer, littleArr);
-                                    } else if (content.continuationItemRenderer) {
+                                        continue;
+                                    }
+                                    if (content.continuationItemRenderer) {
                                         alert("Continuation renderer");
                                         extractContinuationRenderer(content.continuationItemRenderer);
                                     }

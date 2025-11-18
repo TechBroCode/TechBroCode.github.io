@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             body.style.display = "flex";
         }
         const webTagChecker = setInterval(async () => {
-            alert("Heart => WEB_TAG: " + window.WEB_TAG);
+            alert("Love => WEB_TAG: " + window.WEB_TAG);
             if (window.WEB_TAG !== undefined && window.WEB_TAG !== null && window.WEB_TAG.trim().length > 0) {
                 clearInterval(webTagChecker);
                 const ytPageFeed = await browseYTPageFeed({
