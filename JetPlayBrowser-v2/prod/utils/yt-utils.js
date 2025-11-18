@@ -211,7 +211,8 @@ window.browseYTPageFeed = async (options) => {
             try {
                 const data = JSON.parse(text);
                 const littleArr = [];
-                let ytTabs = data?.contents?.singleColumnBrowseResultsRenderer?.tabs;
+                const jsonVal = JSON.stringify(data, null, 4);
+                let ytTabs = jsonVal?.contents?.singleColumnBrowseResultsRenderer?.tabs;
                 if (ytTabs && Array.isArray(ytTabs)) {
                     alert("here 0");
                     for (const ytTab of ytTabs) {
