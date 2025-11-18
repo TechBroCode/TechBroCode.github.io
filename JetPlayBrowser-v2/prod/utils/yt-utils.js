@@ -216,7 +216,7 @@ window.browseYTPageFeed = async (options) => {
                     ytTabs = [ytTabs];
                     alert("here 0");
                     for (const ytTab of ytTabs) {
-                        if (ytTab && ytTab?.tabRenderer?.title === "Home") {
+                        if (ytTab?.tabRenderer?.title === "Home") {
                             alert("here 1");
                             let contents = ytTab?.tabRenderer?.content?.richGridRenderer?.contents;
                             if (contents && Array.isArray(contents)) {
