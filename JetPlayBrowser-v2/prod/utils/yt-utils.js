@@ -213,16 +213,18 @@ window.browseYTPageFeed = async (options) => {
                 const littleArr = [];
                 let ytTabs = data?.contents?.singleColumnBrowseResultsRenderer?.tabs;
                 if (ytTabs && Array.isArray(ytTabs)) {
-                    ytTabs = [ytTabs];
+                    alert("here 0");
                     for (const ytTab of ytTabs) {
                         if (ytTab?.title === "Home") {
+                            alert("here 1");
                             let contents = ytTab?.content?.richGridRenderer?.contents;
                             if (contents && Array.isArray(contents)) {
-                                contents = [contents];
-                                continuation = undefined;
+                                continuation = null;
                                 for (let c = 0, size = contents.length; c < size; c++) {
                                     const content = contents[c];
+                                    alert("here 2");
                                     if (!content) continue;
+                                    alert("here 3");
                                     if (content.richSectionRenderer) {
                                         alert("Rich section renderer");
                                         extractRichSectionRenderer(content.richSectionRenderer, littleArr);
