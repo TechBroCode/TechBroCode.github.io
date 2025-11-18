@@ -63,7 +63,6 @@ window.browseYTPageFeed = async (options) => {
             "Referer": `${PAGE_URL}/`
         };
         const body = {
-            continuation,
             "context": {
                 "client": {
                     "hl": String(options.hl ?? "en"),
