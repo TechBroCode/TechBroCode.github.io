@@ -217,7 +217,7 @@ window.browseYTPageFeed = async (options) => {
                     ytTabs = [ytTabs];
                     alert("here 0");
                     for (const ytTab of ytTabs) {
-                        if (ytTab?.tabRenderer?.title === "Home") {
+                        if (ytTab && ytTab?.tabRenderer?.title === "Home") {
                             alert("here 1");
                             let contents = ytTab?.tabRenderer?.content?.richGridRenderer?.contents;
                             if (contents && Array.isArray(contents)) {
@@ -228,13 +228,13 @@ window.browseYTPageFeed = async (options) => {
                                     alert("here 2");
                                     if (!content) continue;
                                     alert("here 3");
-                                    if (content?.richSectionRenderer) {
+                                    if (content.richSectionRenderer) {
                                         alert("Rich section renderer");
                                         extractRichSectionRenderer(content?.richSectionRenderer, littleArr);
-                                    } else if (content?.richItemRenderer) {
+                                    } else if (content.richItemRenderer) {
                                         alert("Rich item renderer");
                                         extractRichItemRenderer(content?.continuationItemRenderer, littleArr);
-                                    } else if (content?.continuationItemRenderer) {
+                                    } else if (content.continuationItemRenderer) {
                                         alert("Continuation renderer");
                                         extractContinuationRenderer(content.continuationItemRenderer);
                                     }
