@@ -233,9 +233,9 @@ window.browseYTPageFeed = async (options) => {
                                     if (content.richItemRenderer) {
                                         alert("Rich item renderer");
                                         extractRichItemRenderer(content?.richItemRenderer, littleArr);
-                                        //continue;
+                                        continue;
                                     }
-                                    /*if (content.richSectionRenderer) {
+                                    if (content.richSectionRenderer) {
                                         alert("Rich section renderer");
                                         extractRichSectionRenderer(content?.richSectionRenderer, littleArr);
                                         continue;
@@ -243,7 +243,7 @@ window.browseYTPageFeed = async (options) => {
                                     if (content.continuationItemRenderer) {
                                         alert("Continuation renderer");
                                         extractContinuationRenderer(content.continuationItemRenderer);
-                                    }*/
+                                    }
                                 }
                             }
                             break;
