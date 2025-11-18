@@ -8,7 +8,7 @@ let continuation = "";
 function extractRichSectionRenderer(richSectionRenderer, littleArr) {
     if (!richSectionRenderer) return;
     const contents = richSectionRenderer?.content?.gridShelfViewModel?.contents;
-    if (contents && Array.isArray(contents)) {
+    if (contents) {
         alert("I am");
     }
 }
