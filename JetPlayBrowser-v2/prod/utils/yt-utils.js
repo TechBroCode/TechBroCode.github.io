@@ -228,13 +228,13 @@ window.browseYTPageFeed = async (options) => {
                                     alert("here 2");
                                     if (!content) continue;
                                     alert("here 3");
-                                    if (content.richSectionRenderer) {
+                                    if (content?.richSectionRenderer) {
                                         alert("Rich section renderer");
-                                        extractRichSectionRenderer(content.richSectionRenderer, littleArr);
-                                    } else if (content.richItemRenderer) {
+                                        extractRichSectionRenderer(content?.richSectionRenderer, littleArr);
+                                    } else if (content?.richItemRenderer) {
                                         alert("Rich item renderer");
-                                        extractRichItemRenderer(content.continuationItemRenderer, littleArr);
-                                    } else if (content.continuationItemRenderer) {
+                                        extractRichItemRenderer(content?.continuationItemRenderer, littleArr);
+                                    } else if (content?.continuationItemRenderer) {
                                         alert("Continuation renderer");
                                         extractContinuationRenderer(content.continuationItemRenderer);
                                     }
