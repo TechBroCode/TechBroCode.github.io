@@ -5,8 +5,12 @@ const PAGE_URL = "https://m.youtube.com";
 const PO_TOKEN = "MlWi8ZKJGkshNKLP1aKV5XMYW1DmQOsoFRrK42eL6YPLuH5ExdoNdnYm_jNOdYN5XIMZwAMJOfOaNdGN4u8UxOi1-PRaLn5yw270QeGzkdb52cYKR9jY";
 let continuation = "";
 
-function extractRichSectionRenderer(content, littleArr) {
-
+function extractRichSectionRenderer(richSectionRenderer, littleArr) {
+    if (!richSectionRenderer) return;
+    const contents = richSectionRenderer?.content?.gridShelfViewModel?.contents;
+    if (contents && Array.isArray(contents)) {
+        alert("I am");
+    }
 }
 
 function extractRichItemRenderer(content, littleArr) {
@@ -229,9 +233,9 @@ window.browseYTPageFeed = async (options) => {
                                     if (content.richItemRenderer) {
                                         alert("Rich item renderer");
                                         extractRichItemRenderer(content?.richItemRenderer, littleArr);
-                                        continue;
+                                        //continue;
                                     }
-                                    if (content.richSectionRenderer) {
+                                    /*if (content.richSectionRenderer) {
                                         alert("Rich section renderer");
                                         extractRichSectionRenderer(content?.richSectionRenderer, littleArr);
                                         continue;
@@ -239,7 +243,7 @@ window.browseYTPageFeed = async (options) => {
                                     if (content.continuationItemRenderer) {
                                         alert("Continuation renderer");
                                         extractContinuationRenderer(content.continuationItemRenderer);
-                                    }
+                                    }*/
                                 }
                             }
                             break;
