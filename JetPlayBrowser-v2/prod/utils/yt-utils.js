@@ -4,6 +4,19 @@ const COOKIE = "VISITOR_INFO1_LIVE=IvKiLIds1lE; VISITOR_PRIVACY_METADATA=CgJORxI
 const PAGE_URL = "https://m.youtube.com";
 const PO_TOKEN = "MlWi8ZKJGkshNKLP1aKV5XMYW1DmQOsoFRrK42eL6YPLuH5ExdoNdnYm_jNOdYN5XIMZwAMJOfOaNdGN4u8UxOi1-PRaLn5yw270QeGzkdb52cYKR9jY";
 let continuation = "";
+
+function extractRichSectionRenderer(content, littleArr) {
+
+}
+
+function extractRichItemRenderer(content, littleArr) {
+
+}
+
+function extractContinuationRenderer(continuationItemRenderer) {
+
+}
+
 // TODO: TO BROWSE NORMAL YOUTUBE PAGE...
 window.browseYTPageFeed = async (options) => {
     try {
@@ -198,6 +211,34 @@ window.browseYTPageFeed = async (options) => {
             const text = await response.text();
             try {
                 const data = JSON.parse(text);
+                const littleArr = [];
+                let ytTabs = data?.contents?.singleColumnBrowseResultsRenderer?.tabs;
+                if (ytTabs && Array.isArray(ytTabs)) {
+                    ytTabs = [ytTabs];
+                    for (const ytTab of ytTabs) {
+                        if (ytTab?.title === "Home") {
+                            let contents = ytTab?.content?.richGridRenderer?.contents;
+                            if (contents && Array.isArray(contents)) {
+                                contents = [contents];
+                                for (let c = 0, size = contents.length; c < size; c++) {
+                                    const content = contents[c];
+                                    if (!content) continue;
+                                    if (content.richSectionRenderer) {
+                                        alert("Rich section renderer");
+                                        extractRichSectionRenderer(content.richSectionRenderer, littleArr);
+                                    } else if (content.richItemRenderer) {
+                                        alert("Rich item renderer");
+                                        extractRichItemRenderer(content.continuationItemRenderer, littleArr);
+                                    } else if (content.continuationItemRenderer) {
+                                        alert("Continuation renderer");
+                                        extractContinuationRenderer(content.continuationItemRenderer);
+                                    }
+                                }
+                            }
+                            break;
+                        }
+                    }
+                }
                 return {
                     message: "success",
                     code: Number(response.status ?? 204),
