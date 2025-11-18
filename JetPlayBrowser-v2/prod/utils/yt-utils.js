@@ -63,7 +63,6 @@ window.browseYTPageFeed = async (options) => {
             "Referer": `${PAGE_URL}/`
         };
         const body = {
-            continuation,
             "context": {
                 "client": {
                     "hl": String(options.hl ?? "en"),
@@ -220,6 +219,7 @@ window.browseYTPageFeed = async (options) => {
                             let contents = ytTab?.content?.richGridRenderer?.contents;
                             if (contents && Array.isArray(contents)) {
                                 contents = [contents];
+                                continuation = undefined;
                                 for (let c = 0, size = contents.length; c < size; c++) {
                                     const content = contents[c];
                                     if (!content) continue;
