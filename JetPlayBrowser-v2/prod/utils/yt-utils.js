@@ -3,6 +3,7 @@ const SAPISID_HASH = "SAPISIDHASH 1763323025_f0db5b303811b7a69a6756097ab55019722
 const COOKIE = "VISITOR_INFO1_LIVE=IvKiLIds1lE; VISITOR_PRIVACY_METADATA=CgJORxIEGgAgUw%3D%3D; __Secure-3PAPISID=ipt_uoTPI53B8yus/APqTpkO8hq9_rgeN8; LOGIN_INFO=AFmmF2swRgIhAP-liQy5DsgsgqyHKxGu4mtaTxclN1Gz4EtDcnTEKx7pAiEAlxrkWM-Um4a4BKBJaGF9ljZvsfjYCSYCUsdMezutP5k:QUQ3MjNmeXlIUzljNXpPcHYtdHpoamhmN3ZROWpnRkE1VU1hbS1zZDFXUVpweG5UUEU2ajVVVlgwWWRqY2NacjBYV3BzdEJ0Q0V6NU4zTFVuYjBOVWhyYUd5N0g3dFZNRGtVaF9tejlVWV9BSWtxd0xNWkpOYm53NkRMQ2EtMmpIdVNzTFZkYm1iLUFTN3NJU1c4aGt1YkxCckNUanc4a01BSDJSa25qNkF6cHhmTklZMGxQM2lYZDVGVHBhc05YTmZXNlQwemhQR0lrVmNtS0g0bzdIS2dXYTNwOFBBdl9Cdw==; __Secure-3PSID=g.a0002wh-JA2KxfFP58PesI60afEbbdRyvIOAQY7mODiXzsYeMSoy8X76_KtbYpT-xiHM7_showACgYKAaoSARYSFQHGX2MiLWdT5u61G_-LPYENFbuttRoVAUF8yKr70J92LkHi5owg3bIU4L230076; PREF=f4=4000000&f6=40000000&tz=Africa.Lagos&f7=100&f5=30000; YSC=u2B8DsPcdgQ; __Secure-ROLLOUT_TOKEN=CNq5uPPZ2tGvShD-_tTf556QAxj75_WCsPeQAw%3D%3D; __Secure-1PSIDTS=sidts-CjQBwQ9iI5Y52eZ54w7i-owbISZdiY4qGNupUAGj4B45mxPMp-1HP9abWQTCXfi2zik0v0JHEAA; __Secure-3PSIDTS=sidts-CjQBwQ9iI5Y52eZ54w7i-owbISZdiY4qGNupUAGj4B45mxPMp-1HP9abWQTCXfi2zik0v0JHEAA; __Secure-3PSIDCC=AKEyXzXHvBcrICXpE-ZZAO1U09MDTMhYaWcm-GvugB6tFXJKA2iGfiGNe4-DeeDBYTz01GmQ3LU";
 const PAGE_URL = "https://m.youtube.com";
 const PO_TOKEN = "MlWi8ZKJGkshNKLP1aKV5XMYW1DmQOsoFRrK42eL6YPLuH5ExdoNdnYm_jNOdYN5XIMZwAMJOfOaNdGN4u8UxOi1-PRaLn5yw270QeGzkdb52cYKR9jY";
+let continuation = "";
 // TODO: TO BROWSE NORMAL YOUTUBE PAGE...
 window.browseYTPageFeed = async (options) => {
     try {
@@ -49,7 +50,7 @@ window.browseYTPageFeed = async (options) => {
             "Referer": `${PAGE_URL}/`
         };
         const body = {
-            "continuation": String(options.continuation ?? ""),
+            continuation,
             "context": {
                 "client": {
                     "hl": String(options.hl ?? "en"),
