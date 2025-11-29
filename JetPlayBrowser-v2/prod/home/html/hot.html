@@ -8,15 +8,19 @@
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <script>
         // stub out all console methods
-        window.console = new Proxy({}, {
+        /*window.console = new Proxy({}, {
             get: () => () => {
             }
-        });
+        });*/
     </script>
     <link href="../../def-style.css" hreflang="en-US" rel="stylesheet" type="text/css">
+    <link href="../css/hot.css" hreflang="en-US" rel="stylesheet" type="text/css">
     <script src="../../base.js" type="module"></script>
-    <script src="../../fetch-caller.js" type="application/ecmascript"></script>
-    <script src="../../utils/yt-utils.js" type="application/ecmascript"></script>
+    <script src="../../droid-face.js"></script>
+    <!--TODO: UNCOMMENT TO EXECUTE...-->
+    <!--<script src="../../fetch-caller.js" type="application/ecmascript"></script>-->
+    <!--TODO: UNCOMMENT TO EXECUTE...-->
+    <!--<script src="../../utils/yt-utils.js" type="application/ecmascript"></script>-->
     <script defer src="../js/hot.js" type="module"></script>
     <!--TODO: IOS support-->
     <link href="../../../../JetPlayBrowser/img/icons/JetPlay.png" rel="apple-touch-icon">
@@ -52,6 +56,9 @@
 
         img {
             image-rendering: high-quality;
+            overflow: clip;
+            overflow-clip-margin: content-box;
+            filter: brightness(100%);
         }
     </style>
 
@@ -132,11 +139,23 @@
     </script>
 </head>
 <body>
-<div id="general-content" style="width: 100vw; height: 100vh; background: var(--colorPrimaryDark); display: flex;">
+<div id="general-content" style="width: auto; min-width: 100vw;min-height: 100vh;height: auto;
+background: var(--windowBackground); display: flex; flex-direction: column; overflow-y: scroll;">
     <div class="translucent-background-escape-no-animation" id="body-level-overlay-div">
     </div>
-    <!--<pre id="out" style="white-space:pre-wrap; background:#f6f8fa; padding:12px; border-radius:6px;"></pre>-->
 </div>
+<script type="application/ecmascript">
+    try {
+        window.addEventListener("error", (e) => {
+            if (e && e.target && e.target.tagName === "IMG") {
+                e.target.src = e.target.src;
+                //e.target.style.visibility = "hidden";
+            }
+        }, true); // <--- 'true' enables Capture Phases
+    } catch (e) {
+        console.error(e);
+    }
+</script>
 <script type="application/ecmascript">
     // 1. Instantiate once the DOM is loaded for adsvertise (or at the bottom like this)
     /*try {

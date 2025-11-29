@@ -113,15 +113,6 @@ window.__fetchNativeResponse = function (resp) { // resp is an object sent from 
     }
 };
 
-// utility to generate v4-like UUID (not cryptographically strong but fine for correlating requests)
-function makeUUID() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        const r = Math.random() * 16 | 0;
-        const v = c === 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-    });
-}
-
 // The main function you call from page code to perform a native fetch.
 // options: { url, method, headers, body, requestId(optional), returnType(optional) }
 window.nativeFetch = function (options) {

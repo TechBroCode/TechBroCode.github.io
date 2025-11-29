@@ -7,10 +7,11 @@
     --colorPrimaryDark: #CC0000;
     --colorAccent: #FF5900;
     --windowBackground: white;
-    --textColor: black;
+    --textColor: #000000;
     --card-background-color: #f5f5f5;
     --blue-to-white: #0017B5;
     --selected-color: var(--textColor);
+    --divider-color: #00000080;
 
     --dark-linear-gradient-background: linear-gradient(45deg, rgba(0, 0, 0, 1.00), rgba(0, 0, 0, 0.50));
     --translucent-div-background: rgba(0, 0, 0, 0.25);
@@ -25,10 +26,11 @@
     --colorPrimaryDark: #CC0000;
     --colorAccent: #FF8400;
     --windowBackground: black;
-    --textColor: white;
+    --textColor: #ffffff;
     --card-background-color: #424242;
     --blue-to-white: white;
     --selected-color: var(--textColor);
+    --divider-color: #FFFFFF80;
 
     --dark-linear-gradient-background: linear-gradient(45deg, rgba(0, 0, 0, 1.00), rgba(0, 0, 0, 0.50));
     --translucent-div-background: rgba(0, 0, 0, 0.25);
@@ -47,6 +49,8 @@
     --card-background-color: #424242;
     --blue-to-white: white;
     --selected-color: var(--textColor);
+    --divider-color: #FFFFFF80;
+
 
     --dark-linear-gradient-background: linear-gradient(45deg, rgba(0, 0, 0, 1.00), rgba(0, 0, 0, 0.50));
     --translucent-div-background: rgba(0, 0, 0, 0.25);
@@ -65,6 +69,7 @@
     --card-background-color: #f5f5f5;
     --blue-to-white: #0017B5;
     --selected-color: var(--textColor);
+    --divider-color: #00000080;
 
     --dark-linear-gradient-background: linear-gradient(45deg, rgba(0, 0, 0, 1.00), rgba(0, 0, 0, 0.50));
     --translucent-div-background: rgba(0, 0, 0, 0.25);
@@ -83,6 +88,8 @@
     --card-background-color: #f5f5f5;
     --blue-to-white: #0017B5;
     --selected-color: var(--textColor);
+    --divider-color: #00000080;
+
 
     --dark-linear-gradient-background: linear-gradient(45deg, rgba(0, 0, 0, 1.00), rgba(0, 0, 0, 0.50));
     --translucent-div-background: rgba(0, 0, 0, 0.25);
@@ -101,6 +108,7 @@
     --card-background-color: #424242;
     --blue-to-white: white;
     --selected-color: var(--textColor);
+    --divider-color: #FFFFFF80;
 
     --dark-linear-gradient-background: linear-gradient(45deg, rgba(0, 0, 0, 1.00), rgba(0, 0, 0, 0.50));
     --translucent-div-background: rgba(0, 0, 0, 0.25);
@@ -114,6 +122,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    flex-shrink: 0;
 }
 
 body {
@@ -121,7 +130,7 @@ body {
     scroll-behavior: smooth;
     min-width: 100vw;
     min-height: 100vh;
-    width: 100%;
+    width: auto;
     display: none;
     height: auto;
     flex-shrink: 0;

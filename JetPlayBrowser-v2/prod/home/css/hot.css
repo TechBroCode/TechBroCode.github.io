@@ -1,0 +1,230 @@
+.yt-group {
+    width: auto;
+    min-width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+.yt-header {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-self: center;
+    margin-top: 20px;
+}
+
+.yt-header-logo {
+    display: inline-flex;
+    width: clamp(24px, 2.5vw, 48px);
+    height: clamp(24px, 2.5vw, 48px);
+    align-self: center;
+    padding-right: 8px;
+}
+
+.yt-header-title {
+    align-self: center;
+    font-size: clamp(14px, 1.5vw, 24px);
+}
+
+.yt-group-contents {
+    width: inherit;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    scroll-behavior: smooth;
+    gap: 15px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+.yt-shorts-container {
+    width: clamp(135px, 15vw, 495px);
+    height: auto;
+    background: darkgray;
+    aspect-ratio: 9 / 16;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.yt-shorts-image {
+    width: 100%;
+    height: 100%;
+    inset: 0;
+    object-fit: cover;
+    position: absolute;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    margin: 0;
+}
+
+.yt-shorts-title {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    width: auto;
+    height: auto;
+    font-weight: 400;
+    display: -webkit-box;
+    align-self: flex-start;
+    justify-self: flex-start;
+    text-align: start;
+    word-break: break-word;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+}
+
+.yt-long-form-vid-container {
+    width: 400px;
+    height: auto;
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid var(--divider-color);
+}
+
+.yt-long-form-vid-container .thumbnail-container {
+    width: 100%;
+    height: 230px;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.yt-long-form-vid-container .thumbnail-container .thumbnail {
+    width: inherit;
+    height: 230px;
+    /*For mobile, uncomment below code...*/
+    /*height: inherit;*/
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-self: center;
+    background: darkgray;
+}
+
+.yt-long-form-vid-container .metadata-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 10px;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+}
+
+.yt-long-form-vid-container .metadata-container .channel-thumbnail {
+    width: 36px;
+    height: 36px;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.yt-long-form-vid-container .metadata-container .vert-container {
+    /*TODO: Parent padding was 10px each then margin left of 8px shifts container to right and padding right becomes 2px virtually then instead of calc(100% - 36px) it becomes calc(100% - (36px + 8px))*/
+    width: calc(100% - (36px + 8px));
+    margin-left: 8px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+}
+
+.yt-long-form-vid-container .metadata-container .vert-container .title-more {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+}
+
+.yt-long-form-vid-container .metadata-container .vert-container .title-more .title {
+    width: calc(100% - 34px);
+    height: auto;
+    display: -webkit-box;
+    word-break: break-word;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    text-align: start;
+    font-size: 16px;
+}
+
+@media (min-width: 600px) {
+    /* small tablets */
+    /* styles... */
+    /*.yt-header-logo {
+        width: 24px;
+        height: 24px;
+    }
+
+    .yt-header-title {
+        font-size: 14px;
+    }*/
+}
+
+@media (min-width: 768px) {
+    /* tablets */
+    /* styles... */
+}
+
+@media (min-width: 1024px) {
+    /* laptops */
+    /* styles... */
+}
+
+@media (min-width: 1280px) {
+    /* desktops */
+    /* styles... */
+}
+
+@media (min-width: 1600px) {
+    /* large monitors */
+    /* styles... */
+}
+
+/* Full HD / Widescreens */
+@media (min-width: 1920px) {
+}
+
+/* 2K / QHD monitors */
+@media (min-width: 2560px) {
+}
+
+/* 4K displays */
+@media (min-width: 3840px) {
+}
