@@ -31,7 +31,10 @@ function createOrInsertToYTSingleDynamicLongFormContainer(docId, singleLongVidIt
         <div class="yt-long-form-vid-container">
             <div class="thumbnail-container">
                   <img class="thumbnail" src=${singleLongVidItem?.placeholder?.toString()?.trim() || ""} alt="" loading="lazy">
-                  <p class="normal-poppins-style" style="position: absolute; bottom: 5px; right: 5px; text-align: center; font-weight: 400; padding: 3px 5px; background: rgba(0,0,0,0.5); color: white; border-radius: 5px;">${singleLongVidItem?.data?.duration?.text?.toString()?.trim() || ""}</p>      
+                  <p class="normal-poppins-style" style="position: absolute; bottom: 5px; right: 5px; text-align: center; font-weight: 400; padding: 3px 5px; background: rgba(0,0,0,0.5); color: white; border-radius: 5px;">${singleLongVidItem?.data?.duration?.text?.toString()?.trim() || ""}</p>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3" style="fill: white; width: 30px; height: 30px; position: absolute; top: 0; left: 0; background: var(--dark-linear-gradient-background); border-bottom-right-radius: 100%; padding: 4px 8px 8px 4px;align-self: center; justify-content: center; display: flex;">
+                    <path d="M440-120v-320H120v-80h320v-320h80v320h320v80H520v320h-80Z"/>
+                  </svg> 
             </div>
             <div class="metadata-container">
                 <img class="channel-thumbnail" src=${singleLongVidItem?.data?.channel?.icon?.toString()?.trim() || ""} alt="" loading="lazy" style="background: darkgray;">
