@@ -203,6 +203,17 @@
     font-size: 16px;
 }
 
+.yt-long-form-vid-container .metadata-container .vert-container .title-more .more-vert {
+    fill: var(--textColor);
+    padding: 3px;
+    display: inline-flex;
+    justify-self: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
 /* default mobile */
 @media (max-width: 480px) {
     /* phone-specific */

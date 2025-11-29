@@ -49,7 +49,7 @@ window.makeUUID = () => {
 
 
 window.shuffle = (array, inplace) => {
-    let a  = inplace ? array : array.slice();
+    let a = inplace ? array : array.slice();
     for (let i = (a ? a.length : 0) - 1; i > 0; i--) {
         // (Math.random() * (i + 1)) | 0 floors to a 32-bit integer quickly
         const j = (Math.random() * (i + 1)) | 0;
@@ -101,15 +101,11 @@ window.detectDeviceCategory = () => {
  */
 window.getDeviceTypeBySize = (width, height) => {
     // obtain width/height (CSS pixels). Use window.screen if not provided.
-    let w = typeof width === 'number' ? width :
-        (typeof window !== 'undefined' && window.screen && window.screen.width) ? window.screen.width :
-            (typeof window !== 'undefined' ? window.innerWidth : undefined);
-    let h = typeof height === 'number' ? height :
-        (typeof window !== 'undefined' && window.screen && window.screen.height) ? window.screen.height :
-            (typeof window !== 'undefined' ? window.innerHeight : undefined);
+    let w = typeof width === 'number' ? width : (typeof window !== 'undefined' && window.screen && window.screen.width) ? window.screen.width : (typeof window !== 'undefined' ? window.innerWidth : undefined);
+    let h = typeof height === 'number' ? height : (typeof window !== 'undefined' && window.screen && window.screen.height) ? window.screen.height : (typeof window !== 'undefined' ? window.innerHeight : undefined);
 
     if (typeof w !== 'number' || typeof h !== 'number' || !isFinite(w) || !isFinite(h)) {
-        return { type: 'unknown', reason: 'invalid width/height', width: w, height: h };
+        return {type: 'unknown', reason: 'invalid width/height', width: w, height: h};
     }
 
     // measure CSS pixels per inch (pxPerInch) by injecting a 1in element into DOM
@@ -184,6 +180,7 @@ window.addHover = (ev) => {
     preventDefaultStopPropagation(ev);
     if (!ev || !ev.target) return;
     const targetEl = ev.target;
+    if (!targetEl.classList.toString().trim().includes("more-vert") && !targetEl.classList.toString().trim().includes("metadata-container")) return;
     if (targetEl.classList.contains("hover")) return;
     targetEl.classList.add("hover");
 }
