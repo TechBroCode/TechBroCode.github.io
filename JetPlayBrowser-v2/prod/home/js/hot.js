@@ -10,7 +10,7 @@ function insertYTShortsToDOM(ytGroupElement, shortItem) {
     ytGroupElement.insertAdjacentHTML("beforeend", `
         <div class="yt-shorts-container">
             <img class="yt-shorts-image" src=${imgSrc} loading="lazy" alt="">
-            <svg class="yt-header-logo" style="cursor: pointer; fill: white; position: absolute; top: 8px; right: 8px; padding: 0; display: flex;" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="yt-header-logo yt-shorts-down-icon" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path id="Vector" d="M6 21H18M12 3V17M12 17L17 12M12 17L7 12" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             <p class="normal-poppins-style yt-header-title yt-shorts-title">${shortItem?.title || ""}</p>
@@ -22,7 +22,7 @@ function createOrInsertToYTSingleDynamicLongFormContainer(docId, singleLongVidIt
     let parentContainer = document.getElementById(docId);
     if (!parentContainer || !generalContent.contains(parentContainer)) {
         generalContent.insertAdjacentHTML("beforeend", `
-            <div id=${docId} class="yt-group-contents" style="flex-wrap: wrap; overflow: hidden; margin-left: 10px; margin-right: 10px;"></div>
+            <div id=${docId} class="yt-group-contents yt-single-long-form-video-drop-container"></div>
         `);
     }
     parentContainer = document.getElementById(docId);

@@ -26,6 +26,16 @@
     padding-right: 8px;
 }
 
+.yt-shorts-down-icon {
+    cursor: pointer;
+    fill: white;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 0;
+    display: flex;
+}
+
 .yt-header-title {
     align-self: center;
     font-size: clamp(14px, 1.5vw, 24px);
@@ -43,6 +53,13 @@
     gap: 15px;
     flex-wrap: nowrap;
     overflow-x: auto;
+}
+
+.yt-single-long-form-video-drop-container {
+    flex-wrap: wrap;
+    overflow: hidden;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .yt-shorts-container {
@@ -112,7 +129,7 @@
 
 .yt-long-form-vid-container .thumbnail-container .thumbnail {
     width: inherit;
-    height: 230px;
+    height: 100%;
     /*For mobile, uncomment below code...*/
     /*height: inherit;*/
     object-fit: cover;
@@ -184,22 +201,60 @@
     font-size: 16px;
 }
 
-@media (min-width: 600px) {
-    /* small tablets */
-    /* styles... */
-    /*.yt-header-logo {
-        width: 24px;
-        height: 24px;
+/* default mobile */
+@media (max-width: 480px) {
+    /* phone-specific */
+    .yt-group {
+        padding-top: 0;
     }
 
-    .yt-header-title {
-        font-size: 14px;
-    }*/
+    .yt-header {
+        margin-top: 10px;
+    }
+
+    .yt-shorts-down-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .yt-group-contents {
+        margin-top: 10px;
+    }
+
+    .yt-single-long-form-video-drop-container {
+        margin: 0;
+        gap: 0;
+        flex-wrap: wrap;
+    }
+
+    .yt-long-form-vid-container {
+        width: 100%;
+        display: flex;
+        padding: 0;
+        border-radius: 0;
+        border: 0;
+    }
+
+    .yt-long-form-vid-container .thumbnail-container {
+        width: inherit;
+        height: auto;
+    }
+
+    .yt-long-form-vid-container .thumbnail-container .thumbnail {
+        width: inherit;
+        height: 100%;
+    }
+
+    .yt-long-form-vid-container .metadata-container {
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+    }
 }
 
-@media (min-width: 768px) {
-    /* tablets */
-    /* styles... */
+@media (min-width: 481px) and (max-width: 1023px) {
+    /* tablet */
+
 }
 
 @media (min-width: 1024px) {
