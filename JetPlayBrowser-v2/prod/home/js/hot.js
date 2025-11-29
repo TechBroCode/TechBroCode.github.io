@@ -35,8 +35,8 @@ function createOrInsertToYTSingleDynamicLongFormContainer(docId, singleLongVidIt
             </div>
             <div class="metadata-container">
                 <img class="channel-thumbnail" src=${singleLongVidItem?.data?.channel?.icon?.toString()?.trim() || ""} alt="" loading="lazy" style="background: darkgray;">
-                <div class="vert-container">
-                    <div class="title-more">
+                <div class="vert-container-more">
+                    <div class="title-wrapper">
                         <p class="normal-poppins-style title">${singleLongVidItem?.title?.toString()?.trim() || ""}</p>
                     </div>
                     <div class="yt-group-contents" style="margin-top: 5px; width: 100%; gap: 7px; flex-wrap: wrap;">
@@ -49,6 +49,9 @@ function createOrInsertToYTSingleDynamicLongFormContainer(docId, singleLongVidIt
                         <p class="normal-poppins-style" style="display: flex; opacity: 0.5; font-weight: 400">${singleLongVidItem?.datePublished?.text?.toString()?.trim() || ""}</p>
                     </div>
                 </div>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3" style="fill: var(--textColor); padding: 5px; display: inline-flex; justify-self: center; justify-content: center;">
+                    <path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/>
+                </svg>
             </div>
         </div>
     `);

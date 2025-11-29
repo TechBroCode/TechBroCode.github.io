@@ -166,9 +166,11 @@
     object-fit: cover;
 }
 
-.yt-long-form-vid-container .metadata-container .vert-container {
-    /*TODO: Parent padding was 10px each then margin left of 8px shifts container to right and padding right becomes 2px virtually then instead of calc(100% - 36px) it becomes calc(100% - (36px + 8px))*/
-    width: calc(100% - (36px + 8px));
+.yt-long-form-vid-container .metadata-container .vert-container-more {
+    /*TODO: Parent padding was 10px each then margin left of 8px shifts container to right and padding right becomes 2px virtually then instead of calc(100% - 36px)
+        it becomes calc(100% - (36px + 8px + 24px // more icon size + 5px // left padding + 5px // Right padding))*/
+    /*TODO: We remove 8px from calculation to allow our more icon push to right more...*/
+    width: calc(100% - (36px + 24px + 10px));
     margin-left: 8px;
     height: auto;
     display: flex;
@@ -178,7 +180,7 @@
     padding: 0;
 }
 
-.yt-long-form-vid-container .metadata-container .vert-container .title-more {
+.yt-long-form-vid-container .metadata-container .vert-container-more .title-wrapper {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -188,8 +190,8 @@
     flex-wrap: nowrap;
 }
 
-.yt-long-form-vid-container .metadata-container .vert-container .title-more .title {
-    width: calc(100% - 34px);
+.yt-long-form-vid-container .metadata-container .vert-container-more .title-wrapper .title {
+    width: 100%;
     height: auto;
     display: -webkit-box;
     word-break: break-word;
@@ -244,6 +246,7 @@
     .yt-long-form-vid-container .thumbnail-container .thumbnail {
         width: inherit;
         height: 100%;
+        object-fit: initial;
     }
 
     .yt-long-form-vid-container .metadata-container {
