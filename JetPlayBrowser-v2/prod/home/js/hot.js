@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                                 <div class="yt-group">
                                     <!--TODO: INSERT HEADER...-->
                                     <div class="yt-header">
-                                        <img class="yt-header-logo" src=${imgSrc} loading="lazy" alt="" />
+                                        <img class="yt-header-logo" src=${imgSrc} loading="lazy" alt="" style="display: ${imgSrc.length === 0 ? 'none' : 'inline-flex'}"/>
                                         <p class="normal-poppins-style yt-header-title">${groupTitle}</p>
                                     </div>
                                     <!--TODO: INSERT THE BODY...-->
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                             if (groupTitle.toLowerCase() === "shorts") {
                                 for (let c = 0, shortLen = groupedItems?.length; c < shortLen; c += 1) {
                                     const groupItem = groupedItems[c];
-                                    if (!groupItem) continue;
+                                    if (!groupItem || groupItem?.type !== 2) continue;
                                     // Insert YT-shorts into DOM...
                                     insertYTShortsToDOM(yTGroupElement, groupItem);
                                 }
