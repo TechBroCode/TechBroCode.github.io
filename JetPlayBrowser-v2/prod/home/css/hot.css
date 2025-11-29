@@ -190,7 +190,7 @@
 }
 
 .yt-long-form-vid-container .metadata-container .vert-container .title-more .title {
-    width: calc(100% - (24px + 5px + 5px));
+    width: calc(100% - (30px + 3px + 3px));
     height: auto;
     display: -webkit-box;
     word-break: break-word;
