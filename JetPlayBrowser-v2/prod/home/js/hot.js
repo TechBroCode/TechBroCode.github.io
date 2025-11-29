@@ -31,7 +31,7 @@ function createOrInsertToYTSingleDynamicLongFormContainer(docId, singleLongVidIt
         <div class="yt-long-form-vid-container">
             <div class="thumbnail-container">
                   <img class="thumbnail" src=${singleLongVidItem?.placeholder?.toString()?.trim() || ""} alt="" loading="lazy">
-                  <p class="normal-poppins-style" style="position: absolute; bottom: 5px; right: 5px; text-align: center; font-weight: 400; padding: 2px 4px; background: rgba(0,0,0,0.5); color: white">${singleLongVidItem?.data?.duration?.text?.toString()?.trim() || ""}</p>      
+                  <p class="normal-poppins-style" style="position: absolute; bottom: 5px; right: 5px; text-align: center; font-weight: 400; padding: 3px 5px; background: rgba(0,0,0,0.5); color: white; border-radius: 5px;">${singleLongVidItem?.data?.duration?.text?.toString()?.trim() || ""}</p>      
             </div>
             <div class="metadata-container">
                 <img class="channel-thumbnail" src=${singleLongVidItem?.data?.channel?.icon?.toString()?.trim() || ""} alt="" loading="lazy" style="background: darkgray;">
@@ -44,6 +44,7 @@ function createOrInsertToYTSingleDynamicLongFormContainer(docId, singleLongVidIt
                         <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: ${Boolean(singleLongVidItem?.data?.channel?.verified ?? false) ? 'flex' : 'none'}; width: 12px; height: 12px; fill: var(--blue-to-white); align-self: center; justify-self: center; justify-content: center;">
                             <path d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1Zm5.707 7.293a1 1 0 010 1.414L10 17.414l-3.707-3.707a1 1 0 111.414-1.414L10 14.586l6.293-6.293a1 1 0 011.414 0Z"></path>
                         </svg>
+                        <p class="normal-poppins-style" style="display: flex; opacity: 0.5; font-weight: 400">•</p>
                         <p class="normal-poppins-style" style="display: flex; opacity: 0.5; font-weight: 400">${singleLongVidItem?.data?.views?.text?.toString()?.trim() || ""}</p>
                         <p class="normal-poppins-style" style="display: flex; opacity: 0.5; font-weight: 400">${singleLongVidItem?.datePublished?.text?.toString()?.trim() || ""}</p>
                     </div>
