@@ -79,11 +79,12 @@ window.triggerApkFileUpdate = async (deviceApiLevel, versionCode, versionName, b
     }
 }
 
-
-window.preventDefaultStopPropagation = (e) => {
-    e.stopPropagation();
-    e.stopImmediatePropagation();
-    /*e.preventDefault();*/
+window.preventDefaultStopPropagation = (ev) => {
+    try {
+        ev.stopPropagation();
+        //e.stopImmediatePropagation();
+        /*e.preventDefault();*/
+    } catch (e) {}
 }
 
 window.isNullUndefined = (value) => {

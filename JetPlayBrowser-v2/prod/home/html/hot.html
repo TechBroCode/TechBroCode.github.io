@@ -146,6 +146,24 @@ background: var(--windowBackground); display: flex; flex-direction: column; over
 </div>
 <script type="application/ecmascript">
     try {
+        window.addEventListener("touchstart", (e) => {
+            addHover(e);
+        });
+        window.addEventListener("touchend", (e) => {
+            removeHover(e);
+        });
+        window.addEventListener("touchmove", (e) => {
+            removeHover(e);
+        });
+        window.addEventListener("touchcancel", (e) => {
+            removeHover(e);
+        });
+        window.addEventListener("mousedown", (e) => {
+            addHover(e);
+        });
+        window.addEventListener("mouseup", (e) => {
+            removeHover(e);
+        });
         window.addEventListener("error", (e) => {
             if (e && e.target && e.target.tagName === "IMG") {
                 e.target.src = e.target.src;

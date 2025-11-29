@@ -179,3 +179,25 @@ window.getDeviceTypeBySize = (width, height) => {
         aspect: Math.round(aspect * 100) / 100
     };
 }
+
+window.addHover = (ev) => {
+    preventDefaultStopPropagation(ev);
+    if (!ev || !ev.target) return;
+    const targetEl = ev.target;
+    if (targetEl.classList.contains("hover")) return;
+    targetEl.classList.add("hover");
+}
+
+window.removeHover = (ev) => {
+    preventDefaultStopPropagation(ev);
+    if (!ev || !ev.target) return;
+    const targetEl = ev.target;
+    targetEl.classList.remove("hover");
+}
+
+
+window.preventDefaultStopPropagation = (e) => {
+    e.stopPropagation();
+    //e.stopImmediatePropagation();
+    /*e.preventDefault();*/
+}
