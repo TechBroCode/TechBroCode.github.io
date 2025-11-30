@@ -142,8 +142,8 @@ function insertTikTokPlaybackFullReelsLength(contentItem) {
                     </div>
                 </div>
                 <div id=${chanVidTitleDesId} class="channel-title-container">
-                    <p class="normal-poppins-style title">${contentItem?.data?.channel?.title?.toString()?.trim() || ""}</p>
-                    <p class="normal-poppins-style title" style="font-weight: 600; font-size: 13px; opacity: 0.8; margin-top: 3px; display: -webkit-box; -webkit-line-clamp: 2; word-break: break-word; word-wrap: break-word; overflow-x: hidden; text-overflow: ellipsis;">${contentItem?.title?.toString()?.trim() || ""}</p>
+                    <p class="normal-poppins-style title" style="display: ${contentItem?.data?.channel?.title?.toString()?.trim()?.length > 0 ? 'flex' : 'none'}">${contentItem?.data?.channel?.title?.toString()?.trim() || ""}</p>
+                    <p class="normal-poppins-style title" style="font-weight: 600; font-size: 13px; opacity: 0.8; margin-top: 3px; display: ${contentItem?.title?.toString()?.trim()?.length > 0 ? '-webkit-box' : 'none'}; -webkit-line-clamp: 2; word-break: break-word; word-wrap: break-word; overflow-x: hidden; text-overflow: ellipsis;">${contentItem?.title?.toString()?.trim() || ""}</p>
                     <!--TODO: Add music title-->
                     <!--TODO:  background: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.2) 100%);-->
                     <p class="normal-poppins-style marquee" style="display: ${originalSoundObj && originalSoundObj?.category !== undefined ? 'webkit-box' : 'none'}; width: 100%; align-self: flex-start; font-weight: 400; font-size: 13px; margin-top: 3px; display: -webkit-box; -webkit-line-clamp: 1; white-space: nowrap; overflow-x: hidden; text-overflow: ellipsis;">
