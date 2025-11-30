@@ -53,7 +53,7 @@ window.__fetchNativeResponse = function (resp) { // resp is an object sent from 
         const responseLike = {
             // HTTP status number
             status: resp.status,
-            // status text like 'OK' from native
+            // status text-desc like 'OK' from native
             statusText: resp.statusText || "",
             // boolean ok (status 200-299)
             ok: resp.status >= 200 && resp.status < 300,
@@ -61,7 +61,7 @@ window.__fetchNativeResponse = function (resp) { // resp is an object sent from 
             headers: headers,
             // returnType passed from JS -> native (kept for compatibility)
             returnType: resp.returnType || "text",
-            // text() returns a Promise resolving to string decoded as UTF-8
+            // text-desc() returns a Promise resolving to string decoded as UTF-8
             text: function () {
                 return new Promise(function (resolve) {
                     try {
@@ -81,7 +81,7 @@ window.__fetchNativeResponse = function (resp) { // resp is an object sent from 
                     }
                 });
             },
-            // json() returns a Promise that parses the text as JSON
+            // json() returns a Promise that parses the text-desc as JSON
             json: function () {
                 return this.text().then(function (t) {
                     return JSON.parse(t);

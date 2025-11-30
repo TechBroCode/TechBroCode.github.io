@@ -216,6 +216,13 @@
     border-radius: 50%;
 }
 
+/* keyframes: move the span left until its full width has scrolled */
+@keyframes marquee {
+    0%   { transform: translateX(0); }       /* shifted right by padding-left */
+    /*TODO: The second -100% is padding to prevent premature restarts...*/
+    100% { transform: translateX(calc(-100% - 100%)); }   /* moved left by its own width */
+}
+
 /* default mobile */
 @media (max-width: 480px) {
     /* phone-specific */
@@ -271,7 +278,6 @@
 
     .tiktok-full-size-player-card-container {
         width: 100%;
-        object-fit: contain;
         aspect-ratio: 9 / 16;
         margin-top: 10px;
         height: auto;
@@ -282,6 +288,7 @@
     }
     .tiktok-full-size-player-card-container .thumbnail {
         width: inherit;
+        object-fit: cover;
         height: 100%;
         position: absolute;
         display: flex;
@@ -317,6 +324,93 @@
         border-radius: 50%;
         padding: 12px;
         fill: white;
+    }
+
+    .tiktok-full-size-player-card-container .gen-controller .vert-container {
+        width: auto;
+        height: auto;
+        max-height: 100%;
+        overflow-y: auto;
+        position: absolute;
+        gap: 15px;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 5px;
+        flex-wrap: nowrap;
+        overflow-x: hidden;
+    }
+
+    .tiktok-full-size-player-card-container .gen-controller .vert-container .owner-avatar-container {
+        width: 36px;
+        height: calc(36px + 9px);
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+    }
+
+    .tiktok-full-size-player-card-container .gen-controller .vert-container .owner-avatar-container .owner-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        align-self: center;
+        display: flex;
+        object-fit: cover;
+    }
+
+    .tiktok-full-size-player-card-container .gen-controller .vert-container .action-container {
+        width: auto;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+    }
+
+    .tiktok-full-size-player-card-container .gen-controller .vert-container .action-container svg {
+        width: 36px;
+        height: 36px;
+        fill: white;
+        justify-content: center;
+        display: flex;
+    }
+
+    .tiktok-full-size-player-card-container .gen-controller .vert-container .action-container .text-desc {
+        margin-top: 2px;
+    }
+    .tiktok-full-size-player-card-container .gen-controller .channel-title-container {
+        display: flex;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        /*TODO: Remember to change width value in js to prevent overlapping*/
+        width: 100%;
+        height: auto;
+        /*TODO: We'll regulate it and scroll vertically when it reaches maximum height 100% to prevent inconsistencies...*/
+        max-height: 100%;
+        right: 0;
+        flex-direction: column;
+        overflow-y: auto;
+        /*TODO: It'll turn darker for read more contents*/
+        background: transparent;
+        justify-content: flex-start;
+        padding: 5px;
+    }
+
+    .tiktok-full-size-player-card-container .gen-controller .channel-title-container .title {
+        display: flex;
+        width: auto;
+        height: auto;
+        text-align: start;
+        align-self: flex-start;
+        font-size: 16px;
+        color: white;
     }
 }
 
@@ -358,4 +452,9 @@
         transform: translateY(-6px);
         box-shadow: 0 10px 30px rgba(0,0,0,.12);
     }
+}
+
+/*Accessibility: respect user motion preference*/
+@media (prefers-reduced-motion: reduce) {
+    .marquee span { animation: none; transform: none; padding-left: 0; }
 }

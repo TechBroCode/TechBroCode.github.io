@@ -73,7 +73,7 @@ Referer: https://m.youtube.com/
       "timeZone": "Africa/Lagos",
       "browserName": "Chrome Mobile",
       "browserVersion": "142.0.0.0",
-      "acceptHeader": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+      "acceptHeader": "text-desc/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
       "deviceExperimentId": "ChxOelUzTXpReE1qa3dPREk1TXpNNE9EVXlOZz09EOrV6MgGGOrV6MgG",
       "rolloutToken": "CNq5uPPZ2tGvShD-_tTf556QAxj75_WCsPeQAw%3D%3D",
       "screenWidthPoints": 321,

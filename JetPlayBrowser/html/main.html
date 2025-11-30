@@ -37,7 +37,7 @@
                 method = 'GET',
                 headers = {},
                 body = null,
-                responseType = 'text'  // 'text'|'json'|'image'|'video'
+                responseType = 'text'  // 'text-desc'|'json'|'image'|'video'
             } = init;
 
             return new Promise((resolve, reject) => {
@@ -82,7 +82,7 @@
 
         /*(async () => {
             const res = await nativeFetch('https://example.com/readme.txt');
-            console.log(res.body);          // raw text
+            console.log(res.body);          // raw text-desc
         })();*/
 
         // JSON

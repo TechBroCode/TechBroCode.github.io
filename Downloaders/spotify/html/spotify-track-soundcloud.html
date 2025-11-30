@@ -18,7 +18,7 @@
                 method = 'GET',
                 headers = {},
                 body = null,
-                responseType = 'text'  // 'text'|'json'|'image'|'video'
+                responseType = 'text'  // 'text-desc'|'json'|'image'|'video'
             } = init;
 
             return new Promise((resolve, reject) => {
@@ -63,7 +63,7 @@
 
         /*(async () => {
             const res = await nativeFetch('https://example.com/readme.txt');
-            console.log(res.body);          // raw text
+            console.log(res.body);          // raw text-desc
         })();*/
 
         // JSON
@@ -104,7 +104,7 @@
             try {
                 const res = await nativeFetch('https://api.example.com/status');
                 console.log('Status:', res.status);      // e.g. 200
-                console.log('Body:', res.body);          // raw text
+                console.log('Body:', res.body);          // raw text-desc
             } catch (e) {
                 console.error('Fetch failed:', e);
             }

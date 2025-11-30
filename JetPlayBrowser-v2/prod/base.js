@@ -203,5 +203,48 @@ try {
             //e.stopImmediatePropagation();
             /*e.preventDefault();*/
         }
+
+        /**
+         * formatShort( number ) -> string
+         * Examples:
+         *   formatShort(3300000)    // "3.3M"
+         *   formatShort(1200)       // "1.2k"
+         *   formatShort(1000)       // "1k"
+         *   formatShort(999)        // "999"
+         *   formatShort(1234567890) // "1.23B"
+         *   formatShort(-1500)      // "-1.5k"
+         */
+        window.formatShort = (n) => {
+            if (typeof n !== 'number' || !isFinite(n)) return String(n);
+            const sign = n < 0 ? '-' : '';
+            const abs = Math.abs(n);
+
+            const tiers = [
+                { value: 1e12, suffix: 'T' },
+                { value: 1e9,  suffix: 'B' },
+                { value: 1e6,  suffix: 'M' },
+                { value: 1e3,  suffix: 'k' }
+            ];
+
+            // helper: trim trailing zeros from a "fixed" string
+            function trimFixed(s) {
+                // removes trailing zeros and optional trailing dot: "1.00"->"1", "1.20"->"1.2"
+                return s.replace(/(\.\d*?[1-9])0+$|\.0+$/, '$1');
+            }
+
+            for (let i = 0; i < tiers.length; i++) {
+                const t = tiers[i];
+                if (abs >= t.value) {
+                    const v = abs / t.value;
+                    // keep 2 decimal places then trim unnecessary zeros
+                    const fixed = v.toFixed(2);
+                    return sign + trimFixed(fixed) + t.suffix;
+                }
+            }
+
+            // < 1000: show integer as-is, otherwise up to 2 d.p trimmed
+            if (Number.isInteger(n)) return String(n);
+            return trimFixed(abs.toFixed(2)) === '0' ? sign + '0' : sign + trimFixed(abs.toFixed(2));
+        }
     }
 } catch (e) {}

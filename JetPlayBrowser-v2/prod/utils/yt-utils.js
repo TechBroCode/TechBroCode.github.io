@@ -95,7 +95,7 @@ window.browseYTPageFeed = async (options) => {
                     "timeZone": String(options.timeZone ?? "Africa/Lagos"),
                     "browserName": "Chrome Mobile",
                     "browserVersion": "142.0.0.0",
-                    "acceptHeader": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+                    "acceptHeader": "text-desc/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
                     "deviceExperimentId": "ChxOelUzTXpReE1qa3dPREk1TXpNNE9EVXlOZz09EOrV6MgGGOrV6MgG",
                     "rolloutToken": "CNq5uPPZ2tGvShD-_tTf556QAxj75_WCsPeQAw%3D%3D"
                 },
@@ -197,7 +197,7 @@ window.browseYTPageFeed = async (options) => {
             method: 'POST',
             headers: JSON.stringify(headers),
             body: JSON.stringify(body),
-            returnType: 'text' // use 'text' because bridge returns base64 decoded text; you'll parse JSON below
+            returnType: 'text' // use 'text-desc' because bridge returns base64 decoded text-desc; you'll parse JSON below
         });
         // Handle Response...
         if (!response.ok) {
