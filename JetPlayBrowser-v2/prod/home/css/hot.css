@@ -271,7 +271,7 @@
 
     .tiktok-full-size-player-card-container {
         width: 100%;
-        object-fit: initial;
+        object-fit: contain;
         aspect-ratio: 9 / 16;
         margin-top: 10px;
         height: auto;
