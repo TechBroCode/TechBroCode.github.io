@@ -190,7 +190,7 @@
 }
 
 .yt-long-form-vid-container .metadata-container .vert-container .title-more .title {
-    width: calc(100% - (30px + 3px + 3px));
+    width: calc(100% - (30px + 5px + 5px));
     height: auto;
     display: -webkit-box;
     word-break: break-word;
@@ -205,7 +205,7 @@
 
 .yt-long-form-vid-container .metadata-container .vert-container .title-more .more-vert {
     fill: var(--textColor);
-    padding: 3px;
+    padding: 5px;
     display: inline-flex;
     justify-self: center;
     justify-content: center;
@@ -296,4 +296,12 @@
 
 /* 4K displays */
 @media (min-width: 3840px) {
+}
+
+/* Only apply hover styles on devices that can hover (mouse, stylus) */
+@media (hover: hover) and (pointer: fine) {
+    .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 30px rgba(0,0,0,.12);
+    }
 }

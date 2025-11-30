@@ -98,29 +98,48 @@ document.addEventListener("DOMContentLoaded", async () => {
                                 // Doesn't exist or empty array
                                 break;
                             }
-                            // Insert YT grouped body...
-                            const ytGroupId = `${Date.now()}-${makeUUID()}`;
                             const imgSrc = contentItem?.data?.meta?.icon || "";
                             const groupTitle = contentItem?.data?.meta?.title || "";
-                            generalContent.insertAdjacentHTML("beforeend", `
-                                <div class="yt-group">
-                                    <!--TODO: INSERT HEADER...-->
-                                    <div class="yt-header">
-                                        <img class="yt-header-logo" src=${imgSrc} loading="lazy" alt="" style="display: ${imgSrc.length === 0 ? 'none' : 'inline-flex'}"/>
-                                        <p class="normal-poppins-style yt-header-title">${groupTitle}</p>
-                                    </div>
-                                    <!--TODO: INSERT THE BODY...-->
-                                    <div id=${ytGroupId} class="yt-group-contents"></div>
-                                </div>
-                            `);
-                            const yTGroupElement = document.getElementById(ytGroupId);
-                            if (!yTGroupElement || !generalContent.contains(yTGroupElement)) break;
                             if (groupTitle.toLowerCase() === "shorts") {
+                                // Insert YT grouped body...
+                                const ytGroupId = `${Date.now()}-${makeUUID()}`;
+                                generalContent.insertAdjacentHTML("beforeend", `
+                                    <div class="yt-group">
+                                        <!--TODO: INSERT HEADER...-->
+                                        <div class="yt-header">
+                                            <img class="yt-header-logo" src=${imgSrc} loading="lazy" alt="" />
+                                            <p class="normal-poppins-style yt-header-title">${groupTitle}</p>
+                                        </div>
+                                        <!--TODO: INSERT THE BODY...-->
+                                        <div id=${ytGroupId} class="yt-group-contents"></div>
+                                    </div>
+                                `);
+                                const yTGroupElement = document.getElementById(ytGroupId);
+                                if (!yTGroupElement || !generalContent.contains(yTGroupElement)) break;
+
                                 for (let c = 0, shortLen = groupedItems?.length; c < shortLen; c += 1) {
                                     const groupItem = groupedItems[c];
                                     if (!groupItem || groupItem?.type !== 2) continue;
                                     // Insert YT-shorts into DOM...
                                     insertYTShortsToDOM(yTGroupElement, groupItem);
+                                }
+                            } else {
+                                // It may be breaking news, or any news. etc...
+                                generalContent.insertAdjacentHTML("beforeend", `
+                                    <div class="yt-group">
+                                        <!--TODO: INSERT HEADER...-->
+                                        <div class="yt-header">
+                                            <p class="normal-poppins-style yt-header-title">${groupTitle}</p>
+                                        </div>
+                                    </div>
+                                `);
+                                // Header has been created...
+                                const yTGroupingLongVidContainerDocId = `${Date.now()}-${makeUUID()}`;
+                                for (let c = 0, longVidGroupLen = groupedItems?.length; c < longVidGroupLen; c += 1) {
+                                    const groupItem = groupedItems[c];
+                                    if (!groupItem || groupItem?.type !== 3) continue;
+                                    // Insert each long-form...
+                                    createOrInsertToYTSingleDynamicLongFormContainer(yTGroupingLongVidContainerDocId, groupItem);
                                 }
                             }
                             break;

@@ -19,6 +19,8 @@
     }
 })(typeof window !== "undefined" ? window : (typeof global !== "undefined" ? global : this));
 */
+window.includedHoverClassList = ["more-vert"];
+window.isMobileDeviceByViewportSize = window.matchMedia("(max-width: 480px)").matches;
 
 window.WEB_TAG = "";
 window.PLAY_BASE_URL = "https://jetplay.vercel.app";
@@ -180,9 +182,10 @@ window.addHover = (ev) => {
     preventDefaultStopPropagation(ev);
     if (!ev || !ev.target) return;
     const targetEl = ev.target;
-    if (!targetEl.classList.toString().trim().includes("more-vert") && !targetEl.classList.toString().trim().includes("metadata-container")) return;
-    if (targetEl.classList.contains("hover")) return;
-    targetEl.classList.add("hover");
+    if (includedHoverClassList.some((c) => targetEl.classList.toString().trim().includes(c))) {
+        if (targetEl.classList.contains("hover")) return;
+        targetEl.classList.add("hover");
+    }
 }
 
 window.removeHover = (ev) => {
