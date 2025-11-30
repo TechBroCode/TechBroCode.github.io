@@ -303,6 +303,21 @@
         left: 0;
         z-index: 1;
     }
+
+    .tiktok-full-size-player-card-container .gen-controller .play-pause{
+        width: 96px;
+        height: 96px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        padding: 12px;
+        fill: white;
+    }
 }
 
 @media (min-width: 481px) and (max-width: 1023px) {
