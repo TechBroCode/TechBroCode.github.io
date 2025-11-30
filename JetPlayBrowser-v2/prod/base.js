@@ -19,7 +19,7 @@
     }
 })(typeof window !== "undefined" ? window : (typeof global !== "undefined" ? global : this));
 */
-window.includedHoverClassList = ["more-vert"];
+window.includedHoverClassList = ["more-vert", "yt-shorts-down-icon"];
 window.isMobileDeviceByViewportSize = window.matchMedia("(max-width: 480px)").matches;
 
 window.WEB_TAG = "";

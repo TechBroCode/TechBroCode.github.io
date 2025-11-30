@@ -20,8 +20,8 @@
 
 .yt-header-logo {
     display: inline-flex;
-    width: clamp(24px, 2.5vw, 48px);
-    height: clamp(24px, 2.5vw, 48px);
+    width: clamp(30px, 2.5vw, 48px);
+    height: clamp(30px, 2.5vw, 48px);
     align-self: center;
     padding-right: 8px;
 }
@@ -30,10 +30,11 @@
     cursor: pointer;
     fill: white;
     position: absolute;
-    top: 8px;
-    right: 8px;
-    padding: 0;
     display: flex;
+    padding: 5px;
+    border-radius: 50%;
+    top: 2px;
+    right: 2px;
 }
 
 .yt-header-title {
@@ -226,8 +227,8 @@
     }
 
     .yt-shorts-down-icon {
-        width: 20px;
-        height: 20px;
+        width: 24px;
+        height: 24px;
     }
 
     .yt-group-contents {
