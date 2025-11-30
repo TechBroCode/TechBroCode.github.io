@@ -110,6 +110,7 @@
     height: auto;
     display: flex;
     padding: 10px;
+    cursor: pointer;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
@@ -245,6 +246,7 @@
         width: 100%;
         display: flex;
         padding: 0;
+        margin-top: 10px;
         border-radius: 0;
         border: 0;
     }
@@ -264,6 +266,42 @@
         padding-left: 10px;
         padding-right: 10px;
         padding-bottom: 10px;
+    }
+
+
+    .tiktok-full-size-player-card-container {
+        width: 100%;
+        object-fit: initial;
+        aspect-ratio: 9 / 16;
+        margin-top: 10px;
+        height: auto;
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    .tiktok-full-size-player-card-container .thumbnail {
+        width: inherit;
+        height: 100%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+    .tiktok-full-size-player-card-container .gen-controller{
+        width: inherit;
+        height: 100%;
+        position: absolute;
+        display: flex;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
     }
 }
 

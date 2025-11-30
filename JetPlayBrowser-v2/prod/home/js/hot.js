@@ -60,6 +60,15 @@ function createOrInsertToYTSingleDynamicLongFormContainer(docId, singleLongVidIt
     `);
 }
 
+function insertTikTokPlaybackFullReelsLength(contentItem) {
+    const docId = `${Date.now()}-${makeUUID()}`;
+    generalContent.insertAdjacentHTML("beforeend", `
+        <div id=${docId} class="tiktok-full-size-player-card-container">
+            <img class="thumbnail" src=${contentItem?.placeholder?.toString()?.trim() || ""} alt="" loading="lazy">
+        </div>
+    `);
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
     try {
         // You can check if user allowed showing of sensitive contents...
@@ -144,8 +153,16 @@ document.addEventListener("DOMContentLoaded", async () => {
                             }
                             break;
                         }
-                        case 3:{
+                        case 3: {
                             createOrInsertToYTSingleDynamicLongFormContainer(yTDynamicLongVidContainerDocId, contentItem);
+                            break;
+                        }
+                        case 9: {
+                            //alert(isMobileDeviceByViewportSize);
+                            if (isMobileDeviceByViewportSize) {
+                                // We'll not support playback of TikTok on mobile phones...
+                                insertTikTokPlaybackFullReelsLength(contentItem);
+                            }
                             break;
                         }
                     }
