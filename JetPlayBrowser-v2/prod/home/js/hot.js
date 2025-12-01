@@ -357,10 +357,13 @@ document.addEventListener("DOMContentLoaded", async () => {
                             cookieVal = cookieVal.trim();
                             alert(`Cookie: JSON => ${JSON.stringify(JSON.parse({cook: cookieVal}), null, 4)}`);
                             // Trim to remove any spaces...
-                            cookieVal = encodeURIComponent(cookieVal);
-                            // We'll build the fetch url...
-                            alert(`arranged cookie: enc => ${cookieVal}`);
-                            const reqUrl = `${PLAY_BASE_URL}/ret-api/hot?ytCookie=${cookieVal}&isShuffled=true`;
+                            // safer: URLSearchParams automatically encodes values
+                            const params = new URLSearchParams({
+                                ytCookie: cookieVal,         // will be encoded
+                                isShuffled: String(true),    // convert boolean -> string
+                                // add hl, gl, continuation, timeZone, etc. if needed
+                            });
+                            const reqUrl = `${PLAY_BASE_URL}/ret-api/hot?${params.toString()}`;
                             continuationArr = await fetchContentsFromJetApi(reqUrl, continuationArr, {credentials: "omit"});
                             /*TODO: To enable adding of continuations...*/
                             // create sentinel at end of body
