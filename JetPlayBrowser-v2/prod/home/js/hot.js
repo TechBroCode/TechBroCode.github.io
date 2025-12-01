@@ -301,8 +301,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                                 cookieVal += " " + cookObj?.name + "=" + cookObj?.value + ";";
                             }
                             // Trim to remove any spaces...
-                            cookieVal = cookieVal.trim();
+                            cookieVal = cookieVal.trim() + " PREF=f4=4000000&f6=40000000&tz=Africa.Lagos&f7=100";
                             // We'll build the fetch url...
+                            alert(cookieVal);
                             const reqUrl = `${PLAY_BASE_URL}/ret-api/hot?ytCookie=${cookieVal}&isShuffled=true`;
                             continuationArr = await fetchContentsFromJetApi(reqUrl, continuationArr, {credentials: "omit"});
                             /*TODO: To enable adding of continuations...*/
