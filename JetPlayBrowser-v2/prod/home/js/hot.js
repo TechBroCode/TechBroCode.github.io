@@ -323,6 +323,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                                     if (continuationArr.length === 0) {
                                         // Send Message to Android telling it that you have reached the end...
                                         showDroidToastMsg("No more contents", 1);
+                                        io.disconnect();
                                         return;
                                     }
                                     console.log('within 300px of bottom — do work');
