@@ -272,7 +272,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             // add it to the pending response below...
         }
         let continuationArr = [];
-        if (WEB_TAG.length > 0 && !isDroidNetworkAvailable()) {
+        if (!isDroidNetworkAvailable()) {
             showDroidToastMsg("No internet available", 1);
             return;
         }
@@ -280,47 +280,159 @@ document.addEventListener("DOMContentLoaded", async () => {
             showDroidToastMsg("Please wait...", 1);
             return;
         }
-        try {
-            // safer: URLSearchParams automatically encodes values
-            const params = new URLSearchParams({
-                ytCookie: incognitoYTCookie,         // will be encoded
-                isShuffled: String(true),    // convert boolean -> string
-                // add hl, gl, continuation, timeZone, etc. if needed
-            });
-            const reqUrl = `${PLAY_BASE_URL}/ret-api/hot?${params.toString()}`;
-            continuationArr = await fetchContentsFromJetApi(reqUrl, continuationArr, {credentials: "omit"});
-            /*TODO: To enable adding of continuations...*/
-            // create sentinel at end of body
-            const sentinel = document.createElement('div');
-            sentinel.id = 'near-bottom-sentinel';
-            sentinel.style.cssText = 'width:1px;height:1px;pointer-events:none;'; // invisible
-            body.appendChild(sentinel);
+        const tagChecker = setInterval( () => {
+            if (!isDroidNetworkAvailable()) {
+                showDroidToastMsg("No internet available", 1);
+                clearInterval(tagChecker);
+                return;
+            }
+            alert(`WEB_TAG => ${WEB_TAG}`);
+            if (WEB_TAG && WEB_TAG.length > 0) {
+                clearInterval(tagChecker);
+                loadDroidWebUrlCookies("https://www.youtube.com/shorts/FLlU71aL3M4", WEB_TAG, true);
+                // We'll create another interval to check for the value of droidcookieValue
+                const cookieChecker = setInterval(async () => {
+                    if (droidcookieValue?.url === "https://www.youtube.com/shorts/FLlU71aL3M4" && droidcookieValue?.jsonArr) {
+                        clearInterval(cookieChecker);
+                        try {
+                            //We'll append all names + " " + value + ";"...
+                            let cookieVal = "";
+                            // For GPS Loop...
+                            for (let c = 0, cookLen = droidcookieValue?.jsonArr?.length; c < cookLen; c+=1) {
+                                const cookObj = droidcookieValue?.jsonArr?.[c];
+                                if (!cookObj || !cookObj?.name || !cookObj?.value) continue;
+                                if (cookObj?.name === "GPS") {
+                                    cookieVal += " " + cookObj?.name + "=" + cookObj?.value + ";";
+                                    break;
+                                }
+                            }
+                            // For YSC Loop...
+                            for (let c = 0, cookLen = droidcookieValue?.jsonArr?.length; c < cookLen; c+=1) {
+                                const cookObj = droidcookieValue?.jsonArr?.[c];
+                                if (!cookObj || !cookObj?.name || !cookObj?.value) continue;
+                                if (cookObj?.name === "YSC") {
+                                    cookieVal += " " + cookObj?.name + "=" + cookObj?.value + ";";
+                                    break;
+                                }
+                            }
+                            // For VISITOR_INFO1_LIVE Loop...
+                            for (let c = 0, cookLen = droidcookieValue?.jsonArr?.length; c < cookLen; c+=1) {
+                                const cookObj = droidcookieValue?.jsonArr?.[c];
+                                if (!cookObj || !cookObj?.name || !cookObj?.value) continue;
+                                if (cookObj?.name === "VISITOR_INFO1_LIVE") {
+                                    cookieVal += " " + cookObj?.name + "=" + cookObj?.value + ";";
+                                    break;
+                                }
+                            }
 
-            // observe with a bottom rootMargin of 300px
-            const io = new IntersectionObserver((entries) => {
-                if (!entries || !entries[0]) return;
-                const entry = entries[0];
-                if (entry.isIntersecting) {
-                    if (isLoadingMainContents) return;
-                    if (continuationArr.length === 0) {
-                        // Send Message to Android telling it that you have reached the end...
-                        showDroidToastMsg("No more contents", 1);
-                        io.disconnect();
-                        return;
+                            // For VISITOR_PRIVACY_METADATA Loop...
+                            for (let c = 0, cookLen = droidcookieValue?.jsonArr?.length; c < cookLen; c+=1) {
+                                const cookObj = droidcookieValue?.jsonArr?.[c];
+                                if (!cookObj || !cookObj?.name || !cookObj?.value) continue;
+                                if (cookObj?.name === "VISITOR_PRIVACY_METADATA") {
+                                    cookieVal += " " + cookObj?.name + "=" + cookObj?.value + ";";
+                                    break;
+                                }
+                            }
+
+                            // For __Secure-YNID Loop...
+                            for (let c = 0, cookLen = droidcookieValue?.jsonArr?.length; c < cookLen; c+=1) {
+                                const cookObj = droidcookieValue?.jsonArr?.[c];
+                                if (!cookObj || !cookObj?.name || !cookObj?.value) continue;
+                                if (cookObj?.name === "__Secure-YNID") {
+                                    cookieVal += " " + cookObj?.name + "=" + cookObj?.value + ";";
+                                    break;
+                                }
+                            }
+
+                            // For __Secure-ROLLOUT_TOKEN Loop...
+                            for (let c = 0, cookLen = droidcookieValue?.jsonArr?.length; c < cookLen; c+=1) {
+                                const cookObj = droidcookieValue?.jsonArr?.[c];
+                                if (!cookObj || !cookObj?.name || !cookObj?.value) continue;
+                                if (cookObj?.name === "__Secure-ROLLOUT_TOKEN") {
+                                    cookieVal += " " + cookObj?.name + "=" + cookObj?.value + ";";
+                                    break;
+                                }
+                            }
+
+                            cookieVal = cookieVal.trim();
+                            //alert(`Cookie: JSON => ${JSON.stringify(JSON.parse({cook: cookieVal}), null, 4)}`);
+                            // safer: URLSearchParams automatically encodes values
+                            const params = new URLSearchParams({
+                                ytCookie: cookieVal,         // will be encoded
+                                isShuffled: String(true),    // convert boolean -> string
+                                // add hl, gl, continuation, timeZone, etc. if needed
+                            });
+                            const reqUrl = `${PLAY_BASE_URL}/ret-api/hot?${params.toString()}`;
+                            continuationArr = await fetchContentsFromJetApi(reqUrl, continuationArr, {credentials: "omit"});
+                            /*TODO: To enable adding of continuations...*/
+                            // create sentinel at end of body
+                            const sentinel = document.createElement('div');
+                            sentinel.id = 'near-bottom-sentinel';
+                            sentinel.style.cssText = 'width:1px;height:1px;pointer-events:none;'; // invisible
+                            body.appendChild(sentinel);
+
+                            // observe with a bottom rootMargin of 300px
+                            const io = new IntersectionObserver((entries) => {
+                                if (!entries || !entries[0]) return;
+                                const entry = entries[0];
+                                if (entry.isIntersecting) {
+                                    if (isLoadingMainContents) return;
+                                    if (continuationArr.length === 0) {
+                                        // Send Message to Android telling it that you have reached the end...
+                                        showDroidToastMsg("No more contents", 1);
+                                        io.disconnect();
+                                        return;
+                                    }
+                                    console.log('within 300px of bottom — do work');
+                                    // optionally disconnect if you only need it once:
+                                    // io.disconnect();
+                                }
+                            }, {
+                                root: null,                      // viewport
+                                rootMargin: '0px 0px 300px 0px', // top right bottom left
+                                threshold: 0                     // trigger when any pixel is visible
+                            });
+                            io.observe(sentinel);
+                        } catch (e) {
+                            console.error(e);
+                        }
                     }
-                    console.log('within 300px of bottom — do work');
-                    // optionally disconnect if you only need it once:
-                    // io.disconnect();
+                }, 1000);
+            }
+        }, 1000);
+        /* TODO: UNCOMMENT TO EXECUTE... */
+        //TODO: To enable adding of continuations...
+        /*continuationArr = await fetchContentsFromJetApi(`${PLAY_BASE_URL}/ret-api/hot?isShuffled=false`, continuationArr, {credentials: "omit"});
+        // create sentinel at end of body
+        const sentinel = document.createElement('div');
+        sentinel.id = 'near-bottom-sentinel';
+        sentinel.style.cssText = 'width:1px;height:1px;pointer-events:none;'; // invisible
+        body.appendChild(sentinel);
+
+        // observe with a bottom rootMargin of 300px
+        const io = new IntersectionObserver((entries) => {
+            if (!entries || !entries[0]) return;
+            const entry = entries[0];
+            if (entry.isIntersecting) {
+                if (isLoadingMainContents) return;
+                if (continuationArr.length === 0) {
+                    // Send Message to Android telling it that you have reached the end...
+                    showDroidToastMsg("No more contents", 1);
+                    return;
                 }
-            }, {
-                root: null,                      // viewport
-                rootMargin: '0px 0px 300px 0px', // top right bottom left
-                threshold: 0                     // trigger when any pixel is visible
-            });
-            io.observe(sentinel);
-        } catch (e) {
-            console.error(e);
-        }
+                console.log('within 300px of bottom — do work');
+                // optionally disconnect if you only need it once:
+                // io.disconnect();
+            }
+        }, {
+            root: null,                      // viewport
+            rootMargin: '0px 0px 300px 0px', // top right bottom left
+            threshold: 0                     // trigger when any pixel is visible
+        });
+        io.observe(sentinel);*/
+        /*TODO: STOP*/
+        // cleanup example: io.disconnect(); sentinel.remove();
         /*const webTagChecker = setInterval(async () => {
             alert("Entry => WEB_TAG: " + window.WEB_TAG);
             if (window.WEB_TAG !== undefined && window.WEB_TAG !== null && window.WEB_TAG.trim().length > 0) {
