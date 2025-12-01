@@ -5,9 +5,9 @@ let pornVid = [1, 2, 3, 4, 5];
 const veryLargeArr = [];
 
 // This is also a YT Query param and a logged in cookie...
-const ytCookie = "VISITOR_INFO1_LIVE=IvKiLIds1lE; VISITOR_PRIVACY_METADATA=CgJORxIEGgAgUw%3D%3D; __Secure-3PAPISID=ipt_uoTPI53B8yus/APqTpkO8hq9_rgeN8; LOGIN_INFO=AFmmF2swRgIhAP-liQy5DsgsgqyHKxGu4mtaTxclN1Gz4EtDcnTEKx7pAiEAlxrkWM-Um4a4BKBJaGF9ljZvsfjYCSYCUsdMezutP5k:QUQ3MjNmeXlIUzljNXpPcHYtdHpoamhmN3ZROWpnRkE1VU1hbS1zZDFXUVpweG5UUEU2ajVVVlgwWWRqY2NacjBYV3BzdEJ0Q0V6NU4zTFVuYjBOVWhyYUd5N0g3dFZNRGtVaF9tejlVWV9BSWtxd0xNWkpOYm53NkRMQ2EtMmpIdVNzTFZkYm1iLUFTN3NJU1c4aGt1YkxCckNUanc4a01BSDJSa25qNkF6cHhmTklZMGxQM2lYZDVGVHBhc05YTmZXNlQwemhQR0lrVmNtS0g0bzdIS2dXYTNwOFBBdl9Cdw==; __Secure-3PSID=g.a0002wh-JA2KxfFP58PesI60afEbbdRyvIOAQY7mODiXzsYeMSoy8X76_KtbYpT-xiHM7_showACgYKAaoSARYSFQHGX2MiLWdT5u61G_-LPYENFbuttRoVAUF8yKr70J92LkHi5owg3bIU4L230076; PREF=f4=4000000&f6=40000000&tz=Africa.Lagos&f7=100&f5=30000; __Secure-ROLLOUT_TOKEN=CNq5uPPZ2tGvShD-_tTf556QAxiGuoOm65eRAw%3D%3D; YSC=mGBQc60k-lY; __Secure-1PSIDTS=sidts-CjQBwQ9iI1AV7w_Zb3yV_erhbHVd3DrEPWukzJPOSnnV1Y6vI66eo_Fpo59XKKXLXe6fezrWEAA; __Secure-3PSIDTS=sidts-CjQBwQ9iI1AV7w_Zb3yV_erhbHVd3DrEPWukzJPOSnnV1Y6vI66eo_Fpo59XKKXLXe6fezrWEAA; CONSISTENCY=AKreu9vGauIEyKmtkcMho67A1b98JNzJzFCDLCOYThrbhpTl_9KjlktG_1GghwkLzEfBKSQf1tP-8tYIFh3SzIm53hnXNhIWYe7xB_BDMRhx8DIuEKhiecpKo5s; __Secure-3PSIDCC=AKEyXzUruZE9XD3zvav3HF3kl3uYa-3yntn7DI-I91UNTVKKCQ7yMI8QQ7FMhi38hn7uyeGCJr0";
+const ytCookie = "VISITOR_INFO1_LIVE=IvKiLIds1lE; VISITOR_PRIVACY_METADATA=CgJORxIEGgAgUw%3D%3D; __Secure-3PAPISID=ipt_uoTPI53B8yus/APqTpkO8hq9_rgeN8; LOGIN_INFO=AFmmF2swRgIhAP-liQy5DsgsgqyHKxGu4mtaTxclN1Gz4EtDcnTEKx7pAiEAlxrkWM-Um4a4BKBJaGF9ljZvsfjYCSYCUsdMezutP5k:QUQ3MjNmeXlIUzljNXpPcHYtdHpoamhmN3ZROWpnRkE1VU1hbS1zZDFXUVpweG5UUEU2ajVVVlgwWWRqY2NacjBYV3BzdEJ0Q0V6NU4zTFVuYjBOVWhyYUd5N0g3dFZNRGtVaF9tejlVWV9BSWtxd0xNWkpOYm53NkRMQ2EtMmpIdVNzTFZkYm1iLUFTN3NJU1c4aGt1YkxCckNUanc4a01BSDJSa25qNkF6cHhmTklZMGxQM2lYZDVGVHBhc05YTmZXNlQwemhQR0lrVmNtS0g0bzdIS2dXYTNwOFBBdl9Cdw==; __Secure-3PSID=g.a0002wh-JA2KxfFP58PesI60afEbbdRyvIOAQY7mODiXzsYeMSoy8X76_KtbYpT-xiHM7_showACgYKAaoSARYSFQHGX2MiLWdT5u61G_-LPYENFbuttRoVAUF8yKr70J92LkHi5owg3bIU4L230076; PREF=f4=4000000&f6=40000000&tz=Africa.Lagos&f7=100&f5=30000; __Secure-ROLLOUT_TOKEN=CNq5uPPZ2tGvShD-_tTf556QAxjvlt2ToZyRAw%3D%3D; YSC=0A7O5PsyUD0; __Secure-1PSIDTS=sidts-CjQBwQ9iI57Ox3XzzqQpSVnKth2ovjNqn5V9PXb_uYYYBKY0sdAEG8GlHBZx4v_9w6qFfYi4EAA; __Secure-3PSIDTS=sidts-CjQBwQ9iI57Ox3XzzqQpSVnKth2ovjNqn5V9PXb_uYYYBKY0sdAEG8GlHBZx4v_9w6qFfYi4EAA; __Secure-3PSIDCC=AKEyXzVpvM_uGOOkFH5YwkLp0qqluLdKsJDXlqPBp_mDcc8g6u-owAJWeBG17EzWviCtoE3_abs; ST-3opvp5=session_logininfo=AFmmF2swRgIhAP-liQy5DsgsgqyHKxGu4mtaTxclN1Gz4EtDcnTEKx7pAiEAlxrkWM-Um4a4BKBJaGF9ljZvsfjYCSYCUsdMezutP5k%3AQUQ3MjNmeXlIUzljNXpPcHYtdHpoamhmN3ZROWpnRkE1VU1hbS1zZDFXUVpweG5UUEU2ajVVVlgwWWRqY2NacjBYV3BzdEJ0Q0V6NU4zTFVuYjBOVWhyYUd5N0g3dFZNRGtVaF9tejlVWV9BSWtxd0xNWkpOYm53NkRMQ2EtMmpIdVNzTFZkYm1iLUFTN3NJU1c4aGt1YkxCckNUanc4a01BSDJSa25qNkF6cHhmTklZMGxQM2lYZDVGVHBhc05YTmZXNlQwemhQR0lrVmNtS0g0bzdIS2dXYTNwOFBBdl9Cdw%3D%3D";
 // This is an incognito YT-cookie which is similar to the one gotten from DroidWebclient...
-const incognitoYTCookie = "GPS=1; YSC=BdTqITCiKIA; VISITOR_INFO1_LIVE=njucfJfDJ_k; VISITOR_PRIVACY_METADATA=CgJORxIEGgAgNw%3D%3D; __Secure-YNID=13.YT=i6ACelbtF7CHPYDZUU_u_Z50JSc60hJgEkFJovrug_Ssy8CY3PkCnHIoI2XJWtnjMZ7_7w467jYVYEkn6rupd6d2NPCSow-eo-F01QoY6Mc0-2H_9q5eNNEc7Y4_R6xXMb6oFJaUJ7bjdsAdGWzAyCxLDX0QiVDSLmjESokU920sgnxLrx9-RB2zUaMJ9_dO0ZWs3EFY7xuQFZthXIEBAhkR4oBSp_hSLZXZTv4zuUQ-drdcgLn0e_GqMg0smK4V9FgKoxEPz4J0faXfOZsk0Z94NND3xfX0WuxB0Q1x9RYjK6LKf_xc3W1Sf-zg9CNbldjVUnrxEVqpCilsUe8_Vg; __Secure-ROLLOUT_TOKEN=COu019zvnMz4xQEQk6CT4LyckQMYuf74_7yckQM%3D; PREF=f4=4000000&f6=40000000&tz=Africa.Lagos&f7=100";
+const incognitoYTCookie = "__Secure-YNID=13.YT=AhuKARBOg3E7QQ7B7UEJWz0eMQcvCo_HbOKEi3ObBSz4LikLkgee0Rx56SY2j5ZYXfAfZaFh6eowkFifQvWL66EzfTrUdM3T2rl3dUq1_HYcTLtvZUZcAoC0CAwat4yh85Dg0BwnmFGAUgR49vHmKSBdmcUlsxniDu1hzg37VfnNYzXa18rrpwqhd9zYxhjJ8z1MD4UJyKSZXNNjDhsHa0DYKpdx2m10nlY8ibyGgAnbXiKt0a86ysH-Jc2x6oBirLKxhJLS-jLh_t3WHhylduLMI2tG8RSik6P1gkxxdb8vCNNaY_DLz39vRTAbeuhJa3Dsp4U_d3jApn_yaPAD6Q; GPS=1; YSC=qlzmJOK6awY; VISITOR_INFO1_LIVE=VMkDp47byC0; VISITOR_PRIVACY_METADATA=CgJORxIEGgAgbg%3D%3D; __Secure-ROLLOUT_TOKEN=CKaOv422lMTfbBC214zY45yRAxjNg53e45yRAw%3D%3D; PREF=f4=4000000&f6=40000000&tz=Africa.Lagos";
 const jetPlayYTStyle = "__Secure-YNID GPS YSC VISITOR_INFO1_LIVE PRIVACY_METADATA __Secure-ROLLOUT_TOKEN";
 
 function insertYTShortsToDOM(ytGroupElement, shortItem) {
@@ -283,7 +283,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         try {
             // safer: URLSearchParams automatically encodes values
             const params = new URLSearchParams({
-                ytCookie: incognitoYTCookie,         // will be encoded
+                ytCookie: ytCookie,         // will be encoded
                 isShuffled: String(true),    // convert boolean -> string
                 // add hl, gl, continuation, timeZone, etc. if needed
             });
@@ -297,7 +297,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             body.appendChild(sentinel);
 
             // observe with a bottom rootMargin of 300px
-            const io = new IntersectionObserver((entries) => {
+            const io = new IntersectionObserver(async (entries) => {
                 if (!entries || !entries[0]) return;
                 const entry = entries[0];
                 if (entry.isIntersecting) {
@@ -308,13 +308,32 @@ document.addEventListener("DOMContentLoaded", async () => {
                         io.disconnect();
                         return;
                     }
+                    // Loop through all of them...
+                    isLoadingMainContents = true;
+                    let ytContinuation = "";
+                    for (let contentCont of continuationArr) {
+                        // Each continuation object must have a token
+                        if (!contentCont || !contentCont?.request) continue;
+                        if (contentCont?.request?.toString()?.trim() === "CONTINUATION_REQUEST_TYPE_BROWSE" && contentCont?.token && contentCont?.token?.toString()?.trim()?.length > 0) {
+                            ytContinuation = contentCont?.token?.toString()?.trim();
+                        }
+                    }
+                    // We'll have to construct the url...
+                    const params = new URLSearchParams({
+                        ytCookie: ytCookie,         // will be encoded
+                        isShuffled: String(true),    // convert boolean -> string
+                        ytContinuation: ytContinuation
+                        // add hl, gl, continuation, timeZone, etc. if needed
+                    });
+                    const reqUrl = `${PLAY_BASE_URL}/ret-api/hot?${params.toString()}`;
+                    continuationArr = await fetchContentsFromJetApi(reqUrl, continuationArr, {credentials: "omit"});
                     console.log('within 300px of bottom — do work');
                     // optionally disconnect if you only need it once:
                     // io.disconnect();
                 }
             }, {
                 root: null,                      // viewport
-                rootMargin: '0px 0px 300px 0px', // top right bottom left
+                rootMargin: '0px 0px 500px 0px', // top right bottom left
                 threshold: 0                     // trigger when any pixel is visible
             });
             io.observe(sentinel);
