@@ -301,14 +301,18 @@ document.addEventListener("DOMContentLoaded", async () => {
                 if (!entries || !entries[0]) return;
                 const entry = entries[0];
                 if (entry.isIntersecting) {
-                    if (isLoadingMainContents) return;
+                    if (isLoadingMainContents) {
+                        showDroidToastMsg("Please wait...", 1);
+                        return;
+                    }
                     if (continuationArr.length === 0) {
                         // Send Message to Android telling it that you have reached the end...
                         showDroidToastMsg("No more contents", 1);
-                        io.disconnect();
+                        //io.disconnect();
                         return;
                     }
                     // Loop through all of them...
+                    showDroidToastMsg("Loading more...", 1);
                     isLoadingMainContents = true;
                     let ytContinuation = "";
                     for (let contentCont of continuationArr) {
@@ -333,7 +337,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
             }, {
                 root: null,                      // viewport
-                rootMargin: '0px 0px 650px 0px', // top right bottom left
+                rootMargin: '0px 0px 1300px 0px', // top right bottom left
                 threshold: 0                     // trigger when any pixel is visible
             });
             io.observe(sentinel);
