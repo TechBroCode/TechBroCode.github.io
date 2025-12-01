@@ -246,5 +246,36 @@ try {
             if (Number.isInteger(n)) return String(n);
             return trimFixed(abs.toFixed(2)) === '0' ? sign + '0' : sign + trimFixed(abs.toFixed(2));
         }
+
+        /*TODO ================== Android Interfaces*/
+        window.droidcookieValue = {url: "", jsonArr: ""};
+        window.receivedCookie = (urlMapKey, jsonArr) => {
+            droidcookieValue.url = urlMapKey;
+            droidcookieValue.jsonArr = jsonArr;
+            alert("url: " + urlMapKey);
+            alert("JSON: " + jsonArr);
+        }
+
+        window.showDroidToastMsg = (msg, dur) => {
+            try {
+                window.jetelex42501QbSdkDroid.showToastMessage(msg, dur);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        window.loadDroidWebUrlCookies = (urlMapKey, webTag = WEB_TAG, refresh = true) => {
+            try {
+                window.jetelex42501QbSdkDroid.loadWebUrlCookies(urlMapKey, webTag, refresh);
+            } catch (e) {}
+        }
+
+        window.isDroidNetworkAvailable = () => {
+            try {
+                return window.jetelex42501QbSdkDroid.isNetworkAvailable();
+            } catch (e) {
+                return false;
+            }
+        }
     }
 } catch (e) {}

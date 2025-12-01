@@ -1,3 +1,4 @@
+let isLoadingMainContents = false;
 const body = document.querySelector("body");
 const generalContent = document.getElementById("general-content");
 let pornVid = [1, 2, 3, 4, 5];
@@ -161,16 +162,10 @@ function insertTikTokPlaybackFullReelsLength(contentItem) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-    try {
-        // You can check if user allowed showing of sensitive contents...
-        const deviceType = getDeviceTypeBySize()?.type?.toString()?.trim()?.toLowerCase() || undefined;
-        if (!deviceType) return;
-        if (isAndroidSensitiveContentsAllowed()) {
-            pornVid = shuffle(pornVid);
-            // add it to the pending response below...
-        }
+    async function fetchContentsFromJetApi(apiUrl, continuationArr, initOptions) {
+        isLoadingMainContents = true;
         //We'll need to call api from here...
-        const hotResponse = await fetch(`${PLAY_BASE_URL}/ret-api/hot?isShuffled=false`, {credentials: "omit"});
+        const hotResponse = await fetch(apiUrl, initOptions);
         let resJSON = await hotResponse.json();
         console.log(JSON.stringify(resJSON, null, 4));
         if (typeof resJSON === "string") {
@@ -179,14 +174,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (isNullUndefinedOrEmpty(body.style.display) || body?.style?.display === "none") {
             body.style.display = "flex";
         }
-        let continuationArr = [];
         if (resJSON?.code >= 200 && resJSON?.code <= 399 && resJSON?.contents && Array.isArray(resJSON?.contents)) {
             const contentsArray = resJSON?.contents;
             if (contentsArray && contentsArray.length > 0) {
-                continuationArr = [];
                 const yTDynamicLongVidContainerDocId = `${Date.now()}-${makeUUID()}`;
                 for (let contentItem of contentsArray) {
-                    if (!contentItem || contentItem?.type <= -999) {
+                    if (!contentItem || contentItem?.type <= -99) {
                         continuationArr.push(contentItem);
                         continue;
                     }
@@ -260,6 +253,64 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
             }
         }
+        isLoadingMainContents = false;
+        return continuationArr;
+    }
+
+    try {
+        // You can check if user allowed showing of sensitive contents...
+        const deviceType = getDeviceTypeBySize()?.type?.toString()?.trim()?.toLowerCase() || undefined;
+        if (!deviceType) return;
+        if (isAndroidSensitiveContentsAllowed()) {
+            pornVid = shuffle(pornVid);
+            // add it to the pending response below...
+        }
+        let continuationArr = [];
+        const tagChecker = setInterval(() => {
+            if (WEB_TAG && WEB_TAG.length > 0) {
+                clearInterval(tagChecker);
+                loadDroidWebUrlCookies("https://www.youtube.com", WEB_TAG, true);
+            }
+        }, 1000);
+        if (!isDroidNetworkAvailable()) {
+            showAndroidToastMsg("No internet available", 1);
+            return;
+        }
+        if (isLoadingMainContents) {
+            showAndroidToastMsg("Please wait...", 1);
+            return;
+        }
+        continuationArr = await fetchContentsFromJetApi(`${PLAY_BASE_URL}/ret-api/hot?isShuffled=false`, continuationArr, {credentials: "omit"});
+        /*TODO: To enable adding of continuations...*/
+        // create sentinel at end of body
+        const sentinel = document.createElement('div');
+        sentinel.id = 'near-bottom-sentinel';
+        sentinel.style.cssText = 'width:1px;height:1px;pointer-events:none;'; // invisible
+        body.appendChild(sentinel);
+
+        // observe with a bottom rootMargin of 300px
+        const io = new IntersectionObserver((entries) => {
+            if (!entries || !entries[0]) return;
+            const entry = entries[0];
+            if (entry.isIntersecting) {
+                if (isLoadingMainContents) return;
+                if (continuationArr.length === 0) {
+                    // Send Message to Android telling it that you have reached the end...
+                    showAndroidToastMsg("No more contents", 1);
+                    return;
+                }
+                isL
+                console.log('within 300px of bottom — do work');
+                // optionally disconnect if you only need it once:
+                // io.disconnect();
+            }
+        }, {
+            root: null,                      // viewport
+            rootMargin: '0px 0px 300px 0px', // top right bottom left
+            threshold: 0                     // trigger when any pixel is visible
+        });
+        io.observe(sentinel);
+        // cleanup example: io.disconnect(); sentinel.remove();
         /*const webTagChecker = setInterval(async () => {
             alert("Entry => WEB_TAG: " + window.WEB_TAG);
             if (window.WEB_TAG !== undefined && window.WEB_TAG !== null && window.WEB_TAG.trim().length > 0) {
@@ -276,7 +327,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         }, 1000);*/
     } catch (e) {
+        isLoadingMainContents = false;
         console.error(e);
-        generalContent.textContent = e.toString();
     }
 });
