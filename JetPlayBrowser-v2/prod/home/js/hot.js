@@ -301,7 +301,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                                 cookieVal += " " + cookObj?.name + "=" + cookObj?.value + ";";
                             }
                             // Trim to remove any spaces...
-                            cookieVal = encodeURI(cookieVal.trim() + " PREF=f4=4000000&f6=40000000&tz=Africa.Lagos&f7=100");s
+                            cookieVal = encodeURI(cookieVal.trim() + " PREF=f4=4000000&f6=40000000&tz=Africa.Lagos&f7=100");
                             // We'll build the fetch url...
                             alert(`my-cook: ${cookieVal}`);
                             const reqUrl = `${PLAY_BASE_URL}/ret-api/hot?ytCookie=${cookieVal}&isShuffled=true`;
