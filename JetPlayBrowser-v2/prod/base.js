@@ -253,6 +253,8 @@ try {
             droidcookieValue.url = urlMapKey;
             // The jsonArr coming from Android is being parsed, stringify to print it...
             droidcookieValue.jsonArr = jsonArr;
+            alert(`url => ${urlMapKey}`);
+            alert(`json => ${JSON.stringify(jsonArr, null, 4)}`);
         }
 
         window.showDroidToastMsg = (msg, dur) => {
