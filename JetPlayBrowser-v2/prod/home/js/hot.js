@@ -311,8 +311,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                         //io.disconnect();
                         return;
                     }
+                    if (WEB_TAG.length > 0 && !isDroidNetworkAvailable()) {
+                        showDroidToastMsg("No internet available", 1);
+                        return;
+                    }
                     // Loop through all of them...
-                    showDroidToastMsg("Loading more...", 1);
+                    //showDroidToastMsg("Loading more...", 1);
                     isLoadingMainContents = true;
                     let ytContinuation = "";
                     for (let contentCont of continuationArr) {
