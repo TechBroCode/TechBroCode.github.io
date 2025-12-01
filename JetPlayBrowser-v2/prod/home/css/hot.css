@@ -383,6 +383,7 @@
 
     .tiktok-full-size-player-card-container .gen-controller .vert-container .action-container .text-desc {
         margin-top: 2px;
+        color: white;
     }
     .tiktok-full-size-player-card-container .gen-controller .channel-title-container {
         display: flex;

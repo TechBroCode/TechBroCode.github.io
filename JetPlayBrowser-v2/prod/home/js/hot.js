@@ -153,8 +153,8 @@ function insertTikTokPlaybackFullReelsLength(contentItem) {
                     <p class="normal-poppins-style title" style="font-weight: 600; font-size: 13px; opacity: 0.8; margin-top: 3px; display: ${contentItem?.title?.toString()?.trim()?.length > 0 ? '-webkit-box' : 'none'}; -webkit-line-clamp: 2; word-break: break-word; word-wrap: break-word; overflow-x: hidden; text-overflow: ellipsis;">${contentItem?.title?.toString()?.trim() || ""}</p>
                     <!--TODO: Add music title-->
                     <!--TODO:  background: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.2) 100%);-->
-                    <p class="normal-poppins-style marquee" style="display: ${originalSoundObj && originalSoundObj?.category !== undefined ? 'webkit-box' : 'none'}; width: 100%; align-self: flex-start; font-weight: 400; font-size: 13px; margin-top: 3px; display: -webkit-box; -webkit-line-clamp: 1; white-space: nowrap; overflow-x: hidden; text-overflow: ellipsis;">
-                        <span style="padding-left: 100%; display: ${originalSoundObj && originalSoundObj?.category !== undefined ? 'inline-block' : 'none'}; align-self: flex-start; width: inherit; text-align: end; animation: marquee 12s linear infinite;">${originalSoundObj?.category?.toString()?.trim() || ""}</span>
+                    <p class="normal-poppins-style marquee" style="display: ${originalSoundObj && originalSoundObj?.category !== undefined ? 'webkit-box' : 'none'}; width: 100%; align-self: flex-start; font-weight: 400; font-size: 13px; margin-top: 3px; display: -webkit-box; -webkit-line-clamp: 1; white-space: nowrap; overflow-x: hidden; text-overflow: ellipsis; color: white;">
+                        <span style="color: white; padding-left: 100%; display: ${originalSoundObj && originalSoundObj?.category !== undefined ? 'inline-block' : 'none'}; align-self: flex-start; width: inherit; text-align: end; animation: marquee 12s linear infinite;">${originalSoundObj?.category?.toString()?.trim() || ""}</span>
                     </p>
                 </div>
             </div>
