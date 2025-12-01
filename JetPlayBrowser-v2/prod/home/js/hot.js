@@ -266,11 +266,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             // add it to the pending response below...
         }
         let continuationArr = [];
-        alert("cool");
+        alert("shorts");
         const tagChecker = setInterval(() => {
             if (WEB_TAG && WEB_TAG.length > 0) {
                 clearInterval(tagChecker);
-                loadDroidWebUrlCookies("https://www.youtube.com", WEB_TAG, true);
+                loadDroidWebUrlCookies("https://www.youtube.com/shorts", WEB_TAG, true);
             }
         }, 1000);
         if (!isDroidNetworkAvailable()) {
