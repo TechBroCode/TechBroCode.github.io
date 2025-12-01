@@ -327,13 +327,13 @@ document.addEventListener("DOMContentLoaded", async () => {
                     });
                     const reqUrl = `${PLAY_BASE_URL}/ret-api/hot?${params.toString()}`;
                     continuationArr = await fetchContentsFromJetApi(reqUrl, continuationArr, {credentials: "omit"});
-                    console.log('within 300px of bottom — do work');
+                    console.log('within 650px of bottom — do work');
                     // optionally disconnect if you only need it once:
                     // io.disconnect();
                 }
             }, {
                 root: null,                      // viewport
-                rootMargin: '0px 0px 500px 0px', // top right bottom left
+                rootMargin: '0px 0px 650px 0px', // top right bottom left
                 threshold: 0                     // trigger when any pixel is visible
             });
             io.observe(sentinel);
