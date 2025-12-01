@@ -286,7 +286,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 clearInterval(tagChecker);
                 return;
             }
-            alert(WEB_TAG);
+            alert(`WEB_TAG => ${WEB_TAG}`);
             if (WEB_TAG && WEB_TAG.length > 0) {
                 clearInterval(tagChecker);
                 loadDroidWebUrlCookies("https://www.youtube.com/shorts/FLlU71aL3M4", WEB_TAG, true);
