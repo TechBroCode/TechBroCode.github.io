@@ -8,6 +8,7 @@ const veryLargeArr = [];
 const ytCookie = "VISITOR_INFO1_LIVE=IvKiLIds1lE; VISITOR_PRIVACY_METADATA=CgJORxIEGgAgUw%3D%3D; __Secure-3PAPISID=ipt_uoTPI53B8yus/APqTpkO8hq9_rgeN8; LOGIN_INFO=AFmmF2swRgIhAP-liQy5DsgsgqyHKxGu4mtaTxclN1Gz4EtDcnTEKx7pAiEAlxrkWM-Um4a4BKBJaGF9ljZvsfjYCSYCUsdMezutP5k:QUQ3MjNmeXlIUzljNXpPcHYtdHpoamhmN3ZROWpnRkE1VU1hbS1zZDFXUVpweG5UUEU2ajVVVlgwWWRqY2NacjBYV3BzdEJ0Q0V6NU4zTFVuYjBOVWhyYUd5N0g3dFZNRGtVaF9tejlVWV9BSWtxd0xNWkpOYm53NkRMQ2EtMmpIdVNzTFZkYm1iLUFTN3NJU1c4aGt1YkxCckNUanc4a01BSDJSa25qNkF6cHhmTklZMGxQM2lYZDVGVHBhc05YTmZXNlQwemhQR0lrVmNtS0g0bzdIS2dXYTNwOFBBdl9Cdw==; __Secure-3PSID=g.a0002wh-JA2KxfFP58PesI60afEbbdRyvIOAQY7mODiXzsYeMSoy8X76_KtbYpT-xiHM7_showACgYKAaoSARYSFQHGX2MiLWdT5u61G_-LPYENFbuttRoVAUF8yKr70J92LkHi5owg3bIU4L230076; PREF=f4=4000000&f6=40000000&tz=Africa.Lagos&f7=100&f5=30000; __Secure-ROLLOUT_TOKEN=CNq5uPPZ2tGvShD-_tTf556QAxiGuoOm65eRAw%3D%3D; YSC=mGBQc60k-lY; __Secure-1PSIDTS=sidts-CjQBwQ9iI1AV7w_Zb3yV_erhbHVd3DrEPWukzJPOSnnV1Y6vI66eo_Fpo59XKKXLXe6fezrWEAA; __Secure-3PSIDTS=sidts-CjQBwQ9iI1AV7w_Zb3yV_erhbHVd3DrEPWukzJPOSnnV1Y6vI66eo_Fpo59XKKXLXe6fezrWEAA; CONSISTENCY=AKreu9vGauIEyKmtkcMho67A1b98JNzJzFCDLCOYThrbhpTl_9KjlktG_1GghwkLzEfBKSQf1tP-8tYIFh3SzIm53hnXNhIWYe7xB_BDMRhx8DIuEKhiecpKo5s; __Secure-3PSIDCC=AKEyXzUruZE9XD3zvav3HF3kl3uYa-3yntn7DI-I91UNTVKKCQ7yMI8QQ7FMhi38hn7uyeGCJr0";
 // This is an incognito YT-cookie which is similar to the one gotten from DroidWebclient...
 const incognitoYTCookie = "GPS=1; YSC=BdTqITCiKIA; VISITOR_INFO1_LIVE=njucfJfDJ_k; VISITOR_PRIVACY_METADATA=CgJORxIEGgAgNw%3D%3D; __Secure-YNID=13.YT=i6ACelbtF7CHPYDZUU_u_Z50JSc60hJgEkFJovrug_Ssy8CY3PkCnHIoI2XJWtnjMZ7_7w467jYVYEkn6rupd6d2NPCSow-eo-F01QoY6Mc0-2H_9q5eNNEc7Y4_R6xXMb6oFJaUJ7bjdsAdGWzAyCxLDX0QiVDSLmjESokU920sgnxLrx9-RB2zUaMJ9_dO0ZWs3EFY7xuQFZthXIEBAhkR4oBSp_hSLZXZTv4zuUQ-drdcgLn0e_GqMg0smK4V9FgKoxEPz4J0faXfOZsk0Z94NND3xfX0WuxB0Q1x9RYjK6LKf_xc3W1Sf-zg9CNbldjVUnrxEVqpCilsUe8_Vg; __Secure-ROLLOUT_TOKEN=COu019zvnMz4xQEQk6CT4LyckQMYuf74_7yckQM%3D; PREF=f4=4000000&f6=40000000&tz=Africa.Lagos&f7=100";
+const jetPlayYTStyle = "__Secure-YNID GPS YSC VISITOR_INFO1_LIVE PRIVACY_METADATA __Secure-ROLLOUT_TOKEN";
 
 function insertYTShortsToDOM(ytGroupElement, shortItem) {
     // We'll add or replace the value here...
@@ -295,16 +296,70 @@ document.addEventListener("DOMContentLoaded", async () => {
                         try {
                             //We'll append all names + " " + value + ";"...
                             let cookieVal = "";
+                            // For GPS Loop...
                             for (let c = 0, cookLen = droidcookieValue?.jsonArr?.length; c < cookLen; c+=1) {
                                 const cookObj = droidcookieValue?.jsonArr?.[c];
                                 if (!cookObj || !cookObj?.name || !cookObj?.value) continue;
-                                cookieVal += " " + cookObj?.name + "=" + cookObj?.value + ";";
+                                if (cookObj?.name === "GPS") {
+                                    cookieVal += " " + cookObj?.name + "=" + cookObj?.value + ";";
+                                    break;
+                                }
                             }
+                            // For YSC Loop...
+                            for (let c = 0, cookLen = droidcookieValue?.jsonArr?.length; c < cookLen; c+=1) {
+                                const cookObj = droidcookieValue?.jsonArr?.[c];
+                                if (!cookObj || !cookObj?.name || !cookObj?.value) continue;
+                                if (cookObj?.name === "YSC") {
+                                    cookieVal += " " + cookObj?.name + "=" + cookObj?.value + ";";
+                                    break;
+                                }
+                            }
+                            // For VISITOR_INFO1_LIVE Loop...
+                            for (let c = 0, cookLen = droidcookieValue?.jsonArr?.length; c < cookLen; c+=1) {
+                                const cookObj = droidcookieValue?.jsonArr?.[c];
+                                if (!cookObj || !cookObj?.name || !cookObj?.value) continue;
+                                if (cookObj?.name === "VISITOR_INFO1_LIVE") {
+                                    cookieVal += " " + cookObj?.name + "=" + cookObj?.value + ";";
+                                    break;
+                                }
+                            }
+
+                            // For VISITOR_PRIVACY_METADATA Loop...
+                            for (let c = 0, cookLen = droidcookieValue?.jsonArr?.length; c < cookLen; c+=1) {
+                                const cookObj = droidcookieValue?.jsonArr?.[c];
+                                if (!cookObj || !cookObj?.name || !cookObj?.value) continue;
+                                if (cookObj?.name === "VISITOR_PRIVACY_METADATA") {
+                                    cookieVal += " " + cookObj?.name + "=" + cookObj?.value + ";";
+                                    break;
+                                }
+                            }
+
+                            // For __Secure-YNID Loop...
+                            for (let c = 0, cookLen = droidcookieValue?.jsonArr?.length; c < cookLen; c+=1) {
+                                const cookObj = droidcookieValue?.jsonArr?.[c];
+                                if (!cookObj || !cookObj?.name || !cookObj?.value) continue;
+                                if (cookObj?.name === "__Secure-YNID") {
+                                    cookieVal += " " + cookObj?.name + "=" + cookObj?.value + ";";
+                                    break;
+                                }
+                            }
+
+                            // For __Secure-ROLLOUT_TOKEN Loop...
+                            for (let c = 0, cookLen = droidcookieValue?.jsonArr?.length; c < cookLen; c+=1) {
+                                const cookObj = droidcookieValue?.jsonArr?.[c];
+                                if (!cookObj || !cookObj?.name || !cookObj?.value) continue;
+                                if (cookObj?.name === "__Secure-ROLLOUT_TOKEN") {
+                                    cookieVal += " " + cookObj?.name + "=" + cookObj?.value + ";";
+                                    break;
+                                }
+                            }
+
                             cookieVal = cookieVal.trim();
+                            alert(`arranged cookie: => ${cookieVal}`);
                             // Trim to remove any spaces...
                             cookieVal = encodeURIComponent(cookieVal);
                             // We'll build the fetch url...
-                            alert(`my-cook: enc => ${cookieVal}`);
+                            alert(`arranged cookie: enc => ${cookieVal}`);
                             const reqUrl = `${PLAY_BASE_URL}/ret-api/hot?ytCookie=${cookieVal}&isShuffled=true`;
                             continuationArr = await fetchContentsFromJetApi(reqUrl, continuationArr, {credentials: "omit"});
                             /*TODO: To enable adding of continuations...*/
