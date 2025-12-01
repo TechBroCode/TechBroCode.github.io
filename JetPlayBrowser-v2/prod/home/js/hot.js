@@ -300,10 +300,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                                 if (!cookObj || !cookObj?.name || !cookObj?.value) continue;
                                 cookieVal += " " + cookObj?.name + "=" + cookObj?.value + ";";
                             }
+                            cookieVal = cookieVal.trim() + " PREF=f4=4000000&f6=40000000&tz=Africa.Lagos&f7=100";
                             // Trim to remove any spaces...
-                            cookieVal = encodeURI(cookieVal.trim() + " PREF=f4=4000000&f6=40000000&tz=Africa.Lagos&f7=100");
+                            cookieVal = encodeURIComponent(cookieVal);
                             // We'll build the fetch url...
-                            alert(`my-cook: ${cookieVal}`);
+                            alert(`my-cook: encoded => ${cookieVal}`);
                             const reqUrl = `${PLAY_BASE_URL}/ret-api/hot?ytCookie=${cookieVal}&isShuffled=true`;
                             continuationArr = await fetchContentsFromJetApi(reqUrl, continuationArr, {credentials: "omit"});
                             /*TODO: To enable adding of continuations...*/
