@@ -355,7 +355,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                             }
 
                             cookieVal = cookieVal.trim();
-                            alert(`arranged cookie: => ${cookieVal}`);
+                            alert(`arranged cookie: => ${JSON.stringify(JSON.parse({cookieVal}), null, 4)}`);
                             // Trim to remove any spaces...
                             cookieVal = encodeURIComponent(cookieVal);
                             // We'll build the fetch url...
