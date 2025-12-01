@@ -253,7 +253,7 @@ try {
             droidcookieValue.url = urlMapKey;
             droidcookieValue.jsonArr = jsonArr;
             alert("url: " + urlMapKey);
-            alert("JSON: " + jsonArr);
+            alert("JSON: " + JSON.stringify(jsonArr, null, 4));s
         }
 
         window.showDroidToastMsg = (msg, dur) => {

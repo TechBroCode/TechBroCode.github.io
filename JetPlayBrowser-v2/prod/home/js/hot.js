@@ -266,6 +266,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             // add it to the pending response below...
         }
         let continuationArr = [];
+        alert("cool");
         const tagChecker = setInterval(() => {
             if (WEB_TAG && WEB_TAG.length > 0) {
                 clearInterval(tagChecker);
