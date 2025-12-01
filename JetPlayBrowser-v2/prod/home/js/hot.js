@@ -355,8 +355,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                             }
 
                             cookieVal = cookieVal.trim();
-                            alert(`Cookie: JSON => ${JSON.stringify(JSON.parse({cook: cookieVal}), null, 4)}`);
-                            // Trim to remove any spaces...
+                            //alert(`Cookie: JSON => ${JSON.stringify(JSON.parse({cook: cookieVal}), null, 4)}`);
                             // safer: URLSearchParams automatically encodes values
                             const params = new URLSearchParams({
                                 ytCookie: cookieVal,         // will be encoded
