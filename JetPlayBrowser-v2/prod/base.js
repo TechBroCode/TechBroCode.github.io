@@ -248,12 +248,11 @@ try {
         }
 
         /*TODO ================== Android Interfaces*/
-        window.droidcookieValue = {url: "", jsonArr: ""};
+        window.droidcookieValue = {url: "", jsonArr: []};
         window.receivedCookie = (urlMapKey, jsonArr) => {
             droidcookieValue.url = urlMapKey;
+            // The jsonArr coming from Android is being parsed, stringify to print it...
             droidcookieValue.jsonArr = jsonArr;
-            alert("url: " + urlMapKey);
-            alert("JSON: " + JSON.stringify(jsonArr, null, 4));s
         }
 
         window.showDroidToastMsg = (msg, dur) => {
@@ -274,7 +273,7 @@ try {
             try {
                 return window.jetelex42501QbSdkDroid.isNetworkAvailable();
             } catch (e) {
-                return false;
+                return true;
             }
         }
     }
