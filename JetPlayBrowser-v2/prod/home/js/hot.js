@@ -336,18 +336,29 @@ document.addEventListener("DOMContentLoaded", async () => {
                     //showDroidToastMsg("Loading more...", 1);
                     isLoadingMainContents = true;
                     let ytContinuation = "";
+                    let tikCont = "";
                     for (let contentCont of continuationArr) {
                         // Each continuation object must have a token
-                        if (!contentCont || !contentCont?.request) continue;
-                        if (contentCont?.request?.toString()?.trim() === "CONTINUATION_REQUEST_TYPE_BROWSE" && contentCont?.token && contentCont?.token?.toString()?.trim()?.length > 0) {
-                            ytContinuation = contentCont?.token?.toString()?.trim();
+                        if (!contentCont || !contentCont?.request || !contentCont?.token) continue;
+                        const reqStr = contentCont?.request?.toString()?.trim();
+                        const token = contentCont?.token?.toString()?.trim();
+                        switch (true) {
+                            case reqStr === "CONTINUATION_REQUEST_TYPE_TIKTOK_FOR_YOU" : {
+                                tikCont = token;
+                                break;
+                            }
+                            case reqStr === "CONTINUATION_REQUEST_TYPE_BROWSE" : {
+                                ytContinuation = token;
+                                break;
+                            }
                         }
                     }
                     // We'll have to construct the url...
                     const params = new URLSearchParams({
                         ytCookie: ytCookie,         // will be encoded
                         isShuffled: String(true),    // convert boolean -> string
-                        ytContinuation: ytContinuation
+                        ytContinuation: ytContinuation,
+                        tikCont: tikCont || Date.now().toString()
                         // add hl, gl, continuation, timeZone, etc. if needed
                     });
                     const reqUrl = `${PLAY_BASE_URL}/ret-api/hot?${params.toString()}`;

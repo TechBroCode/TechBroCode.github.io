@@ -333,11 +333,11 @@ try {
             if (dataSrc && dataSrc?.toString()?.trim()?.length > 0) {
                 img.src = dataSrc;
             }
-            /*if(isDroidNetworkAvailable()) {
+            if(isDroidNetworkAvailable()) {
                 // Let's increase counts...
                 img.setAttribute("data-count", (retryCount + 1).toString());
-            }*/
-            img.setAttribute("data-count", (retryCount + 1).toString());
+            }
+            //img.setAttribute("data-count", (retryCount + 1).toString());
             return false;
         }
 
