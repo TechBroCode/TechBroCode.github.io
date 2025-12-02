@@ -300,6 +300,7 @@ try {
                     if (unobserveImg) {
                         // stop observing this element (optional)
                         imgObserver.unobserve(img);
+                        //img.__nearObserverAttached = false; // clean up the flag if you want
                     }
                 }
             }
@@ -311,14 +312,32 @@ try {
 
         // The action to perform when an image is near the viewport.
         // Keep this idempotent and fast.
+        window.MAX_RETRY_TRIES = 5;
         window.handleNearImage = (img) => {
             // example: swap data-src into src for common lazy patterns
             if (img.naturalWidth > 1 && img.naturalHeight > 1) {
                 img.removeAttribute('data-src');
+                img.removeAttribute("data-count");
+                return true;
+            }
+            let retryCount = img.getAttribute("data-count") || img.dataset.count || "MAX_RETRY_TRIES";
+            if (typeof retryCount !== "number") {
+                retryCount = Number(retryCount ?? MAX_RETRY_TRIES);
+            }
+            if (retryCount >= MAX_RETRY_TRIES) {
+                img.removeAttribute('data-src');
+                img.removeAttribute("data-count");
                 return true;
             }
             const dataSrc = img.getAttribute('data-src') || img.dataset.src;
-            if (dataSrc && dataSrc?.toString()?.trim()?.length > 0) img.src = dataSrc;
+            if (dataSrc && dataSrc?.toString()?.trim()?.length > 0) {
+                img.src = dataSrc;
+            }
+            /*if(isDroidNetworkAvailable()) {
+                // Let's increase counts...
+                img.setAttribute("data-count", (retryCount + 1).toString());
+            }*/
+            img.setAttribute("data-count", (retryCount + 1).toString());
             return false;
         }
 
@@ -329,6 +348,38 @@ try {
             if (tag === 'img') return true;
             // treat lazy placeholders as images if they have a data-src/data-lazy or a .lazy class
             return !!(node.hasAttribute && node.hasAttribute('data-src'));
+        }
+
+        // Attach observer to a specific image-like element (guard with a flag)
+        window.attachImageObservation = (el) => {
+            if (!el || el.nodeType !== 1) return;
+            if (el.__nearObserverAttached) return; // already observed
+            imgObserver.observe(el);
+            el.__nearObserverAttached = true;
+        }
+
+        window.addImgObservation =(...elDocIds) => {
+            for (let c = 0, len = elDocIds.length; c < len; c++) {
+                try {
+                    let elDocId = elDocIds[c];
+                    if (!elDocId) continue;
+                    if (typeof elDocId !== "string") elDocId = elDocId?.toString();
+                    const el = window.document.getElementById(elDocId);
+                    if (!isImageNode(el)) continue;
+                    if (!el || el.nodeType !== 1) return;
+                    if (el.__nearObserverAttached) return; // already observed
+                    imgObserver.observe(el);
+                    el.__nearObserverAttached = true;
+                } catch (e) {
+                    console.error(e);
+                }
+            }
+        }
+
+        // Observe existing images already in the DOM
+        window.observeExistingImages = (root = window.document) => {
+            const candidates = root.querySelectorAll('img, [data-src]');
+            for (const el of candidates) attachImageObservation(el);
         }
     }
 } catch (e) {

@@ -19,15 +19,17 @@ function insertYTShortsToDOM(ytGroupElement, shortItem) {
     // We'll add or replace the value here...
     //veryLargeArr.push(shortItems);
     const imgSrc = shortItem?.placeholder || "";
+    const parentId = ytGroupElement?.getAttribute("id") || ytGroupElement?.id;
     ytGroupElement.insertAdjacentHTML("beforeend", `
-        <div class="yt-shorts-container">
-            <img data-src=${imgSrc} class="yt-shorts-image" src=${imgSrc} loading="lazy" alt="">
+        <div id="${parentId}-yt-shorts-container" class="yt-shorts-container">
+            <img id="${parentId}-yt-shorts-image" data-count="0" data-src=${imgSrc} class="yt-shorts-image" src=${imgSrc} loading="lazy" alt="">
             <svg class="yt-header-logo yt-shorts-down-icon" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path id="Vector" d="M6 21H18M12 3V17M12 17L17 12M12 17L7 12" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             <p class="normal-poppins-style yt-header-title yt-shorts-title">${shortItem?.title || ""}</p>
         </div>
     `);
+    addImgObservation(`${parentId}-yt-shorts-image`);
 }
 
 function createOrInsertToYTSingleDynamicLongFormContainer(docId, singleLongVidItem) {
@@ -41,17 +43,19 @@ function createOrInsertToYTSingleDynamicLongFormContainer(docId, singleLongVidIt
     // Insert item...
     const normalYtThumbnail = singleLongVidItem?.placeholder?.toString()?.trim() || "";
     const channelIcon = singleLongVidItem?.data?.channel?.icon?.toString()?.trim() || "";
+    // We'll need to create this unique parent docId not the grouping parent docId...
+    const longFormId = `${Date.now()}-${makeUUID()}`;
     parentContainer.insertAdjacentHTML("beforeend", `
-        <div class="yt-long-form-vid-container">
+        <div id="${longFormId}-yt-long-form-vid-container" class="yt-long-form-vid-container">
             <div class="thumbnail-container">
-                  <img data-src=${normalYtThumbnail} class="thumbnail" src=${normalYtThumbnail} alt="" loading="lazy">
+                  <img id="${longFormId}-thumbnail" data-count="0" data-src=${normalYtThumbnail} class="thumbnail" src=${normalYtThumbnail} alt="" loading="lazy">
                   <p class="normal-poppins-style" style="position: absolute; bottom: 5px; right: 5px; text-align: center; font-weight: 400; padding: 3px 5px; background: rgba(0,0,0,0.5); color: white; border-radius: 5px;">${singleLongVidItem?.data?.duration?.text?.toString()?.trim() || ""}</p>
                   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3" style="fill: white; width: 30px; height: 30px; position: absolute; top: 0; left: 0; background: var(--dark-linear-gradient-background); border-bottom-right-radius: 100%; padding: 4px 8px 8px 4px;align-self: center; justify-content: center; display: flex;">
                     <path d="M440-120v-320H120v-80h320v-320h80v320h320v80H520v320h-80Z"/>
                   </svg> 
             </div>
             <div class="metadata-container">
-                <img data-src=${channelIcon} class="channel-thumbnail" src=${channelIcon} alt="" loading="lazy" style="background: darkgray;">
+                <img id="${longFormId}-channel-thumbnail" data-count="0" data-src=${channelIcon} class="channel-thumbnail" src=${channelIcon} alt="" loading="lazy" style="background: darkgray;">
                 <div class="vert-container">
                     <div class="title-more">
                         <p class="normal-poppins-style title">${singleLongVidItem?.title?.toString()?.trim() || ""}</p>
@@ -72,6 +76,7 @@ function createOrInsertToYTSingleDynamicLongFormContainer(docId, singleLongVidIt
             </div>
         </div>
     `);
+    addImgObservation(`${longFormId}-thumbnail`, `${longFormId}-channel-thumbnail`);
 }
 
 function insertTikTokPlaybackFullReelsLength(contentItem) {
@@ -97,7 +102,7 @@ function insertTikTokPlaybackFullReelsLength(contentItem) {
 
     generalContent.insertAdjacentHTML("beforeend", `
         <div id=${docId} class="tiktok-full-size-player-card-container">
-            <img data-src=${contentItem?.placeholder?.toString()?.trim() || ""} class="thumbnail" src=${contentItem?.placeholder?.toString()?.trim() || ""} alt="" loading="lazy">
+            <img id="${docId}-thumbnail" data-count="0" data-src=${contentItem?.placeholder?.toString()?.trim() || ""} class="thumbnail" src=${contentItem?.placeholder?.toString()?.trim() || ""} alt="" loading="lazy">
             <div class="gen-controller">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3" class="play-pause">
                     <path d="m406-348 206-132-206-132v264Zm74.17 216q-72.17 0-135.73-27.39-63.56-27.39-110.57-74.35-47.02-46.96-74.44-110.43Q132-407.65 132-479.83q0-72.17 27.39-135.73 27.39-63.56 74.35-110.57 46.96-47.02 110.43-74.44Q407.65-828 479.83-828q72.17 0 135.73 27.39 63.56 27.39 110.57 74.35 47.02 46.96 74.44 110.43Q828-552.35 828-480.17q0 72.17-27.39 135.73-27.39 63.56-74.35 110.57-46.96 47.02-110.43 74.44Q552.35-132 480.17-132Zm-.17-28q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/>
@@ -110,7 +115,7 @@ function insertTikTokPlaybackFullReelsLength(contentItem) {
                         </svg>
                     </div>
                     <div class="owner-avatar-container">
-                        <img data-src=${ownerAvatar} class="owner-avatar" src=${ownerAvatar} alt="cool" loading="lazy">
+                        <img id="${docId}-owner-avatar" data-count="0" data-src=${ownerAvatar} class="owner-avatar" src=${ownerAvatar} alt="cool" loading="lazy">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3" style="fill: white; width: 18px; height: 18px; background: var(--colorPrimaryDark); border-radius: 50%; padding: 4px; align-self: center; justify-content: center; display: flex; margin-top: -9px; z-index: 1;">
                             <path d="M440-120v-320H120v-80h320v-320h80v320h320v80H520v320h-80Z"/>
                         </svg>
@@ -152,7 +157,7 @@ function insertTikTokPlaybackFullReelsLength(contentItem) {
                     </div>
                     <!--TODO: Sound artist-->
                     <div class="action-container">
-                        <img data-src=${originalSoundObj ? originalSoundObj?.src?.[0]?.url?.toString()?.trim() || ownerAvatar : ownerAvatar} src=${originalSoundObj ? originalSoundObj?.src?.[0]?.url?.toString()?.trim() || ownerAvatar : ownerAvatar} alt="cool" loading="lazy" style="width: 36px; height: 36px; border-radius: 50%; align-self: center; display: flex; object-fit: cover;">
+                        <img id="${docId}-tiktok-artist" data-count="0" data-src=${originalSoundObj ? originalSoundObj?.src?.[0]?.url?.toString()?.trim() || ownerAvatar : ownerAvatar} src=${originalSoundObj ? originalSoundObj?.src?.[0]?.url?.toString()?.trim() || ownerAvatar : ownerAvatar} alt="cool" loading="lazy" style="width: 36px; height: 36px; border-radius: 50%; align-self: center; display: flex; object-fit: cover;">
                     </div>
                 </div>
                 <div id=${chanVidTitleDesId} class="channel-title-container">
@@ -167,6 +172,7 @@ function insertTikTokPlaybackFullReelsLength(contentItem) {
             </div>
         </div>
     `);
+    addImgObservation(`${docId}-thumbnail`, `${docId}-owner-avatar`, `${docId}-tiktok-artist`);
     const vertControllerContEl = document.getElementById(vertContId);
     const chanAndVidTxtContainerEl = document.getElementById(chanVidTitleDesId);
     if (vertControllerContEl && chanAndVidTxtContainerEl) {
@@ -213,13 +219,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                                     <div class="yt-group">
                                         <!--TODO: INSERT HEADER...-->
                                         <div class="yt-header">
-                                            <img data-src=${imgSrc} class="yt-header-logo" src=${imgSrc} loading="lazy" alt="" />
+                                            <img id="${ytGroupId}-yt-header-logo" data-count="0" data-src=${imgSrc} class="yt-header-logo" src=${imgSrc} loading="lazy" alt="" />
                                             <p class="normal-poppins-style yt-header-title">${groupTitle}</p>
                                         </div>
                                         <!--TODO: INSERT THE BODY...-->
                                         <div id=${ytGroupId} class="yt-group-contents"></div>
                                     </div>
                                 `);
+                                addImgObservation(`${ytGroupId}-yt-header-logo`);
                                 const yTGroupElement = document.getElementById(ytGroupId);
                                 if (!yTGroupElement || !generalContent.contains(yTGroupElement)) break;
 
