@@ -165,9 +165,9 @@ background: var(--windowBackground); display: flex; flex-direction: column; over
             removeHover(e);
         });
         window.addEventListener("error", (e) => {
-            if (e && e.target && e.target.tagName === "IMG") {
-                e.target.src = e.target.src;
-                //e.target.style.visibility = "hidden";
+            if (e && e.target && (e.target.tagName === "IMG" || e.target instanceof HTMLImageElement)) {
+                // Load a very transparent img...
+                e.target.src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==";
             }
         }, true); // <--- 'true' enables Capture Phases
     } catch (e) {

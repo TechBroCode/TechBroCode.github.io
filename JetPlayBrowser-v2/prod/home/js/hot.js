@@ -3,9 +3,14 @@ const body = document.querySelector("body");
 const generalContent = document.getElementById("general-content");
 let pornVid = [1, 2, 3, 4, 5];
 const veryLargeArr = [];
+/*let myUUIDS = "";
 
+for (let a = 0; a < 50; a++) {
+    myUUIDS += a === 0 ? makeUUID() : "," + makeUUID();
+}
+console.log(myUUIDS);*/
 // This is also a YT Query param and a logged in cookie...
-const ytCookie = "VISITOR_INFO1_LIVE=IvKiLIds1lE; VISITOR_PRIVACY_METADATA=CgJORxIEGgAgUw%3D%3D; __Secure-3PAPISID=ipt_uoTPI53B8yus/APqTpkO8hq9_rgeN8; LOGIN_INFO=AFmmF2swRgIhAP-liQy5DsgsgqyHKxGu4mtaTxclN1Gz4EtDcnTEKx7pAiEAlxrkWM-Um4a4BKBJaGF9ljZvsfjYCSYCUsdMezutP5k:QUQ3MjNmeXlIUzljNXpPcHYtdHpoamhmN3ZROWpnRkE1VU1hbS1zZDFXUVpweG5UUEU2ajVVVlgwWWRqY2NacjBYV3BzdEJ0Q0V6NU4zTFVuYjBOVWhyYUd5N0g3dFZNRGtVaF9tejlVWV9BSWtxd0xNWkpOYm53NkRMQ2EtMmpIdVNzTFZkYm1iLUFTN3NJU1c4aGt1YkxCckNUanc4a01BSDJSa25qNkF6cHhmTklZMGxQM2lYZDVGVHBhc05YTmZXNlQwemhQR0lrVmNtS0g0bzdIS2dXYTNwOFBBdl9Cdw==; __Secure-3PSID=g.a0002wh-JA2KxfFP58PesI60afEbbdRyvIOAQY7mODiXzsYeMSoy8X76_KtbYpT-xiHM7_showACgYKAaoSARYSFQHGX2MiLWdT5u61G_-LPYENFbuttRoVAUF8yKr70J92LkHi5owg3bIU4L230076; PREF=f4=4000000&f6=40000000&tz=Africa.Lagos&f7=100&f5=30000; __Secure-ROLLOUT_TOKEN=CNq5uPPZ2tGvShD-_tTf556QAxjvlt2ToZyRAw%3D%3D; YSC=0A7O5PsyUD0; __Secure-1PSIDTS=sidts-CjQBwQ9iI57Ox3XzzqQpSVnKth2ovjNqn5V9PXb_uYYYBKY0sdAEG8GlHBZx4v_9w6qFfYi4EAA; __Secure-3PSIDTS=sidts-CjQBwQ9iI57Ox3XzzqQpSVnKth2ovjNqn5V9PXb_uYYYBKY0sdAEG8GlHBZx4v_9w6qFfYi4EAA; __Secure-3PSIDCC=AKEyXzVpvM_uGOOkFH5YwkLp0qqluLdKsJDXlqPBp_mDcc8g6u-owAJWeBG17EzWviCtoE3_abs; ST-3opvp5=session_logininfo=AFmmF2swRgIhAP-liQy5DsgsgqyHKxGu4mtaTxclN1Gz4EtDcnTEKx7pAiEAlxrkWM-Um4a4BKBJaGF9ljZvsfjYCSYCUsdMezutP5k%3AQUQ3MjNmeXlIUzljNXpPcHYtdHpoamhmN3ZROWpnRkE1VU1hbS1zZDFXUVpweG5UUEU2ajVVVlgwWWRqY2NacjBYV3BzdEJ0Q0V6NU4zTFVuYjBOVWhyYUd5N0g3dFZNRGtVaF9tejlVWV9BSWtxd0xNWkpOYm53NkRMQ2EtMmpIdVNzTFZkYm1iLUFTN3NJU1c4aGt1YkxCckNUanc4a01BSDJSa25qNkF6cHhmTklZMGxQM2lYZDVGVHBhc05YTmZXNlQwemhQR0lrVmNtS0g0bzdIS2dXYTNwOFBBdl9Cdw%3D%3D";
+const ytCookie = "VISITOR_INFO1_LIVE=IvKiLIds1lE; VISITOR_PRIVACY_METADATA=CgJORxIEGgAgUw%3D%3D; __Secure-3PAPISID=ipt_uoTPI53B8yus/APqTpkO8hq9_rgeN8; LOGIN_INFO=AFmmF2swRgIhAP-liQy5DsgsgqyHKxGu4mtaTxclN1Gz4EtDcnTEKx7pAiEAlxrkWM-Um4a4BKBJaGF9ljZvsfjYCSYCUsdMezutP5k:QUQ3MjNmeXlIUzljNXpPcHYtdHpoamhmN3ZROWpnRkE1VU1hbS1zZDFXUVpweG5UUEU2ajVVVlgwWWRqY2NacjBYV3BzdEJ0Q0V6NU4zTFVuYjBOVWhyYUd5N0g3dFZNRGtVaF9tejlVWV9BSWtxd0xNWkpOYm53NkRMQ2EtMmpIdVNzTFZkYm1iLUFTN3NJU1c4aGt1YkxCckNUanc4a01BSDJSa25qNkF6cHhmTklZMGxQM2lYZDVGVHBhc05YTmZXNlQwemhQR0lrVmNtS0g0bzdIS2dXYTNwOFBBdl9Cdw==; __Secure-3PSID=g.a0002wh-JA2KxfFP58PesI60afEbbdRyvIOAQY7mODiXzsYeMSoy8X76_KtbYpT-xiHM7_showACgYKAaoSARYSFQHGX2MiLWdT5u61G_-LPYENFbuttRoVAUF8yKr70J92LkHi5owg3bIU4L230076; PREF=f4=4000000&f6=40000000&tz=Africa.Lagos&f7=100&f5=30000; __Secure-1PSIDTS=sidts-CjQBwQ9iI57Ox3XzzqQpSVnKth2ovjNqn5V9PXb_uYYYBKY0sdAEG8GlHBZx4v_9w6qFfYi4EAA; __Secure-3PSIDTS=sidts-CjQBwQ9iI57Ox3XzzqQpSVnKth2ovjNqn5V9PXb_uYYYBKY0sdAEG8GlHBZx4v_9w6qFfYi4EAA; YSC=RYXugaaOKas; __Secure-ROLLOUT_TOKEN=CNq5uPPZ2tGvShD-_tTf556QAxifo-Le5p6RAw%3D%3D; __Secure-3PSIDCC=AKEyXzUzwOJ_GrPIoZ-CU894mRpuM-46AW4FmsyqsfO1b-vfZlHC8KB8Bcpq916HBGrFpIkJUiU";
 // This is an incognito YT-cookie which is similar to the one gotten from DroidWebclient...
 const incognitoYTCookie = "__Secure-YNID=13.YT=AhuKARBOg3E7QQ7B7UEJWz0eMQcvCo_HbOKEi3ObBSz4LikLkgee0Rx56SY2j5ZYXfAfZaFh6eowkFifQvWL66EzfTrUdM3T2rl3dUq1_HYcTLtvZUZcAoC0CAwat4yh85Dg0BwnmFGAUgR49vHmKSBdmcUlsxniDu1hzg37VfnNYzXa18rrpwqhd9zYxhjJ8z1MD4UJyKSZXNNjDhsHa0DYKpdx2m10nlY8ibyGgAnbXiKt0a86ysH-Jc2x6oBirLKxhJLS-jLh_t3WHhylduLMI2tG8RSik6P1gkxxdb8vCNNaY_DLz39vRTAbeuhJa3Dsp4U_d3jApn_yaPAD6Q; GPS=1; YSC=qlzmJOK6awY; VISITOR_INFO1_LIVE=VMkDp47byC0; VISITOR_PRIVACY_METADATA=CgJORxIEGgAgbg%3D%3D; __Secure-ROLLOUT_TOKEN=CKaOv422lMTfbBC214zY45yRAxjNg53e45yRAw%3D%3D; PREF=f4=4000000&f6=40000000&tz=Africa.Lagos";
 const jetPlayYTStyle = "__Secure-YNID GPS YSC VISITOR_INFO1_LIVE PRIVACY_METADATA __Secure-ROLLOUT_TOKEN";
@@ -16,7 +21,7 @@ function insertYTShortsToDOM(ytGroupElement, shortItem) {
     const imgSrc = shortItem?.placeholder || "";
     ytGroupElement.insertAdjacentHTML("beforeend", `
         <div class="yt-shorts-container">
-            <img class="yt-shorts-image" src=${imgSrc} loading="lazy" alt="">
+            <img data-src=${imgSrc} class="yt-shorts-image" src=${imgSrc} loading="lazy" alt="">
             <svg class="yt-header-logo yt-shorts-down-icon" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path id="Vector" d="M6 21H18M12 3V17M12 17L17 12M12 17L7 12" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -34,17 +39,19 @@ function createOrInsertToYTSingleDynamicLongFormContainer(docId, singleLongVidIt
     }
     parentContainer = document.getElementById(docId);
     // Insert item...
+    const normalYtThumbnail = singleLongVidItem?.placeholder?.toString()?.trim() || "";
+    const channelIcon = singleLongVidItem?.data?.channel?.icon?.toString()?.trim() || "";
     parentContainer.insertAdjacentHTML("beforeend", `
         <div class="yt-long-form-vid-container">
             <div class="thumbnail-container">
-                  <img class="thumbnail" src=${singleLongVidItem?.placeholder?.toString()?.trim() || ""} alt="" loading="lazy">
+                  <img data-src=${normalYtThumbnail} class="thumbnail" src=${normalYtThumbnail} alt="" loading="lazy">
                   <p class="normal-poppins-style" style="position: absolute; bottom: 5px; right: 5px; text-align: center; font-weight: 400; padding: 3px 5px; background: rgba(0,0,0,0.5); color: white; border-radius: 5px;">${singleLongVidItem?.data?.duration?.text?.toString()?.trim() || ""}</p>
                   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3" style="fill: white; width: 30px; height: 30px; position: absolute; top: 0; left: 0; background: var(--dark-linear-gradient-background); border-bottom-right-radius: 100%; padding: 4px 8px 8px 4px;align-self: center; justify-content: center; display: flex;">
                     <path d="M440-120v-320H120v-80h320v-320h80v320h320v80H520v320h-80Z"/>
                   </svg> 
             </div>
             <div class="metadata-container">
-                <img class="channel-thumbnail" src=${singleLongVidItem?.data?.channel?.icon?.toString()?.trim() || ""} alt="" loading="lazy" style="background: darkgray;">
+                <img data-src=${channelIcon} class="channel-thumbnail" src=${channelIcon} alt="" loading="lazy" style="background: darkgray;">
                 <div class="vert-container">
                     <div class="title-more">
                         <p class="normal-poppins-style title">${singleLongVidItem?.title?.toString()?.trim() || ""}</p>
@@ -90,7 +97,7 @@ function insertTikTokPlaybackFullReelsLength(contentItem) {
 
     generalContent.insertAdjacentHTML("beforeend", `
         <div id=${docId} class="tiktok-full-size-player-card-container">
-            <img class="thumbnail" src=${contentItem?.placeholder?.toString()?.trim() || ""} alt="" loading="lazy">
+            <img data-src=${contentItem?.placeholder?.toString()?.trim() || ""} class="thumbnail" src=${contentItem?.placeholder?.toString()?.trim() || ""} alt="" loading="lazy">
             <div class="gen-controller">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3" class="play-pause">
                     <path d="m406-348 206-132-206-132v264Zm74.17 216q-72.17 0-135.73-27.39-63.56-27.39-110.57-74.35-47.02-46.96-74.44-110.43Q132-407.65 132-479.83q0-72.17 27.39-135.73 27.39-63.56 74.35-110.57 46.96-47.02 110.43-74.44Q407.65-828 479.83-828q72.17 0 135.73 27.39 63.56 27.39 110.57 74.35 47.02 46.96 74.44 110.43Q828-552.35 828-480.17q0 72.17-27.39 135.73-27.39 63.56-74.35 110.57-46.96 47.02-110.43 74.44Q552.35-132 480.17-132Zm-.17-28q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/>
@@ -103,7 +110,7 @@ function insertTikTokPlaybackFullReelsLength(contentItem) {
                         </svg>
                     </div>
                     <div class="owner-avatar-container">
-                        <img class="owner-avatar" src=${ownerAvatar} alt="cool" loading="lazy">
+                        <img data-src=${ownerAvatar} class="owner-avatar" src=${ownerAvatar} alt="cool" loading="lazy">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3" style="fill: white; width: 18px; height: 18px; background: var(--colorPrimaryDark); border-radius: 50%; padding: 4px; align-self: center; justify-content: center; display: flex; margin-top: -9px; z-index: 1;">
                             <path d="M440-120v-320H120v-80h320v-320h80v320h320v80H520v320h-80Z"/>
                         </svg>
@@ -145,7 +152,7 @@ function insertTikTokPlaybackFullReelsLength(contentItem) {
                     </div>
                     <!--TODO: Sound artist-->
                     <div class="action-container">
-                        <img src=${originalSoundObj ? originalSoundObj?.src?.[0]?.url?.toString()?.trim() || ownerAvatar : ownerAvatar} alt="cool" loading="lazy" style="width: 36px; height: 36px; border-radius: 50%; align-self: center; display: flex; object-fit: cover;">
+                        <img data-src=${originalSoundObj ? originalSoundObj?.src?.[0]?.url?.toString()?.trim() || ownerAvatar : ownerAvatar} src=${originalSoundObj ? originalSoundObj?.src?.[0]?.url?.toString()?.trim() || ownerAvatar : ownerAvatar} alt="cool" loading="lazy" style="width: 36px; height: 36px; border-radius: 50%; align-self: center; display: flex; object-fit: cover;">
                     </div>
                 </div>
                 <div id=${chanVidTitleDesId} class="channel-title-container">
@@ -206,7 +213,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                                     <div class="yt-group">
                                         <!--TODO: INSERT HEADER...-->
                                         <div class="yt-header">
-                                            <img class="yt-header-logo" src=${imgSrc} loading="lazy" alt="" />
+                                            <img data-src=${imgSrc} class="yt-header-logo" src=${imgSrc} loading="lazy" alt="" />
                                             <p class="normal-poppins-style yt-header-title">${groupTitle}</p>
                                         </div>
                                         <!--TODO: INSERT THE BODY...-->
@@ -296,7 +303,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             sentinel.style.cssText = 'width:1px;height:1px;pointer-events:none;'; // invisible
             body.appendChild(sentinel);
 
-            // observe with a bottom rootMargin of 300px
+            /***********************
+             * 1) SENTINEL OBSERVER
+             * (your infinite-scroll logic; renamed `sentinelObserver` for clarity)
+             ***********************/
             const io = new IntersectionObserver(async (entries) => {
                 if (!entries || !entries[0]) return;
                 const entry = entries[0];

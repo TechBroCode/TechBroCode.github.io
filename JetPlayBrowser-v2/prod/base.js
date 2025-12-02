@@ -220,10 +220,10 @@ try {
             const abs = Math.abs(n);
 
             const tiers = [
-                { value: 1e12, suffix: 'T' },
-                { value: 1e9,  suffix: 'B' },
-                { value: 1e6,  suffix: 'M' },
-                { value: 1e3,  suffix: 'k' }
+                {value: 1e12, suffix: 'T'},
+                {value: 1e9, suffix: 'B'},
+                {value: 1e6, suffix: 'M'},
+                {value: 1e3, suffix: 'k'}
             ];
 
             // helper: trim trailing zeros from a "fixed" string
@@ -268,7 +268,8 @@ try {
         window.loadDroidWebUrlCookies = (urlMapKey, webTag = WEB_TAG, refresh = true) => {
             try {
                 window.jetelex42501QbSdkDroid.loadWebUrlCookies(urlMapKey, webTag, refresh);
-            } catch (e) {}
+            } catch (e) {
+            }
         }
 
         window.isDroidNetworkAvailable = () => {
@@ -278,5 +279,57 @@ try {
                 return false;
             }
         }
+
+        /***********************
+         * 2) IMAGE OBSERVER
+         * (detect "almost visible" images for lazy-loading/prefetching/analytics)
+         ***********************/
+
+            // How far before viewport the image should be considered "near".
+        const IMAGE_NEAR_ROOT_MARGIN = '10px 10px 10px 10px'; // top right bottom left // Remember that image may be scrolling horizontally...
+        // single observer instance for images
+        window.imgObserver = new IntersectionObserver((entries) => {
+            // handle any number of entries — don't assume only [0]
+            for (const entry of entries) {
+                if (!entry || !(entry?.target instanceof HTMLImageElement)) continue;
+                const img = entry?.target;
+                // When the image enters the "near" zone
+                if (entry.isIntersecting) {
+                    // do your near-image work:
+                    const unobserveImg = handleNearImage(img);
+                    if (unobserveImg) {
+                        // stop observing this element (optional)
+                        imgObserver.unobserve(img);
+                    }
+                }
+            }
+        }, {
+            root: null,
+            rootMargin: IMAGE_NEAR_ROOT_MARGIN,
+            threshold: 0
+        });
+
+        // The action to perform when an image is near the viewport.
+        // Keep this idempotent and fast.
+        window.handleNearImage = (img) => {
+            // example: swap data-src into src for common lazy patterns
+            if (img.naturalWidth > 1 && img.naturalHeight > 1) {
+                img.removeAttribute('data-src');
+                return true;
+            }
+            const dataSrc = img.getAttribute('data-src') || img.dataset.src;
+            if (dataSrc && dataSrc?.toString()?.trim()?.length > 0) img.src = dataSrc;
+            return false;
+        }
+
+        // Helper: whether a node should be treated as an image placeholder we care about
+        window.isImageNode = (node) => {
+            if (!node || node.nodeType !== 1) return false;
+            const tag = node.tagName && node.tagName.toLowerCase();
+            if (tag === 'img') return true;
+            // treat lazy placeholders as images if they have a data-src/data-lazy or a .lazy class
+            return !!(node.hasAttribute && node.hasAttribute('data-src'));
+        }
     }
-} catch (e) {}
+} catch (e) {
+}
