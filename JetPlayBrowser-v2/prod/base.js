@@ -381,6 +381,79 @@ try {
             const candidates = root.querySelectorAll('img, [data-src]');
             for (const el of candidates) attachImageObservation(el);
         }
+
+        /**
+         * Convert timestamp/Date/ISO -> human relative string.
+         * Accepts: ms number, s number (auto-detected), Date, ISO string.
+         *
+         * Examples:
+         *   timeAgo(1764223059000)         -> "X years ago" (depends on now)
+         *   timeAgo(Date.now() - 4000)     -> "Just now"
+         *   timeAgo("2025-01-01T00:00:00Z")-> "X months ago"
+         */
+        window.timeAgo = (input, now = Date.now()) => {
+            // normalize input -> ms
+            let t;
+            if (input instanceof Date) t = input.getTime();
+            else if (typeof input === "number") t = input > 1e12 ? input : input * 1000; // if <1e12 assume seconds
+            else if (typeof input === "string") t = Date.parse(input);
+            else return "";
+
+            if (!isFinite(t)) return "";
+
+            // difference in seconds (positive if in the past)
+            let diff = Math.round((now - t) / 1000);
+            const future = diff < 0;
+            if (future) diff = -diff;
+
+            // helper plural
+            const plural = (n, s) => n + " " + s + (n === 1 ? "" : "s");
+
+            if (diff < 5) return future ? "in a few seconds" : "Just now";
+            if (diff < 60) return future ? `in ${plural(diff, "sec")}` : `${plural(diff, "sec")} ago`;
+            if (diff < 120) return future ? "in a minute" : "1 minute ago";
+            if (diff < 3600) {
+                const m = Math.floor(diff / 60);
+                return future ? `in ${plural(m, "min")}` : `${plural(m, "min")} ago`;
+            }
+            if (diff < 7200) return future ? "in an hour" : "1 hour ago";
+            if (diff < 86400) {
+                const h = Math.floor(diff / 3600);
+                return future ? `in ${plural(h, "hour")}` : `${plural(h, "hour")} ago`;
+            }
+            if (diff < 172800) return future ? "in a day" : "yesterday";
+
+            if (diff < 604800) { // < 7 days
+                const d = Math.floor(diff / 86400);
+                return future ? `in ${plural(d, "day")}` : `${plural(d, "day")} ago`;
+            }
+
+            if (diff < 2419200) { // < 28 days ~= weeks
+                const w = Math.floor(diff / 604800);
+                return future ? `in ${plural(w, "week")}` : `${plural(w, "week")} ago`;
+            }
+
+            const monthSeconds = 2592000; // 30 days
+            const yearSeconds = 31536000; // 365 days
+
+            if (diff < yearSeconds) {
+                const mo = Math.floor(diff / monthSeconds);
+                if (mo <= 1) return future ? "in a month" : "1 month ago";
+                return future ? `in ${plural(mo, "month")}` : `${plural(mo, "month")} ago`;
+            }
+
+            const y = Math.floor(diff / yearSeconds);
+            if (y === 1) return future ? "in a year" : "last year";
+            return future ? `in ${plural(y, "year")}` : `${plural(y, "year")} ago`;
+        }
+
+        /*console.log(timeAgo(Date.now() - 2 * 1000));            // "2 sec(s) ago" -> "2 secs ago"
+        console.log(timeAgo(Date.now() - 60 * 1000));           // "1 minute ago"
+        console.log(timeAgo(Date.now() - 2 * 3600 * 1000));     // "2 hours ago"
+        console.log(timeAgo(Date.now() - 24 * 3600 * 1000));    // "yesterday"
+        console.log(timeAgo(1764223059000));                    // prints relative to current date
+        console.log(timeAgo(Date.now() + 2 * 86400 * 1000));    // "in 2 days" (future)*/
+
     }
 } catch (e) {
 }

@@ -44,7 +44,19 @@ function createOrInsertToPhxNewsSingleDynamicContainer(docId, phxNewsItem) {
     const itemContainerId = `${Date.now()}-${makeUUID()}`;
     const placeThumb = phxNewsItem?.placeholder?.toString()?.trim() || "";
     parentContainer.insertAdjacentHTML("beforeend", `
-        <div id="">
+        <div id=${itemContainerId} class="phx-news-sports-linear-container">
+            <div class="main-container">
+                <div class="vert-container">
+                    <p class="normal-poppins-style title">${phxNewsItem?.title?.toString()?.trim() || ""}</p>
+                    <div style="margin-top: 10px; display: flex; flex-wrap: wrap; width: 100%; height: auto; justify-content: flex-start; gap: 5px; align-items: center;">
+                        <p class="normal-poppins-style" style="font-weight: 400; opacity: 0.5; text-align: start; display: flex">${phxNewsItem?.data?.channel?.title?.toString()?.trim() || ""}</p>
+                        <p class="normal-poppins-style" style="font-weight: 400; opacity: 0.5; text-align: start; display: flex">•</p>
+                        <p class="normal-poppins-style" style="font-weight: 400; opacity: 0.5; text-align: start; display: flex">${timeAgo(Number(phxNewsItem?.datePublished?.value?.toString()?.trim() ?? "0") || 0)}</p>
+                    </div>
+                </div>
+                <img id="${itemContainerId}-img" data-src=${placeThumb} data-count="0" src=${placeThumb} loading="lazy" alt="">
+            </div>
+            <div class="divider"></div>
         </div>
     `);
 }
