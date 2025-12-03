@@ -32,11 +32,28 @@ function insertYTShortsToDOM(ytGroupElement, shortItem) {
     addImgObservation(`${parentId}-yt-shorts-image`);
 }
 
-function createOrInsertToYTSingleDynamicLongFormContainer(docId, singleLongVidItem) {
+function createOrInsertToPhxNewsSingleDynamicContainer(docId, phxNewsItem) {
     let parentContainer = document.getElementById(docId);
     if (!parentContainer || !generalContent.contains(parentContainer)) {
         generalContent.insertAdjacentHTML("beforeend", `
             <div id=${docId} class="yt-group-contents yt-single-long-form-video-drop-container"></div>
+        `);
+    }
+    parentContainer = document.getElementById(docId);
+    // Insert Item...
+    const itemContainerId = `${Date.now()}-${makeUUID()}`;
+    const placeThumb = phxNewsItem?.placeholder?.toString()?.trim() || "";
+    parentContainer.insertAdjacentHTML("beforeend", `
+        <div id="">
+        </div>
+    `);
+}
+
+function createOrInsertToYTSingleDynamicLongFormContainer(docId, singleLongVidItem, addParentGroupingClassName = "yt-single-long-form-video-drop-container", allowSnap = false) {
+    let parentContainer = document.getElementById(docId);
+    if (!parentContainer || !generalContent.contains(parentContainer)) {
+        generalContent.insertAdjacentHTML("beforeend", `
+            <div id=${docId} class="yt-group-contents ${addParentGroupingClassName}"></div>
         `);
     }
     parentContainer = document.getElementById(docId);
@@ -46,7 +63,7 @@ function createOrInsertToYTSingleDynamicLongFormContainer(docId, singleLongVidIt
     // We'll need to create this unique parent docId not the grouping parent docId...
     const longFormId = `${Date.now()}-${makeUUID()}`;
     parentContainer.insertAdjacentHTML("beforeend", `
-        <div id="${longFormId}-yt-long-form-vid-container" class="yt-long-form-vid-container">
+        <div id="${longFormId}-yt-long-form-vid-container" class="yt-long-form-vid-container allow-snap">
             <div class="thumbnail-container">
                   <img id="${longFormId}-thumbnail" data-count="0" data-src=${normalYtThumbnail} class="thumbnail" src=${normalYtThumbnail} alt="" loading="lazy">
                   <p class="normal-poppins-style" style="position: absolute; bottom: 5px; right: 5px; text-align: center; font-weight: 400; padding: 3px 5px; background: rgba(0,0,0,0.5); color: white; border-radius: 5px;">${singleLongVidItem?.data?.duration?.text?.toString()?.trim() || ""}</p>
@@ -197,6 +214,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const contentsArray = resJSON?.contents;
             if (contentsArray && contentsArray.length > 0) {
                 const yTDynamicLongVidContainerDocId = `${Date.now()}-${makeUUID()}`;
+                const phxNewsFeedDynamicContainerDocId = `${Date.now()}-${makeUUID()}`;
                 for (let contentItem of contentsArray) {
                     if (!contentItem || contentItem?.type <= -99) {
                         continuationArr.push(contentItem);
@@ -210,6 +228,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                                 // Doesn't exist or empty array
                                 break;
                             }
+                            const innerGroupLen = groupedItems?.length;
                             const imgSrc = contentItem?.data?.meta?.icon || "";
                             const groupTitle = contentItem?.data?.meta?.title || "";
                             if (groupTitle.toLowerCase() === "shorts") {
@@ -230,7 +249,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                                 const yTGroupElement = document.getElementById(ytGroupId);
                                 if (!yTGroupElement || !generalContent.contains(yTGroupElement)) break;
 
-                                for (let c = 0, shortLen = groupedItems?.length; c < shortLen; c += 1) {
+                                for (let c = 0; c < innerGroupLen; c += 1) {
                                     const groupItem = groupedItems[c];
                                     if (!groupItem || groupItem?.type !== 2) continue;
                                     // Insert YT-shorts into DOM...
@@ -242,23 +261,28 @@ document.addEventListener("DOMContentLoaded", async () => {
                                     <div class="yt-group">
                                         <!--TODO: INSERT HEADER...-->
                                         <div class="yt-header">
-                                            <p class="normal-poppins-style yt-header-title">${groupTitle}</p>
+                                            <p class="normal-poppins-style yt-header-title">${groupTitle}<span style="font-weight: 400; opacity: 0.8; width: auto; height: auto; align-self: center; margin-left: 5px;">(${innerGroupLen})</span></p>
                                         </div>
                                     </div>
                                 `);
                                 // Header has been created...
                                 const yTGroupingLongVidContainerDocId = `${Date.now()}-${makeUUID()}`;
-                                for (let c = 0, longVidGroupLen = groupedItems?.length; c < longVidGroupLen; c += 1) {
+                                for (let c = 0; c < innerGroupLen; c += 1) {
                                     const groupItem = groupedItems[c];
                                     if (!groupItem || groupItem?.type !== 3) continue;
                                     // Insert each long-form...
-                                    createOrInsertToYTSingleDynamicLongFormContainer(yTGroupingLongVidContainerDocId, groupItem);
+                                    createOrInsertToYTSingleDynamicLongFormContainer(yTGroupingLongVidContainerDocId, groupItem, "yt-single-long-form-video-drop-horizontal-container", true);
                                 }
                             }
                             break;
                         }
                         case 3: {
                             createOrInsertToYTSingleDynamicLongFormContainer(yTDynamicLongVidContainerDocId, contentItem);
+                            break;
+                        }
+
+                        case 7: {
+                            createOrInsertToPhxNewsSingleDynamicContainer(phxNewsFeedDynamicContainerDocId, contentItem);
                             break;
                         }
                         case 9: {

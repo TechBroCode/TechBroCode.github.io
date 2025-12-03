@@ -343,7 +343,7 @@ try {
 
         // Helper: whether a node should be treated as an image placeholder we care about
         window.isImageNode = (node) => {
-            if (!node || node.nodeType !== ActiveX.IXMLDOMNodeType.NODE_ELEMENT) return false; // Same as if (!node || node.nodeType !== 1)
+            if (!node || node.nodeType !== 1) return false; // Same as if (!node || node.nodeType !== 1)
             const tag = node.tagName && node.tagName.toLowerCase();
             if (tag === 'img') return true;
             // treat lazy placeholders as images if they have a data-src/data-lazy or a .lazy class
@@ -352,7 +352,7 @@ try {
 
         // Attach observer to a specific image-like element (guard with a flag)
         window.attachImageObservation = (el) => {
-            if (!el || el.nodeType !== ActiveX.IXMLDOMNodeType.NODE_ELEMENT) return;
+            if (!el || el.nodeType !== 1) return;
             if (el.__nearObserverAttached) return; // already observed
             imgObserver.observe(el);
             el.__nearObserverAttached = true;
