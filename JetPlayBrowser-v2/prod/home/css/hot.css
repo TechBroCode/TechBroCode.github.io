@@ -73,7 +73,6 @@
 .yt-shorts-container {
     width: clamp(135px, 15vw, 495px);
     height: auto;
-    background: darkgray;
     aspect-ratio: 10 / 16;
     display: flex;
     position: relative;
