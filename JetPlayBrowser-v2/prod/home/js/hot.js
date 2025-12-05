@@ -210,6 +210,32 @@ function insertTikTokPlaybackFullReelsLength(contentItem) {
     }
 }
 
+function createOrInsertToPHXVideosGroupContainer(parGrEl, phxReelsContentsGroupId, groupItem, lastItem = false) {
+    try {
+        let reelsContentsGroup = document.getElementById(phxReelsContentsGroupId);
+        if (!reelsContentsGroup || !parGrEl.contains(reelsContentsGroup)) {
+            parGrEl.insertAdjacentHTML("beforeend", `
+                <!--TODO: INSERT THE BODY...-->
+                <div id=${phxReelsContentsGroupId} class="yt-group-contents"></div>
+            `);
+        }
+        reelsContentsGroup = document.getElementById(phxReelsContentsGroupId);
+        const imgSrc = groupItem?.placeholder || "";
+        reelsContentsGroup.insertAdjacentHTML("beforeend", `
+            <div id="${phxReelsContentsGroupId}-phx-shorts-container" class="yt-shorts-container">
+                <img id="${phxReelsContentsGroupId}-phx-shorts-image" data-count="0" data-src=${imgSrc} class="yt-shorts-image" src=${imgSrc} loading="lazy" alt="">
+                <svg class="yt-header-logo yt-shorts-down-icon" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path id="Vector" d="M6 21H18M12 3V17M12 17L17 12M12 17L7 12" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <p class="normal-poppins-style yt-header-title yt-shorts-title">${groupItem?.title || ""}</p>
+            </div>
+        `);
+        addImgObservation(`${phxReelsContentsGroupId}-phx-shorts-image`);
+    } catch (e) {
+        console.error(e);
+    }
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
     async function fetchContentsFromJetApi(apiUrl, continuationArr, initOptions) {
         isLoadingMainContents = true;
@@ -251,15 +277,15 @@ document.addEventListener("DOMContentLoaded", async () => {
                                     <div class="yt-group">
                                         <!--TODO: INSERT HEADER...-->
                                         <div class="yt-header">
-                                            <img id="${ytGroupId}-yt-header-logo" data-count="0" data-src=${imgSrc} class="yt-header-logo" src=${imgSrc} loading="lazy" alt="" />
+                                            <img id="${ytGroupId}-yt-header-logo" data-count="0" data-src=${imgSrc} class="yt-header-logo" src=${imgSrc} loading="lazy" alt="" style="background: transparent;"/>
                                             <p class="normal-poppins-style yt-header-title">${groupTitle}</p>
                                         </div>
                                         <!--TODO: INSERT THE BODY...-->
-                                        <div id=${ytGroupId} class="yt-group-contents"></div>
+                                        <div id="${ytGroupId}-yt-group-contents" class="yt-group-contents"></div>
                                     </div>
                                 `);
                                 addImgObservation(`${ytGroupId}-yt-header-logo`);
-                                const yTGroupElement = document.getElementById(ytGroupId);
+                                const yTGroupElement = document.getElementById(`${ytGroupId}-yt-group-contents`);
                                 if (!yTGroupElement || !generalContent.contains(yTGroupElement)) break;
 
                                 for (let c = 0; c < innerGroupLen; c += 1) {
@@ -270,27 +296,39 @@ document.addEventListener("DOMContentLoaded", async () => {
                                 }
                             } else {
                                 // It may be breaking news, or any news. etc...
+                                const yTGroupingLongVidContainerDocId = `${Date.now()}-${makeUUID()}`;
                                 generalContent.insertAdjacentHTML("beforeend", `
-                                    <div class="yt-group">
+                                    <div id="${yTGroupingLongVidContainerDocId}-yt-group" class="yt-group">
                                         <!--TODO: INSERT HEADER...-->
                                         <div class="yt-header">
                                             <p class="normal-poppins-style yt-header-title">${groupTitle}<span style="font-weight: 400; opacity: 0.8; width: auto; height: auto; align-self: center; margin-left: 5px;">(${innerGroupLen})</span></p>
                                         </div>
                                     </div>
                                 `);
+                                let parentContainer;
                                 // Header has been created...
-                                const yTGroupingLongVidContainerDocId = `${Date.now()}-${makeUUID()}`;
                                 for (let c = 0; c < innerGroupLen; c += 1) {
                                     const groupItem = groupedItems[c];
-                                    if (!groupItem || groupItem?.type !== 3) continue;
-                                    // Insert each long-form...
-                                    createOrInsertToYTSingleDynamicLongFormContainer(yTGroupingLongVidContainerDocId, groupItem, "yt-single-long-form-video-drop-horizontal-container", true);
+                                    if (!groupItem) continue;
+                                    if (groupItem?.type === 3) {
+                                        // Insert each long-form...
+                                        createOrInsertToYTSingleDynamicLongFormContainer(`${yTGroupingLongVidContainerDocId}-yt-group-contents`, groupItem, "yt-single-long-form-video-drop-horizontal-container", true);
+                                    } else if (groupItem?.type === 10) {
+                                        // It's phx videos...
+                                        if (!parentContainer) parentContainer = document.getElementById(`${yTGroupingLongVidContainerDocId}-yt-group`);
+                                        if (parentContainer.nodeType !== 1) {
+                                            // Not an element...
+                                            parentContainer = undefined;
+                                            continue;
+                                        }
+                                        createOrInsertToPHXVideosGroupContainer(parentContainer, `${yTGroupingLongVidContainerDocId}-yt-group-contents`, groupItem, c === (innerGroupLen - 1));
+                                    }
                                 }
                             }
                             break;
                         }
                         case 3: {
-                            createOrInsertToYTSingleDynamicLongFormContainer(yTDynamicLongVidContainerDocId, contentItem);
+                            createOrInsertToYTSingleDynamicLongFormContainer(`${yTDynamicLongVidContainerDocId}-yt-group-contents`, contentItem);
                             break;
                         }
 
