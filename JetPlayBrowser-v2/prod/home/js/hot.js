@@ -315,12 +315,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                                         createOrInsertToYTSingleDynamicLongFormContainer(`${yTGroupingLongVidContainerDocId}-yt-group-contents`, groupItem, "yt-single-long-form-video-drop-horizontal-container", true);
                                     } else if (groupItem?.type === 10) {
                                         // It's phx videos...
+                                        alert("coo");
                                         if (!parentContainer) parentContainer = document.getElementById(`${yTGroupingLongVidContainerDocId}-yt-group`);
                                         if (parentContainer.nodeType !== 1) {
                                             // Not an element...
                                             parentContainer = undefined;
                                             continue;
                                         }
+                                        alert("me");
                                         createOrInsertToPHXVideosGroupContainer(parentContainer, `${yTGroupingLongVidContainerDocId}-yt-group-contents`, groupItem, c === (innerGroupLen - 1));
                                     }
                                 }
