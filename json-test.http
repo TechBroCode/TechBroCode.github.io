@@ -369,7 +369,12 @@ Sec-CH-UA-Platform: "Android"
 ### Yahoo News CAAS — GET request
 ### FAKE GENERATED UUIDS 😂😂 https://news.yahoo.com/caas/content/article/?uuid=22bb2950-c475-43e0-8ccf-d5e6f32bd4be,c0ed8cd6-7fd8-43a0-9fd1-f46d6cf4e799,82ba12ee-f640-4ee1-b162-1405a1ee8bbd,9a5bb185-4fd5-4199-855c-4d099baa1db0&appid=news_mweb&device=smartphone&lang=en-US&region=US&site=news&partner=none&bucket=atmosphere-en-us,us-news-migrate-control-copy,prebid-pubs-pbjstrafficshaping-test-2,cntrl-cid-prebid&features=enableEVPlayer,contentFeedbackEnabled,enableAdPlaceholder,enableAdsMon,enableInArticleAd,enableOpinionLabel,enableSingleSlotting,enableVideoDocking,outStream,showCommentsIconInShareSec,cluster,showWfDarlaNodeForFirstAd,showCommentsIconWithCount,enableInlineConsent,enableGAMAdsOnLoad,enableBtmStickyAd,enableAdSlotsFederationInBody,newsModal,enableCommentsCountInViewCommentsCta,enableAdSlotsNewMap,enableGAMAds,enableGAMEdgeToEdgeModal&rid=1a5ekk1kiru42
 ### ORIGINAL URLS GET https://news.yahoo.com/caas/content/article/?uuid=0c086407-ebd1-3a82-9191-7abaee8555b7,f78f2137-016c-331d-b8ec-31a59419ba28,1d9ecddd-f5c3-449e-a910-eef2595ef9dd,b9e656c9-98ff-37e4-8d29-bdafb7c6167e,3147928c-1ba4-401d-bba4-1e245e9f87c7,d5137cd0-dfb1-3366-8124-41e5ddfa3896,8d0c321c-03a6-3f4b-b681-8999cd788d63,606babd3-7eca-3e4a-8f19-b4fddd4edd1b,a24d9385-14b5-3c43-afc9-990cbbfa5cef,2834edbc-eaee-3938-88c4-03e8740ae1b3&appid=news_mweb&device=smartphone&lang=en-US&region=US&site=news&partner=none&bucket=atmosphere-en-us,us-news-migrate-control-copy,prebid-pubs-pbjstrafficshaping-test-2,cntrl-cid-prebid&features=enableEVPlayer,contentFeedbackEnabled,enableAdPlaceholder,enableAdsMon,enableInArticleAd,enableOpinionLabel,enableSingleSlotting,enableVideoDocking,outStream,showCommentsIconInShareSec,cluster,showWfDarlaNodeForFirstAd,showCommentsIconWithCount,enableInlineConsent,enableGAMAdsOnLoad,enableBtmStickyAd,enableAdSlotsFederationInBody,newsModal,enableCommentsCountInViewCommentsCta,enableAdSlotsNewMap,enableGAMAds,enableGAMEdgeToEdgeModal&rid=1a5ekk1kiru42 HTTP/1.1
-GET https://news.yahoo.com/caas/content/article/?uuid=0c086407-ebd1-3a82-9191-7abaee8555b7,f78f2137-016c-331d-b8ec-31a59419ba28,1d9ecddd-f5c3-449e-a910-eef2595ef9dd,b9e656c9-98ff-37e4-8d29-bdafb7c6167e,3147928c-1ba4-401d-bba4-1e245e9f87c7,d5137cd0-dfb1-3366-8124-41e5ddfa3896,8d0c321c-03a6-3f4b-b681-8999cd788d63,606babd3-7eca-3e4a-8f19-b4fddd4edd1b,a24d9385-14b5-3c43-afc9-990cbbfa5cef,2834edbc-eaee-3938-88c4-03e8740ae1b3&appid=news_mweb&device=smartphone&lang=en-US&region=US&site=news&partner=none&bucket=atmosphere-en-us,us-news-migrate-control-copy,prebid-pubs-pbjstrafficshaping-test-2,cntrl-cid-prebid&features=enableEVPlayer,contentFeedbackEnabled,enableAdPlaceholder,enableAdsMon,enableInArticleAd,enableOpinionLabel,enableSingleSlotting,enableVideoDocking,outStream,showCommentsIconInShareSec,cluster,showWfDarlaNodeForFirstAd,showCommentsIconWithCount,enableInlineConsent,enableGAMAdsOnLoad,enableBtmStickyAd,enableAdSlotsFederationInBody,newsModal,enableCommentsCountInViewCommentsCta,enableAdSlotsNewMap,enableGAMAds,enableGAMEdgeToEdgeModal&rid=1a5ekk1kiru42 HTTP/1.1
+GET https://news.yahoo.com/caas/content/article/?
+    uuid=0c086407-ebd1-3a82-9191-7abaee8555b7,f78f2137-016c-331d-b8ec-31a59419ba28,1d9ecddd-f5c3-449e-a910-eef2595ef9dd,b9e656c9-98ff-37e4-8d29-bdafb7c6167e,3147928c-1ba4-401d-bba4-1e245e9f87c7,d5137cd0-dfb1-3366-8124-41e5ddfa3896,8d0c321c-03a6-3f4b-b681-8999cd788d63,606babd3-7eca-3e4a-8f19-b4fddd4edd1b,a24d9385-14b5-3c43-afc9-990cbbfa5cef,2834edbc-eaee-3938-88c4-03e8740ae1b3&
+    appid=news_mweb&device=smartphone&lang=en-US&region=US&site=news&partner=none&
+    bucket=atmosphere-en-us,us-news-migrate-control-copy,prebid-pubs-pbjstrafficshaping-test-2,cntrl-cid-prebid&
+    features=enableEVPlayer,contentFeedbackEnabled,enableAdPlaceholder,enableAdsMon,enableInArticleAd,enableOpinionLabel,enableSingleSlotting,enableVideoDocking,outStream,showCommentsIconInShareSec,cluster,showWfDarlaNodeForFirstAd,showCommentsIconWithCount,enableInlineConsent,enableGAMAdsOnLoad,enableBtmStickyAd,enableAdSlotsFederationInBody,newsModal,enableCommentsCountInViewCommentsCta,enableAdSlotsNewMap,enableGAMAds,enableGAMEdgeToEdgeModal&
+    rid=1a5ekk1kiru42 HTTP/1.1
 
 Host: news.yahoo.com
 Sec-CH-UA: "Chromium";v="142", "Google Chrome";v="142", "Not_A Brand";v="99"
@@ -381,7 +386,10 @@ Referer: https://news.yahoo.com/
 # (GET — no request body)
 
 ### Taboola /trc POST
-POST https://trc.taboola.com/yahoo-news/trc/3/json?llvl=2&tim=21%3A42%3A29.280&lti=trecs-2677-readmore-new-thershold-test_var&pubit=n&t=1&data=%7B%22cmps%22%3A0%2C%22ga%22%3Afalse%2C%22gpp%22%3A%22DBAA%22%2C%22gpp_sid%22%3A%22-1%22%2C%22id%22%3A%2280993%22%2C%22sd%22%3A%22%22%2C%22ui%22%3A%22%22%2C%22ii%22%3A%22_homepage_%22%2C%22it%22%3A%22home%22%2C%22vi%22%3A1764621749280%2C%22cv%22%3A%2220251130-9_b1-PR-94199-DEV-207065-read-more-100-pixels-higher-a94d709d493%22%2C%22uiv%22%3A%22default%22%2C%22u%22%3A%22https%3A%2F%2Fnews.yahoo.com%2F%22%2C%22qs%22%3A%22%22%2C%22bv%22%3A%220%22%2C%22btv%22%3A%220%22%2C%22ul%22%3A%5B%22en-US%22%2C%22en%22%5D%2C%22ccpa_ps%22%3A%221---%22%2C%22cos%22%3A%223g%22%2C%22e%22%3A%22https%3A%2F%2Fwww.google.com%2F%22%2C%22bu%22%3A%22https%3A%2F%2Fnews.yahoo.com%2F%22%2C%22vpi%22%3A%22%2F%22%2C%22bad%22%3A-1%2C%22sw%22%3A1280%2C%22sh%22%3A672%2C%22bw%22%3A290%2C%22bh%22%3A464%2C%22dw%22%3A320%2C%22dh%22%3A3434%2C%22sde%22%3A%221.500%22%2C%22lt%22%3A%22trecs-2677-readmore-new-thershold-test_var%22%2C%22nsid%22%3A%22yahooweb-network%22%2C%22pblob%22%3A%22colo%3Abf1%3Bdevice%3Asmartphone%3Blang%3Aen-US%3Blu%3A0%3Bpartner%3Anone%3Bpt%3Ahome%3Bregion%3AUS%3Bsite%3Anews%3Bver%3Amegastrm-news%7C%7C1197800623%7C%7C%7C%7Catmosphere-en-us%2Cus-news-migrate-control-copy%2Cprebid-pubs-pbjstrafficshaping-test-2%2Ccntrl-cid-prebid%2Cdmi_consent_false%7C%22%2C%22r%22%3A%5B%7B%22li%22%3A%22rbox-h2m%22%2C%22uip%22%3A%22taboola-ntk-5%22%2C%22orig_uip%22%3A%22taboola-ntk-5%22%2C%22s%22%3A1%2C%22uim%22%3A%22ntk-a%3Apub%3Dyahooweb-network%3Aabp%3D0%22%2C%22cd%22%3A-1%2C%22mw%22%3A275%7D%2C%7B%22li%22%3A%22rbox-h2m%22%2C%22uip%22%3A%22taboola-stream-1%22%2C%22orig_uip%22%3A%22taboola-stream-1%22%2C%22s%22%3A1%2C%22uim%22%3A%22stream-d%3Apub%3Dyahooweb-network%3Aabp%3D0%22%2C%22cd%22%3A317.91%2C%22mw%22%3A234.67%7D%2C%7B%22li%22%3A%22rbox-h2m%22%2C%22uip%22%3A%22taboola-stream-9%22%2C%22orig_uip%22%3A%22taboola-stream-9%22%2C%22s%22%3A1%2C%22uim%22%3A%22stream-d%3Apub%3Dyahooweb-network%3Aabp%3D0%22%2C%22cd%22%3A1310.91%2C%22mw%22%3A234.67%7D%5D%2C%22pev%22%3A%2228166%22%2C%22uad%22%3A%7B%22mobile%22%3Atrue%2C%22model%22%3A%22Nexus%205%22%2C%22platform%22%3A%22Android%22%2C%22platformVersion%22%3A%226.0%22%2C%22uaFullVersion%22%3A%22142.0.7444.176%22%7D%2C%22cacheKey%22%3A%22home%3D_homepage_%2Ctaboola-ntk-5%3Dntk-a%3Apub%3Dyahooweb-network%3Aabp%3D0%2Ctaboola-stream-1%3Dstream-d%3Apub%3Dyahooweb-network%3Aabp%3D0%2Ctaboola-stream-9%3Dstream-d%3Apub%3Dyahooweb-network%3Aabp%3D0%22%2C%22_cn%22%3A%22tions_1%22%2C%22lbt%22%3A1764586061462%2C%22wc%22%3Atrue%7D&tbu=7b9f0d67-e770-4d51-9995-77c1418c22ad
+POST https://trc.taboola.com/yahoo-news/trc/3/json?llvl=2&tim=21%3A42%3A29.280&
+    lti=trecs-2677-readmore-new-thershold-test_var&pubit=n&t=1&
+    data=%7B%22cmps%22%3A0%2C%22ga%22%3Afalse%2C%22gpp%22%3A%22DBAA%22%2C%22gpp_sid%22%3A%22-1%22%2C%22id%22%3A%2280993%22%2C%22sd%22%3A%22%22%2C%22ui%22%3A%22%22%2C%22ii%22%3A%22_homepage_%22%2C%22it%22%3A%22home%22%2C%22vi%22%3A1764621749280%2C%22cv%22%3A%2220251130-9_b1-PR-94199-DEV-207065-read-more-100-pixels-higher-a94d709d493%22%2C%22uiv%22%3A%22default%22%2C%22u%22%3A%22https%3A%2F%2Fnews.yahoo.com%2F%22%2C%22qs%22%3A%22%22%2C%22bv%22%3A%220%22%2C%22btv%22%3A%220%22%2C%22ul%22%3A%5B%22en-US%22%2C%22en%22%5D%2C%22ccpa_ps%22%3A%221---%22%2C%22cos%22%3A%223g%22%2C%22e%22%3A%22https%3A%2F%2Fwww.google.com%2F%22%2C%22bu%22%3A%22https%3A%2F%2Fnews.yahoo.com%2F%22%2C%22vpi%22%3A%22%2F%22%2C%22bad%22%3A-1%2C%22sw%22%3A1280%2C%22sh%22%3A672%2C%22bw%22%3A290%2C%22bh%22%3A464%2C%22dw%22%3A320%2C%22dh%22%3A3434%2C%22sde%22%3A%221.500%22%2C%22lt%22%3A%22trecs-2677-readmore-new-thershold-test_var%22%2C%22nsid%22%3A%22yahooweb-network%22%2C%22pblob%22%3A%22colo%3Abf1%3Bdevice%3Asmartphone%3Blang%3Aen-US%3Blu%3A0%3Bpartner%3Anone%3Bpt%3Ahome%3Bregion%3AUS%3Bsite%3Anews%3Bver%3Amegastrm-news%7C%7C1197800623%7C%7C%7C%7Catmosphere-en-us%2Cus-news-migrate-control-copy%2Cprebid-pubs-pbjstrafficshaping-test-2%2Ccntrl-cid-prebid%2Cdmi_consent_false%7C%22%2C%22r%22%3A%5B%7B%22li%22%3A%22rbox-h2m%22%2C%22uip%22%3A%22taboola-ntk-5%22%2C%22orig_uip%22%3A%22taboola-ntk-5%22%2C%22s%22%3A1%2C%22uim%22%3A%22ntk-a%3Apub%3Dyahooweb-network%3Aabp%3D0%22%2C%22cd%22%3A-1%2C%22mw%22%3A275%7D%2C%7B%22li%22%3A%22rbox-h2m%22%2C%22uip%22%3A%22taboola-stream-1%22%2C%22orig_uip%22%3A%22taboola-stream-1%22%2C%22s%22%3A1%2C%22uim%22%3A%22stream-d%3Apub%3Dyahooweb-network%3Aabp%3D0%22%2C%22cd%22%3A317.91%2C%22mw%22%3A234.67%7D%2C%7B%22li%22%3A%22rbox-h2m%22%2C%22uip%22%3A%22taboola-stream-9%22%2C%22orig_uip%22%3A%22taboola-stream-9%22%2C%22s%22%3A1%2C%22uim%22%3A%22stream-d%3Apub%3Dyahooweb-network%3Aabp%3D0%22%2C%22cd%22%3A1310.91%2C%22mw%22%3A234.67%7D%5D%2C%22pev%22%3A%2228166%22%2C%22uad%22%3A%7B%22mobile%22%3Atrue%2C%22model%22%3A%22Nexus%205%22%2C%22platform%22%3A%22Android%22%2C%22platformVersion%22%3A%226.0%22%2C%22uaFullVersion%22%3A%22142.0.7444.176%22%7D%2C%22cacheKey%22%3A%22home%3D_homepage_%2Ctaboola-ntk-5%3Dntk-a%3Apub%3Dyahooweb-network%3Aabp%3D0%2Ctaboola-stream-1%3Dstream-d%3Apub%3Dyahooweb-network%3Aabp%3D0%2Ctaboola-stream-9%3Dstream-d%3Apub%3Dyahooweb-network%3Aabp%3D0%22%2C%22_cn%22%3A%22tions_1%22%2C%22lbt%22%3A1764586061462%2C%22wc%22%3Atrue%7D&
+    tbu=7b9f0d67-e770-4d51-9995-77c1418c22ad
 Content-Type: text/plain
 Sec-CH-UA: "Chromium";v="142", "Google Chrome";v="142", "Not_A Brand";v="99"
 Sec-CH-UA-Mobile: ?1
@@ -389,10 +397,86 @@ Sec-CH-UA-Platform: "Android"
 Referer: https://news.yahoo.com/
 
 ### Rubicon Fastlane GET Request
-GET https://fastlane.rubiconproject.com/a/api/fastlane.json?account_id=17250&site_id=524412&zone_id=3157566&size_id=43&p_pos=atf&gdpr=0&us_privacy=1---&gpp=DBAA&gpp_sid=-1&rf=https%3A%2F%2Fnews.yahoo.com%2F&kw=yahoonews%2Cyahoonewspage%2Cyahoonewspage%2Cyahoosearch%2Cyahoomail%2Cyahoomessenger%2Cyahoogames%2Cnews%2Cfinance%2Csport%2Centertainment&tg_i.domain=news.yahoo.com&tg_i.page=https%3A%2F%2Fnews.yahoo.com%2F&tg_i.ref=https%3A%2F%2Fwww.google.com%2F&tg_i.documentLang=en-US&tg_i.pbadslot=us_ynews_main_mw_top_center&tk_flint=pbjs_lite_v9.53.2&l_pb_bid_id=130cecc3bcf23818&p_screen_res=1280x720&rp_secure=1&rp_hard_floor=0.28&p_gpid=us_ynews_main_mw_top_center&m_ch_ua=%22Chromium%22%7Cv%3D%22142%22%2C%22Google%20Chrome%22%7Cv%3D%22142%22%2C%22Not_A%20Brand%22%7Cv%3D%2299%22&m_ch_mobile=%3F1&m_ch_platform=Android&slots=1&rand=0.2690161093128739
+GET https://fastlane.rubiconproject.com/a/api/fastlane.json?account_id=17250&site_id=524412&zone_id=3157566&size_id=43&
+    p_pos=atf&gdpr=0&us_privacy=1---&gpp=DBAA&gpp_sid=-1&rf=https%3A%2F%2Fnews.yahoo.com%2F&
+    kw=yahoonews%2Cyahoonewspage%2Cyahoonewspage%2Cyahoosearch%2Cyahoomail%2Cyahoomessenger%2Cyahoogames%2Cnews%2Cfinance%2Csport%2Centertainment&
+    tg_i.domain=news.yahoo.com&tg_i.page=https%3A%2F%2Fnews.yahoo.com%2F&tg_i.ref=https%3A%2F%2Fwww.google.com%2F&
+    tg_i.documentLang=en-US&tg_i.pbadslot=us_ynews_main_mw_top_center&tk_flint=pbjs_lite_v9.53.2&
+    l_pb_bid_id=130cecc3bcf23818&p_screen_res=1280x720&rp_secure=1&rp_hard_floor=0.28&
+    p_gpid=us_ynews_main_mw_top_center&
+    m_ch_ua=%22Chromium%22%7Cv%3D%22142%22%2C%22Google%20Chrome%22%7Cv%3D%22142%22%2C%22Not_A%20Brand%22%7Cv%3D%2299%22&
+    m_ch_mobile=%3F1&m_ch_platform=Android&slots=1&rand=0.2690161093128739
 Content-Type: text/plain
 Sec-CH-UA: "Chromium";v="142", "Google Chrome";v="142", "Not_A Brand";v="99"
 Sec-CH-UA-Mobile: ?1
 Sec-CH-UA-Platform: "Android"
 Referer: https://news.yahoo.com/
 
+
+### Download YouTube video via p.lbserver.xyz  https://p.lbserver.xyz/ajax/download.php?copyright=0&format=720&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D-8gMqPTtL4k&api=dfcb6d76f2f6a9894gjkege8a4ab232222
+GET https://p.lbserver.xyz/ajax/download.php?copyright=0&format=720&
+    url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D-8gMqPTtL4k&api=dfcb6d76f2f6a9894gjkege8a4ab232222
+Accept: */*
+Accept-Language: en-US,en;q=0.9
+Cache-Control: no-cache
+Pragma: no-cache
+Priority: u=1, i
+Sec-CH-UA: "Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-CH-UA-Mobile: ?1
+Sec-CH-UA-Platform: "Android"
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: cross-site
+Referer: https://downloaderto.com/
+
+### Download YouTube video to see download link and progress
+GET https://p.savenow.to/api/progress?id=agCC0eNdc7bZq9Y6b9WW0RR
+Accept: */*
+Accept-Language: en-US,en;q=0.9
+Cache-Control: no-cache
+Pragma: no-cache
+Priority: u=1, i
+Sec-CH-UA: "Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-CH-UA-Mobile: ?1
+Sec-CH-UA-Platform: "Android"
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: cross-site
+Referer: https://downloaderto.com/
+
+# No body (GET request)
+
+
+### Save from net
+### SaveFrom POST
+POST https://worker.savefrom.net/savefrom.php HTTP/1.1
+Accept: application/json, text/plain, */*
+Accept-Language: en-US,en;q=0.9
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+Pragma: no-cache
+Priority: u=1, i
+Sec-CH-UA: "Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-CH-UA-Mobile: ?1
+Sec-CH-UA-Platform: "Android"
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+Referer: https://en1.savefrom.net/
+
+sf_url = https%3A%2F%2Fwww.youtube.com%2Fshorts%2F7qNB91bW3zQ &
+sf_submit =  &
+new = 2 &
+lang = en &
+app =  &
+country = ng &
+os = Android &
+browser = Chrome &
+channel = main &
+sf-nomad = 1 &
+url = https%3A%2F%2Fwww.youtube.com%2Fshorts%2F7qNB91bW3zQ &
+ts = 1764939194879 &
+_ts = 1764935261137 &
+_tsc = 0 &
+_s = abd50a3d7a6f651349009357b7a565edcb8bc08c917646fa83d5b90ecf661b7e &
+_x = 1

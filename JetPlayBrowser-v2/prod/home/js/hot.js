@@ -59,6 +59,7 @@ function createOrInsertToPhxNewsSingleDynamicContainer(docId, phxNewsItem) {
             <div class="divider"></div>
         </div>
     `);
+    addImgObservation(`${itemContainerId}-img`);
 }
 
 function createOrInsertToYTSingleDynamicLongFormContainer(docId, singleLongVidItem, addParentGroupingClassName = "yt-single-long-form-video-drop-container", allowSnap = false) {
