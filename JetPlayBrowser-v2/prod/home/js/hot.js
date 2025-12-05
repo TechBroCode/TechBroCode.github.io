@@ -315,14 +315,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                                         createOrInsertToYTSingleDynamicLongFormContainer(`${yTGroupingLongVidContainerDocId}-yt-group-contents`, groupItem, "yt-single-long-form-video-drop-horizontal-container", true);
                                     } else if (groupItem?.type === 10) {
                                         // It's phx videos...
-                                        alert("coo");
                                         if (!parentContainer) parentContainer = document.getElementById(`${yTGroupingLongVidContainerDocId}-yt-group`);
                                         if (parentContainer.nodeType !== 1) {
                                             // Not an element...
                                             parentContainer = undefined;
                                             continue;
                                         }
-                                        alert("me");
                                         createOrInsertToPHXVideosGroupContainer(parentContainer, `${yTGroupingLongVidContainerDocId}-yt-group-contents`, groupItem, c === (innerGroupLen - 1));
                                     }
                                 }
@@ -412,10 +410,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                     // Loop through all of them...
                     //showDroidToastMsg("Loading more...", 1);
                     isLoadingMainContents = true;
-                    let ytContinuation = "";
-                    let tikCont = "";
-                    let phxNewsCont = "";
-                    let phxFtCont = "";
+                    let ytContinuation;
+                    let tikCont;
+                    let phxNewsCont;
+                    let phxFtCont;
+                    let phxNewsVidToken;
                     for (let contentCont of continuationArr) {
                         // Each continuation object must have a token
                         if (!contentCont || !contentCont?.request || !contentCont?.token) continue;
@@ -438,6 +437,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                                 phxFtCont = token;
                                 break;
                             }
+                            case reqStr === "CONTINUATION_PHX_NEWS_VID_FEED" : {
+                                phxNewsVidToken = token;
+                                break;
+                            }
                         }
                     }
                     // We'll have to construct the url...
@@ -447,7 +450,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                         ytContinuation: ytContinuation,
                         tikCont: tikCont || Date.now().toString(),
                         phxNewsToken: phxNewsCont,
-                        phxFtToken: phxFtCont
+                        phxFtToken: phxFtCont,
+                        phxNewsVidToken
                         // add hl, gl, continuation, timeZone, etc. if needed
                     });
                     const reqUrl = `${PLAY_BASE_URL}/ret-api/hot?${params.toString()}`;
