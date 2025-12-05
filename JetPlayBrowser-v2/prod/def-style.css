@@ -11,7 +11,7 @@
     --card-background-color: #f5f5f5;
     --blue-to-white: #0017B5;
     --selected-color: var(--textColor);
-    --divider-color: #00000080;
+    --divider-color: rgba(0, 0, 0, 0.2);
 
     --dark-linear-gradient-background: linear-gradient(45deg, rgba(0, 0, 0, 1.00), rgba(0, 0, 0, 0.50));
     --translucent-div-background: rgba(0, 0, 0, 0.25);
@@ -30,7 +30,7 @@
     --card-background-color: #424242;
     --blue-to-white: white;
     --selected-color: var(--textColor);
-    --divider-color: #FFFFFF80;
+    --divider-color: rgba(255, 255, 255, 0.2);
 
     --dark-linear-gradient-background: linear-gradient(45deg, rgba(0, 0, 0, 1.00), rgba(0, 0, 0, 0.50));
     --translucent-div-background: rgba(0, 0, 0, 0.25);
@@ -49,7 +49,7 @@
     --card-background-color: #424242;
     --blue-to-white: white;
     --selected-color: var(--textColor);
-    --divider-color: #FFFFFF80;
+    --divider-color: rgba(255, 255, 255, 0.2);
 
 
     --dark-linear-gradient-background: linear-gradient(45deg, rgba(0, 0, 0, 1.00), rgba(0, 0, 0, 0.50));
@@ -69,7 +69,7 @@
     --card-background-color: #f5f5f5;
     --blue-to-white: #0017B5;
     --selected-color: var(--textColor);
-    --divider-color: #00000080;
+    --divider-color: rgba(0, 0, 0, 0.2);
 
     --dark-linear-gradient-background: linear-gradient(45deg, rgba(0, 0, 0, 1.00), rgba(0, 0, 0, 0.50));
     --translucent-div-background: rgba(0, 0, 0, 0.25);
@@ -88,7 +88,7 @@
     --card-background-color: #f5f5f5;
     --blue-to-white: #0017B5;
     --selected-color: var(--textColor);
-    --divider-color: #00000080;
+    --divider-color: rgba(0, 0, 0, 0.2);
 
 
     --dark-linear-gradient-background: linear-gradient(45deg, rgba(0, 0, 0, 1.00), rgba(0, 0, 0, 0.50));
@@ -108,7 +108,7 @@
     --card-background-color: #424242;
     --blue-to-white: white;
     --selected-color: var(--textColor);
-    --divider-color: #FFFFFF80;
+    --divider-color: rgba(255, 255, 255, 0.2);
 
     --dark-linear-gradient-background: linear-gradient(45deg, rgba(0, 0, 0, 1.00), rgba(0, 0, 0, 0.50));
     --translucent-div-background: rgba(0, 0, 0, 0.25);
