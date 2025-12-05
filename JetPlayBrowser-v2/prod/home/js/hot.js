@@ -10,7 +10,7 @@ for (let a = 0; a < 50; a++) {
 }
 console.log(myUUIDS);*/
 // This is also a YT Query param and a logged in cookie...
-const ytCookie = "VISITOR_INFO1_LIVE=IvKiLIds1lE; VISITOR_PRIVACY_METADATA=CgJORxIEGgAgUw%3D%3D; __Secure-3PAPISID=ipt_uoTPI53B8yus/APqTpkO8hq9_rgeN8; LOGIN_INFO=AFmmF2swRgIhAP-liQy5DsgsgqyHKxGu4mtaTxclN1Gz4EtDcnTEKx7pAiEAlxrkWM-Um4a4BKBJaGF9ljZvsfjYCSYCUsdMezutP5k:QUQ3MjNmeXlIUzljNXpPcHYtdHpoamhmN3ZROWpnRkE1VU1hbS1zZDFXUVpweG5UUEU2ajVVVlgwWWRqY2NacjBYV3BzdEJ0Q0V6NU4zTFVuYjBOVWhyYUd5N0g3dFZNRGtVaF9tejlVWV9BSWtxd0xNWkpOYm53NkRMQ2EtMmpIdVNzTFZkYm1iLUFTN3NJU1c4aGt1YkxCckNUanc4a01BSDJSa25qNkF6cHhmTklZMGxQM2lYZDVGVHBhc05YTmZXNlQwemhQR0lrVmNtS0g0bzdIS2dXYTNwOFBBdl9Cdw==; __Secure-3PSID=g.a0002wh-JA2KxfFP58PesI60afEbbdRyvIOAQY7mODiXzsYeMSoy8X76_KtbYpT-xiHM7_showACgYKAaoSARYSFQHGX2MiLWdT5u61G_-LPYENFbuttRoVAUF8yKr70J92LkHi5owg3bIU4L230076; PREF=f4=4000000&f6=40000000&tz=Africa.Lagos&f7=100&f5=30000; __Secure-1PSIDTS=sidts-CjQBwQ9iI57Ox3XzzqQpSVnKth2ovjNqn5V9PXb_uYYYBKY0sdAEG8GlHBZx4v_9w6qFfYi4EAA; __Secure-3PSIDTS=sidts-CjQBwQ9iI57Ox3XzzqQpSVnKth2ovjNqn5V9PXb_uYYYBKY0sdAEG8GlHBZx4v_9w6qFfYi4EAA; YSC=RYXugaaOKas; __Secure-ROLLOUT_TOKEN=CNq5uPPZ2tGvShD-_tTf556QAxifo-Le5p6RAw%3D%3D; __Secure-3PSIDCC=AKEyXzUzwOJ_GrPIoZ-CU894mRpuM-46AW4FmsyqsfO1b-vfZlHC8KB8Bcpq916HBGrFpIkJUiU";
+const ytCookie = "VISITOR_INFO1_LIVE=IvKiLIds1lE; VISITOR_PRIVACY_METADATA=CgJORxIEGgAgUw%3D%3D; __Secure-3PAPISID=ipt_uoTPI53B8yus/APqTpkO8hq9_rgeN8; LOGIN_INFO=AFmmF2swRgIhAP-liQy5DsgsgqyHKxGu4mtaTxclN1Gz4EtDcnTEKx7pAiEAlxrkWM-Um4a4BKBJaGF9ljZvsfjYCSYCUsdMezutP5k:QUQ3MjNmeXlIUzljNXpPcHYtdHpoamhmN3ZROWpnRkE1VU1hbS1zZDFXUVpweG5UUEU2ajVVVlgwWWRqY2NacjBYV3BzdEJ0Q0V6NU4zTFVuYjBOVWhyYUd5N0g3dFZNRGtVaF9tejlVWV9BSWtxd0xNWkpOYm53NkRMQ2EtMmpIdVNzTFZkYm1iLUFTN3NJU1c4aGt1YkxCckNUanc4a01BSDJSa25qNkF6cHhmTklZMGxQM2lYZDVGVHBhc05YTmZXNlQwemhQR0lrVmNtS0g0bzdIS2dXYTNwOFBBdl9Cdw==; __Secure-3PSID=g.a0002wh-JA2KxfFP58PesI60afEbbdRyvIOAQY7mODiXzsYeMSoy8X76_KtbYpT-xiHM7_showACgYKAaoSARYSFQHGX2MiLWdT5u61G_-LPYENFbuttRoVAUF8yKr70J92LkHi5owg3bIU4L230076; PREF=f4=4000000&f6=40000000&tz=Africa.Lagos&f7=100&f5=30000; __Secure-ROLLOUT_TOKEN=CNq5uPPZ2tGvShD-_tTf556QAxjk0u-5xaWRAw%3D%3D; __Secure-1PSIDTS=sidts-CjQBwQ9iIyVzq1lY-QCRMmiVCA-tZcFxsstZtEUlUCDaclUhXMUv2-lEqxNu3L7IRhuxr6gXEAA; __Secure-3PSIDTS=sidts-CjQBwQ9iIyVzq1lY-QCRMmiVCA-tZcFxsstZtEUlUCDaclUhXMUv2-lEqxNu3L7IRhuxr6gXEAA; YSC=uSBiuggGLOg; __Secure-3PSIDCC=AKEyXzWZIjWvzPyD0otsskkpFzh32CFDEk9yesnQ5xD9xlQjxpia5bzUq89-yTIcXBrM7uoxW34";
 // This is an incognito YT-cookie which is similar to the one gotten from DroidWebclient...
 const incognitoYTCookie = "__Secure-YNID=13.YT=AhuKARBOg3E7QQ7B7UEJWz0eMQcvCo_HbOKEi3ObBSz4LikLkgee0Rx56SY2j5ZYXfAfZaFh6eowkFifQvWL66EzfTrUdM3T2rl3dUq1_HYcTLtvZUZcAoC0CAwat4yh85Dg0BwnmFGAUgR49vHmKSBdmcUlsxniDu1hzg37VfnNYzXa18rrpwqhd9zYxhjJ8z1MD4UJyKSZXNNjDhsHa0DYKpdx2m10nlY8ibyGgAnbXiKt0a86ysH-Jc2x6oBirLKxhJLS-jLh_t3WHhylduLMI2tG8RSik6P1gkxxdb8vCNNaY_DLz39vRTAbeuhJa3Dsp4U_d3jApn_yaPAD6Q; GPS=1; YSC=qlzmJOK6awY; VISITOR_INFO1_LIVE=VMkDp47byC0; VISITOR_PRIVACY_METADATA=CgJORxIEGgAgbg%3D%3D; __Secure-ROLLOUT_TOKEN=CKaOv422lMTfbBC214zY45yRAxjNg53e45yRAw%3D%3D; PREF=f4=4000000&f6=40000000&tz=Africa.Lagos";
 const jetPlayYTStyle = "__Secure-YNID GPS YSC VISITOR_INFO1_LIVE PRIVACY_METADATA __Secure-ROLLOUT_TOKEN";
@@ -374,6 +374,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                     isLoadingMainContents = true;
                     let ytContinuation = "";
                     let tikCont = "";
+                    let phxNewsCont = "";
+                    let phxFtCont = "";
                     for (let contentCont of continuationArr) {
                         // Each continuation object must have a token
                         if (!contentCont || !contentCont?.request || !contentCont?.token) continue;
@@ -386,6 +388,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                             }
                             case reqStr === "CONTINUATION_REQUEST_TYPE_BROWSE" : {
                                 ytContinuation = token;
+                                break;
+                            }
+                            case reqStr === "CONTINUATION_PHX_NEWS_FEED" : {
+                                phxNewsCont = token;
+                                break;
+                            }
+                            case reqStr === "CONTINUATION_PHX_FT_FEED" : {
+                                phxFtCont = token;
                                 break;
                             }
                         }
