@@ -274,7 +274,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                                     <div class="yt-group">
                                         <!--TODO: INSERT HEADER...-->
                                         <div class="yt-header">
-                                            <p class="normal-poppins-style yt-header-title">🔥 ${groupTitle}<span style="font-weight: 400; opacity: 0.8; width: auto; height: auto; align-self: center; margin-left: 5px;">(${innerGroupLen})</span></p>
+                                            <p class="normal-poppins-style yt-header-title">${groupTitle}<span style="font-weight: 400; opacity: 0.8; width: auto; height: auto; align-self: center; margin-left: 5px;">(${innerGroupLen})</span></p>
                                         </div>
                                     </div>
                                 `);
