@@ -287,7 +287,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                                 const contentId = `${Date?.now()}-${makeUUID()}`;
                                 bannerContainer?.insertAdjacentHTML("beforeend", `
                                     <div id="${contentId}-movie-banner-content" class="movie-banner-content">
-                                        <img data-src=${groupItem?.placeholder} data-count="0" id="${contentId}-img" alt="" src="${groupItem?.placeholder}?x-oss-process=image/resize%2Cw_440" loading="lazy">
+                                        <img data-src="${groupItem?.placeholder}?x-oss-process=image/resize%2Cw_1000" data-count="0" id="${contentId}-img" alt="" src="${groupItem?.placeholder}?x-oss-process=image/resize%2Cw_1000" loading="lazy">
                                     </div>
                                 `);
                                 addImgObservation(`${contentId}-img`);

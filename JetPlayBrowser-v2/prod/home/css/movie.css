@@ -8,7 +8,7 @@
 }
 
 .movie-banner-container-wrapper svg {
-    width: clamp(24px, 8vw, 48px);
+    width: clamp(36px, 10vw, 48px);
     height: auto;
     display: inline-grid;
     align-self: center;
