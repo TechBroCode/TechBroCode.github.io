@@ -258,6 +258,7 @@
     .yt-single-long-form-video-drop-horizontal-container {
         /*TODO: We can add snap also for this...*/
         scroll-snap-type: x mandatory;    /* use mandatory instead of proximity */
+        overflow-scrolling: touch;
         -webkit-overflow-scrolling: touch;
         scroll-padding: 0;             /* 16px tune to change threshold */
     }
@@ -435,7 +436,6 @@
 
 @media (min-width: 481px) and (max-width: 1023px) {
     /* tablet */
-
 }
 
 @media (min-width: 1024px) {

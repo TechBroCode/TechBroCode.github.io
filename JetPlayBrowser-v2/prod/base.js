@@ -454,6 +454,87 @@ try {
         console.log(timeAgo(1764223059000));                    // prints relative to current date
         console.log(timeAgo(Date.now() + 2 * 86400 * 1000));    // "in 2 days" (future)*/
 
+        // Returns true if there's room to scroll right by roughly one slide
+
+
+        window.scrollXOneSlide = (dir = +1, container) => {
+            if (!container) return false;
+            const slideWidth = container.clientWidth; // width of one full slide
+            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            container.scrollBy({
+                left: dir * slideWidth,
+                behavior: prefersReduced ? 'auto' : 'smooth'
+            });
+            return canScrollOnce(dir, container);
+        }
+
+
+        /**
+         * Returns boolean: can we scroll one slide in the given direction?
+         *
+         * @param {HTMLElement} container - the scrollable element
+         * @param {number} dir - +1 for right/next, -1 for left/prev
+         * @param {Object} opts - optional
+         *   - positions: number[] (left offsets for each slide) -> variable-width support
+         *   - eps: number tolerance in px (default 1)
+         *   - allowCloneWrap: boolean (default false) - if true and .clone slides present, always return true
+         */
+        window.canScrollOnce = (container, dir = 1, opts = {}) => {
+            //alert("aaa");
+            if (!container/* || (dir !== 1 && dir !== -1)*/) return false;
+            //alert("eee");
+            const { positions = null, eps = 1, allowCloneWrap = false } = opts;
+
+            // if clones exist and user allows wrap, always true (you can scroll to clones)
+            if (allowCloneWrap && container.querySelector('.clone')) return true;
+
+            const maxScrollLeft = container.scrollWidth - container.clientWidth;
+            const cur = container.scrollLeft;
+
+            // Variable-width slides via positions[] (preferred if slides have different widths)
+            /*if (Array.isArray(positions) && positions.length > 0) {
+                // find nearest index to current scrollLeft
+                let nearest = 0;
+                let minDiff = Infinity;
+                for (let i = 0; i < positions.length; i++) {
+                    const d = Math.abs(positions[i] - cur);
+                    if (d < minDiff) { minDiff = d; nearest = i; }
+                }
+                const target = nearest + dir;
+                // valid if target inside positions array bounds
+                return target >= 0 && target < positions.length;
+            }*/
+
+            // Equal-width slides fallback: consider one step = container.clientWidth
+            const step = container.clientWidth;
+            if (dir === 1) {
+                // can we move right by ~step without exceeding max?
+                //alert("can go right");
+                return (cur + step + eps) <= maxScrollLeft;
+            } else {
+                //alert("can go left");
+                // can we move left by ~step without going < 0?
+                return (cur - step - eps) >= 0;
+            }
+        }
+
+// Usage examples:
+
+        //const container = document.getElementById('banner');
+
+// equal-width slides (full-width slides)
+        /*console.log(canScrollOnce(container, 1));  // can we scroll right one slide?
+        console.log(canScrollOnce(container, -1)); // can we scroll left one slide?*/
+
+// variable-width slides (precomputed positions)
+        /*const slides = Array.from(container.querySelectorAll('.movie-banner-content'));
+        const positions = slides.map(s => s.offsetLeft);
+        console.log(canScrollOnce(container, 1, { positions })); // next
+        console.log(canScrollOnce(container, -1, { positions })); // prev*/
+
+// clone-wrap (infinite) mode: treat it as always possible to scroll
+        //console.log(canScrollOnce(container, 1, { allowCloneWrap: true }));
+
     }
 } catch (e) {
 }

@@ -260,6 +260,53 @@ document.addEventListener("DOMContentLoaded", async () => {
                         continue;
                     }
                     switch (contentItem?.type) {
+                        case 0: {
+                            // Let's loop through nested items...
+                            const groupedItems = contentItem?.data?.meta?.list?.items;
+                            if (!groupedItems || !Array.isArray(groupedItems) || (Array.isArray(groupedItems) && groupedItems?.length <= 0)) break;
+                            const innerGroupLen = groupedItems?.length;
+                            const groupId = `${Date.now()}-${makeUUID()}`;
+                            generalContent?.insertAdjacentHTML("beforeend", `
+                                <div id="${groupId}-movie-banner-container-wrapper" class="movie-banner-container-wrapper">
+                                    <svg id="${groupId}-left-nav" aria-label="Navigate left" style="left: 2px; transform: translateY(-50%) scaleX(-1);" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
+                                        <path d="m535.46-480-123 123L440-328.46 591.54-480 440-631.54 412.46-603l123 123Zm-55.33 360q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41 28.34-65.73 76.92-114.36 48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34 65.73 28.34 114.36 76.92 48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41-28.34 65.73-76.92 114.36-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/>
+                                    </svg>
+                                    <svg id="${groupId}-right-nav" aria-label="Navigate right" style="right: 2px;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
+                                        <path d="m535.46-480-123 123L440-328.46 591.54-480 440-631.54 412.46-603l123 123Zm-55.33 360q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41 28.34-65.73 76.92-114.36 48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34 65.73 28.34 114.36 76.92 48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41-28.34 65.73-76.92 114.36-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/>
+                                    </svg>
+                                    <div tabindex="0" id="${groupId}-movie-banner-container" class="movie-banner-container-scroller">
+                                    </div>
+                                </div>
+                            `);
+                            const bannerContainer = document.getElementById(`${groupId}-movie-banner-container`);
+                            if (!bannerContainer || !generalContent?.contains(bannerContainer)) break;
+                            // We'll need to add the left and right svg buttons...
+                            for (let c = 0; c < innerGroupLen; c++) {
+                                const groupItem = groupedItems?.[c];
+                                if (!groupItem) continue;
+                                const contentId = `${Date?.now()}-${makeUUID()}`;
+                                bannerContainer?.insertAdjacentHTML("beforeend", `
+                                    <div id="${contentId}-movie-banner-content" class="movie-banner-content">
+                                        <img data-src=${groupItem?.placeholder} data-count="0" id="${contentId}-img" alt="" src="${groupItem?.placeholder}?x-oss-process=image/resize%2Cw_440" loading="lazy">
+                                    </div>
+                                `);
+                                addImgObservation(`${contentId}-img`);
+                            }
+                            const leftNav = document.getElementById(`${groupId}-left-nav`);
+                            const rightNav = document.getElementById(`${groupId}-right-nav`);
+
+                            leftNav?.addEventListener("click", (e) => {
+                                preventDefaultStopPropagation(e);
+                                scrollXOneSlide(-1, bannerContainer);
+                            })
+
+                            rightNav?.addEventListener("click", (e) => {
+                                preventDefaultStopPropagation(e);
+                                scrollXOneSlide(+1, bannerContainer);
+                            });
+
+                            break;
+                        }
                         case 1: {
                             // Let's loop through nested items...
                             const groupedItems = contentItem?.data?.meta?.list?.items;
