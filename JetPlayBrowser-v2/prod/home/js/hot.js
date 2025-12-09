@@ -274,35 +274,76 @@ document.addEventListener("DOMContentLoaded", async () => {
                                     <svg id="${groupId}-right-nav" aria-label="Navigate right" style="right: 3px;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
                                         <path d="m535.46-480-123 123L440-328.46 591.54-480 440-631.54 412.46-603l123 123Zm-55.33 360q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41 28.34-65.73 76.92-114.36 48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34 65.73 28.34 114.36 76.92 48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41-28.34 65.73-76.92 114.36-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/>
                                     </svg>
-                                    <div tabindex="0" id="${groupId}-movie-banner-container" class="movie-banner-container-scroller">
+                                    <div tabindex="0" id="${groupId}-movie-banner-container-scroller" class="movie-banner-container-scroller">
                                     </div>
                                 </div>
                             `);
-                            const bannerContainer = document.getElementById(`${groupId}-movie-banner-container`);
-                            if (!bannerContainer || !generalContent?.contains(bannerContainer)) break;
+                            const bannerContainerScroller = document.getElementById(`${groupId}-movie-banner-container-scroller`);
+                            if (!bannerContainerScroller || !generalContent?.contains(bannerContainerScroller)) break;
                             // We'll need to add the left and right svg buttons...
                             for (let c = 0; c < innerGroupLen; c++) {
                                 const groupItem = groupedItems?.[c];
                                 if (!groupItem) continue;
                                 const contentId = `${Date?.now()}-${makeUUID()}`;
-                                bannerContainer?.insertAdjacentHTML("beforeend", `
+                                const genre = groupItem?.data?.channel?.genre?.toString()?.trim() || "";
+                                const isTv = !!(genre && (genre.split(",")?.[0]?.toString()?.trim()?.toLowerCase() === "drama" || genre.split(",")?.[1]?.toString()?.trim()?.toLowerCase() === "drama"));
+                                const title = groupItem?.title;
+                                console.log("Title:", title, "isTV:", isTv, "Genre:", genre);
+                                bannerContainerScroller?.insertAdjacentHTML("beforeend", `
                                     <div id="${contentId}-movie-banner-content" class="movie-banner-content">
+                                        <div class="bottom-metadata">
+                                            <p class="normal-poppins-style title">${title}</p>
+                                            <div class="horiz-container">
+                                                 <div class="svg">
+                                                    <svg style="display: ${isTv ? 'none' : 'inline-block'};" id="${contentId}-movie"  xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='#FFFFFF'>
+                                                        <path style="fill: white;" fill-rule='evenodd' clip-rule='evenodd' d='M10.5455 10.0909H8.86545C10.1539 9.18545 11 7.69091 11 6C11 3.24303 8.75697 1 6 1C3.24303 1 1 3.24303 1 6C1 8.75697 3.24303 11 6 11C6.01212 11 6.02303 10.9982 6.03515 10.9982C6.03818 10.9982 6.04061 11 6.04364 11H10.5455C10.7964 11 11 10.7964 11 10.5455C11 10.2945 10.7964 10.0909 10.5455 10.0909ZM6.00006 2.9697C5.49824 2.9697 5.09097 3.37697 5.09097 3.87879C5.09097 4.38061 5.49824 4.78788 6.00006 4.78788C6.50188 4.78788 6.90915 4.38061 6.90915 3.87879C6.90915 3.37697 6.50188 2.9697 6.00006 2.9697ZM6.00006 7.09333C5.49824 7.09333 5.09097 7.50061 5.09097 8.00242C5.09097 8.50424 5.49824 8.91152 6.00006 8.91152C6.50188 8.91152 6.90915 8.50424 6.90915 8.00242C6.90915 7.50061 6.50188 7.09333 6.00006 7.09333ZM8.06188 5.03152C7.56006 5.03152 7.15279 5.43879 7.15279 5.94061C7.15279 6.44242 7.56006 6.8497 8.06188 6.8497C8.5637 6.8497 8.97097 6.44242 8.97097 5.94061C8.97097 5.43879 8.5637 5.03152 8.06188 5.03152ZM3.93824 5.03152C3.43642 5.03152 3.02915 5.43879 3.02915 5.94061C3.02915 6.44242 3.43642 6.8497 3.93824 6.8497C4.44006 6.8497 4.84733 6.44242 4.84733 5.94061C4.84733 5.43879 4.44006 5.03152 3.93824 5.03152Z' fill='white' fill-opacity='0.6'/>
+                                                    </svg>
+                                                    <svg style="display: ${isTv ? 'inline-block' : 'none'};" id="${contentId}-tv" xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'>
+                                                        <path d='M8.40234 1.14646C8.57983 0.93494 8.89491 0.907493 9.10645 1.08493C9.31798 1.26243 9.34547 1.5775 9.16797 1.78903L8.15234 2.99997H9C10.1046 2.99997 11 3.8954 11 4.99997V8.99997C10.9999 10.1045 10.1045 11 9 11H3C1.89548 11 1.00009 10.1045 1 8.99997V4.99997C1 3.8954 1.89543 2.99997 3 2.99997H3.84766L2.83203 1.78903C2.65453 1.5775 2.68202 1.26243 2.89355 1.08493C3.10506 0.907543 3.42017 0.935024 3.59766 1.14646L5.15332 2.99997H6.84668L8.40234 1.14646ZM2.47168 6.30466H3.59961V8.99997H4.70605V6.30466H5.83398V5.42087H2.47168V6.30466ZM7.22559 8.99997H8.42383L9.75195 5.42087H8.62891L7.83594 7.99704L7.03027 5.42087H5.87305L7.22559 8.99997Z' fill='white' fill-opacity='0.6'/>
+                                                    </svg> 
+                                                 </div>
+                                                <div class="divider">
+                                                </div>
+                                                <p class="normal-poppins-style texts">${groupItem?.datePublished?.text?.toString()?.trim()?.split("-")[0]}</p>
+                                                <div class="divider">
+                                                </div>
+                                                <p class="normal-poppins-style texts">${genre}</p>
+                                            </div>
+                                        </div>
                                         <img data-src="${groupItem?.placeholder}?x-oss-process=image/resize%2Cw_1000" data-count="0" id="${contentId}-img" alt="" src="${groupItem?.placeholder}?x-oss-process=image/resize%2Cw_1000" loading="lazy">
                                     </div>
                                 `);
                                 addImgObservation(`${contentId}-img`);
                             }
+                            /*const emptyHtml = `<img width="${contentId}-bottom-metadata-img" style="margin-bottom: 5px; margin-left: 5px; border-radius: 5px; width: 40px; height: 50px; display: flex; object-fit: cover;" data-src="${groupItem?.data?.channel?.icon}?x-oss-process=image/resize%2Cw_1000" data-count="0" id="${contentId}-bottom-metadata-img" alt="" src="${groupItem?.data?.channel?.icon}?x-oss-process=image/resize%2Cw_1000" loading="lazy">
+                                            <div style="width: auto; max-width: 100%; overflow: hidden; height: 55px; max-height: 55px; background: none; display: flex; vertical-align: bottom; flex-direction: column; justify-content: flex-start; align-items: center;">
+                                                <div id="${contentId}-visible-bottom-cont" style="margin-top: 10px; max-width: 100%; width: auto; height: 45px; background: rgba(70, 70, 70, 0.66); flex-direction: row; justify-content: flex-start; align-items: center; border-radius: 5px; flex-wrap: nowrap; flex: 0 1 100%; overflow: hidden; flex-grow: 1;">
+                                                    <div id="${contentId}-vert-container" style="margin-left: 53px; width: auto; max-width: calc(100% - 63px); margin-right: 10px; height: 30px; display: flex; flex-direction: column; justify-content: flex-start;">
+                                                        <p class="normal-poppins-style" style="width: 100%; text-align: start; font-weight: 400;">${groupItem?.title}</p>
+                                                        <div style="width: auto; display: flex; flex-wrap: nowrap; flex-direction: row; justify-content: space-between; align-items: flex-start; gap: 2px; height: auto;">
+                                                            <svg style="margin-top: 12px; fill: white; display: flex; width: 18px; height: 18px;" xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='#FFFFFF'>
+                                                                <path style="fill: white;" fill-rule='evenodd' clip-rule='evenodd' d='M10.5455 10.0909H8.86545C10.1539 9.18545 11 7.69091 11 6C11 3.24303 8.75697 1 6 1C3.24303 1 1 3.24303 1 6C1 8.75697 3.24303 11 6 11C6.01212 11 6.02303 10.9982 6.03515 10.9982C6.03818 10.9982 6.04061 11 6.04364 11H10.5455C10.7964 11 11 10.7964 11 10.5455C11 10.2945 10.7964 10.0909 10.5455 10.0909ZM6.00006 2.9697C5.49824 2.9697 5.09097 3.37697 5.09097 3.87879C5.09097 4.38061 5.49824 4.78788 6.00006 4.78788C6.50188 4.78788 6.90915 4.38061 6.90915 3.87879C6.90915 3.37697 6.50188 2.9697 6.00006 2.9697ZM6.00006 7.09333C5.49824 7.09333 5.09097 7.50061 5.09097 8.00242C5.09097 8.50424 5.49824 8.91152 6.00006 8.91152C6.50188 8.91152 6.90915 8.50424 6.90915 8.00242C6.90915 7.50061 6.50188 7.09333 6.00006 7.09333ZM8.06188 5.03152C7.56006 5.03152 7.15279 5.43879 7.15279 5.94061C7.15279 6.44242 7.56006 6.8497 8.06188 6.8497C8.5637 6.8497 8.97097 6.44242 8.97097 5.94061C8.97097 5.43879 8.5637 5.03152 8.06188 5.03152ZM3.93824 5.03152C3.43642 5.03152 3.02915 5.43879 3.02915 5.94061C3.02915 6.44242 3.43642 6.8497 3.93824 6.8497C4.44006 6.8497 4.84733 6.44242 4.84733 5.94061C4.84733 5.43879 4.44006 5.03152 3.93824 5.03152Z' fill='white' fill-opacity='0.6'/>
+                                                            </svg>
+                                                            <div style="width: 1px; height: 18px; background: white; opacity: 0.5; display: flex;"> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <svg id="${contentId}-play-svg" style="margin-top: 5px; margin-left: calc(100% - 22px); width: 24px; height: 24px; fill: var(--colorPrimaryDark); display: none;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
+                                                        <path style="fill: var(--colorPrimaryDark);" d="M390-318.46 641.54-480 390-641.54v323.08ZM480.07-100q-78.84 0-148.21-29.92t-120.68-81.21q-51.31-51.29-81.25-120.63Q100-401.1 100-479.93q0-78.84 29.92-148.21t81.21-120.68q51.29-51.31 120.63-81.25Q401.1-860 479.93-860q78.84 0 148.21 29.92t120.68 81.21q51.31 51.29 81.25 120.63Q860-558.9 860-480.07q0 78.84-29.92 148.21t-81.21 120.68q-51.29 51.31-120.63 81.25Q558.9-100 480.07-100Z"/>
+                                                    </svg>
+                                                </div>
+                                            </div>`;*/
                             const leftNav = document.getElementById(`${groupId}-left-nav`);
                             const rightNav = document.getElementById(`${groupId}-right-nav`);
 
                             leftNav?.addEventListener("click", (e) => {
                                 preventDefaultStopPropagation(e);
-                                scrollXOneSlide(-1, bannerContainer);
+                                scrollXOneSlide(-1, bannerContainerScroller);
                             })
 
                             rightNav?.addEventListener("click", (e) => {
                                 preventDefaultStopPropagation(e);
-                                scrollXOneSlide(+1, bannerContainer);
+                                scrollXOneSlide(+1, bannerContainerScroller);
                             });
 
                             break;
