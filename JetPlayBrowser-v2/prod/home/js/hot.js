@@ -284,7 +284,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                                         </div>
                                         <div id="${groupId}-search-anim-container" class="search-anim-container" style="display: none; overflow: hidden;">
                                         </div>
-                                        <p id="${groupId}-more" class="normal-poppins-style" style="position: relative; align-self: center; justify-content: center; color: var(--colorPrimaryDark); display: flex;">More</p>
+                                        <p id="${groupId}-more" class="normal-poppins-style" style="font-size: 16px; position: relative; align-self: center; justify-content: center; color: var(--colorPrimaryDark); display: flex;">More</p>
                                     </div>
                                     <svg id="${groupId}-left-nav" aria-label="Navigate left" style="left: 3px; transform: translateY(-50%) scaleX(-1);" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
                                         <path d="m535.46-480-123 123L440-328.46 591.54-480 440-631.54 412.46-603l123 123Zm-55.33 360q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41 28.34-65.73 76.92-114.36 48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34 65.73 28.34 114.36 76.92 48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41-28.34 65.73-76.92 114.36-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/>
@@ -297,11 +297,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                                 </div>
                             `);
                             setTimeout(() => {
-                                const animContainer = document.getElementById(`${groupId}-search-anim-container`);
+                                const searchAnimContainer = document.getElementById(`${groupId}-search-anim-container`);
                                 const moreButton = document.getElementById(`${groupId}-more`);
                                 const moreButtonWidth = Math.ceil(Math.max(moreButton.offsetWidth, moreButton.clientWidth, moreButton.getBoundingClientRect().width));
-                                animContainer.style.width = `calc(100% - ${46 + moreButtonWidth}px)`;
-                                animContainer.style.display = "flex";
+                                searchAnimContainer.style.width = `calc(100% - ${40 + moreButtonWidth}px)`;
+                                searchAnimContainer.style.display = "flex";
 
                                 if (hasSearchesAvailable) {
                                     const animSearchArr = [];
@@ -313,13 +313,13 @@ document.addEventListener("DOMContentLoaded", async () => {
                                     // Now, we'll animate all of them...
                                     let cursor = -1;
                                     const uuId = `${Date.now()}-${makeUUID()}`;
-                                    animContainer?.insertAdjacentHTML("beforeend", `
+                                    searchAnimContainer?.insertAdjacentHTML("beforeend", `
                                         <p id=${uuId} class="normal-poppins-style search-item search-item-enter">${animSearchArr?.[0]}</p>
                                     `);
                                     cursor = 0;
                                     if (animSearchArr?.length > 1) {
                                         setInterval(() => {
-                                            animContainer?.replaceChildren();
+                                            searchAnimContainer?.replaceChildren();
                                             // We'll add the next item...
                                             if (cursor >= (animSearchArr?.length - 1)) {
                                                 cursor = 0;
@@ -327,7 +327,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                                                 cursor++;
                                             }
                                             const nextSearchText = animSearchArr?.[cursor];
-                                            animContainer?.insertAdjacentHTML("beforeend", `
+                                            searchAnimContainer?.insertAdjacentHTML("beforeend", `
                                                 <p id=${uuId} class="normal-poppins-style search-item">${nextSearchText}</p>
                                             `);
                                             const nextSearchElement = document.getElementById(uuId);

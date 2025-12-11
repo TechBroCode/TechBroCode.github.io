@@ -49,12 +49,11 @@
 }
 
 .movie-banner-container-wrapper .top-search-animator {
-    width: auto;
     max-height: none;
     position: absolute;
     box-sizing: border-box;
     height: auto;
-    max-width: 100%;
+    width: 100%;
     top: 0;
     flex-direction: row;
     justify-content: flex-start;
@@ -66,15 +65,15 @@
     z-index: 1;
     left: 0;
     right: 0;
-    padding: 5px 5px 5px;
+    padding: 8px;
     gap: 10px;
 }
 
 .movie-banner-container-wrapper .top-search-animator .svg-div {
     display: block;
-    width: 16px;
-    height: 16px;
-    flex: 0 0 16px;
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
     align-self: center;
     vertical-align: middle;
     justify-content: center;
@@ -83,7 +82,7 @@
 
 .movie-banner-container-wrapper .top-search-animator .search-anim-container {
     position: relative;
-    width: calc(100% - 46px);
+    width: calc(100% - 40px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -100,6 +99,7 @@
     text-align: start;
     color: white;
     font-weight: 400;
+    font-size: 16px;
     transform: translateY(100%);
     transition: transform .5s ease-in-out;
 }
