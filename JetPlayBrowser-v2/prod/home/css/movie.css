@@ -58,9 +58,9 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     overflow-y: hidden;
-    overflow-x: visible;
+    overflow-x: hidden;
     background: rgba(0, 0, 0, 0.3);
     z-index: 1;
     left: 0;
