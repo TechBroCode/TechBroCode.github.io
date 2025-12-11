@@ -266,8 +266,26 @@ document.addEventListener("DOMContentLoaded", async () => {
                             if (!groupedItems || !Array.isArray(groupedItems) || (Array.isArray(groupedItems) && groupedItems?.length <= 0)) break;
                             const innerGroupLen = groupedItems?.length;
                             const groupId = `${Date.now()}-${makeUUID()}`;
+                            const searches = contentItem?.data?.meta?.searches;
+                            const hasSearchesAvailable = !!(searches && Array.isArray(searches) && searches?.length > 0);
                             generalContent?.insertAdjacentHTML("beforeend", `
                                 <div id="${groupId}-movie-banner-container-wrapper" class="movie-banner-container-wrapper">
+                                    <div style="display: ${hasSearchesAvailable ? 'flex' : 'none'};" class="top-search-animator">
+                                        <div class="svg-div">
+                                            <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+                                            <svg style="width: 100%; height: 100%; position: relative; display: inline-block;" width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+                                                    <g id="icon-equalizer-anim" fill="#4A4A4A" style="fill: var(--colorPrimaryDark);">
+                                                        <rect class="eq__bar" id="eq1" x="1" y="8" width="4" height="8"></rect>
+                                                        <rect class="eq__bar" id="eq2" x="6" y="1" width="4" height="15"></rect>
+                                                        <rect class="eq__bar" id="eq3" x="11" y="4" width="4" height="12"></rect>
+                                                    </g>
+                                            </svg>
+                                        </div>
+                                        <div id="${groupId}-search-anim-container" class="search-anim-container" style="display: none; overflow: hidden;">
+                                        </div>
+                                        <p id="${groupId}-more" class="normal-poppins-style" style="position: relative; align-self: center; justify-content: center; color: var(--colorPrimaryDark); display: flex;">More</p>
+                                    </div>
                                     <svg id="${groupId}-left-nav" aria-label="Navigate left" style="left: 3px; transform: translateY(-50%) scaleX(-1);" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
                                         <path d="m535.46-480-123 123L440-328.46 591.54-480 440-631.54 412.46-603l123 123Zm-55.33 360q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41 28.34-65.73 76.92-114.36 48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34 65.73 28.34 114.36 76.92 48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41-28.34 65.73-76.92 114.36-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/>
                                     </svg>
@@ -278,6 +296,51 @@ document.addEventListener("DOMContentLoaded", async () => {
                                     </div>
                                 </div>
                             `);
+                            setTimeout(() => {
+                                const animContainer = document.getElementById(`${groupId}-search-anim-container`);
+                                const moreButton = document.getElementById(`${groupId}-more`);
+                                const moreButtonWidth = Math.ceil(Math.max(moreButton.offsetWidth, moreButton.clientWidth, moreButton.getBoundingClientRect().width));
+                                animContainer.style.width = `calc(100% - ${46 + moreButtonWidth}px)`;
+                                animContainer.style.display = "flex";
+
+                                if (hasSearchesAvailable) {
+                                    const animSearchArr = [];
+                                    for (let c = 0, len = searches?.length; c < len; c += 1) {
+                                        const search = searches?.[c];
+                                        if (!search || search?.title?.toString()?.trim()?.length <= 0) continue;
+                                        animSearchArr.push(search?.title?.toString()?.trim());
+                                    }
+                                    // Now, we'll animate all of them...
+                                    let cursor = -1;
+                                    const uuId = `${Date.now()}-${makeUUID()}`;
+                                    animContainer?.insertAdjacentHTML("beforeend", `
+                                        <p id=${uuId} class="normal-poppins-style search-item search-item-enter">${animSearchArr?.[0]}</p>
+                                    `);
+                                    cursor = 0;
+                                    if (animSearchArr?.length > 1) {
+                                        setInterval(() => {
+                                            animContainer?.replaceChildren();
+                                            // We'll add the next item...
+                                            if (cursor >= (animSearchArr?.length - 1)) {
+                                                cursor = 0;
+                                            } else {
+                                                cursor++;
+                                            }
+                                            const nextSearchText = animSearchArr?.[cursor];
+                                            animContainer?.insertAdjacentHTML("beforeend", `
+                                                <p id=${uuId} class="normal-poppins-style search-item">${nextSearchText}</p>
+                                            `);
+                                            const nextSearchElement = document.getElementById(uuId);
+                                            setTimeout(() => {
+                                                if (nextSearchElement) {
+                                                    nextSearchElement.classList.add("search-item-enter");
+                                                }
+                                            }, 50);
+                                        }, 4000);
+                                    }
+                                }
+                            }, 1000);
+
                             const bannerContainerScroller = document.getElementById(`${groupId}-movie-banner-container-scroller`);
                             if (!bannerContainerScroller || !generalContent?.contains(bannerContainerScroller)) break;
                             // We'll need to add the left and right svg buttons...
@@ -288,7 +351,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                                 const genre = groupItem?.data?.channel?.genre?.toString()?.trim() || "";
                                 const isTv = !!(genre && (genre.split(",")?.[0]?.toString()?.trim()?.toLowerCase() === "drama" || genre.split(",")?.[1]?.toString()?.trim()?.toLowerCase() === "drama"));
                                 const title = groupItem?.title;
-                                console.log("Title:", title, "isTV:", isTv, "Genre:", genre);
+                                //console.log("Title:", title, "isTV:", isTv, "Genre:", genre);
                                 bannerContainerScroller?.insertAdjacentHTML("beforeend", `
                                     <div id="${contentId}-movie-banner-content" class="movie-banner-content">
                                         <div class="bottom-metadata">

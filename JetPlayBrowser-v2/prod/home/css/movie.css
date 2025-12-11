@@ -1,3 +1,44 @@
+@keyframes eq-uppydowny {
+    0% {
+    / / height: 20 px;
+        transform: scaleY(1);
+    }
+    50% {
+    / / height: 3 px;
+        transform: scaleY(.5);
+    }
+    100% {
+    / / height: 20 px;
+        transform: scaleY(1);
+    }
+}
+
+.eq__bar {
+    position: absolute;
+    bottom: 0;
+    fill: var(--colorPrimaryDark);
+    animation-name: eq-uppydowny;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    transform-origin: 8px 16px;
+    -webkit-transform-origin: 8px 16px;
+    /*rx:3;
+    ry:3;*/
+}
+
+#eq1 {
+    animation-duration: 0.5s;
+}
+
+#eq2 {
+    animation-duration: 1.3s;
+}
+
+#eq3 {
+    animation-duration: 0.7s;
+}
+
+
 .movie-banner-container-wrapper {
     display: flex;
     position: relative; /* buttons will be positioned relative to this */
@@ -5,6 +46,70 @@
     width: auto;
     flex-direction: column;
     flex: 0 0 100%;
+}
+
+.movie-banner-container-wrapper .top-search-animator {
+    width: auto;
+    max-height: none;
+    position: absolute;
+    box-sizing: border-box;
+    height: auto;
+    max-width: 100%;
+    top: 0;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow-y: hidden;
+    overflow-x: visible;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    left: 0;
+    right: 0;
+    padding: 5px 5px 5px;
+    gap: 10px;
+}
+
+.movie-banner-container-wrapper .top-search-animator .svg-div {
+    display: block;
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+    align-self: center;
+    vertical-align: middle;
+    justify-content: center;
+    position: relative;
+}
+
+.movie-banner-container-wrapper .top-search-animator .search-anim-container {
+    position: relative;
+    width: calc(100% - 46px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+}
+
+.movie-banner-container-wrapper .top-search-animator .search-anim-container .search-item {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-self: center;
+    text-align: start;
+    color: white;
+    font-weight: 400;
+    transform: translateY(100%);
+    transition: transform .5s ease-in-out;
+}
+
+.movie-banner-container-wrapper .top-search-animator .search-anim-container .search-item.search-item-enter {
+    transform: translateY(0);
+}
+
+.movie-banner-container-wrapper .top-search-animator .search-anim-container .search-item.search-item-exit {
+    transform: translateY(-100%);
 }
 
 .movie-banner-container-wrapper svg {
@@ -41,7 +146,6 @@
     overflow-y: hidden;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    overflow-scrolling: touch;
     -webkit-overflow-scrolling: touch;
     scroll-padding: 0;
     scroll-behavior: smooth;
